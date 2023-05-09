@@ -1,0 +1,124 @@
+.registration{
+    padding: 2rem 17.5625rem;
+}
+.registrationheader h1{
+    text-align: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: #B11226;
+}
+.registrationheader p{
+    text-align: center;
+    margin-top: 16px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: rgba(43, 43, 43, 0.8);
+}
+.registrationform{
+    margin-top: 52px;
+}
+.formforyou{
+    margin-top: 4px;
+    background-color: #ffffff;
+    padding: 1rem;
+}
+.formhead{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    letter-spacing: -0.18px;
+    color: #202020;
+}
+.forminner{
+   
+}
+.form1, .form2{
+    margin-top: 24px;
+}
+.form1{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.form1 div{
+    width: 98%;
+}
+.form3{
+    margin-top: 58px;
+    display: flex;
+    align-items: center;
+}
+.form3 label{
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.1px;
+    color: #202020;
+}
+.form3 label input{
+    margin-right: 4px;
+}
+.form3 label input[type='radio']{
+    accent-color: #B11226;
+}
+.formSelect{
+    margin-top: 8px;
+}
+.form4:last-child{
+    margin-top: 24px;
+}
+.form4{
+    height: 99px;
+    padding: 0.875rem;
+    border: 1px solid #EEF6FF;
+}
+.register{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: #058B42;
+}
+.starter{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: #B11226;
+}
+.registerbody{
+    margin-top: 8px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 24px;
+    color: rgba(32, 32, 32, 0.8);
+}
+.submitbutton{
+    width: 100%;
+    margin-top: 32px;
+}
+.submitbutton button{
+    width: 100%;
+    padding: 1rem 0.625rem;
+    background: #AC1337;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.625rem;
+    line-height: 39px;
+    color: #FFFFFF;
+}

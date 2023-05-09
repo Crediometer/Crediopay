@@ -1,0 +1,38 @@
+.sidebar{
+    height: 100vh;
+    width: 280px;
+    padding: 3.125rem ;
+    position: fixed;
+    background-color: #FFFFFF;
+}
+.businessname{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #2B2B2B;
+}
+.businessphone{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.4);
+}
+.sidebarfooter {
+    position: absolute;
+    bottom: 50px;
+    display: flex;
+    align-items: center;
+}
+.sidebarfooter h3{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #D50000;
+}
+.sidebarfooter h3 span{
+    color:#2B2B2B;
+    margin-right: 13px;
+}

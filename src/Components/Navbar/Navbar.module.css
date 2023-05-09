@@ -1,0 +1,25 @@
+.navbar{
+    position: fixed;
+    height: 56px;
+    width: calc(100% - 280px);
+    padding: 1rem;
+    background-color: #ffffff;
+}
+.navbarinner{
+    display: flex;
+    justify-content: right;
+}
+.profileicon{
+    display: flex;
+    align-items: center;
+}
+.personicon{
+    font-size: 1.8rem;
+    color: #0000004D;
+}
+.chevron{
+    margin-left: 8px;
+    font-size: 1.25rem;
+    color: #00000099;
+}
+
