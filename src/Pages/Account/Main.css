@@ -1,0 +1,82 @@
+.main-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.main-top p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: rgba(43, 43, 43, 0.7);
+}
+.main-top button{
+    padding: 1.15625rem 2.99375rem;
+    background: #AC1337;
+    border: none;
+    border-radius: 4.6px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4375rem;
+    line-height: 34px;
+    color: #FFFFFF;
+}
+.main-body-inner{
+    margin-top: 130px;
+    width: 40%;
+    padding: 2.5rem;
+    background: #FFFFFF;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+.main-account-name{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: rgba(0, 0, 0, 0.9);
+}
+.main-account-phone{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.4);
+}
+.main-balance{
+    margin-top: 71px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.main-ava-text{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: rgba(43, 43, 43, 0.4);
+}
+.main-amount{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2.3rem;
+    color: rgba(0, 0, 0, 0.9);
+}
+.main-current{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 29.54px;
+    background: rgba(179, 28, 47, 0.15);
+    border-radius: 4px;
+}
+.main-current p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    color: rgba(43, 43, 43, 0.9);
+}

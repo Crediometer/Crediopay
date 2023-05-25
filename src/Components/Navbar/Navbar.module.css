@@ -1,7 +1,7 @@
 .navbar{
     position: fixed;
     height: 56px;
-    width: calc(100% - 280px);
+    width: calc(100% - 250px);
     padding: 1rem;
     background-color: #ffffff;
 }

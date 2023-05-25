@@ -1,0 +1,83 @@
+.key-top{
+    display: flex;
+    justify-content: right;
+}
+.key-switch{
+    display: flex;
+    align-items: center;
+}
+.key-switch-inner{
+    margin-left: 32px;
+    margin-right: 32px;
+}
+.key-switch p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #000000;
+}
+.key-body{
+    width: 75%;
+}
+.secret-key{
+    margin-top: 37px;
+}
+.secret-key-head{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #000000;
+}
+.secret-key-form{
+    margin-top:10px;
+    display: flex;
+    align-items: center;
+}
+.secret-input{
+    width: 62%;
+    display: flex;
+    background-color: white;
+    padding: 1.1875rem;
+    margin-right: 23px;
+}
+.secret-input input{
+    width: 90%;
+    border: none;
+}
+.secret-input input::placeholder{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.4);
+}
+.secret-icon{
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+.secret-icon svg{
+    margin-left: 10px;
+    color: #555555b8;
+}
+.secret-submit{
+    width: 28%;
+}
+.secret-submit button, .secret-submit-2 button{
+    padding: 0.5rem 1.25rem;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4375rem;
+    line-height: 34px;
+    color: #FFFFFF;
+    background: rgba(5, 139, 66, 0.72);
+    border-radius: 4.6px;
+    border: none;
+}
+.secret-submit-2 button{
+    padding: 0.5rem 1.5 rem;
+    background-color: #AC1337;
+}

@@ -1,0 +1,99 @@
+.transaction{
+    padding: 2rem 2.0625rem;
+}
+.transaction-top{
+    /* padding: 1.125rem 2.5rem; */
+    /* background: #FFFFFF; */
+    
+    border-radius: 7.80686px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.transaction-top-left, .transaction-top-center, .transaction-top-right{
+    padding: 1.125rem 2.5rem;
+    width: 33.3%;
+    height: 175px;
+}
+.transaction-top-left,.transaction-top-right{
+    background-color: white;
+    box-shadow: 4.87929px 4.87929px 19.5172px rgba(0, 0, 0, 0.07);
+}
+.transaction-top-center{
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.07);
+    background: rgba(115, 115, 115, 0.03);
+}
+.transaction-top-left{
+    display: flex;
+    flex-direction: column;
+}
+.transaction-top-left h1{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: rgba(0, 0, 0, 0.9);
+}
+.current, .main, .sub{
+    padding: 0.5625rem 1.2rem;
+    background: rgba(179, 28, 47, 0.15);
+    border-radius: 5.55208px;
+}
+.current p, .main p, .sub p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: rgba(43, 43, 43, 0.9);
+}
+.main{
+    background: rgba(5, 139, 66, 0.44);
+}
+
+.trans-phone{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.4);
+}
+.trans-phone span svg{
+    margin-right: 8px;
+    font-size: 1.2rem;
+    color: #555555;
+}
+
+.trans-center-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.available{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.21875rem;
+    color: rgba(43, 43, 43, 0.4);
+}
+.main-balance{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 3rem;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.transaction-head{
+    margin-top: 33px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #2B2B2B;
+}
+.transaction-body{
+    margin-top: 21px;
+}
+.transaction-table{
+    margin-top: 21px;
+}

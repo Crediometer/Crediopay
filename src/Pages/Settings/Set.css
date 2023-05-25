@@ -1,0 +1,84 @@
+.directors{
+    width: 40%;
+}
+.director-top{
+    display: flex;
+    align-items: center;
+}
+.director-top p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.75rem;
+    color: #000000;
+}
+.director-top button{
+    margin-left: 84px;
+    padding: 0.5rem 3.25rem;
+    background: #AC1337;
+    border: none;
+    border-radius: 4.6px;
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4375rem;
+    line-height: 34px;
+    color: #FFFFFF;
+}
+.director-top button svg{
+    margin-right: 10px;
+}
+/* .director-body{
+  
+} */
+.director{
+    margin-top: 27px;
+    background: #EDEDED;
+    border-radius: 4px;
+    padding: 1.1875rem 1.5625rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.director-name{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: rgba(0, 0, 0, 0.8);
+}
+.set-settings{
+    margin-top: 84px;
+}
+.set-head{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.8);
+}
+.set-setting{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 0.2px solid #000000;
+}
+.set-text-head{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.75rem;
+    color: #000000;
+}
+.set-text-body{
+    margin-top: 8px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: rgba(0, 0, 0, 0.8);
+}

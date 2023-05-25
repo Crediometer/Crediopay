@@ -1,0 +1,30 @@
+.product{
+    padding: 2rem 2.0625rem;
+}
+.product-inner{
+    padding: 50px;
+    width: 100%;
+    background-color: white;
+}
+.product-head{ 
+    text-align: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.25rem;
+    color: #2B2B2B;
+}
+.product-body, .product-doc p{
+    margin-top: 20px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #000000;
+}
+.product-doc{
+    margin-top: 70px;
+}
+.product-doc span{
+    color: #058B42;
+}

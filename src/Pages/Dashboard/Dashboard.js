@@ -45,13 +45,15 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className={styles.dashboardBalance}>
-                    <p className={styles.balance}>Balance</p>
-                    <div className={styles.balanceContainer}>
-                        <p>NGN 0,000.000</p>
-                        <div className={styles.balanceIcon}>
-                            <IoMdEyeOff/>
-                            <IoCopy/>
+                    <div>
+                        <p className={styles.balance}>Balance</p>
+                        <div className={styles.balanceContainer}>
+                            <p>NGN 0,000.000</p>
                         </div>
+                    </div>
+                    <div className={styles.balanceIcon}>
+                        <IoMdEyeOff/>
+                        <IoCopy/>
                     </div>
                 </div>
                 <div className={styles.graphContainer}>

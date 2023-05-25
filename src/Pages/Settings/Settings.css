@@ -1,0 +1,19 @@
+.settings{
+    padding: 2rem 2.0625rem;
+}
+.settings-top{
+    display: flex;
+    border-bottom: 2px solid #D9D9D9;
+}
+.settings-top p{
+    cursor: pointer;
+    padding: 26px 30px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #2B2B2B;
+}
+.settings-body{
+    margin-top: 61px;
+}
