@@ -105,3 +105,43 @@
     border-radius: 8px;
     background-color: transparent;
 }
+@media (max-width: 1210px) {
+    .paymentHead{
+        font-size: 0.9rem;;
+    }
+    .paymentCircle{
+        margin-top: 10px;
+        padding: 0.5rem;
+    }
+    .paymentAmount{
+        font-size: 0.8rem;
+    }
+    .paymentLimit{
+        margin-top: 6px;
+        line-height: 13px;
+    }
+    .paymentCircleInner{
+        margin-top: 0px;
+    }
+    .circleLabel{
+        margin-top: 6px;
+        justify-content: space-between;
+    }
+    .paid div, .limit div, .amount div{
+        width: 3.36px;
+        height: 3.36px;
+    }
+    .paid p, .limit p, .amount p{  
+        margin-left: 0px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 0.3rem;
+    }
+    .paymentButton{
+        margin-top: 26px;
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+        line-height: 30px;
+    }
+}

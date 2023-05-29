@@ -82,3 +82,8 @@
     font-size: 1.25rem;
     color: rgba(0, 0, 0, 0.8);
 }
+@media (max-width: 1210px) {
+    .directors{
+        width: 60%;
+    }
+}

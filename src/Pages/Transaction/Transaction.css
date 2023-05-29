@@ -11,7 +11,7 @@
     justify-content: space-between;
 }
 .transaction-top-left, .transaction-top-center, .transaction-top-right{
-    padding: 1.125rem 2.5rem;
+    padding: 1.125rem 2rem;
     width: 33.3%;
     height: 175px;
 }
@@ -31,11 +31,15 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: rgba(0, 0, 0, 0.9);
 }
+.current{
+    margin-top: 10px;
+    width: 40%;
+}
 .current, .main, .sub{
-    padding: 0.5625rem 1.2rem;
+    padding: 0.3625rem 0.8rem;
     background: rgba(179, 28, 47, 0.15);
     border-radius: 5.55208px;
 }
@@ -43,7 +47,7 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 1.125rem;
+    font-size: 0.7rem;
     color: rgba(43, 43, 43, 0.9);
 }
 .main{
@@ -51,6 +55,7 @@
 }
 
 .trans-phone{
+    margin-top: 10px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -72,14 +77,15 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 1.21875rem;
+    font-size: 1rem;
     color: rgba(43, 43, 43, 0.4);
 }
 .main-balance{
+    margin-top: 10px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 3rem;
+    font-size: 2.2rem;
     color: rgba(0, 0, 0, 0.9);
 }
 
@@ -96,4 +102,34 @@
 }
 .transaction-table{
     margin-top: 21px;
+}
+@media (max-width: 1350px) {
+    .current, .main, .sub{
+        padding: 0.2625rem 0.6rem;
+    }
+    .current p, .main p, .sub p{
+        font-size: 0.5rem;
+    }
+}
+@media (max-width: 1210px) {
+    .main-balance{
+        font-size: 2rem;
+    }
+    .transaction-top-left h1{
+        font-size: 1.8rem;
+    }
+    .trans-phone{
+        font-size: 1.2rem;
+    }
+}
+@media (max-width: 1100px) {
+    .main-balance{
+        font-size: 1.6rem;
+    }
+    .transaction-top-left h1{
+        font-size: 1.4rem;
+    }
+    .trans-phone{
+        font-size: 1.2rem;
+    }
 }

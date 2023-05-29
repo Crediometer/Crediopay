@@ -21,7 +21,7 @@ const AccountPage = () => {
                 <p onClick={handleSub}>Sub Accounts</p>
                 <p onClick={handleVirtual}>Virtual Accounts</p>
             </div>
-            <div className="settings-body">
+            <div className="accounts-body">
                 { (show === 1) && <Main/>}
                 { (show === 2) && <Sub/>} 
                 { (show === 3) && <Virtual/>}           

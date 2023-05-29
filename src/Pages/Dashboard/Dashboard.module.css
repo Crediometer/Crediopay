@@ -1,15 +1,28 @@
 .dashboard{
-    padding: 2rem 2.0625rem;
+    padding: 2rem 2rem;
     display: flex;
     justify-content: space-between;
 }
 .dashboardLeft{
-    width: 70%;
+    padding:0rem 1.7rem;
+    width: 75%;
+    height: 88vh;
+    overflow-y: scroll;
 }
+.dashboardLeft::-webkit-scrollbar {
+    width: 8px;
+}
+.dashboardLeft::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #D9D9D9;
+    border-radius: 10px;
+}
+.dashboardLeft::-webkit-scrollbar-thumb {
+    background: #707070;
+    border-radius: 15px;
+}  
 .dashboardRight{
-    width: 20%;
-    position: fixed;
-    margin-left: calc((100% - 280px) - 25%);
+    width: 25%;
+
 }
 .dashboardCategory{
     display: flex;
@@ -17,6 +30,7 @@
     align-items: center;
 }
 .categoryLeft{
+    width: 65%;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -177,4 +191,12 @@
 .tableContainer{
     margin-top: 17px;
     width: 100%;
+}
+@media (max-width: 1210px) {
+    .dashboard{
+        padding: 2rem 1rem;
+    }
+    .dashboardLeft{
+        padding:0rem 1rem;
+    }
 }

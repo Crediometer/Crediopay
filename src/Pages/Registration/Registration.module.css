@@ -1,5 +1,5 @@
 .registration{
-    padding: 2rem 17.5625rem;
+    padding: 2rem 10.5625rem;
 }
 .registrationheader h1{
     text-align: center;
@@ -121,4 +121,9 @@
     font-size: 1.625rem;
     line-height: 39px;
     color: #FFFFFF;
+}
+@media (max-width: 1150px) {
+    .registration{
+        padding: 2rem 5.5625rem;
+    }
 }

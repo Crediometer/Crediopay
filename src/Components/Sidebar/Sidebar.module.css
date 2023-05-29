@@ -40,7 +40,7 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #2B2B2B;
     transition: all 0.3s;
 }
@@ -68,7 +68,6 @@
 }
 .sidebarfooter {
     padding: 2.125rem;
-    position: absolute;
     bottom: 10px;
     display: flex;
     align-items: center;
@@ -83,4 +82,22 @@
 .sidebarfooter h3 span{
     color:#2B2B2B;
     margin-right: 13px;
+}
+@media (max-width: 1210px) {
+    .links{
+        margin-top: 10px;
+    }
+    .links nav li a{
+        margin-top: 5px;
+        padding: 5px;
+        font-size: 0.575rem;
+    }
+    .sidebarfooter {
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+    }
+    .sidebarfooter h3{
+        font-size: 1rem;
+    }
 }
