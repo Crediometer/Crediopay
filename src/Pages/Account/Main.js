@@ -1,5 +1,5 @@
+import Paginations from '../../Components/Pagination/Pagination';
 import './Main.css';
-import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 const Main = () => {
     return ( 
@@ -24,23 +24,7 @@ const Main = () => {
                     </div>
                 </div>
             </div>
-            <div className="main-footer">
-                <div className="main-footer-left">
-                    <p>Show results</p>
-                    <div className="main-select">
-                        <select>
-                            <optgroup>
-                                <option>10</option>
-                                <option>20</option>
-                                <option>30</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                </div>
-                <div className="main-footer-right">
-                    <Pagination count={1} color="secondary" />  
-                </div>
-            </div>
+            <Paginations/>
         </div>
     );
 }

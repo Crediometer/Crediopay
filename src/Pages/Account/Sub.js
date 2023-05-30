@@ -1,3 +1,4 @@
+import Paginations from '../../Components/Pagination/Pagination';
 import SubTable from '../../Components/Table/SubTable';
 import './Sub.css'
 const Sub = () => {
@@ -9,6 +10,7 @@ const Sub = () => {
             <div className="settings-body">
                 <SubTable/>
             </div>
+            <Paginations/>
         </div>
     );
 }

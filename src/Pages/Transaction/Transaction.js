@@ -4,6 +4,7 @@ import './Transaction.css'
 import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import TransactionTable from '../../Components/Table/TransactionTable';
+import Paginations from '../../Components/Pagination/Pagination';
 const Transaction = () => {
     const [isActive, setIsActive] = useState(false);
 
@@ -88,6 +89,7 @@ const Transaction = () => {
                 <div className="transaction-table">
                     <TransactionTable/>
                 </div>
+                <Paginations/>
             </div>
         </div>
     );
