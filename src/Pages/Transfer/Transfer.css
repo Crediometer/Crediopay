@@ -9,14 +9,15 @@
     color: #000000;
 }
 .transfer-body{
-    margin-top: 66px;
+    margin-top: 30px;
     width: 100%;
     display: flex;
     justify-content: center;
 }
 .transfer-inner{
-    width: 55%;
-    padding: 2rem;
+    width: 100%;
+    border-radius: 15px;
+    padding: 1rem;
     background: rgba(230, 230, 230, 0.88);
     border-radius: 2px;
 }
@@ -28,6 +29,7 @@
     color: #000000;
 }
 .transfer-to-inner{
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,38 +38,46 @@
     border-bottom: 0.2px solid #000000;
 }
 .to{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
+    width: 48%;
+    padding: 1rem;
     margin-left: 10px;
     margin-right: 10px;
-    /* margin-right: 24px; */
     background: #FFFFFF;
-    box-shadow: 3px 0px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.066);
     border-radius: 8px;
 }
 .to p{
-    margin-top: 8px;
     font-family: 'Poppins';
     font-style: normal;
-    width: 101px;
     font-weight: 400;
-    font-size: 1.25rem;
-    text-align: center;
+    font-size: 1rem;
+    text-align: left;
     color: #000000;
 }
+.to-inner{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .to-image{
-    width: 98px;
-    height: 95px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #E0E0E0;
-    border-radius: 30px;
+    border-radius: 10px;
+
+}
+.to-image img{
+    width: 30px;
 }
 .to-image svg{
-    font-size: 2rem;
+    font-size: 1rem;
+}
+.to-select input{
+    width: 30px;
 }
 .transfer-cred{
     padding: 1.4375rem 0rem;
@@ -81,30 +91,30 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: rgba(0, 0, 0, 0.8);
 }
 .transfer-send select{
     margin-left: 10px;
     background-color: white;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.8rem;
     border-radius: 8px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 15px;
     color: #2b2b2b6b;
 }
 .transfer-account{
-    margin-top: 28px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 .transfer-account-left{
     width: 60%;
-    padding:1.5rem  1.75rem;
+    padding:1.3rem 1.5rem;
     background: #FFFFFF;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.02);
     border-radius: 8px;
@@ -113,14 +123,14 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: rgba(0, 0, 0, 0.9);
 }
 .account-left-text{
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: rgba(0, 0, 0, 0.4);
 }
 .transfer-account-right{
@@ -129,16 +139,16 @@
 .transfer-available{
     display: flex;
     align-items: center;
-    justify-content: space-between;
 }
 .available-2{
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 0.9375rem;
+    font-size: 0.7375rem;
     color: rgba(43, 43, 43, 0.4);
 }
 .sub-2{
+    margin-left: 10px;
     background: rgba(179, 28, 47, 0.15);
     border-radius: 4.40917px;
 }
@@ -147,21 +157,34 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 0.675rem;
+    font-size: 0.475rem;
     color: rgba(43, 43, 43, 0.9);
 }
 .balance-2{
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: rgba(0, 0, 0, 0.9);
 }
-.form-1{
-    margin-top: 32px;
+.form-1-outer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.form-1, .form-2{
+    margin-top: 24px;
+    width: 32%;
+}
+.form-2{
+    margin-top: 24px;
+    width: 48%;
+}
+.form-1-label{
+    font-size: 0.8rem;
 }
 .save-ben{
-    padding: 34px 0px;
+    padding: 24px 0px;
     border-bottom: 0.2px solid #000000;
     display: flex;
     align-items: center;
@@ -171,7 +194,7 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     color: rgba(0, 0, 0, 0.5);
 }
 .save-ben-switch{
@@ -216,9 +239,6 @@
     }
 }
 @media (max-width: 1210px) {
-    .transfer-inner{
-        width: 75%;
-    }
     .account-left-head{
         font-size: 1.8rem;
     }

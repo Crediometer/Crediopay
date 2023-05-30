@@ -14,16 +14,27 @@ const Transfer = () => {
                         <p className='transfer-to-title'>Transfer To :</p>
                         <div className="transfer-to-inner">
                             <div className="to">
-                                <div className="to-image">
-                                    <img src={credio}></img>
-                                </div>
                                 <p>Credio Account </p>
+                                <div className="to-inner">
+                                    <div className="to-image">
+                                        <img src={credio}></img>
+                                    </div>
+                                    <div className="to-select">
+                                        <input type="radio" name="bank" value="credio"></input>
+                                    </div>
+                                </div>
+                                
                             </div>
                             <div className="to">
-                                <div className="to-image">
-                                    <BsBank2/>
-                                </div>
                                 <p>Other Bank</p>
+                                <div className="to-inner">
+                                    <div className="to-image">
+                                        <BsBank2/>
+                                    </div>
+                                    <div className="to-select">
+                                        <input type="radio" name="bank" value="credio"></input>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -52,22 +63,24 @@ const Transfer = () => {
                     </div>
                     <div className="transfer-form">
                         <form>
-                            <div className="form-1">
-                                <div className="input">
-                                    <label>Beneficiary’s  Bank </label>
-                                    <input type="text" placeholder="0198604538"></input>
+                            <div className="form-1-outer">
+                                <div className="form-1">
+                                    <div className="input">
+                                        <label className='form-1-label'>Beneficiary’s  Bank </label>
+                                        <input type="text" placeholder="0198604538"></input>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="form-1">
-                                <div className="input">
-                                    <label>Beneficiary’s  Account Number </label>
-                                    <input type="text" placeholder="0198604538"></input>
+                                <div className="form-1">
+                                    <div className="input">
+                                        <label className='form-1-label'>Beneficiary’s  Account Number </label>
+                                        <input type="text" placeholder="0198604538"></input>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="form-1">
-                                <div className="input">
-                                    <label>Beneficiary’s Name </label>
-                                    <input type="text" placeholder="0198604538"></input>
+                                <div className="form-1">
+                                    <div className="input">
+                                        <label className='form-1-label'>Beneficiary’s Name </label>
+                                        <input type="text" placeholder="0198604538"></input>
+                                    </div>
                                 </div>
                             </div>
                             <div className="save-ben">
@@ -76,16 +89,18 @@ const Transfer = () => {
                                     <Switch/>
                                 </div>
                             </div>
-                            <div className="form-1">
-                                <div className="input">
-                                    <label>Amount</label>
-                                    <input type="text" placeholder="NGN 5,000"></input>
+                            <div className="form-1-outer">
+                                <div className="form-2">
+                                    <div className="input">
+                                        <label>Amount</label>
+                                        <input type="text" placeholder="NGN 5,000"></input>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="form-1">
-                                <div className="input">
-                                    <label>Narration</label>
-                                    <input type="text" placeholder="e.g School Fees"></input>
+                                <div className="form-2">
+                                    <div className="input">
+                                        <label>Narration</label>
+                                        <input type="text" placeholder="e.g School Fees"></input>
+                                    </div>
                                 </div>
                             </div>
                             <div className="form-button">
