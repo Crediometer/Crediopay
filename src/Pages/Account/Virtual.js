@@ -20,9 +20,9 @@ const Virtual = () => {
     return ( 
         <div className="sub-con">
             <div className="settings-top virtual-top">
-                <p className='setting-head' onClick={handleSetting} className={show === 1 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>All</p>
-                <p className='key-head' onClick={handleOverview} className={show === 3 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Paid</p>
-                <p className='key-head' onClick={handleDocument} className={show === 4 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Proposed</p>
+                <p  onClick={handleSetting} className={show === 1 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>All</p>
+                <p  onClick={handleOverview} className={show === 3 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Paid</p>
+                <p  onClick={handleDocument} className={show === 4 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Proposed</p>
             </div>
             <div className="settings-body">
                 <SubTable/>
