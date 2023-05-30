@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './AccountPage.css'
+import styles from './Main.module.css'
 import Main from './Main';
 import Sub from './Sub';
 import Virtual from './Virtual';
@@ -17,9 +18,9 @@ const AccountPage = () => {
     return ( 
         <div className="account-page">
             <div className="settings-top">
-                <p onClick={handleMain}>Main Accounts</p>
-                <p onClick={handleSub}>Sub Accounts</p>
-                <p onClick={handleVirtual}>Virtual Accounts</p>
+                <p onClick={handleMain} className={show === 1 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Main Accounts</p>
+                <p onClick={handleSub} className={show === 2 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Sub Accounts</p>
+                <p onClick={handleVirtual} className={show === 3 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Virtual Accounts</p>
             </div>
             <div className="accounts-body">
                 { (show === 1) && <Main/>}

@@ -100,8 +100,83 @@
 .transaction-body{
     margin-top: 21px;
 }
+.dashboardCategory{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.categoryLeft{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.status{
+    padding: 0.5rem 0.8rem;
+    border: 0.5px solid rgba(43, 43, 43, 0.4);
+    border-radius: 8px;
+}
+.status p, .active p{
+    font-family: 'Darker Grotesque';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #2B2B2B;
+}
+.active{
+    padding: 0.5rem 0.8rem;
+    background-color:  #B11226;
+    border-radius: 8px;
+    border: none;
+}
 .transaction-table{
     margin-top: 21px;
+}
+.categoryRight{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+.categoryRight select{
+    width: 100%;
+    padding: 0.5rem 0.5rem;
+    background: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Darker Grotesque';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #2b2b2baf;
+}
+.categoryRight select optgroup{
+    font-family: 'Darker Grotesque';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #2B2B2B;
+    opacity: 0.3;
+}
+.categorySearch{
+    display: flex;
+    align-items: center;
+    padding: 0.6rem;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+}
+.categorySearch input{
+    padding-left: 10px;
+    background-color: transparent;
+    border: none;
+}
+.categorySearch input::placeholder{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 20px;
+    text-transform: capitalize;
+    color: rgba(0, 0, 0, 0.6);
 }
 @media (max-width: 1350px) {
     .current, .main, .sub{

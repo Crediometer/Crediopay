@@ -207,6 +207,14 @@
     line-height: 39px;
     color: #FFFFFF;
 }
+@media (max-width: 1280px) {
+    .account-left-head{
+        font-size: 1.4rem;
+    }
+    .balance-2{
+        font-size: 1.4rem;
+    }
+}
 @media (max-width: 1210px) {
     .transfer-inner{
         width: 75%;
@@ -218,6 +226,6 @@
         font-size: 0.7rem;
     }
     .balance-2{
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
 }

@@ -4,6 +4,7 @@
     width: calc(100% - 250px);
     padding: 1rem;
     background-color: #ffffff;
+    z-index: 1;
 }
 .navbarinner{
     display: flex;

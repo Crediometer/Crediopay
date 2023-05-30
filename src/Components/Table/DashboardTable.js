@@ -42,7 +42,7 @@ const DashboardTable = () => {
                             <TableRow hover role="checkbox" tabIndex={-1}>
                                 <TableCell className='tablecell-body'>
                                     <div className="recipient" >
-                                        <img></img>
+                                        <img src='https://unsplash.com/s/photos/person'></img>
                                         <div className="recipient-text" >
                                             <p className="recipient-name" >Olalekan Mercy</p>
                                             <p className="recipient-title">Recipient</p>

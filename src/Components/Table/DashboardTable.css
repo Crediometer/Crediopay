@@ -15,6 +15,12 @@ table{
     display: flex;
     align-items: center;
 }
+.recipient img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
 .recipient-name{
     font-family: 'Darker Grotesque';
     font-style: normal;
@@ -60,4 +66,28 @@ table{
     background: #068B6C;
     border: none;
     border-radius: 4px;
+}
+@media (max-width:1200px) {
+    .tablecell-head {
+        font-size: 12px;
+    }
+    .recipient-name{
+        font-size: 14px;
+    }
+    .recipient-title{
+        font-size: 12px;
+    }
+    .date{
+        font-size: 14px;
+    }
+    .time{
+        font-size: 12px;
+    }
+    .transaction-text{
+        font-size: 14px;             
+    }
+    .status-button button{
+        padding: 0.25rem 0.5625rem;
+        font-size: 0.6125rem;
+    }
 }

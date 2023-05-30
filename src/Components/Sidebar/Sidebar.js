@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import styles from './Sidebar.module.css'
 import {BiLogOut} from 'react-icons/bi'
 import { SidebarDetails } from "./SidebarDetails";
-import { Link } from "react-router-dom";
+import classNames from 'classnames';
+import { Link,NavLink, useLocation } from "react-router-dom";
 const Sidebar = () => {
-    
+    const location = useLocation();
     const [activeLink, setActiveLink] = useState(null);
     function handleLinkClick(event, index) {
         event.preventDefault();
         setActiveLink(index);
     }
+    const navLinkStyles = ({isActive}) => {
 
+    }
     return ( 
         <div className={styles.sidebar}>
             <div className={styles.sidebarheader}>
@@ -31,8 +34,9 @@ const Sidebar = () => {
                                     >
 
                                     <Link to={val.link}
+                                        className={classNames(styles.navLink, { [styles.active]: location.pathname === val.link })}
                                         // onClick={(event) => handleLinkClick(event, index)}
-                                        className={activeLink === index ? 'active' : ''}
+                                        // className={activeLink === index ? 'active' : ''}
                                     >
                                         <div className={styles.sideicon}>
                                             <div className={styles.sideiconInner}>

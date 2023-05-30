@@ -13,7 +13,9 @@ const PaymentModal = ({togglemodal}) => {
                 <p className='create-payment'>Create New Payment</p>
                 <div className="modal-inner">
                     <div className="modal-left">
-                        <TbPackages/>
+                        <div className="modal-left-icon">
+                            <TbPackages/>
+                        </div>
                         <p className="payment-method">Product Payment</p>
                         <p className="payment-details">Lorem ipsum dolor sit amet, adip elit, sed do eiusmod tempor</p>
                         <Link to='/product'>
@@ -21,10 +23,14 @@ const PaymentModal = ({togglemodal}) => {
                         </Link>
                     </div>
                     <div className="modal-right">
-                        <BsCreditCard/>
-                        <p className="payment-method">Product Payment</p>
+                        <div className="modal-left-icon">
+                            <BsCreditCard/>
+                        </div>
+                        <p className="payment-method">One-time payment</p>
                         <p className="payment-details">Lorem ipsum dolor sit amet, adip elit, sed do eiusmod tempor</p>
-                        <button className='payment-choose'>Choose</button>
+                        <Link to='/product'>
+                            <button className='payment-choose'>Choose</button>
+                        </Link>
                     </div>
                 </div>
             </div>

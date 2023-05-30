@@ -22,7 +22,6 @@
 }  
 .dashboardRight{
     width: 25%;
-
 }
 .dashboardCategory{
     display: flex;
@@ -185,18 +184,56 @@
     width: 100%;
     height: 100%;
     background: #FFFFFF;
-    padding: 1.9375rem;
+    padding: 1.7375rem;
     border-radius: 6.5198px;
 }
 .tableContainer{
     margin-top: 17px;
     width: 100%;
 }
-@media (max-width: 1210px) {
+@media (max-width: 1280px) {
     .dashboard{
         padding: 2rem 1rem;
     }
     .dashboardLeft{
         padding:0rem 1rem;
+        width: 70%;
+    }
+    .dashboardRight{
+        width: 30%;
+    }
+    .balance{
+        font-size: 1.15rem;
+    }
+    .balanceContainer{
+        display: flex;
+    }
+    .balanceContainer p{
+        font-size: 1.8rem;
+    }
+    .balanceIcon svg{
+        font-size: 1rem;
+    }
+}
+@media (max-width: 1100px) {
+    .categoryLeft{
+        width: 60%;
+        gap: 5px;
+    }
+    .status{
+        padding: 0.5rem 0.8rem;
+    }
+    .status p{
+        font-size: 0.9375rem;
+    }
+    .active{
+        padding: 0.5rem 0.8rem;
+    }
+    .active p{
+        font-size: 0.9375rem;
+    }
+    .categoryRight{
+        width: 40%;
+        gap: 5px;
     }
 }

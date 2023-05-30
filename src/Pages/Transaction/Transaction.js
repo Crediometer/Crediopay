@@ -43,30 +43,29 @@ const Transaction = () => {
             </div>
             <p className='transaction-head'>Transactions</p>
             <div className="transaction-body">
-                <div className={styles.dashboardCategory}>
-                    <div className={styles.categoryLeft}>
+                <div className='dashboardCategory'>
+                    <div className='categoryLeft'>
                         <div className={myClassName} onClick={handleClick}>
                             <p>All</p>
                         </div>
-                        <div className={styles.status}>
+                        <div className='status'>
                             <p>Successful</p>
                         </div>
-                        <div className={styles.status}>
+                        <div className='status'>
                             <p>Pending</p>
                         </div>
-                        <div className={styles.status}>
+                        <div className='status'>
                             <p>Failed</p>
                         </div>
                     </div>
-                    <div className={styles.money}>
-                        <select>
-                            <optgroup>
-                                <option>Money In</option>
-                                <option>Money Out</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div className={styles.categoryRight}>
+                    <div className='categoryRight'>
+                       
+                            <select>
+                                <optgroup>
+                                    <option>Money In</option>
+                                    <option>Money Out</option>
+                                </optgroup>
+                            </select>
                         <select>
                             <optgroup>
                                 <option>From</option>
@@ -78,7 +77,7 @@ const Transaction = () => {
                             </optgroup>
                         </select>
                     </div>
-                    <div className={styles.categorySearch}>
+                    <div className='categorySearch'>
                         <FaSearch/>
                         <input
                         type='text'

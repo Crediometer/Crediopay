@@ -5,25 +5,35 @@ import {
     LineElement,
     CategoryScale,
     LinearScale,
-    PointElement
+    PointElement,
+    Filler
 } from 'chart.js';
+import { FilledInput } from '@mui/material';
 
 ChartJS.register(
     LineElement,
     CategoryScale,
     LinearScale,
-    PointElement
+    PointElement, 
+    Filler
 )
 const Graph = () => {
     const data = {
-        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'],
+        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec'],
         datasets: [{
-            data:[0,1000,2000, 4000, 5000, 3000, 2000, 6000, 3000, 1000, 5000, 2000, 500],
-            backgroundColor: 'transparent',
+            data:[10,20,30, 42, 51, 82, 31, 59, 67, 79, 83, 54],
+            backgroundColor: (context: ScriptableContext<"line">) => {
+                const ctx = context.chart.ctx;
+                const gradient = ctx.createLinearGradient(0, 0, 0, 179.63);
+                gradient.addColorStop(0, "rgba(215, 215, 215, 0.4)");
+                gradient.addColorStop(1, "rgba(255, 255, 255, 0.726)");
+                return gradient;
+              },
             borderColor: "#7373738A",
             pointBorderColor:'transparent',
             pointBorderWidth: 4,
-            tension: 0.4
+            tension: 0.4,
+            fill: true
         }]
 
     }
@@ -39,12 +49,12 @@ const Graph = () => {
             },
             y: {
                 min: 0,
-                max: 10000,
+                max: 100,
                 ticks: {
-                    stepSize: 1000
+                    stepSize: 10
                 },
                 grid:{
-                    borderDash:[10000]
+                    borderDash:[10]
                 }
             }
 

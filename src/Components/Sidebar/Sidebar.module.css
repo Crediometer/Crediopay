@@ -41,7 +41,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 0.875rem;
-    color: #2B2B2B;
+    color: #2b2b2bd7;
     transition: all 0.3s;
 }
 .links nav li a:hover{
@@ -50,6 +50,12 @@
     border-right: 3px solid #B11226;
     color: #B11226;
     transition: all 0.3s;
+}
+.links nav li a.active{
+    background: #FAF1F3;
+    border-radius: 10px 0px 0px 10px;
+    border-right: 3px solid #B11226;
+    color: #B11226;
 }
 .active{
     background: #FAF1F3;
@@ -61,7 +67,7 @@
     color: #B11226;
 }
 .sideiconInner svg{
-    font-size: 20px;
+    font-size:1rem;
 }
 .addressName{
     margin-left: 14px;
