@@ -22,7 +22,7 @@ const Graph = () => {
         labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec'],
         datasets: [{
             data:[10,20,30, 42, 51, 82, 31, 59, 67, 79, 83, 54],
-            backgroundColor: (context: ScriptableContext<"line">) => {
+            backgroundColor: (context) => {
                 const ctx = context.chart.ctx;
                 const gradient = ctx.createLinearGradient(0, 0, 0, 179.63);
                 gradient.addColorStop(0, "rgba(215, 215, 215, 0.4)");
