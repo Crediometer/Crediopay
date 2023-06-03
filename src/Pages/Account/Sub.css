@@ -8,3 +8,11 @@
 .virtual-top{
     width: 40%;
 }
+@media (max-width:1000px) {
+    .sub-top p{
+        font-size: 1rem;;
+    }
+    .virtual-top{
+        width: 51%;
+    }
+}

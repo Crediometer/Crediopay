@@ -15,5 +15,15 @@
     color: #2B2B2B;
 }
 .settings-body{
+    width: 100%;
     margin-top: 61px;
+}
+@media (max-width:1000px) {
+    .settings{
+        padding: 2rem 1rem;
+    }
+    .settings-top p{
+        padding: 0px 20px;
+        font-size: 0.65rem;
+    }
 }

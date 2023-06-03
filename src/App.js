@@ -14,15 +14,21 @@ import Settings from './Pages/Settings/Settings';
 import Account from './Pages/Account/Account';
 import AccountPage from './Pages/Account/AccountPage';
 import Transfer from './Pages/Transfer/Transfer';
+import { useState } from 'react';
+import Onetime from './Pages/Payment/Onetime';
 function App() {
+  const [sidebar, setSidebar] = useState(false);
+  const toggleSidebar = () => {
+    setSidebar((prevState) => !prevState);
+  };
   return (
     <Router>
       <div className={styles.test}>
         <div className={styles.left}>
-          <Sidebar/>
+          <Sidebar Sidebar={sidebar} closeSidebar={toggleSidebar}/>
         </div>
         <div className={styles.right}>
-          <Navbar/>
+          <Navbar toggle={toggleSidebar}/>
           <div className={styles.content}>
           <Routes>
             <Route exact path='/' element={<Registration/>}></Route>
@@ -30,6 +36,7 @@ function App() {
             <Route path="/activate" element={<Activate/>}/>
             <Route path="/payment" element={<Payment/>}/>
             <Route path="/product" element={<Product/>}/>
+            <Route path="/onetime" element={<Onetime/>}/>
             <Route path="/zelle" element={<Zelle/>}/>
             <Route path="/transaction" element={<Transaction/>}/>
             <Route path="/setting" element={<Settings/>}/>

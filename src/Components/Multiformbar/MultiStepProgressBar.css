@@ -122,7 +122,6 @@
     font-style: normal;
     font-weight: 400;
     font-size: 1.10625rem;
-    line-height: 30px;
     letter-spacing: 0.31735px;
     color: #202020;
 }
@@ -136,7 +135,6 @@
     font-style: normal;
     font-weight: 500;
     font-size: 1.10625rem;
-    line-height: 30px;
     text-align: center;
     letter-spacing: 1.58675px;
     text-transform: uppercase;
@@ -184,4 +182,54 @@
     font-weight: 500;
     font-size: 2rem;
     color: #2B2B2B;
+}
+@media (max-width: 1000px){
+    .step-number{
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+    }
+    .step-number p{
+        font-size: 0.4125rem;
+    }
+    .step-number svg{
+        font-size: 0.4125rem;
+    }
+    .step-name{
+        line-height: 10px;
+        font-size: 0.4125rem;
+    }
+    .formtext{
+        line-height: 10px;
+        font-size:0.5rem;
+    }
+    .file-warning{
+        text-align: left;
+        font-size: 0.5rem;
+        line-height: 10px;
+        color: #000000;
+    }
+    .businessHead{
+        font-size: 0.75rem;
+        line-height: 12px;
+    }
+    .filedisplay p{
+        font-size: 0.6125rem;
+        line-height: 13px;
+    }
+    .filechose p{
+        font-size: 0.5125rem;
+        line-height: 13px;
+    }
+    .filedisplay, .filechose{
+        height: 40px;
+    }
+    .warning{
+        font-size: 0.6025rem;
+        line-height: 13px;
+    }
+    .payout p{
+        font-size: 1.0625rem;
+        color: #2B2B2B;
+    }
 }

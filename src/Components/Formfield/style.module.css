@@ -41,3 +41,11 @@
     border: 1px solid #EEF6FF;
     border-radius: 4px;
 }
+@media (max-width: 1000px) {
+    .fieldlabel{
+        font-size: 0.625rem;
+    }
+    .fieldinput{
+        font-size: 0.4875rem;
+    }
+}

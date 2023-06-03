@@ -127,3 +127,20 @@
         padding: 2rem 5.5625rem;
     }
 }
+@media (max-width: 1000px) {
+    .registration{
+        padding: 2rem 1rem;
+    }
+    .registrationheader h1{
+        font-size: 1rem;
+    }
+    .registrationheader p{
+        font-size: 0.875rem;
+    }
+    .registrationform{
+        margin-top: 18px;
+    }
+    .formhead{
+        font-size: 0.875rem;
+    }
+}

@@ -107,6 +107,7 @@
     color: #2b2b2b6b;
 }
 .transfer-account{
+    width: 100%;
     margin-top: 20px;
     display: flex;
     align-items: center;
@@ -247,5 +248,83 @@
     }
     .balance-2{
         font-size: 1.4rem;
+    }
+}
+@media (max-width: 1000px) {
+    .transfer{
+        padding: 2rem 1rem;
+    }
+    .transfer-head{
+        font-size: 0.75rem;
+    }
+    .transfer-body{
+        margin-top: 0px;
+    }
+    .transfer-inner{
+        padding: 0rem;
+        background: transparent;
+    }
+    .transfer-to-title{
+        display: none;
+    }
+    .transfer-to-inner{
+        margin-top: 20px;
+        padding-bottom: 24px;
+    }
+    .to p{
+        font-size: 0.625rem;
+    }
+    .to-image{
+        width: 29px;
+        height: 29px;
+    }
+    .to-image img{
+        width: 19px;
+    }
+    .to-image svg{
+        font-size: 0.8rem;
+    }
+    .transfer-cred{
+        position: relative;
+        padding: 1rem 0rem;
+        border-bottom: 0px;
+    }
+    .transfer-send p{
+        font-size: 0.875rem;
+    }
+    .transfer-send select, .transfer-available{
+        display: none;
+    }
+    .transfer-account-left{
+        width: 100%;
+    }
+    .transfer-account-right{
+        width: 0%;
+    }
+    .balance-2{
+        position: absolute;
+        top: 20px;
+        right: 1rem;
+        font-size: 0.625rem;
+    }
+    .account-left-head{
+        font-size: 0.8125rem;
+    }
+    .account-left-text{
+        font-size: 0.5rem;
+    }
+    .form-1-outer{
+        display: block;
+    }
+    .form-1, .form-2{
+        margin-top: 24px;
+        width: 100%;
+    }
+    .form-2{
+        margin-top: 24px;
+        width: 100%;
+    }
+    .form-1-label{
+        font-size: 0.7rem;
     }
 }

@@ -27,11 +27,11 @@ const DashboardTable = () => {
                     <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            <TableCell className='tablecell-head'>Recipient</TableCell>
-                            <TableCell className='tablecell-head'>Date</TableCell>
-                            <TableCell className='tablecell-head'>Transaction Id</TableCell>
-                            <TableCell className='tablecell-head'>Amount</TableCell>
-                            <TableCell className='tablecell-head'>Status</TableCell>
+                            <TableCell className='tablecell-head'><p>Recipient</p></TableCell>
+                            <TableCell className='tablecell-head'><p>Date</p></TableCell>
+                            <TableCell className='tablecell-head'><p>Transaction Id</p></TableCell>
+                            <TableCell className='tablecell-head'><p>Amount</p></TableCell>
+                            <TableCell className='tablecell-head'><p>Status</p></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

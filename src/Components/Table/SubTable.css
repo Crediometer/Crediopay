@@ -27,3 +27,18 @@
     text-transform: uppercase;
     color: rgba(43, 43, 43, 0.7);
 }
+@media (max-width:1000px) {
+    .subtable{
+        width: 100%;
+        overflow-x: scroll;
+    }
+    .subtable table thead tr th{
+        padding: 1rem;
+        font-size: 0.6875rem;
+    }
+    .subtable table tbody tr td{
+        padding: 1rem 1rem;
+        font-size: 0.6875rem;
+        text-align: center;
+    }
+}

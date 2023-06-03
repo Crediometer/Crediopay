@@ -28,7 +28,7 @@ const PaymentModal = ({togglemodal}) => {
                         </div>
                         <p className="payment-method">One-time payment</p>
                         <p className="payment-details">Lorem ipsum dolor sit amet, adip elit, sed do eiusmod tempor</p>
-                        <Link to='/product'>
+                        <Link to='/onetime'>
                             <button className='payment-choose'>Choose</button>
                         </Link>
                     </div>

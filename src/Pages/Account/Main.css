@@ -136,3 +136,46 @@
         color: rgba(0, 0, 0, 0.9);
     }
 }
+@media (max-width:1000px) {
+    .main-top p{
+        font-size: 1rem;;
+    }
+    .main-top button{
+        position: absolute;
+        top: 10px;
+        right: 16px;
+        padding: 0.575rem 1.4375rem;
+        font-size: 0.6875rem;
+        line-height: 13px;
+    }
+    .main-body-inner{
+        width: 100%;
+        padding: 1.5rem;
+    }
+    .main-account-name{
+        font-size: 1.5rem;
+    }
+    .main-account-phone{
+        font-size: 1.125rem;
+    }
+    .main-ava-text{
+        font-size: 0.9375rem;
+    }
+    .main-amount{
+        font-size: 1.875rem;
+    }
+    .main-current p{
+        font-size: 0.625rem;
+    }
+    .main-select select{
+        font-size: 1rem;
+    }
+    .main-footer-left p{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 0.9375rem;
+        line-height: 120%;
+        color: rgba(43, 43, 43, 0.4);
+    }
+}

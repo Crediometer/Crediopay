@@ -87,3 +87,34 @@
         width: 60%;
     }
 }
+@media (max-width: 1000px) {
+    .directors{
+        width: 100%;
+    }
+    .director-top{
+        justify-content: space-between;
+    }
+    .director-top p{
+        font-size: 1.25rem;
+    }
+    .director-top button{
+        margin-left: 0px;
+        padding: 0.5rem 2.375rem;
+        background: #AC1337;
+        font-size: 1.0625rem;
+    }
+    .director-name{
+        font-size: 0.875rem;
+    }
+    .set-head{
+        font-size: 0.875rem;
+    }
+    .set-text-head{
+        font-size: 0.875rem;
+        color: #000000;
+    }
+    .set-text-body{
+        font-size: 0.625rem;
+
+    }
+}

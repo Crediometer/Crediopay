@@ -28,3 +28,14 @@
 .product-doc span{
     color: #058B42;
 }
+@media (max-width: 1000px) {
+    .product-inner{
+        padding: 20px;
+    }
+    .product-head{ 
+        font-size: 1rem;
+    }
+    .product-body, .product-doc p{
+        font-size: 1rem;
+    }
+}

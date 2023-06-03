@@ -11,9 +11,7 @@
   width: 100%;
   display: flex;
 }
-/* .left{
-  width: 250px;
-} */
+
 .right{
   margin-left: 250px;
   width: calc(100% - 250px);
@@ -31,5 +29,11 @@
     max-height: 100%;
     margin-top: 56px;
     background-color: #F5F5F5 ;
+  }
+}
+@media (max-width: 1000px){
+  .right{
+    margin-left: 0px;
+    width: 100%;
   }
 }

@@ -79,7 +79,7 @@
     border: none;
 }
 .secret-submit-2 button{
-    padding: 0.5rem 1.5 rem;
+    padding: 0.5rem 1.5rem;
     background-color: #AC1337;
 }
 @media (max-width: 1210px) {
@@ -88,5 +88,46 @@
     }
     .secret-submit button, .secret-submit-2 button{
         font-size: 1rem;
+    }
+}
+@media (max-width: 1000px) {
+    .key-switch p{
+        font-size: 0.75rem;
+    }
+    .key-switch-inner{
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+    .key-body{
+        width: 100%;
+    }
+    .secret-key{
+        margin-top: 15px;
+    }
+    .secret-key-head{
+        font-size: 0.75rem;
+        color: #000000;
+    }
+    .secret-key-form{
+        margin-top:8px;
+    }
+    .secret-input{
+        padding: 0.8rem;
+    }
+    .secret-icon{
+        width: 20%;
+    }
+    .secret-input input::placeholder{
+        font-size: 0.625rem;
+    }
+    .secret-icon svg{
+        font-size: 1rem;
+        margin-left: 10px;
+        color: #555555b8;
+    }
+    .secret-submit button, .secret-submit-2 button{
+        padding: 0.5rem 1rem;
+        font-size: 0.525rem;
+        line-height: 13px;
     }
 }

@@ -17,7 +17,7 @@ const AccountPage = () => {
     }
     return ( 
         <div className="account-page">
-            <div className="settings-top">
+            <div className="settings-top accounts-top">
                 <p onClick={handleMain} className={show === 1 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Main Accounts</p>
                 <p onClick={handleSub} className={show === 2 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Sub Accounts</p>
                 <p onClick={handleVirtual} className={show === 3 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Virtual Accounts</p>

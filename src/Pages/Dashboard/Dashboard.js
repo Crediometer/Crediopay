@@ -5,9 +5,19 @@ import { IoCopy } from "react-icons/io5";
 import Graph from "../../Components/Graph/Graph";
 import DashboardTable from "../../Components/Table/DashboardTable";
 import Rightbar from "../../Components/Rightbar/Rightbar";
+import { FaChevronDown } from "react-icons/fa";
 const Dashboard = () => {
     const [isActive, setIsActive] = useState(false);
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('All');
 
+    const handleOptionClick = (option) => {
+      setSelectedOption(option);
+      setDropdownOpen(false);
+    };
+    const toggleDropdown = () => {
+        setDropdownOpen(!isDropdownOpen);
+    };
     const handleClick = event => {
       // 👇️ toggle isActive state on click
       setIsActive(!isActive);
@@ -17,18 +27,44 @@ const Dashboard = () => {
         <div className={styles.dashboard}>
             <div className={styles.dashboardLeft}>
                 <div className={styles.dashboardCategory}>
-                    <div className={styles.categoryLeft}>
-                        <div className={myClassName} onClick={handleClick}>
-                            <p>All</p>
+                    <div className={styles.categoryLeftMobile}>
+                        <div className={styles.categoryLeft}>
+                            <div className={styles.dropdownButton} onClick={toggleDropdown}>
+                                <p>{selectedOption}</p>
+                                <FaChevronDown/>
+                            </div>
+                            {isDropdownOpen && (
+                                <div className={styles.categoryLeftInner}>
+                                    <div className={myClassName} onClick={()=>{handleClick(); handleOptionClick('All');}}>
+                                        <p>All</p>
+                                    </div>
+                                    <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Successful');}}>
+                                        <p>Successful</p>
+                                    </div>
+                                    <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Pending');}}>
+                                        <p>Pending</p>
+                                    </div>
+                                    <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Failed');}}>
+                                        <p>Failed</p>
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                        <div className={styles.status}>
-                            <p>Successful</p>
-                        </div>
-                        <div className={styles.status}>
-                            <p>Pending</p>
-                        </div>
-                        <div className={styles.status}>
-                            <p>Failed</p>
+                    </div>
+                    <div className={styles.categoryLeftDesktop}>
+                        <div className={styles.categoryLeft}>
+                                <div className={myClassName} onClick={()=>{handleClick(); handleOptionClick('All');}}>
+                                    <p>All</p>
+                                </div>
+                                <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Successful');}}>
+                                    <p>Successful</p>
+                                </div>
+                                <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Pending');}}>
+                                    <p>Pending</p>
+                                </div>
+                                <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Failed');}}>
+                                    <p>Failed</p>
+                                </div>
                         </div>
                     </div>
                     <div className={styles.categoryRight}>

@@ -27,11 +27,11 @@ const TransactionTable = () => {
                     <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            <TableCell className='tablecell-head'>Account Name</TableCell>
-                            <TableCell className='tablecell-head'>Account Number</TableCell>
-                            <TableCell className='tablecell-head'>Transaction Id</TableCell>
-                            <TableCell className='tablecell-head'>Amount</TableCell>
-                            <TableCell className='tablecell-head'>Status</TableCell>
+                            <TableCell className='tablecell-head'><p>Account Name</p></TableCell>
+                            <TableCell className='tablecell-head'><p>Account Number</p></TableCell>
+                            <TableCell className='tablecell-head'><p>Transaction Id</p></TableCell>
+                            <TableCell className='tablecell-head'><p>Amount</p></TableCell>
+                            <TableCell className='tablecell-head'><p>Status</p></TableCell>
                             <TableCell className='tablecell-head'></TableCell>
                         </TableRow>
                     </TableHead>
@@ -43,7 +43,6 @@ const TransactionTable = () => {
                             <TableRow hover role="checkbox" tabIndex={-1}>
                                 <TableCell className='tablecell-body'>
                                     <div className="recipient" >
-                                        <img></img>
                                         <div className="recipient-text" >
                                             <p className="recipient-name" >Olalekan Mercy</p>
                                             <p className="recipient-title">Recipient</p>

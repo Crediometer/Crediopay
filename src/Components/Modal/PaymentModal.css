@@ -120,3 +120,32 @@
         flex-direction: column;
     }
 }
+@media (max-width: 1000px){
+    .modal{
+        width: 80%;
+        padding: 35px;
+        padding-bottom: 35px;
+    }
+    .modal-inner{
+        margin-top: 48px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .create-payment{
+        font-size: 0.75rem;
+    }
+    .modal-left svg, .modal-right svg{
+        font-size: 2rem;
+    }
+    .payment-method{
+        font-size: 0.635625rem;
+        color: #2B2B2B;
+    }
+    .payment-details{
+        font-size: 0.4375rem;
+    }
+    .payment-choose{
+        font-size: 0.5875rem;
+
+    }
+}

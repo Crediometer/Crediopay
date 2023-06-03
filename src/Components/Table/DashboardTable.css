@@ -22,6 +22,7 @@ table{
     margin-right: 5px;
 }
 .recipient-name{
+    width: max-content;
     font-family: 'Darker Grotesque';
     font-style: normal;
     font-weight: 700;
@@ -29,6 +30,7 @@ table{
     color: #2B2B2B;
 }
 .recipient-title{
+    width: max-content;
     font-family: 'Darker Grotesque';
     font-style: normal;
     font-weight: 500;
@@ -36,6 +38,7 @@ table{
     color: #555555;
 }
 .date{
+    width: max-content;
     font-family: 'Darker Grotesque';
     font-style: normal;
     font-weight: 700;
@@ -43,6 +46,7 @@ table{
     color: #2B2B2B;
 }
 .time{
+    width: max-content;
     font-family: 'Darker Grotesque';
     font-style: normal;
     font-weight: 500;
@@ -89,5 +93,28 @@ table{
     .status-button button{
         padding: 0.25rem 0.5625rem;
         font-size: 0.6125rem;
+    }
+}
+@media (max-width: 1000px) {
+    .tablecell-head p{
+        font-size: 8px;
+        width: max-content;
+    }
+    .recipient-name{
+        font-size: 0.5625rem;
+    }
+    .recipient-title{
+        font-size: 0.5rem;
+    }
+    .date{
+        font-size: 0.5625rem;
+        color: #2B2B2B;
+    }
+    .time{
+        font-size: 0.5rem;
+        color: #555555;
+    }
+    .transaction-text{
+        font-size: 0.5625rem;             
     }
 }

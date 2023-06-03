@@ -51,10 +51,5 @@ export const SidebarDetails = [
         title:"Settings",
         icon:<FiSettings/>,
         link:"/setting"
-    },
-    {
-        title:"Notification",
-        icon:<IoNotificationsOutline/>,
-        link:"/profile"
-    },
+    }
 ]

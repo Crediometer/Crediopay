@@ -53,3 +53,21 @@
         font-size: 1rem;
     }
 }
+@media (max-width: 1000px){
+    .payment{
+        padding: 2rem 1.0625rem;
+    }
+    .new-payment{
+        padding: 0.4875rem 1.9375rem;
+        font-size: 0.70625rem;
+    }
+    .no-payment-head{
+        font-size: 1rem;
+    }
+    .no-payment-body{
+        width: 100%;
+        margin-left: 70px;
+        margin-right: 70px;
+        font-size: 0.875rem;
+    }
+}

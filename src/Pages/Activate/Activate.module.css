@@ -44,3 +44,22 @@
     line-height: 39px;
     color: #FFFFFF;
 }
+@media (max-width: 1000px){
+    .activate{
+        padding: 1rem 1rem;
+    }
+    .activateHead{
+        font-size: 1rem;
+    }
+    .activateBody{
+        margin-left: 50px;
+        margin-right: 50px;
+        font-size: 0.875rem;
+    }
+    .activateProgress{
+        padding: 36px;
+    }
+    .activateFormOuter{
+        padding: 0rem 0rem;
+    }
+}
