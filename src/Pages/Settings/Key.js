@@ -2,7 +2,12 @@ import { Switch } from "antd";
 import {IoMdEye} from 'react-icons/io'
 import { IoCopy } from "react-icons/io5";
 import './Key.css'
+import { useState } from "react";
 const Key = () => {
+    const [short, setShort] = useState(false);
+    const handleShort = ()=>{
+        setShort(!short)
+    }
     return ( 
         <div className="key">
             <div className="key-top">
@@ -21,6 +26,7 @@ const Key = () => {
                         <div className="secret-input">
                             <input
                                 type="text"
+                                placeholder="saddbhysdn"
                             >
                             </input>
                             <div className="secret-icon">
@@ -29,7 +35,7 @@ const Key = () => {
                             </div>
                         </div>
                         <div className="secret-submit">
-                            <button>Make key short </button>
+                            {(short) ? <button onClick={handleShort}>Ok</button> : <button onClick={handleShort}>Make key short</button>} 
                         </div>
                     </div>
                 </div>
@@ -39,6 +45,7 @@ const Key = () => {
                         <div className="secret-input">
                             <input
                                 type="text"
+                                placeholder="saddbhysdn"
                             >
                             </input>
                             <div className="secret-icon">
