@@ -250,6 +250,7 @@
     .dashboard{
         padding: 2rem 1rem;
         display: block;
+        overflow-x: hidden;
     }
     .dashboardCategory{
         display: flex;
@@ -316,5 +317,15 @@
     .dashboardRight{
         margin-top: 20px;
         width: 100%;
+    }
+}
+@media (max-width: 500px) {
+    .graphInner{
+        width: 120%;
+        overflow-x: hidden;
+        margin-top: 16px;
+        background: #FFFFFF;
+        padding: 0.2rem;
+        border-radius: 6.5198px;
     }
 }

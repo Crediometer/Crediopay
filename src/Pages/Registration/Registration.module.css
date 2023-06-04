@@ -82,6 +82,9 @@
     padding: 0.875rem;
     border: 1px solid #EEF6FF;
 }
+.selected{
+    border: 1px solid #058B42;
+}
 .register{
     font-family: 'Inter';
     font-style: normal;

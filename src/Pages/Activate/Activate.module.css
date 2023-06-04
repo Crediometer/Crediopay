@@ -33,15 +33,14 @@
 .activateButton{
     margin-top: 25px;
     width: 100%;
-    padding: 1rem; 
+    padding: 0.8rem; 
     background: #AC1337;
     border-radius: 10px;
     border: none;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.625rem;
-    line-height: 39px;
+    font-size: 1.25rem;
     color: #FFFFFF;
 }
 @media (max-width: 1000px){

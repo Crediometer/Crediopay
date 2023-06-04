@@ -39,7 +39,7 @@
 @media (max-width:1000px) {
 
     .modal-field, .director-modal form select{
-        height: 28px;
+        height: 38px;
         padding-left: 24px;
         font-size: 0.5625rem;
     }

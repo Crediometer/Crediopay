@@ -25,10 +25,10 @@ function App() {
     <Router>
       <div className={styles.test}>
         <div className={styles.left}>
-          <Sidebar Sidebar={sidebar} closeSidebar={toggleSidebar}/>
+          <Sidebar Sidebar={sidebar} closeSidebar={toggleSidebar} toggle={toggleSidebar}/>
         </div>
         <div className={styles.right}>
-          <Navbar toggle={toggleSidebar}/>
+          <Navbar toggle={toggleSidebar} mode={sidebar}/>
           <div className={styles.content}>
           <Routes>
             <Route exact path='/' element={<Registration/>}></Route>

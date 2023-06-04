@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Registration.module.css';
 import styles2 from '../../Components/Formfield/style.module.css'
 import Inputfield from '../../Components/Formfield/Inputfield';
@@ -7,7 +7,14 @@ import Textfield from '../../Components/Formfield/Textfield';
 import { Link } from 'react-router-dom';
 
 const options = [{name:'name'},{name:'games'}];
+
+
 const Registration = () => {
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const handleOptionClick = (option) => {
+        setSelectedOption(option);
+    };
     return ( 
         <div className={styles.registration}>
             <div className={styles.registrationheader}>
@@ -83,11 +90,11 @@ const Registration = () => {
                             <div className={styles.form2}>
                                 <label className={styles2.fieldlabel}>Registration status of your business</label>
                                 <div className={styles.formSelect}>
-                                    <div className={styles.form4}>
+                                    <div className={`${styles.form4} ${selectedOption === 'Option 1' ? styles.selected : ''}`} onClick={() => handleOptionClick('Option 1')}>
                                         <p className={styles.register}>Registered Business</p>
                                         <p className={styles.registerbody}>Choose this if your business is registered using<br></br> RC number,CAC Document, BVN, Mermat.</p>
                                     </div>
-                                    <div className={styles.form4}>
+                                    <div className={`${styles.form4} ${selectedOption === 'Option 2' ? styles.selected : ''}`} onClick={() => handleOptionClick('Option 2')}>
                                         <p className={styles.starter}>Starter Business</p>
                                         <p className={styles.registerbody}>Choose this if your business is not yet registered </p>
                                     </div>

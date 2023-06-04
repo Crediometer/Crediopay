@@ -1,8 +1,9 @@
-import {BiHomeAlt} from 'react-icons/bi';
+import {BiBookmarkAltMinus, BiHomeAlt} from 'react-icons/bi';
 import {FaWallet, FaUser} from 'react-icons/fa';
+
 import {BsChatFill, BsPeople, BsPerson, BsSliders} from "react-icons/bs";
 import {IoHome} from 'react-icons/io5';
-import {HiOutlineHome} from 'react-icons/hi2';
+import {HiOutlineHome,HiArrowsRightLeft} from 'react-icons/hi2';
 import {SiContactlesspayment} from 'react-icons/si';
 import {FiSettings} from 'react-icons/fi';
 import {IoNotificationsOutline} from 'react-icons/io5' 
@@ -14,7 +15,7 @@ export const SidebarDetails = [
     },
     {
         title:"Account",
-        icon:<BsSliders/>,
+        icon:<BsPerson/>,
         link:"/account"
     },
     {
@@ -24,12 +25,12 @@ export const SidebarDetails = [
     },
     {
         title:"Trans History",
-        icon:<BsSliders/>,
+        icon:<HiArrowsRightLeft/>,
         link:"/transaction"
     },
     {
         title:"Acct Statement",
-        icon:<BsSliders/>,
+        icon:<BiBookmarkAltMinus/>,
         link:"/profile"
     },
     {

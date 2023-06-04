@@ -4,7 +4,7 @@ import {BiLogOut} from 'react-icons/bi'
 import { SidebarDetails } from "./SidebarDetails";
 import classNames from 'classnames';
 import { Link,NavLink, useLocation } from "react-router-dom";
-const Sidebar = ({Sidebar}) => {
+const Sidebar = ({Sidebar,toggle}) => {
     const location = useLocation();
     const [activeLink, setActiveLink] = useState(null);
     function handleLinkClick(event, index) {
@@ -35,14 +35,11 @@ const Sidebar = ({Sidebar}) => {
 
                                     <Link to={val.link}
                                         className={classNames(styles.navLink, { [styles.active]: location.pathname === val.link })}
+                                        onClick={toggle}
                                         // onClick={(event) => handleLinkClick(event, index)}
                                         // className={activeLink === index ? 'active' : ''}
                                     >
-                                        <div className={styles.sideicon}>
-                                            <div className={styles.sideiconInner}>
-                                                {val.icon}
-                                            </div>
-                                        </div>
+                                            {val.icon}
                                         <p className={styles.addressName}>{val.title}</p>
                                     </Link>
                                 </li>
