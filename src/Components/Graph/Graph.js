@@ -38,6 +38,8 @@ const Graph = () => {
 
     }
     const option = {
+        responsive: true, // Make the chart responsive
+        maintainAspectRatio: false,
         Plugin: {
             legend: false
         },

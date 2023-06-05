@@ -191,7 +191,7 @@
 .graphInner{
     margin-top: 16px;
     width: 100%;
-    height: 100%;
+    height: 400px;
     background: #FFFFFF;
     padding: 1.7375rem;
     border-radius: 6.5198px;
@@ -237,6 +237,9 @@
     }
     .active{
         padding: 0.5rem 0.8rem;
+    }
+    .graphInner{
+        height: 250px;
     }
     .active p{
         font-size: 0.9375rem;
@@ -311,7 +314,7 @@
     .graphInner{
         margin-top: 16px;
         background: #FFFFFF;
-        padding: 0.2rem;
+        padding: 0.4rem;
         border-radius: 6.5198px;
     }
     .dashboardRight{
