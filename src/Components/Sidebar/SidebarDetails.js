@@ -31,7 +31,7 @@ export const SidebarDetails = [
     {
         title:"Acct Statement",
         icon:<BiBookmarkAltMinus/>,
-        link:"/profile"
+        link:"/accountstatement"
     },
     {
         title:"Transfer Form",
@@ -46,7 +46,7 @@ export const SidebarDetails = [
     {
         title:"Documentation",
         icon:<BsPerson/>,
-        link:"/profile"
+        link:"/documentation"
     },
     {
         title:"Settings",

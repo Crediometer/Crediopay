@@ -213,6 +213,10 @@
         color: #B11226;
         font-size: 0.4rem;
     }
+    .select-filename{
+        width: fit-content;
+        font-size: 0.6rem;
+    }
     .formtext{
         line-height: 10px;
         font-size:0.5rem;

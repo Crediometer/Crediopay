@@ -14,7 +14,7 @@ const Navbar = ({toggle, mode}) => {
                 </div>
                 <div className={styles.navbarprofile}>
                     <div className={styles.profileicon}>
-                        <div className={styles.chevron}><Link to='/notification'> <IoNotificationsOutline/></Link></div>
+                        <Link to='/notification'><div className={styles.chevron}> <IoNotificationsOutline/></div></Link>
                         <div className={styles.personicon}><IoPersonCircleOutline/></div> 
                         <div className={styles.chevron}><FaChevronDown/></div>
                     </div>

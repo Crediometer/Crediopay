@@ -145,3 +145,14 @@
         line-height: 30px;
     }
 }
+@media (max-width: 1000px) {
+   
+    .paid div, .limit div, .amount div{
+        width: 5.36px;
+        height: 5.36px;
+    }
+    .paid p, .limit p, .amount p{  
+        margin-left: 5px;
+        font-size: 0.675rem;
+    }
+}
