@@ -27,3 +27,8 @@
         font-size: 0.65rem;
     }
 }
+@media (max-width:500px) {
+    .settings{
+        overflow-x: hidden;
+    }
+}
