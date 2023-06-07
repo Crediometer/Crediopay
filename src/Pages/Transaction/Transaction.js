@@ -6,10 +6,15 @@ import { FaChevronDown, FaSearch } from 'react-icons/fa';
 import TransactionTable from '../../Components/Table/TransactionTable';
 import Paginations from '../../Components/Pagination/Pagination';
 const Transaction = () => {
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState(1);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('All');
+    const [selectedBox, setSelectedBox] = useState(1);
 
+    const handleClick2 = (boxId) => {
+      setSelectedBox(boxId);
+    };
+  
     const handleOptionClick = (option) => {
       setSelectedOption(option);
       setDropdownOpen(false);
@@ -17,22 +22,26 @@ const Transaction = () => {
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
     };
-    const handleClick = event => {
+    const handleClick = id => {
       // 👇️ toggle isActive state on click
-      setIsActive(!isActive);
+      setIsActive(id);
     };
     const myClassName = `${styles.status} ${isActive ? styles.active : ''}`;
     return ( 
         <div className="transaction">
             <div className="transaction-top">
-                <div className="transaction-top-left">
+                <div className={`transaction-top-left ${selectedBox === 3 ? 'selected-box' : ''}`}
+                onClick={() => handleClick2(3)}
+                >
                     <h1>Test Ventures</h1>
                     <div className="current">
                         <p>Current</p>
                     </div>
                     <p className='trans-phone'>09083736822 <span><IoCopy/></span></p>
                 </div>
-                <div className="transaction-top-center">
+                <div className={`transaction-top-center ${selectedBox === 1 ? 'selected-box' : ''}`}
+                onClick={() => handleClick2(1)}
+                >
                     <div className="trans-center-top">
                         <p className='available'>Available Balance</p>
                         <div className="main">
@@ -41,7 +50,9 @@ const Transaction = () => {
                     </div>
                     <p className="main-balance">N 68,485.26</p>
                 </div>
-                <div className="transaction-top-right">
+                <div className={`transaction-top-right ${selectedBox === 2 ? 'selected-box' : ''}`}
+                   onClick={() => handleClick2(2)}
+                >
                     <div className="trans-center-top">
                         <p className='available'>Available Balance</p>
                         <div className="sub">
@@ -62,10 +73,10 @@ const Transaction = () => {
                             </div>
                             {isDropdownOpen && (
                                 <div className={styles.categoryLeftInner}>
-                                    <div className={myClassName} onClick={()=>{handleClick(); handleOptionClick('All');}}>
+                                    <div className={` ${selectedBox === 2 ? 'selected-box' : ''}`} onClick={()=>{handleClick(); handleOptionClick('All');}}>
                                         <p>All</p>
                                     </div>
-                                    <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Successful');}}>
+                                    <div className={myClassName} onClick={()=>{handleClick(); handleOptionClick('Successful');}}>
                                         <p>Successful</p>
                                     </div>
                                     <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Pending');}}>
@@ -80,16 +91,16 @@ const Transaction = () => {
                     </div>
                     <div className={styles.categoryLeftDesktop}>
                         <div className={styles.categoryLeft}>
-                                <div className={myClassName} onClick={()=>{handleClick(); handleOptionClick('All');}}>
+                                <div className={`${styles.status} ${isActive === 1 ? styles.active : ''}`} onClick={()=>{handleClick(1); handleOptionClick('All');}}>
                                     <p>All</p>
                                 </div>
-                                <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Successful');}}>
+                                <div className={`${styles.status} ${isActive === 2 ? styles.active : ''}`} onClick={()=>{handleClick(2); handleOptionClick('Successful');}}>
                                     <p>Successful</p>
                                 </div>
-                                <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Pending');}}>
+                                <div className={`${styles.status} ${isActive === 3 ? styles.active : ''}`} onClick={()=>{handleClick(3); handleOptionClick('Pending');}}>
                                     <p>Pending</p>
                                 </div>
-                                <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Failed');}}>
+                                <div className={`${styles.status} ${isActive === 4 ? styles.active : ''}`} onClick={()=>{handleClick(4); handleOptionClick('Failed');}}>
                                     <p>Failed</p>
                                 </div>
                         </div>

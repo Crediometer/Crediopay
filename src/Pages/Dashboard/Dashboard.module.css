@@ -44,6 +44,7 @@
     display: none;
 }
 .status{
+    cursor: pointer;
     padding: 0.5rem 1rem;
     border: 0.5px solid rgba(43, 43, 43, 0.4);
     border-radius: 8px;

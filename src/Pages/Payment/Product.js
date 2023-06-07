@@ -1,9 +1,16 @@
+import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import './Product.css'
+import {Link} from 'react-router-dom'
 const Product = () => {
     return ( 
         <div className="product">
             <div className="product-inner">
-                <p className="product-head">Product page</p>
+                <div className="product-head-outer">
+                    <Link to='/payment'>
+                        <BsArrowLeft/>
+                    </Link>
+                    <p className="product-head">Product page</p>
+                </div>
                 <p className="product-body">
                 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, simili
                 que sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita a animi, i

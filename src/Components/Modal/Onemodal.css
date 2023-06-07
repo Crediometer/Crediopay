@@ -8,25 +8,25 @@
 .onemodal-button button{
     width: 46%;
 }
-.static{
+.active-box{
     padding: 1.0625rem 5.875rem;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
     font-size: 1.5625rem;
     color: #FFFFFF;
-    background: #B11226;
-    border-radius: 6.43478px;
+    background-color: #B11226;
     border: none;
+    border-radius: 6.43478px;
 }
-.dynamic{
+.dynamic, .static{
     padding: 1.0625rem 5.875rem;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
     font-size: 1.5625rem;
     color: #000000;
-    background: transparent;
+    background-color: white;
     border: 1.6087px solid rgba(0, 0, 0, 0.4);
     border-radius: 6.43478px;
 }

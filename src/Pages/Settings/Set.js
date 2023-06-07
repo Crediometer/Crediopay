@@ -54,7 +54,16 @@ const Set = () => {
                     <div className="set-setting">
                         <div className="set-setting-text">
                             <p className="set-text-head">SMS Notification </p>
-                            <p className="set-text-body">Enable SMA notifications.</p>
+                            <p className="set-text-body">Enable SMS notifications.</p>
+                        </div>
+                        <div className="switch">
+                            <Switch/>
+                        </div>
+                    </div>
+                    <div className="set-setting">
+                        <div className="set-setting-text">
+                            <p className="set-text-head">SMS Monthly Notification </p>
+                            <p className="set-text-body">Enable monthly SMS notifications.</p>
                         </div>
                         <div className="switch">
                             <Switch/>

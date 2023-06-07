@@ -17,8 +17,8 @@ const Onemodal = ({togglemodal}) => {
                 </div>
                 <p className='create-payment'>New payment link</p>
                 <div className="onemodal-button">
-                    <button onClick={handleSetting} className="static">Static</button>
-                    <button onClick={handleOverview} className="dynamic">Dynamic</button>
+                    <button className={` ${show === 1 ? 'active-box' : 'static'}`} onClick={handleSetting}>Static</button>
+                    <button className={` ${show === 2 ? 'active-box' : 'dynamic'}`} onClick={handleOverview}>Dynamic</button>
                 </div>
                 <div className="onetime-modal">
                     {(show === 1) && (

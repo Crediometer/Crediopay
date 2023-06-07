@@ -15,11 +15,11 @@
     width: 33.3%;
     height: 175px;
 }
-.transaction-top-left,.transaction-top-right{
+.transaction-top-left,.transaction-top-right, .transaction-top-center{
     background-color: white;
     box-shadow: 4.87929px 4.87929px 19.5172px rgba(0, 0, 0, 0.07);
 }
-.transaction-top-center{
+.selected-box{
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.07);
     background: rgba(115, 115, 115, 0.03);
 }

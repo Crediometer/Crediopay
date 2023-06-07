@@ -65,7 +65,7 @@
 }
 .payment-method{
     margin-top: 8px;
-    text-align: left;
+    text-align: center;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
@@ -74,7 +74,7 @@
 }
 .payment-details{
     margin-top: 8px;
-    text-align: left;
+    text-align: center;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;

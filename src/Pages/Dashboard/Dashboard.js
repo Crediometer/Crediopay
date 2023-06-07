@@ -7,7 +7,7 @@ import DashboardTable from "../../Components/Table/DashboardTable";
 import Rightbar from "../../Components/Rightbar/Rightbar";
 import { FaChevronDown } from "react-icons/fa";
 const Dashboard = () => {
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState(1);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('All');
 
@@ -18,9 +18,9 @@ const Dashboard = () => {
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
     };
-    const handleClick = event => {
+    const handleClick = id => {
       // 👇️ toggle isActive state on click
-      setIsActive(!isActive);
+      setIsActive(id);
     };
     const myClassName = `${styles.status} ${isActive ? styles.active : ''}`;
     return ( 
@@ -53,16 +53,16 @@ const Dashboard = () => {
                     </div>
                     <div className={styles.categoryLeftDesktop}>
                         <div className={styles.categoryLeft}>
-                                <div className={myClassName} onClick={()=>{handleClick(); handleOptionClick('All');}}>
+                                <div className={`${styles.status} ${isActive === 1 ? styles.active : ''}`} onClick={()=>{handleClick(1); handleOptionClick('All');}}>
                                     <p>All</p>
                                 </div>
-                                <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Successful');}}>
+                                <div className={`${styles.status} ${isActive === 2 ? styles.active : ''}`} onClick={()=>{handleClick(2); handleOptionClick('Successful');}}>
                                     <p>Successful</p>
                                 </div>
-                                <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Pending');}}>
+                                <div className={`${styles.status} ${isActive === 3 ? styles.active : ''}`} onClick={()=>{handleClick(3); handleOptionClick('Pending');}}>
                                     <p>Pending</p>
                                 </div>
-                                <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Failed');}}>
+                                <div className={`${styles.status} ${isActive === 4 ? styles.active : ''}`} onClick={()=>{handleClick(4); handleOptionClick('Failed');}}>
                                     <p>Failed</p>
                                 </div>
                         </div>
