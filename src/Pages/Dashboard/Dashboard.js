@@ -1,4 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { fetchanalytics, 
+    fetchrecenttran,
+    fetchsumtran
+} from "../../Redux/Dashboard/DashboardAction";
+import { fetchprofile } from "../../Redux/Profile/ProfileAction";
 import styles from './Dashboard.module.css'
 import {IoMdEyeOff} from 'react-icons/io'
 import { IoCopy } from "react-icons/io5";
@@ -6,7 +12,7 @@ import Graph from "../../Components/Graph/Graph";
 import DashboardTable from "../../Components/Table/DashboardTable";
 import Rightbar from "../../Components/Rightbar/Rightbar";
 import { FaChevronDown } from "react-icons/fa";
-const Dashboard = () => {
+const Dashboard = ({fetchanalytics, fetchrecenttran, fetchsumtran, fetchprofile}) => {
     const [isActive, setIsActive] = useState(1);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('All');
@@ -22,6 +28,12 @@ const Dashboard = () => {
       // 👇️ toggle isActive state on click
       setIsActive(id);
     };
+    useEffect(() => {
+        fetchprofile()
+        fetchanalytics()
+        fetchrecenttran()
+        fetchsumtran()
+    }, []);
     const myClassName = `${styles.status} ${isActive ? styles.active : ''}`;
     return ( 
         <div className={styles.dashboard}>
@@ -108,5 +120,23 @@ const Dashboard = () => {
         </div>
     );
 }
+const mapStoreToProps = (state) => {
+    console.log("states   ", state);
+    return {
+      analytics: state.dashboard,
+      recent: state.recenttransaction,
+      sum: state.sumtransaction,
+      profile: state.profile
+    };
+};
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchprofile: () => dispatch(fetchprofile()),
+        fetchanalytics: () => dispatch(fetchanalytics()),
+        fetchrecenttran: () => dispatch(fetchrecenttran()),
+        fetchsumtran: () => dispatch(fetchsumtran()),
+    };
+};
  
-export default Dashboard;
+export default connect(mapStoreToProps, mapDispatchToProps)(Dashboard);

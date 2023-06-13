@@ -1,4 +1,6 @@
 import styles from './Graph.module.css';
+import { connect } from "react-redux";
+import { fetchanalytics } from '../../Redux/Dashboard/DashboardAction';
 import { Line} from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -17,9 +19,9 @@ ChartJS.register(
     PointElement, 
     Filler
 )
-const Graph = () => {
+const Graph = ({fetchanalytics, analytics}) => {
     const data = {
-        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec'],
+        labels: [`${analytics?.data?.data?.year}`],
         datasets: [{
             data:[10,20,30, 42, 51, 82, 31, 59, 67, 79, 83, 54],
             backgroundColor: (context) => {
@@ -68,5 +70,16 @@ const Graph = () => {
         </div>
     );
 }
+const mapStoreToProps = (state) => {
+    return {
+      analytics: state.dashboard,
+    };
+};
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchanalytics: () => dispatch(fetchanalytics()),
+    };
+};
  
-export default Graph;
+export default connect(mapStoreToProps, mapDispatchToProps)(Graph);

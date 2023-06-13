@@ -1,4 +1,5 @@
-
+import {Provider} from 'react-redux';
+import store from './Redux/Store';
 import Navbar from './Components/Navbar/Navbar';
 import Sidebar from './Components/Sidebar/Sidebar';
 import Activate from './Pages/Activate/Activate';
@@ -24,31 +25,33 @@ function App() {
   };
   return (
     <Router>
-      <div className={styles.test}>
-        <div className={styles.left}>
-          <Sidebar Sidebar={sidebar} closeSidebar={toggleSidebar} toggle={toggleSidebar}/>
-        </div>
-        <div className={styles.right}>
-          <Navbar toggle={toggleSidebar} mode={sidebar}/>
-          <div className={styles.content}>
-          <Routes>
-            <Route exact path='/' element={<Registration/>}></Route>
-            <Route exact path='/dashboard' element={<Dashboard/>}></Route>
-            <Route path="/activate" element={<Activate/>}/>
-            <Route path="/payment" element={<Payment/>}/>
-            <Route path="/product" element={<Product/>}/>
-            <Route path="/onetime" element={<Onetime/>}/>
-            <Route path="/zelle" element={<Zelle/>}/>
-            <Route path="/transaction" element={<Transaction/>}/>
-            <Route path="/setting" element={<Settings/>}/>
-            <Route path="/account" element={<Account/>}/>
-            <Route path="/accountpage" element={<AccountPage/>}/>
-            <Route path="/transfer" element={<Transfer/>}/>
-            <Route path='/notification' element={<Notification/>}/>
-          </Routes>
+      <Provider store={store}>
+        <div className={styles.test}>
+          <div className={styles.left}>
+            <Sidebar Sidebar={sidebar} closeSidebar={toggleSidebar} toggle={toggleSidebar}/>
+          </div>
+          <div className={styles.right}>
+            <Navbar toggle={toggleSidebar} mode={sidebar}/>
+            <div className={styles.content}>
+            <Routes>
+              <Route exact path='/' element={<Registration/>}></Route>
+              <Route exact path='/dashboard' element={<Dashboard/>}></Route>
+              <Route path="/activate" element={<Activate/>}/>
+              <Route path="/payment" element={<Payment/>}/>
+              <Route path="/product" element={<Product/>}/>
+              <Route path="/onetime" element={<Onetime/>}/>
+              <Route path="/zelle" element={<Zelle/>}/>
+              <Route path="/transaction" element={<Transaction/>}/>
+              <Route path="/setting" element={<Settings/>}/>
+              <Route path="/account" element={<Account/>}/>
+              <Route path="/accountpage" element={<AccountPage/>}/>
+              <Route path="/transfer" element={<Transfer/>}/>
+              <Route path='/notification' element={<Notification/>}/>
+            </Routes>
+            </div>
           </div>
         </div>
-      </div>
+      </Provider>
     </Router>
   );
 }
