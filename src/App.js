@@ -18,6 +18,7 @@ import Transfer from './Pages/Transfer/Transfer';
 import { useState } from 'react';
 import Onetime from './Pages/Payment/Onetime';
 import Notification from './Pages/Notification/Notification';
+import AccountStatement from './Pages/AccountStatement/AccountStatement';
 function App() {
   const [sidebar, setSidebar] = useState(false);
   const toggleSidebar = () => {
@@ -47,6 +48,7 @@ function App() {
               <Route path="/accountpage" element={<AccountPage/>}/>
               <Route path="/transfer" element={<Transfer/>}/>
               <Route path='/notification' element={<Notification/>}/>
+              <Route path='/statement' element={<AccountStatement/>}/>
             </Routes>
             </div>
           </div>

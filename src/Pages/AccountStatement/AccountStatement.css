@@ -1,0 +1,114 @@
+.accountstatement{
+    padding: 2rem 2.0625rem;
+}
+.statement-topic{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #2B2B2B;
+}
+.statement-head{
+    margin-top: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.statement-head-left{
+    display: flex;
+    align-items: center;
+}
+.statement-date{
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 0.625rem;
+}
+.filtershow{
+    cursor: pointer;
+    margin-left: 8px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    color: #2B2B2B;
+}
+.transferfield{
+    margin-left: 10px;
+    border: none;
+    background-color: transparent;
+    font-family: 'Darker Grotesque';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    color: #2B2B2B; 
+}
+.statement-head-right button{
+    padding: 0.8125rem 5rem;
+    background: #AC1337;
+    border: none;
+    border-radius: 6.61144px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.3125rem;
+    color: #FFFFFF;
+}
+.statement-body{
+    margin-top: 21px;
+}
+.statement-account{
+    background: #FFFFFF;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.02);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5625rem 1.25rem;
+}
+.statement-account-left h1{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2rem;
+    color: rgba(0, 0, 0, 0.9);
+}
+.statement-available{
+    text-align: right;
+}
+.statement-table{
+    margin-top: 34px;
+}
+.statement-sub-head{
+    margin-top: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.statement-filter{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.statement-filter select, .statement-filter input{
+    padding: 0.5rem 0.5rem;
+    background: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Darker Grotesque';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #2b2b2baf;
+}
+.statement-filter select optgroup{
+    font-family: 'Darker Grotesque';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #2B2B2B;
+    opacity: 0.3;
+}

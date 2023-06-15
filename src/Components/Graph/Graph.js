@@ -21,9 +21,13 @@ ChartJS.register(
 )
 const Graph = ({fetchanalytics, analytics}) => {
     const data = {
-        labels: [`${analytics?.data?.data?.year}`],
+        labels:[`${analytics?.data?.data?.analyticsData?.map((month)=>{
+            return(month.month)   
+        })}`],
         datasets: [{
-            data:[10,20,30, 42, 51, 82, 31, 59, 67, 79, 83, 54],
+            data:[`${analytics?.data?.data?.analyticsData?.map((month)=>{
+                return(month.value)   
+            })}`],
             backgroundColor: (context) => {
                 const ctx = context.chart.ctx;
                 const gradient = ctx.createLinearGradient(0, 0, 0, 179.63);
@@ -53,12 +57,12 @@ const Graph = ({fetchanalytics, analytics}) => {
             },
             y: {
                 min: 0,
-                max: 100,
+                max: 1000,
                 ticks: {
-                    stepSize: 10
+                    stepSize: 200
                 },
                 grid:{
-                    borderDash:[10]
+                    borderDash:[200]
                 }
             }
 

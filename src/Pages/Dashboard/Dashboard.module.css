@@ -75,7 +75,7 @@
     align-items: center;
     gap: 12px;
 }
-.categoryRight select{
+.categoryRight select, .categoryRight input{
     width: 100%;
     padding: 0.5rem 1rem;
     background: #FFFFFF;

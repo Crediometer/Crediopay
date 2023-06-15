@@ -1,11 +1,23 @@
 import { IoCopy } from 'react-icons/io5';
+import { connect } from "react-redux";
+import { fetchtransaction } from '../../Redux/Transaction/TransactionAction';
 import styles from '../Dashboard/Dashboard.module.css'
 import './Transaction.css'
 import { useState } from 'react';
 import { FaChevronDown, FaSearch } from 'react-icons/fa';
 import TransactionTable from '../../Components/Table/TransactionTable';
-import Paginations from '../../Components/Pagination/Pagination';
-const Transaction = () => {
+import {styled} from '@mui/material/styles'
+import { makeStyles } from "@mui/styled-engine-sc";
+import Pagination from '@mui/material/Pagination';
+const StyledPagination = styled(Pagination)(({ theme }) => ({
+    ul: {
+        "& .Mui-selected": {
+            backgroundColor: '#B11226',
+            color: 'white'
+        }   
+      }
+}));
+const Transaction = ({fetchtransaction}) => {
     const [isActive, setIsActive] = useState(1);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('All');
@@ -106,22 +118,28 @@ const Transaction = () => {
                         </div>
                     </div>
                     <div className='categoryRight'>
-                            <select>
-                                <optgroup>
-                                    <option>Money In</option>
-                                    <option>Money Out</option>
-                                </optgroup>
-                            </select>
                         <select>
                             <optgroup>
-                                <option>From</option>
+                                <option>Money In</option>
+                                <option>Money Out</option>
                             </optgroup>
                         </select>
-                        <select>
-                            <optgroup>
-                                <option>to</option>
-                            </optgroup>
-                        </select>
+                        <input
+                            type='text'
+                            placeholder='Start Date'
+                            className='transferfield'
+                            onFocus={(e) => (e.target.type = "date")}
+                            onBlur={(e) => {(e.target.type = "text");}}
+                            required
+                        ></input>
+                        <input
+                            type='text'
+                            placeholder='End Date'
+                            className='transferfield'
+                            onFocus={(e) => (e.target.type = "date")}
+                            onBlur={(e) => {(e.target.type = "text");}}
+                            required
+                        ></input>
                     </div>
                     <div className='categorySearch'>
                         <FaSearch/>
@@ -134,10 +152,37 @@ const Transaction = () => {
                 <div className="transaction-table">
                     <TransactionTable/>
                 </div>
-                <Paginations/>
+                <div className="main-footer">
+                    <div className="main-footer-left">
+                        <p>Show results</p>
+                        <div className="main-select">
+                            <select>
+                                <optgroup>
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="main-footer-right">
+                        <StyledPagination count={1}/>  
+                    </div>
+                </div>
             </div>
         </div>
     );
 }
- 
-export default Transaction;
+const mapStoreToProps = (state) => {
+    console.log("states   ", state);
+    return {
+      recent: state.recenttransaction,
+    };
+};
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchtransaction: () => dispatch(fetchtransaction()),
+    };
+};
+export default connect(mapStoreToProps, mapDispatchToProps)(Transaction);

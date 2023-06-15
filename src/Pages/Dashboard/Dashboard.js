@@ -80,16 +80,22 @@ const Dashboard = ({fetchanalytics, fetchrecenttran, fetchsumtran, fetchprofile}
                         </div>
                     </div>
                     <div className={styles.categoryRight}>
-                        <select>
-                            <optgroup>
-                                <option>From</option>
-                            </optgroup>
-                        </select>
-                        <select>
-                            <optgroup>
-                                <option>to</option>
-                            </optgroup>
-                        </select>
+                        <input
+                            type='text'
+                            placeholder='Start Date'
+                            className='transferfield'
+                            onFocus={(e) => (e.target.type = "date")}
+                            onBlur={(e) => {(e.target.type = "text");}}
+                            required
+                        ></input>
+                        <input
+                            type='text'
+                            placeholder='End Date'
+                            className='transferfield'
+                            onFocus={(e) => (e.target.type = "date")}
+                            onBlur={(e) => {(e.target.type = "text");}}
+                            required
+                        ></input>
                     </div>
                 </div>
                 <div className={styles.dashboardBalance}>

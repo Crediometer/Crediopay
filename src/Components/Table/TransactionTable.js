@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { connect } from "react-redux";
+import { fetchtransaction } from '../../Redux/Transaction/TransactionAction';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,7 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import './DashboardTable.css';
-const TransactionTable = () => {
+const TransactionTable = ({fetchtransaction, }) => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -20,6 +22,9 @@ const TransactionTable = () => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+    React.useEffect(() => {
+        fetchtransaction()
+    }, []);
     return ( 
         <div className="dashboard-table">
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -81,5 +86,18 @@ const TransactionTable = () => {
         </div>
      );
 }
- 
-export default TransactionTable;
+
+const mapStoreToProps = (state) => {
+    console.log("states   ", state);
+    return {
+      recent: state.recenttransaction,
+    };
+};
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchtransaction: () => dispatch(fetchtransaction()),
+    };
+};
+
+export default connect(mapStoreToProps, mapDispatchToProps)(TransactionTable);
