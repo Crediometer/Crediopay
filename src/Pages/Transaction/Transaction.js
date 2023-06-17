@@ -9,6 +9,7 @@ import TransactionTable from '../../Components/Table/TransactionTable';
 import {styled} from '@mui/material/styles'
 import { makeStyles } from "@mui/styled-engine-sc";
 import Pagination from '@mui/material/Pagination';
+import DashboardTable from '../../Components/Table/DashboardTable';
 const StyledPagination = styled(Pagination)(({ theme }) => ({
     ul: {
         "& .Mui-selected": {
@@ -150,7 +151,8 @@ const Transaction = ({fetchtransaction}) => {
                     </div>
                 </div>
                 <div className="transaction-table">
-                    <TransactionTable/>
+                    {/* <TransactionTable/> */}
+                    <DashboardTable/>
                 </div>
                 <div className="main-footer">
                     <div className="main-footer-left">

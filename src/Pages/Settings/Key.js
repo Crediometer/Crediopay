@@ -10,7 +10,7 @@ const Key = () => {
     }
     return ( 
         <div className="key">
-            <div className="key-top">
+            {/* <div className="key-top">
                 <div className="key-switch">
                     <p>Production</p>
                     <div className="key-switch-inner">
@@ -18,10 +18,10 @@ const Key = () => {
                     </div>
                     <p>Test</p>
                 </div>
-            </div>
+            </div> */}
             <div className="key-body">
                 <div className="secret-key">
-                    <p className="secret-key-head">Secret key</p>
+                    <p className="secret-key-head">Client Id</p>
                     <div className="secret-key-form">
                         <div className="secret-input">
                             <input
@@ -35,7 +35,7 @@ const Key = () => {
                             </div>
                         </div>
                         <div className="secret-submit">
-                            {(short) ? <button onClick={handleShort}>Ok</button> : <button onClick={handleShort}>Make key short</button>} 
+                            {(short) ? <button onClick={handleShort}>Copied</button> : <button onClick={handleShort}>Copy Key</button>} 
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@ const Key = () => {
                             </div>
                         </div>
                         <div className="secret-submit">
-                            <button>Make key short </button>
+                            <button>Copy Key</button>
                         </div>
                     </div>
                 </div>

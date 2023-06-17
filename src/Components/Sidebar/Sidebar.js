@@ -4,6 +4,7 @@ import {BiLogOut} from 'react-icons/bi'
 import { SidebarDetails } from "./SidebarDetails";
 import classNames from 'classnames';
 import { Link,NavLink, useLocation } from "react-router-dom";
+import { BsPerson } from "react-icons/bs";
 const Sidebar = ({Sidebar,toggle}) => {
     const location = useLocation();
     const [activeLink, setActiveLink] = useState(null);
@@ -45,6 +46,17 @@ const Sidebar = ({Sidebar,toggle}) => {
                                 </li>
                             )
                         })}
+                        <li>
+                            <a href="http://abbrefy.xyz/15e46d5"
+                                className={classNames(styles.navLink, { [styles.active]: location.pathname === 'http://abbrefy.xyz/15e46d5' })}
+                                onClick={toggle}
+                                // onClick={(event) => handleLinkClick(event, index)}
+                                // className={activeLink === index ? 'active' : ''}
+                            >
+                                <BsPerson/>
+                                <p className={styles.addressName}>Documentation</p>
+                            </a>
+                        </li>
                 </nav>
             </section>
             <div className={styles.sidebarfooter}>

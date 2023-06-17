@@ -9,6 +9,7 @@
     color: #2B2B2B;
 }
 .statement-head{
+    position: relative;
     margin-top: 21px;
     display: flex;
     align-items: center;
@@ -55,6 +56,31 @@
     font-weight: 400;
     font-size: 1.3125rem;
     color: #FFFFFF;
+}
+.download-dropdown{
+    position: absolute;
+    top: 50px;
+    right: 3rem;
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.02);
+    border-radius: 8px;
+}
+.file-type{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+.file-type svg{
+    font-size: 1rem;
+}
+.file-type p{
+    margin-left: 10px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #000000e6;
 }
 .statement-body{
     margin-top: 21px;

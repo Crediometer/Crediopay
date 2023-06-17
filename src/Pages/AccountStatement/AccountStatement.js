@@ -1,12 +1,17 @@
 import { IoCopy } from 'react-icons/io5';
+import { connect } from "react-redux";
 import styles from '../Dashboard/Dashboard.module.css'
+import MoonLoader from "react-spinners/MoonLoader";
 import './AccountStatement.css';
 import TransactionTable from '../../Components/Table/TransactionTable';
 import { useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import { FaFileExcel, FaFilePdf, FaSearch } from 'react-icons/fa';
 import { BsCalendar2Week } from 'react-icons/bs';
-const AccountStatement = () => {
+import { fetchstatement } from '../../Redux/Statement/StatementAction';
+const AccountStatement = ({fetchstatement}) => {
+    const [loader, setLoader] = useState(false)
     const [filter, setFilter] = useState(false)
+    const [dropdown, setDropdown] = useState(false)
     const [isActive, setIsActive] = useState(1);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('All');
@@ -14,6 +19,21 @@ const AccountStatement = () => {
 
     const handlefilter = ()=>{
         setFilter(!filter)
+    }
+    const handleDropdown = () =>{
+        setDropdown(!dropdown)
+    }
+    const handlepdf = () =>{
+        fetchstatement('pdf',()=>{
+            setLoader(false)
+        })
+        setLoader(true)
+    }
+    const handleexcel = () =>{
+        fetchstatement('excel', ()=>{
+            setLoader(false)
+        })
+        setLoader(true)
     }
     const handleClick2 = (boxId) => {
       setSelectedBox(boxId);
@@ -45,8 +65,33 @@ const AccountStatement = () => {
                     <p className='filtershow' onClick={handlefilter}>+ Add Filter</p>
                 </div>
                 <div className="statement-head-right">
-                    <button>Download statement</button>
+                    <button onClick={handleDropdown}>Download statement</button>
                 </div>
+                {dropdown && (
+                    <div className="download-dropdown">
+                        {(!loader) ? (
+                            <div>
+                                 <div className="file-type" onClick={handlepdf}>
+                                    <FaFilePdf/>
+                                    <p>PDF</p>
+                                </div>
+                                <div className="file-type" onClick={handleexcel}>
+                                    <FaFileExcel/>
+                                    <p>Excel</p>
+                                </div>
+                            </div>
+                        ): (
+                            <MoonLoader
+                                color={"#B11226"}
+                                loading={loader}
+                                size={50}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                            />
+                        )}
+                       
+                    </div>
+                )}
             </div>
             {filter && (
                 <div className="statement-sub-head">
@@ -121,5 +166,16 @@ const AccountStatement = () => {
         </div>
     );
 }
- 
-export default AccountStatement;
+const mapStoreToProps = (state) => {
+    console.log("states   ", state);
+    return {
+      statement: state.statement,
+    };
+};
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchstatement: (type, loader) => dispatch(fetchstatement(type, loader)),
+    };
+};
+export default connect(mapStoreToProps, mapDispatchToProps)(AccountStatement);

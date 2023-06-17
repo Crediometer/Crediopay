@@ -43,11 +43,7 @@ export const SidebarDetails = [
         icon:<BsPeople/>,
         link:"/zelle"
     },
-    {
-        title:"Documentation",
-        icon:<BsPerson/>,
-        link:"/documentation"
-    },
+
     {
         title:"Settings",
         icon:<FiSettings/>,
