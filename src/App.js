@@ -31,7 +31,7 @@ function App() {
   return (
     <Router>
       <Provider store={store}>
-        <div>
+        <div className={styles.test1}>
           <Routes>
             <Route path="/" element={<Login/>}/>
             <Route path="/signup" element={<Register/>}/>

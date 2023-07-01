@@ -10,6 +10,9 @@
 input:focus{
   outline: #dcdcdc;
 }
+.test1{
+  overflow-y: hidden;
+}
 .test{
   width: 100%;
   display: flex;
