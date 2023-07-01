@@ -78,7 +78,7 @@ const Login = (props) => {
         try{
             await login(loginState, ()=>{ 
             console.log("now go to dashboard..");
-            history(`/`);
+            history(`/registration`);
             // setPending(true);
             }, ()=>{ 
                 console.log(errorHandler)

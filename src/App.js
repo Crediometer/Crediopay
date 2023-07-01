@@ -31,12 +31,14 @@ function App() {
   return (
     <Router>
       <Provider store={store}>
-        <Routes>
-              <Route path="/login" element={<Login/>}/>
-              <Route path="/signup" element={<Register/>}/>
-              <Route path="/otp" element={<Otp/>}/>
-              <Route path="password" element={<Setpassword/>}/>
-        </Routes>
+        <div>
+          <Routes>
+            <Route path="/" element={<Login/>}/>
+            <Route path="/signup" element={<Register/>}/>
+            <Route path="/otp" element={<Otp/>}/>
+            <Route path="password" element={<Setpassword/>}/>
+          </Routes>
+        </div>
         <div className={styles.test}>
           <div className={styles.left}>
             <Sidebar Sidebar={sidebar} closeSidebar={toggleSidebar} toggle={toggleSidebar}/>
@@ -45,7 +47,7 @@ function App() {
             <Navbar toggle={toggleSidebar} mode={sidebar}/>
             <div className={styles.content}>
             <Routes>
-              <Route exact path='/' element={<Registration/>}></Route>
+              <Route exact path='/registration' element={<Registration/>}></Route>
               <Route exact path='/dashboard' element={<Dashboard/>}></Route>
               <Route path="/activate" element={<Activate/>}/>
               <Route path="/payment" element={<Payment/>}/>
