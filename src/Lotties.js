@@ -1,5 +1,5 @@
 import React from "react";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 
 export default function LottieAnimation({ lotti, width, height }) {
   const defaultOptions = {
