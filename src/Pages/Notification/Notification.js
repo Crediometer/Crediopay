@@ -1,13 +1,18 @@
 import "./Notification.css";
+import { connect } from "react-redux";
 // import "../../Component/Form/PersonalForm.css"
 import { Link } from "react-router-dom";
 import { BiArrowBack, BiSearch } from "react-icons/bi";
 // import image from "../../image/profile-image.jpg";
 import {MdOutlineDeleteOutline} from 'react-icons/md'
-import { useState } from "react";
+import { fetchnotification } from "../../Redux/Notification/NotificationAction";
+import { useEffect, useState } from "react";
 import { Switch } from "antd";
-const Notification = () => {
+const Notification = ({fetchnotification, notification}) => {
     const [open, setOpen]= useState(false)
+    useEffect(() => {
+        fetchnotification();
+    }, []);
     return ( 
         <div className="notification">
             <div className="body notification-body">
@@ -46,44 +51,29 @@ const Notification = () => {
                             <div className="notification-messages">
                                 <div className="messages">
                                     <p className="message-date">Today</p>
-                                    <div className="messages-inner">
-                                        {/* <img src={image} className="message-image"></img> */}
-                                        <div className="message-container">
-                                            <div className="message-text">
-                                                <p className="message-title">Olalekan Mercy</p>
-                                                <p className="message-content">Hi mosunmoluwa your 20k weekly  Dutse market ajo plan is successful! login into your app to view your plan or get intouch with us ifyour need further information</p>
-                                            </div>
-                                            <div className="message-date-delete">
-                                                <p className="date-time">02:15 PM <span>May 15</span></p>
-                                                <div className="delete">
-                                                    {open && <div className="delete-buttons">
-                                                        <button className="yes">Yes</button>
-                                                        <button className="no" onClick={()=>{setOpen(false)}}>No</button>
-                                                    </div>}
-                                                    <span onClick={()=>{setOpen(true)}}><MdOutlineDeleteOutline/></span>
+                                    {notification.data.map((message)=>{
+                                        return(
+                                            <div className="messages-inner">
+                                                {/* <img src={image} className="message-image"></img> */}
+                                                <div className="message-container">
+                                                    <div className="message-text">
+                                                        <p className="message-title">{message.message}</p>
+                                                        <p className="message-content">Hi mosunmoluwa your 20k weekly  Dutse market ajo plan is successful! login into your app to view your plan or get intouch with us ifyour need further information</p>
+                                                    </div>
+                                                    <div className="message-date-delete">
+                                                        <p className="date-time">{message.createdAt.slice(11, 16)} <span>May 15</span></p>
+                                                        <div className="delete">
+                                                            {open && <div className="delete-buttons">
+                                                                <button className="yes">Yes</button>
+                                                                <button className="no" onClick={()=>{setOpen(false)}}>No</button>
+                                                            </div>}
+                                                            <span onClick={()=>{setOpen(true)}}><MdOutlineDeleteOutline/></span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div className="messages-inner">
-                                        {/* <img src={image} className="message-image"></img> */}
-                                        <div className="message-container">
-                                            <div className="message-text">
-                                                <p className="message-title">Olalekan Mercy</p>
-                                                <p className="message-content">Hi mosunmoluwa your 20k weekly  Dutse market ajo plan is successful! login into your app to view your plan or get intouch with us ifyour need further information</p>
-                                            </div>
-                                            <div className="message-date-delete">
-                                                <p className="date-time">02:15 PM <span>May 15</span></p>
-                                                <div className="delete">
-                                                    {open && <div className="delete-buttons">
-                                                        <button className="yes">Yes</button>
-                                                        <button className="no" onClick={()=>{setOpen(false)}}>No</button>
-                                                    </div>}
-                                                    <span onClick={()=>{setOpen(true)}}><MdOutlineDeleteOutline/></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        )
+                                    })}
                                 </div>
                             </div>
                         </div>
@@ -93,5 +83,16 @@ const Notification = () => {
         </div>
      );
 }
- 
-export default Notification;
+const mapStoreToProps = (state) => {
+    console.log("states   ", state);
+    return {
+      notification: state.notification,
+    };
+};
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchnotification: () => dispatch(fetchnotification()),
+    };
+};
+export default connect(mapStoreToProps, mapDispatchToProps)(Notification);

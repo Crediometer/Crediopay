@@ -18,7 +18,7 @@
     width: 100%;
     border-radius: 15px;
     padding: 1rem;
-    background: rgba(230, 230, 230, 0.88);
+    /* background: rgba(230, 230, 230, 0.88); */
     border-radius: 2px;
 }
 .transfer-to-title{
@@ -174,8 +174,103 @@
     align-items: center;
 }
 .form-1, .form-2{
+    position: relative;
     margin-top: 24px;
     width: 32%;
+}
+.form-1-select{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    background: #F9F9F9;
+    border-radius: 4px;
+    border: none;
+    width: 100%;
+    padding: 1.0625rem 1.875rem;
+}
+.form-1-select p, .form-1-select svg{
+    color: #2b2b2b85;
+    font-size: 1.2rem;
+    font-family: Darker Grotesque;
+    font-weight: 500;
+}
+
+.bank-select{
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+    border-radius: 2.031px;
+    background: #DCDCDC;
+    padding: 1.17rem 1.33rem;
+}
+.bank-select-top{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.bank-select-top p{
+    color: rgba(0, 0, 0, 0.80);
+    font-size: 0.76144rem;
+    font-family: Poppins;
+    font-weight: 500;
+}
+.select-cancel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    background-color: #000000;
+    border-radius: 50%;
+}
+.select-cancel svg{
+    font-size: 0.6rem;
+    color: white;
+}
+.bank-select-search{
+    margin-top: 40px;
+}
+.bank-select-search input{
+    width: 100%;
+    border: none;
+    padding: 0.54rem 0.89rem;
+    border-radius: 2.031px;
+    background: #FFF;
+    color: #2B2B2B;
+    font-size: 0.76144rem;
+    font-family: Darker Grotesque;
+    font-weight: 500;
+}
+.bank-select-body{
+    margin-top: 15px;
+    height: 300px;
+    overflow-y: scroll;
+}
+.banks{
+    margin-bottom: 15px;
+    padding: 0.95rem 0.86rem;
+    display: flex;
+    align-items: center;
+    border-radius: 2.031px;
+    background: #FFF;
+}
+.bank-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 27px;
+    height: 27px;
+    background-color: #A6A6A636;
+    border-radius: 50%;
+}
+.bank-name{
+    margin-left: 30px;
+    color: rgba(0, 0, 0, 0.80);
+    font-size: 0.76144rem;
+    font-family: Poppins;
+    font-weight: 500;
 }
 .form-2{
     margin-top: 24px;

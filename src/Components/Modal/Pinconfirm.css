@@ -1,0 +1,87 @@
+.receiver-details{
+    width: 100%;
+    margin-top: 20px;
+    padding: 40px;
+    background-color: antiquewhite;
+    /* background-image: url(../../assets/image/background.svg); */
+    background-repeat: no-repeat;
+    background-size: 350px;
+    background-position: top right;
+    border-radius: 20px;
+}
+.preview-1{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.preview-upper{
+    margin-top: 0px;
+}
+.preview-left, .preview-right{
+    width: 45%;
+}
+.preview-right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.receipt-head{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: rgb(96, 96, 96);
+    text-transform: uppercase;
+}
+.receipt-body-2{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.8);
+}
+.field-container{
+    margin-top: 20px;
+    padding-bottom: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+.pinfield input{
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    border: none;
+    margin: 2px;
+    background-color: #D6DEE0;
+    color: #000000;
+    outline: none;
+    transition: all 0.1s;
+}
+.pinfield input:focus{
+    background-color: #F1C37E;
+}
+@media (Max-width: 768px){
+    .confirmtransfer-body-inner{
+        width: 100%;
+    }
+    .cardpin-body{
+        margin-top: 30px;
+    }
+    .cardpin-body-inner{
+        width: 90%;
+    }
+    .enter-pin{
+        text-align: center;
+        font-weight: 700;
+        font-size: 17px;  
+    }
+    .pinfield input{
+        width: 60px;
+        height: 60px;
+    }
+}

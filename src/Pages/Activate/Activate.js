@@ -23,12 +23,12 @@ const Activate = () => {
             </div>
             <div className={styles.activateFormOuter}>
                 <div className={styles.activateForm}>
-                    {index===1 && (<Personal/>)}
+                    {index===1 && (<Personal next={nextButton}/>)}
                     {index===2 && (<Business/>)}
-                    {index===3 && (<Verification/>)}
+                    {/* {index===3 && (<Verification/>)} */}
                     {index===4 && (<Payout/>)}
                 </div>
-                <button onClick={nextButton} className={styles.activateButton}>Save</button>
+                {/* <button onClick={nextButton} className={styles.activateButton}>Save</button> */}
             </div>
         </div>
     );

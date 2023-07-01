@@ -19,6 +19,10 @@ import { useState } from 'react';
 import Onetime from './Pages/Payment/Onetime';
 import Notification from './Pages/Notification/Notification';
 import AccountStatement from './Pages/AccountStatement/AccountStatement';
+import Login from './Pages/Login/Login';
+import Register from './Pages/Register/Register';
+import Otp from './Pages/Register/Otp';
+import Setpassword from './Pages/Register/Setpassword';
 function App() {
   const [sidebar, setSidebar] = useState(false);
   const toggleSidebar = () => {
@@ -27,6 +31,12 @@ function App() {
   return (
     <Router>
       <Provider store={store}>
+        <Routes>
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/signup" element={<Register/>}/>
+              <Route path="/otp" element={<Otp/>}/>
+              <Route path="password" element={<Setpassword/>}/>
+        </Routes>
         <div className={styles.test}>
           <div className={styles.left}>
             <Sidebar Sidebar={sidebar} closeSidebar={toggleSidebar} toggle={toggleSidebar}/>

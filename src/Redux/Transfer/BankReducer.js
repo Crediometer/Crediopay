@@ -1,34 +1,36 @@
-import { DASHBOARD_FALIURE, 
-    DASHBOARD_REQUEST, 
-    DASHBOARD_SUCCESS, 
-    RECENT_TRANSACTION_REQUEST, 
-    RECENT_TRANSACTION_SUCCESS, 
-    RECENT_TRANSACTION_FALIURE,
-    SUM_TRANSACTION_REQUEST,
-    SUM_TRANSACTION_SUCCESS,
-    SUM_TRANSACTION_FALIURE 
-} from "./DashboardType"
+import { BANK_REQUEST, 
+    BANK_SUCCESS, 
+    BANK_FALIURE, 
+    NAME_REQUEST, 
+    NAME_SUCCESS, 
+    NAME_FALIURE,
+    TRANSFER_REQUEST,
+    TRANSFER_SUCCESS,
+    TRANSFER_FALIURE,
+    TRANSFER_DATA_REQUEST
+ } from "./BankType"
 
 const initialState ={
     loading: true,
+    transferData: [],
     data: [],
     error: ''
 }
-//REDUCER FOR ANALYTICS
-export const dashboardReducer = (state = initialState, action) => {
+
+export const bankReducer = (state = initialState, action) => {
     switch(action.type){
-        case DASHBOARD_REQUEST:
+        case BANK_REQUEST:
             return{
                 ... state,
                 loading: true
             }
-        case DASHBOARD_SUCCESS:
+        case BANK_SUCCESS:
             return{
                 loading: false,
                 data: action.payload,
                 error: ''
             }
-        case DASHBOARD_FALIURE:
+        case BANK_FALIURE:
             return{
                 loading:false,
                 data: [],
@@ -38,21 +40,26 @@ export const dashboardReducer = (state = initialState, action) => {
     }
 }
 
-//REDUCER FOR RECENT TRANSACTION
-export const recenttranReducer = (state = initialState, action) => {
+export const banknameReducer = (state = initialState, action) => {
     switch(action.type){
-        case RECENT_TRANSACTION_REQUEST:
+        case NAME_REQUEST:
             return{
                 ... state,
                 loading: true
             }
-        case RECENT_TRANSACTION_SUCCESS:
+        case TRANSFER_DATA_REQUEST:
+            console.log("reach here????");
+            return {
+                ...state,
+                transferData: action.payload,
+            };  
+        case NAME_SUCCESS:
             return{
                 loading: false,
                 data: action.payload,
                 error: ''
             }
-        case RECENT_TRANSACTION_FALIURE:
+        case NAME_FALIURE:
             return{
                 loading:false,
                 data: [],
@@ -62,20 +69,20 @@ export const recenttranReducer = (state = initialState, action) => {
     }
 }
 
-export const sumtranReducer = (state = initialState, action) => {
+export const transferReducer = (state = initialState, action) => {
     switch(action.type){
-        case SUM_TRANSACTION_REQUEST:
+        case TRANSFER_REQUEST:
             return{
                 ... state,
                 loading: true
             }
-        case SUM_TRANSACTION_SUCCESS:
+        case TRANSFER_SUCCESS:
             return{
                 loading: false,
                 data: action.payload,
                 error: ''
             }
-        case SUM_TRANSACTION_FALIURE:
+        case TRANSFER_FALIURE:
             return{
                 loading:false,
                 data: [],
