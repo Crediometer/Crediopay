@@ -30,7 +30,9 @@ a{
   margin-top: 56px;
   background-color: #F5F5F5 ;
 }
-
+.spinner{
+  width: 20%;
+}
 @media (max-width: 1100px){
   .content{
     min-height: 100vh ;

@@ -30,7 +30,7 @@ const Sidebar = ({Sidebar,toggle, fetchprofile, fetchgetprofile, profile}) => {
         <div className={Sidebar?`${styles.sidebar} ${styles.sidebaropen}`: `${styles.sidebar}`}>
             <div className={styles.sidebarheader}>
                 <h3 className={styles.businessname}>{businessname}</h3>
-                <p className={styles.businessphone}>{phoneNumber}</p>
+                <p className={styles.businessphone}>{newphoneNumber}</p>
             </div>
             <section className={styles.links}>
                 <nav>

@@ -64,7 +64,7 @@ const Dashboard = ({fetchanalytics,
         <div>
             {analytics.loading ?( 
                 <div className="preloader">
-                    <LottieAnimation data={preloader} height={150} width={150} />
+                    <LottieAnimation data={preloader} />
                 </div> 
             ):(
                 <div className="test">
