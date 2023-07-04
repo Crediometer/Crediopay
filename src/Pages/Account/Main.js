@@ -6,7 +6,7 @@ const Main = () => {
         <div className="main-con">
             <div className="main-top">
                 <p>Showing 0 - 1 Main Account</p>
-                <button>+ Add Account</button>
+                {/* <button>+ Add Account</button> */}
             </div>
             <div className="main-body">
                 <div className="main-body-inner">
@@ -24,7 +24,7 @@ const Main = () => {
                     </div>
                 </div>
             </div>
-            <Paginations/>
+            {/* <Paginations/> */}
         </div>
     );
 }

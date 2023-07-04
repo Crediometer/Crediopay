@@ -24,6 +24,15 @@ const Transfer = ({fetchbank, bank, fetchbankname, postTransfer, name}) => {
     const saveBeneficiary = false;
     const [saveBeneficiaryForUs, setSaveBeneficiaryForUs] = useState(false);
     const [show, setShow] = useState(false)
+    const [isChecked, setIsChecked] = useState(false);
+    const [isChecked2, setIsChecked2] = useState(false);
+    const handleClick = () => {
+        setIsChecked(!isChecked);
+    };
+    const handleClick2 = () => {
+        setIsChecked2(!isChecked2);
+    };
+
     const handleShow =()=>{
         setShowBank(!showBank)
     }
@@ -98,26 +107,26 @@ const Transfer = ({fetchbank, bank, fetchbankname, postTransfer, name}) => {
                     <div className="transfer-to">
                         <p className='transfer-to-title'>Transfer To :</p>
                         <div className="transfer-to-inner">
-                            <div className="to">
+                            <div className="to" onClick={handleClick}>
                                 <p>Credio Account </p>
                                 <div className="to-inner">
                                     <div className="to-image">
                                         <img src={credio}></img>
                                     </div>
                                     <div className="to-select">
-                                        <input type="radio" name="bank" value="credio"></input>
+                                        <input type="radio" checked={isChecked} onChange={handleClick} name="bank" value="credio"></input>
                                     </div>
                                 </div>
                                 
                             </div>
-                            <div className="to">
+                            <div className="to" onClick={handleClick}>
                                 <p>Other Bank</p>
                                 <div className="to-inner">
                                     <div className="to-image">
                                         <BsBank2/>
                                     </div>
                                     <div className="to-select">
-                                        <input type="radio" name="bank" value="credio"></input>
+                                        <input type="radio" checked={!isChecked} onChange={handleClick} name="bank" value="credio"></input>
                                     </div>
                                 </div>
                             </div>

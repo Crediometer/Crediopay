@@ -20,15 +20,18 @@ export const passwordFaliure = (error) => {
     payload: error,
   };
 };
-
+const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 export const passwordData = (passwordState, history, setErrorHandler) => {
     return async (dispatch) => {
         dispatch(passwordRequest())
       try {
         console.log(passwordState);
+        const headers = {
+          "Content-Type": "application/json",
+        };
         const res = await axios.post(
-          "https://credio-api.herokuapp.com/api/v1/auth/savePassword",
-          passwordState,
+          `${baseUrl}/auth/savePassword`,
+          passwordState
         );
         const { data } = res;
         console.log(res);
@@ -38,10 +41,11 @@ export const passwordData = (passwordState, history, setErrorHandler) => {
           dispatch(passwordSuccess(data));
         }
       } catch (error) {
+        console.log(error)
         if (error.response) {
           dispatch(passwordFaliure(error));
         }
-        setErrorHandler({ hasError: true, message: error.response});
+        setErrorHandler({ hasError: true, message: error?.response});
       }
     };
   };

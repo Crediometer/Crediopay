@@ -66,7 +66,7 @@ const Setpassword = (props) => {
         try{
             await passwordData(passwordState, ()=>{ 
             console.log("now go to login..");
-            history(`/login`);
+            history(`/`);
             // setPending(true);
             }, ()=>{ 
                 console.log("now go to error..", error);

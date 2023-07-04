@@ -94,6 +94,7 @@
     margin-left: 20px;
 }
 .main-select select{
+    width: 75%;
     padding: 0.4rem;
     background-color: #B11226;
     border-radius: 16px;

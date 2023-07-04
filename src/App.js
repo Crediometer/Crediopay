@@ -56,8 +56,8 @@ function App() {
               <Route path="/zelle" element={<Zelle/>}/>
               <Route path="/transaction" element={<Transaction/>}/>
               <Route path="/setting" element={<Settings/>}/>
-              <Route path="/account" element={<Account/>}/>
-              <Route path="/accountpage" element={<AccountPage/>}/>
+              {/* <Route path="/account" element={<Account/>}/> */}
+              <Route path="/account" element={<AccountPage/>}/>
               <Route path="/transfer" element={<Transfer/>}/>
               <Route path='/notification' element={<Notification/>}/>
               <Route path='/statement' element={<AccountStatement/>}/>

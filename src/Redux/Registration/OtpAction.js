@@ -21,13 +21,15 @@ export const otpFaliure = (error) => {
   };
 };
 
+const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+
 export const otpData = (otpState, history, setErrorHandler) => {
     return async (dispatch) => {
         dispatch(otpRequest())
       try {
         console.log(otpState);
         const res = await axios.post(
-          "https://credio-api.herokuapp.com/api/v1/auth/VerifyAuthOtp",
+          `${baseUrl}/auth/VerifyAuthOtp`,
           otpState,
         );
         const { data } = res;
@@ -41,7 +43,7 @@ export const otpData = (otpState, history, setErrorHandler) => {
         if (error.response) {
           dispatch(otpFaliure(error));
         }
-        setErrorHandler({ hasError: true, message: error.response.data});
+        setErrorHandler({ hasError: true, message: error?.response?.data});
       }
     };
   };

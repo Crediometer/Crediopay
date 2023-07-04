@@ -12,6 +12,8 @@ import authReducer from './Login/LoginReducer';
 import registerReducer from './Registration/RegisterReducer';
 import otpReducer from './Registration/OtpReducer';
 import passwordReducer from './Registration/SavepasswordReducer';
+import { getprofileReducer } from './Getprofile/GetprofileReducer';
+import { webhookReducer } from './Webhook/WebhookReducer';
 
 const rootReducer = combineReducers({
     login: authReducer,
@@ -30,7 +32,8 @@ const rootReducer = combineReducers({
     transfer: transferReducer,
     personal: personalReducer,
     business: businessReducer,
-
+    getprofile: getprofileReducer,
+    webhook: webhookReducer
 })
 
 export default rootReducer;

@@ -23,6 +23,7 @@ const initialState = {
           error: "",
         };
       case PASSWORD_USER_FAILURE:
+        console.log(state)
         return {
           loading: false,
           requestData: {},

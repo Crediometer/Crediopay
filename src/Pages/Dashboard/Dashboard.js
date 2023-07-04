@@ -15,7 +15,8 @@ import Graph from "../../Components/Graph/Graph";
 import DashboardTable from "../../Components/Table/DashboardTable";
 import Rightbar from "../../Components/Rightbar/Rightbar";
 import { FaChevronDown } from "react-icons/fa";
-const Dashboard = ({fetchanalytics, fetchrecenttran, fetchsumtran, fetchprofile, analytics}) => {
+import { fetchgetprofile } from "../../Redux/Getprofile/GetprofileAction";
+const Dashboard = ({fetchanalytics, fetchrecenttran, fetchsumtran, fetchprofile, analytics, fetchgetprofile}) => {
     const [isActive, setIsActive] = useState(1);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('All');
@@ -32,10 +33,12 @@ const Dashboard = ({fetchanalytics, fetchrecenttran, fetchsumtran, fetchprofile,
       setIsActive(id);
     };
     useEffect(() => {
-        fetchprofile()
+        
         fetchanalytics()
         fetchrecenttran()
         fetchsumtran()
+        fetchgetprofile()
+        fetchprofile()
     }, []);
     const myClassName = `${styles.status} ${isActive ? styles.active : ''}`;
     return ( 
@@ -153,6 +156,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchanalytics: () => dispatch(fetchanalytics()),
         fetchrecenttran: () => dispatch(fetchrecenttran()),
         fetchsumtran: () => dispatch(fetchsumtran()),
+        fetchgetprofile: () => dispatch(fetchgetprofile()),
     };
 };
  

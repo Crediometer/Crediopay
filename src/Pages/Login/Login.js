@@ -115,7 +115,7 @@ const Login = (props) => {
                         <p className='login-header'>Login</p>
                         <p className='login-text'>Please enter phone number and password to continue</p>
                     </div>
-                    {(errorHandler.dataAdded) ?
+                    {(errorHandler?.dataAdded) ?
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             
                         </div> : <div>{errorHandler}</div>
@@ -193,8 +193,8 @@ const Login = (props) => {
 }
 const mapStateToProps = state => {
     return{
-        error:state.login.error,
-        loading: state.login.dataAdded
+        error:state?.login?.error,
+        loading: state?.login?.dataAdded
     }
 }
 

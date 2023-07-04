@@ -30,7 +30,8 @@ const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 
 export const fetchprofile = () => {
     return(dispatch) => {
-        dispatch(profileRequest)
+        dispatch(profileRequest())
+        console.log("help")
         // console.log(`${localStorage.getItem("auth")}`)
         // let datas = JSON.parse(localStorage.getItem("auth"))
         // console.log(`data ----- ${datas}`)
@@ -38,7 +39,7 @@ export const fetchprofile = () => {
         axios.get(`${baseUrl}/dashboard/businessProfile`)
             .then( response => {
                 const data = response
-                console.log(`this is proile analytics--- ${data}`)
+                console.log(`this is profile analytics--- ${data}`)
                 dispatch(profileSuccess(data))
             })
             .catch(error =>{

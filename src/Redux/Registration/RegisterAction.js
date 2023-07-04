@@ -34,14 +34,14 @@ export const transferData = (data) => {
 //     dispatch(transferData(data));
 //   };
 // };
-
+const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 export const registerData = (registerState, history, setErrorHandler) => {
     return async (dispatch) => {
       dispatch(registerRequest())
       try {
         console.log(registerState);
         const res = await axios.post(
-          "https://credio-api.herokuapp.com/api/v1/auth/sendAuthOtp",
+          `${baseUrl}/auth/sendAuthOtp`,
           registerState,
         );
         const { data } = res;
@@ -56,7 +56,7 @@ export const registerData = (registerState, history, setErrorHandler) => {
         if (error.response) {
           dispatch(registerFaliure(error));
         }
-        setErrorHandler({ hasError: true, message: error.response.data.message });
+        setErrorHandler({ hasError: true, message: error?.response?.data?.message });
       }
     };
   };

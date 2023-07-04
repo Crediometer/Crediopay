@@ -50,11 +50,14 @@ const getChat = (jwt) => {
 //   socket.emit('logout');
 
 // }
+
+const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+
 const LoginAuthAction = (loginState, history, setErrorHandler) => {
     return async (dispatch) => {
       dispatch({type: AuthActionType.LOGIN_START})
       try {
-        const res = await axios.post("https://credio-api.herokuapp.com/api/v1/auth/login", loginState);
+        const res = await axios.post(`${baseUrl}/auth/login`, loginState);
         const { data } = res;
         // console.log(res)
         dispatch({ type: AuthActionType.LOGIN_SUCCESS, payload: data });
@@ -63,6 +66,7 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
 
         }
       } catch (error) {
+        console.log(error)
         if (error.response) {
           dispatch({
             type: AuthActionType.LOGIN_FAIL,
@@ -70,7 +74,7 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
           });
           // setErrorHandler({ hasError: true, message: error.response.data.message });
         }
-        setErrorHandler({ hasError: true, message: error.response.data.message });
+        setErrorHandler({ hasError: true, message: error?.response?.data?.message });
         // console.log( setErrorHandler());
       }
     };

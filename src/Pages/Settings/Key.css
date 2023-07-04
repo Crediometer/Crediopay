@@ -2,6 +2,21 @@
     display: flex;
     justify-content: right;
 }
+.key-error-notiication{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: rgb(255, 194, 194);
+}
+.key-error-notiication p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #f32424;
+}
 .key-switch{
     display: flex;
     align-items: center;
