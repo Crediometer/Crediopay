@@ -1,25 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import styles from './Sidebar.module.css'
 import {BiLogOut} from 'react-icons/bi'
 import { SidebarDetails } from "./SidebarDetails";
 import classNames from 'classnames';
 import { Link,NavLink, useLocation } from "react-router-dom";
 import { BsPerson } from "react-icons/bs";
-const Sidebar = ({Sidebar,toggle}) => {
+import { fetchgetprofile } from "../../Redux/Getprofile/GetprofileAction";
+import { fetchprofile } from "../../Redux/Profile/ProfileAction";
+const Sidebar = ({Sidebar,toggle, fetchprofile, fetchgetprofile, profile}) => {
     const location = useLocation();
     const [activeLink, setActiveLink] = useState(null);
     function handleLinkClick(event, index) {
         event.preventDefault();
         setActiveLink(index);
     }
-    const navLinkStyles = ({isActive}) => {
+    let businessname = profile?.businessName
+    console.log(businessname)
+    const phoneNumber = profile?.phoneNumber
+    const newphoneNumber = phoneNumber?.startsWith('+234') ? '0' + phoneNumber.slice(4) : phoneNumber;
+    console.log(newphoneNumber)
+    // const navLinkStyles = ({isActive}) => {
 
-    }
+    // }
+    useEffect(() => {
+        fetchgetprofile()
+    }, []);
     return ( 
         <div className={Sidebar?`${styles.sidebar} ${styles.sidebaropen}`: `${styles.sidebar}`}>
             <div className={styles.sidebarheader}>
-                <h3 className={styles.businessname}>Test Ventures</h3>
-                <p className={styles.businessphone}>09083736822</p>
+                <h3 className={styles.businessname}>{businessname}</h3>
+                <p className={styles.businessphone}>{phoneNumber}</p>
             </div>
             <section className={styles.links}>
                 <nav>
@@ -66,4 +77,19 @@ const Sidebar = ({Sidebar,toggle}) => {
     );
 }
 
-export default Sidebar
+const mapStoreToProps = (state) => {
+    console.log("states   ", state);
+    return {
+      profile: state.getprofile.data
+    };
+};
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchprofile: () => dispatch(fetchprofile()),
+        fetchgetprofile: () => dispatch(fetchgetprofile()),
+    };
+};
+ 
+
+export default connect(mapStoreToProps, mapDispatchToProps)(Sidebar);

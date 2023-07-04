@@ -167,7 +167,7 @@ const Login = (props) => {
                                 type="submit"
                                 name="submit"
                                 value="Login"
-                                onClick={handleSignUp}
+                                // onClick={handleSignUp}
                                 >
                                     {loading ? (
                                     <FontAwesomeIcon

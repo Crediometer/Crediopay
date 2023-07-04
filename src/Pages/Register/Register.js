@@ -17,6 +17,7 @@ const Register = (props) => {
     // console.log(loading)
     const [registerState, setRegisterState] = useState({});
     const [errorHandler, setErrorHandler] = useState([false, ""]);
+    
     const handleNumber = (e) => {
         const value = e.target.value;
         console.log(value);

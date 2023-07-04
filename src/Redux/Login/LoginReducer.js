@@ -14,6 +14,7 @@ const AuthActionType = {
   LOGIN_FAIL: "LOGIN_FAIL",
 };
 const authState = {
+    auth: false,
     dataAdded: false,
     token: {},
     error: ''
@@ -45,6 +46,7 @@ const authReducer = (state = authState, action) => {
         //   return newAuthState;
         case AuthActionType.LOGIN_START:
           const loginAuthStart = {
+            auth: false,
             dataAdded: true,
             error: ''
           };
@@ -56,7 +58,8 @@ const authReducer = (state = authState, action) => {
     
         case AuthActionType.LOGIN_SUCCESS:
           const loginAuthState = {
-            dataAdded: true,
+            auth: true,
+            dataAdded: false,
             token: action.payload,
             error: ''
           };
@@ -68,6 +71,7 @@ const authReducer = (state = authState, action) => {
           return loginAuthState;
         case AuthActionType.LOGIN_FAIL:
           const loginfailState = {
+            auth: false,
             dataAdded: false,
             error: action.payload,
             token: {}

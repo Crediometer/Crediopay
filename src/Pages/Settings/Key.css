@@ -10,6 +10,21 @@
     padding: 1rem 2rem;
     background-color: rgb(255, 194, 194);
 }
+.key-success-notiication{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: rgb(88, 183, 88);
+}
+.key-success-notiication p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: rgb(4, 156, 4);
+}
 .key-error-notiication p{
     font-family: 'Poppins';
     font-style: normal;

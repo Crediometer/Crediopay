@@ -7,11 +7,13 @@ import { useState } from "react";
 import { fetchgetprofile } from "../../Redux/Getprofile/GetprofileAction";
 import { profileFaliure } from "../../Redux/Profile/ProfileAction";
 import { putwebhook } from "../../Redux/Webhook/WebhookAction";
-const Key = ({fetchgetprofile, putwebhook, clientid}) => {
+const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
+    const [pending, setPending] = useState(false)
+    const [success, setSuccess] = useState(false)
     const [short, setShort] = useState(false);
     const [Url, seturl] = useState("")
     const [hookState, sethookState] = useState(null);
-    console.log(clientid)
+    const [errorHandler, setErrorHandler] = useState([false, ""]);
     const handleShort = ()=>{
         setShort(!short)
     }
@@ -26,7 +28,15 @@ const Key = ({fetchgetprofile, putwebhook, clientid}) => {
         e.preventDefault();
         
         try{
-            await putwebhook(clientid, hookState);
+            await putwebhook(clientid, hookState,()=>{ 
+                console.log("now go to hook..");
+                setSuccess(true);
+                },()=>{ 
+                    console.log(errorHandler)
+                    console.log("now go to error..", error);
+                    setErrorHandler(error)
+                    setPending(true);
+                });
             console.log(hookState)
         }catch(error){
             // setPending(false);
@@ -44,11 +54,19 @@ const Key = ({fetchgetprofile, putwebhook, clientid}) => {
                     <p>Test</p>
                 </div>
             </div> */}
-            
-            <div className="key-error-notiication">
-                <p>Error message</p>
-                <div className="error-cancle"><FaTimes/></div>
-            </div>
+            {pending && (
+                <div className="key-error-notiication">
+                    <p>Error message</p>
+                    <div className="error-cancle"><FaTimes/></div>
+                </div>
+            )}
+           {success && (
+                <div className="key-success-notiication">
+                    <p>success message</p>
+                    <div className="error-cancle"><FaTimes/></div>
+                </div>
+            )}
+           
             <div className="key-body">
                 <div className="secret-key">
                     <p className="secret-key-head">Client Id</p>
@@ -56,7 +74,7 @@ const Key = ({fetchgetprofile, putwebhook, clientid}) => {
                         <div className="secret-input">
                             <input
                                 type="text"
-                                placeholder="saddbhysdn"
+                                placeholder={clientid}
                             >
                             </input>
                             <div className="secret-icon">
@@ -75,7 +93,7 @@ const Key = ({fetchgetprofile, putwebhook, clientid}) => {
                         <div className="secret-input">
                             <input
                                 type="text"
-                                placeholder="saddbhysdn"
+                                placeholder={apiKey}
                             >
                             </input>
                             <div className="secret-icon">
@@ -119,14 +137,16 @@ const mapStoreToProps = (state) => {
     // console.log("states   ", state);
     return {
         webhook: state.webhook,
-        clientid: state?.getprofile?.data?.data?.data?.client?.clientId
+        error: state.webhook.error,
+        clientid: state?.getprofile?.data?.client?.clientId,
+        apiKey: state?.getprofile?.data?.client?.apiKey
     };
 };
   
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchgetprofile: () => dispatch(fetchgetprofile()),
-        putwebhook: (id, hookState) => dispatch(putwebhook(id, hookState))
+        putwebhook: (id, hookState, history,setErrorHandler) => dispatch(putwebhook(id, hookState, history,setErrorHandler))
     };
 };
  

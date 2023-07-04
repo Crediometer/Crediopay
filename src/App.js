@@ -5,7 +5,8 @@ import Sidebar from './Components/Sidebar/Sidebar';
 import Activate from './Pages/Activate/Activate';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Dashboard from './Pages/Dashboard/Dashboard';
-import styles from './styles.module.css'
+// import styles from './styles.module.css'
+import './App.css';
 import Registration from './Pages/Registration/Registration';
 import Payment from './Pages/Payment/Payment';
 import Product from './Pages/Payment/Product';
@@ -23,48 +24,37 @@ import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import Otp from './Pages/Register/Otp';
 import Setpassword from './Pages/Register/Setpassword';
+import AuthenticatedRoute from './Components/AuthenticatedRoute';
 function App() {
-  const [sidebar, setSidebar] = useState(false);
-  const toggleSidebar = () => {
-    setSidebar((prevState) => !prevState);
-  };
+  // const [sidebar, setSidebar] = useState(false);
+  // const toggleSidebar = () => {
+  //   setSidebar((prevState) => !prevState);
+  // };
   return (
     <Router>
       <Provider store={store}>
-        <div className={styles.test1}>
-          <Routes>
-            <Route path="/" element={<Login/>}/>
-            <Route path="/signup" element={<Register/>}/>
-            <Route path="/otp" element={<Otp/>}/>
-            <Route path="password" element={<Setpassword/>}/>
-          </Routes>
-        </div>
-        <div className={styles.test}>
-          <div className={styles.left}>
-            <Sidebar Sidebar={sidebar} closeSidebar={toggleSidebar} toggle={toggleSidebar}/>
-          </div>
-          <div className={styles.right}>
-            <Navbar toggle={toggleSidebar} mode={sidebar}/>
-            <div className={styles.content}>
             <Routes>
-              <Route exact path='/registration' element={<Registration/>}></Route>
-              <Route exact path='/dashboard' element={<Dashboard/>}></Route>
-              <Route path="/activate" element={<Activate/>}/>
-              <Route path="/payment" element={<Payment/>}/>
-              <Route path="/product" element={<Product/>}/>
-              <Route path="/onetime" element={<Onetime/>}/>
-              <Route path="/zelle" element={<Zelle/>}/>
-              <Route path="/transaction" element={<Transaction/>}/>
-              <Route path="/setting" element={<Settings/>}/>
-              {/* <Route path="/account" element={<Account/>}/> */}
-              <Route path="/account" element={<AccountPage/>}/>
-              <Route path="/transfer" element={<Transfer/>}/>
-              <Route path='/notification' element={<Notification/>}/>
-              <Route path='/statement' element={<AccountStatement/>}/>
+              <Route path="/" element={<Login/>}/>
+              <Route path="/signup" element={<Register/>}/>
+              <Route path="/otp" element={<Otp/>}/>
+              <Route path="password" element={<Setpassword/>}/>
+              <Route element={<AuthenticatedRoute/>}>
+                  <Route exact path='/registration' element={<Registration/>}></Route>
+                  <Route exact path='/dashboard' element={<Dashboard/>}></Route>
+                  <Route path="/activate" element={<Activate/>}/>
+                  <Route path="/payment" element={<Payment/>}/>
+                  <Route path="/product" element={<Product/>}/>
+                  <Route path="/onetime" element={<Onetime/>}/>
+                  <Route path="/zelle" element={<Zelle/>}/>
+                  <Route path="/transaction" element={<Transaction/>}/>
+                  <Route path="/setting" element={<Settings/>}/>
+                  {/* <Route path="/account" element={<Account/>}/> */}
+                  <Route path="/account" element={<AccountPage/>}/>
+                  <Route path="/transfer" element={<Transfer/>}/>
+                  <Route path='/notification' element={<Notification/>}/>
+                  <Route path='/statement' element={<AccountStatement/>}/>
+              </Route>
             </Routes>
-            </div>
-          </div>
-        </div>
       </Provider>
     </Router>
   );

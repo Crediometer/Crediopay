@@ -35,7 +35,7 @@ export const fetchgetprofile = () => {
             Authorization: `Bearer ${datas?.token?.data?.token?.token}`,
           }},)
             .then( response => {
-                const data = response
+                const data = response.data.data
                 console.log(`this is proile --- ${data}`)
                 dispatch(getprofileSuccess(data))
             })
