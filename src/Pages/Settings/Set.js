@@ -1,4 +1,4 @@
-import { FaPlus, FaTrash } from "react-icons/fa";
+import { FaChevronRight, FaPlus, FaTrash } from "react-icons/fa";
 import { connect } from "react-redux";
 import {Switch} from "antd";
 import './Set.css';
@@ -6,6 +6,7 @@ import DirectorModal from "../../Components/Modal/DirectorModal";
 import { useState } from "react";
 import { putsetting } from "../../Redux/Settings/SettingsAction";
 import { getprofileReducer } from "../../Redux/Getprofile/GetprofileReducer";
+import { Link } from "react-router-dom";
 const Set = ({putsetting, error, loading, getprofile}) => {
     const [modal, setModal] = useState(false);
     const [emailmonthly, setemailmonthly] = useState(getprofile?.emailMonthly)
@@ -127,6 +128,17 @@ const Set = ({putsetting, error, loading, getprofile}) => {
                             />
                         </div>
                     </div>
+                    <Link to="/changepin">
+                        <div className="set-setting">
+                            <div className="set-setting-text">
+                                <p className="set-text-head">Pin</p>
+                                <p className="set-text-body">Set your Pin or Change your Pin.</p>
+                            </div>
+                            <div className="switch">
+                                <FaChevronRight/>
+                            </div>
+                        </div>
+                    </Link>
                 </div>
             </div>
             {modal && (

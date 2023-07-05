@@ -1,0 +1,32 @@
+.phone{
+    padding: 2rem 7rem;
+}
+.phone-header-head{
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Poppins';
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.749);
+}
+.phone-header-text{
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: 'Poppins';
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.749);
+}
+.form-change{
+    margin-top: 30px;
+}
+@media (max-width: 1280px) {
+    .phone{
+        padding: 2rem 1rem;
+    }
+    
+}
+@media (max-width: 1000px) {
+    .phone{
+        padding: 2rem 1rem;
+    }
+}

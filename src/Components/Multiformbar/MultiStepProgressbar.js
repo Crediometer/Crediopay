@@ -44,7 +44,7 @@ const MultiStepProgressbar = (props) => {
             {({ accomplished, index}) => (
                 <div className='step-outer'>
                     <div className={`step-number ${accomplished ? "completed" : ""}`}>
-                        {accomplished ? (<FaCheck/>) : (<p>4</p>)}
+                        {accomplished ? (<FaCheck/>) : (<p>3</p>)}
                     </div>
                     <p className={`step-name ${accomplished ? "completed" : ""}`}>Payout<br></br>account</p>
                 </div>

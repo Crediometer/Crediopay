@@ -26,7 +26,7 @@
     align-items: flex-end;
 }
 .receipt-head{
-    font-family: 'Roboto';
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -34,7 +34,7 @@
     text-transform: uppercase;
 }
 .receipt-body-2{
-    font-family: 'Roboto';
+    font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -69,11 +69,30 @@
     .confirmtransfer-body-inner{
         width: 100%;
     }
+    .pin-modal{
+        width: 95%;
+    }
     .cardpin-body{
         margin-top: 30px;
     }
     .cardpin-body-inner{
         width: 90%;
+    }
+    .receipt-head{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 0.6rem;
+        color: rgb(96, 96, 96);
+        text-transform: uppercase;
+    }
+    .receipt-body-2{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.8);
     }
     .enter-pin{
         text-align: center;

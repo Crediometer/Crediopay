@@ -5,7 +5,7 @@ import { profileReducer } from './Profile/ProfileReducer';
 import { transactionReducer } from './Transaction/TransactionReducer';
 import { statementReducer } from './Statement/StatementReducer';
 import { notificationReducer } from './Notification/NotificationReducer';
-import { bankReducer, banknameReducer, transferReducer } from './Transfer/BankReducer';
+// import { bankReducer, banknameReducer, transferReducer } from './Transfer/BankReducer';
 import { personalReducer } from './Activate/PersonalReducer';
 import { businessReducer } from './Activate/BusinessReducer';
 import authReducer from './Login/LoginReducer';
@@ -16,6 +16,8 @@ import { getprofileReducer } from './Getprofile/GetprofileReducer';
 import { webhookReducer } from './Webhook/WebhookReducer';
 import { vaultReducer } from './Vault/VaultReducer';
 import { settingReducer } from './Settings/SettingsReducer';
+import banknameReducer from './Bank/BankReducer';
+import depositReducer from './Deposit/DepositReducer';
 
 const rootReducer = combineReducers({
     login: authReducer,
@@ -29,9 +31,11 @@ const rootReducer = combineReducers({
     transaction: transactionReducer,
     statement: statementReducer,
     notification: notificationReducer,
-    bank: bankReducer,
     bankname: banknameReducer,
-    transfer: transferReducer,
+    deposit: depositReducer,
+    // bank: bankReducer,
+    // transfer: transferReducer,
+    // bankname: banknameReducer,
     personal: personalReducer,
     business: businessReducer,
     getprofile: getprofileReducer,

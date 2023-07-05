@@ -25,6 +25,11 @@ import Register from './Pages/Register/Register';
 import Otp from './Pages/Register/Otp';
 import Setpassword from './Pages/Register/Setpassword';
 import AuthenticatedRoute from './Components/AuthenticatedRoute';
+import SetPin from './Pages/SetPin/SetPin';
+import ChangePin from './Pages/SetPin/ChangePin';
+import Phone from './Pages/Forgot/Phone';
+import Forgototp from './Pages/Forgot/Otp';
+import Password from './Pages/Forgot/Password';
 function App() {
   // const [sidebar, setSidebar] = useState(false);
   // const toggleSidebar = () => {
@@ -38,7 +43,7 @@ function App() {
               <Route path="/signup" element={<Register/>}/>
               <Route path="/otp" element={<Otp/>}/>
               <Route path="password" element={<Setpassword/>}/>
-              <Route element={<AuthenticatedRoute/>}>
+              {/* <Route element={<AuthenticatedRoute/>}> */}
                   <Route exact path='/registration' element={<Registration/>}></Route>
                   <Route exact path='/dashboard' element={<Dashboard/>}></Route>
                   <Route path="/activate" element={<Activate/>}/>
@@ -53,7 +58,12 @@ function App() {
                   <Route path="/transfer" element={<Transfer/>}/>
                   <Route path='/notification' element={<Notification/>}/>
                   <Route path='/statement' element={<AccountStatement/>}/>
-              </Route>
+                  <Route path='/setpin' element={<SetPin/>}/>
+                  <Route path='/changepin' element={<ChangePin/>}/>
+                  <Route path='/forgot' element={<Phone/>}/>
+                  <Route path='/forgototp' element={<Forgototp/>}/>
+                  <Route path='/forgotnew' element={<Password/>}/>
+              {/* </Route> */}
             </Routes>
       </Provider>
     </Router>

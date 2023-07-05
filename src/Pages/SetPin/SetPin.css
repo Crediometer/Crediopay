@@ -1,0 +1,31 @@
+.setpin{
+    padding: 2rem 10rem;
+}
+.setpin-head{
+    font-family: "Poppins";   
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.708);
+}
+.setpin-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.setpin-field-2{
+    margin-top: 40px;
+}
+.setpin-button{
+    margin-top: 200px;
+}
+@media (max-width: 1280px) {
+    .dashboard{
+        padding: 2rem 1rem;
+    }
+    
+}
+@media (max-width: 1000px) {
+    .setpin{
+        padding: 2rem 1rem;
+    }
+}

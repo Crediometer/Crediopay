@@ -8,11 +8,15 @@ import LottieAnimation from '../../Lotties';
 import preloader from '../../Assets/preloader.json'
 import Input from '../../Components/Inputfield/Input';
 import { useEffect, useState } from 'react';
-import { fetchbank, fetchbankname, postTransfer, reqData } from '../../Redux/Transfer/BankAction';
-import Pinconfirm from '../../Components/Modal/Pinconfirm';
+import { useSelector, useDispatch } from 'react-redux';
+// import { fetchbank, fetchbankname, postTransfer, reqData } from '../../Redux/Transfer/BankAction';
+// import Pinconfirm from '../../Components/Modal/Pinconfirm';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
-const Transfer = ({fetchbank, bank, fetchbankname, postTransfer, name}) => {
+import { fetchBank, postData, reqData } from '../../Redux/Bank/BankAction';
+import Pinconfirm from '../../Components/Modal/Pinconfirm';
+const Transfer = ({fetchBank, bank, postData, postTransfer, name}) => {
+    const dispatch = useDispatch();
     const [showBank, setShowBank] = useState(false);
     const [selectBank, setSelectBank]  = useState("Select a Bank")
     const [nameState, setNameState] = useState({});
@@ -75,27 +79,44 @@ const Transfer = ({fetchbank, bank, fetchbankname, postTransfer, name}) => {
         setnarration(value);
     };
     useEffect(() => {
+        fetchBank();
+        console.log(bank)
         if (nibssCode !== "" && accountNumber.length === 10) {
             console.log(nameState)
-            fetchbankname(nameState);
-            setaccountName(name.data.accountName)
+            postData(nameState);
+            console.log(name)
+            // setaccountName(name.data.accountName)
         }
-        fetchbank();
+        
     }, [nibssCode, accountNumber, nameState]);
       //HANDLE TO SUBMIT TRANSACTION
     const handleSubmit = (e) => {
         e.preventDefault();
-        reqData({
-          nameEnquiryReference: name.data.sessionId,
-          debitAccountNumber,
-          beneficiaryAccountNumber: accountNumber,
-          beneficiaryBankCode: nibssCode,
-          beneficiaryAccountName: accountName,
-          narration,
-          amount,
-          saveBeneficiary,
-          saveBeneficiaryForUs,
-        });
+        const transfer = {
+            nameEnquiryReference: name?.sessionId,
+            debitAccountNumber,
+            beneficiaryAccountNumber: accountNumber,
+            beneficiaryBankCode: nibssCode,
+            beneficiaryAccountName: name?.accountName,
+            narration,
+            narration,
+            amount,
+            saveBeneficiary,
+            saveBeneficiaryForUs,
+          } 
+        dispatch({ type: 'TRANSFER_DATA_REQUEST', payload: transfer});
+        // reqData({
+        //   nameEnquiryReference: name.sessionId,
+        //   debitAccountNumber,
+        //   beneficiaryAccountNumber: accountNumber,
+        //   beneficiaryBankCode: nibssCode,
+        //   beneficiaryAccountName: name.accountName,
+        //   narration,
+        //   narration,
+        //   amount,
+        //   saveBeneficiary,
+        //   saveBeneficiaryForUs,
+        // });
         setShow(!show)
         // setAmount('');
         // setaccountNumber('');
@@ -169,7 +190,7 @@ const Transfer = ({fetchbank, bank, fetchbankname, postTransfer, name}) => {
                                     </div>
                                 </div>
                                 <div className="transfer-form">
-                                    <form>
+                                    <form onSubmit={handleSubmit}>
                                         {/* <LottieAnimation lotti={preloader} height={150} width={150} /> */}
                                         <div className="form-1-outer">
                                             <div className="form-1">
@@ -193,10 +214,10 @@ const Transfer = ({fetchbank, bank, fetchbankname, postTransfer, name}) => {
                                                         </div>
                                                         <div className="bank-select-body">
                                                         {bank.loading ? (
-                                                        <LottieAnimation lotti={preloader} height={150} width={150} /> 
+                                                        <LottieAnimation data={preloader}/> 
                                                         ):(
                                                             <div>
-                                                                {bank.data.filter(banks => banks.name.toLowerCase().includes(query)
+                                                                {bank.filter(banks => banks.name.toLowerCase().includes(query)
                                                                 ).map((bank)=>{
                                                                     return(
                                                                         <div className="banks" onClick={() => {handleBank(bank.bankCode); handleSelectedBank(bank.name); handleShow()}}>
@@ -228,7 +249,7 @@ const Transfer = ({fetchbank, bank, fetchbankname, postTransfer, name}) => {
                                                     <label className='form-1-label'>Beneficiary’s Name </label>
                                                     <input type="text" 
                                                     placeholder="0198604538"
-                                                    value={name.data.accountName}
+                                                    value={name?.accountName}
                                                     disabled
                                                     required
                                                     ></input>
@@ -266,7 +287,7 @@ const Transfer = ({fetchbank, bank, fetchbankname, postTransfer, name}) => {
                                         </div>
                                         <div className="form-button">
                                             <button className='reset'>Reset</button><br></br>
-                                            <button className='transfer-button' onClick={(e)=>{handleSubmit(e)}}>Transfer</button>
+                                            <button className='transfer-button'>Transfer</button>
                                         </div>
                                     </form>
                                 </div>
@@ -283,18 +304,21 @@ const Transfer = ({fetchbank, bank, fetchbankname, postTransfer, name}) => {
 const mapStoreToProps = (state) => {
     console.log("states   ", state);
     return {
-      bank: state.bank,
-      name: state.bankname,
+      bank: state.bankname.bank,
+      name: state?.bankname?.bankname?.data,
       transfer: state.transfer,
     };
 };
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchbank: () => dispatch(fetchbank()),
-        fetchbankname: (nameState) => dispatch(fetchbankname(nameState)),
-        postTransfer: (transferState) => dispatch(postTransfer(transferState)),
-        reqData: (depositState) => {dispatch(reqData(depositState));},
+        fetchBank: () => dispatch(fetchBank()),
+        postData: (postState) => {
+        dispatch(postData(postState));
+        },
+        reqData: (depositState) => {
+            dispatch(reqData(depositState));
+        },
     };
 };
 
