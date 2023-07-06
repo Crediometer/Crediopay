@@ -6,6 +6,7 @@ import { fetchanalytics,
     fetchsumtran
 } from "../../Redux/Dashboard/DashboardAction";
 import { FormattedNumber, IntlProvider } from "react-intl";
+import copy from 'copy-to-clipboard'
 import { fetchprofile } from "../../Redux/Profile/ProfileAction";
 import styles from './Dashboard.module.css'
 import {IoMdEyeOff} from 'react-icons/io'
@@ -49,7 +50,10 @@ const Dashboard = ({fetchanalytics,
       // 👇️ toggle isActive state on click
       setIsActive(id);
     };
-    console.log(cid)
+    const handleCopy = ()=>{
+        copy(vault?.accountBalance);
+    }
+    // console.log(cid)
     // console.log(vault.accountBalance)
     useEffect(() => {
         fetchvault(cid)
@@ -156,7 +160,9 @@ const Dashboard = ({fetchanalytics,
                                         </div>
                                         <div className={styles.balanceIcon}>
                                             <IoMdEyeOff/>
-                                            <IoCopy/>
+                                            <div onClick={handleCopy}>
+                                                <IoCopy/>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className={styles.graphContainer}>

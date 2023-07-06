@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Navbar from "../../Components/Navbar/Navbar";
-import Sidebar from "../../Components/Sidebar/Sidebar";
 import './Phone.css';
 import { Link } from "react-router-dom";
+import Sidebar from "../../../Components/Sidebar/Sidebar";
+import Navbar from "../../../Components/Navbar/Navbar";
 const Phone = () => {
     const [sidebar, setSidebar] = useState(false);
     const toggleSidebar = () => {
@@ -40,9 +40,9 @@ const Phone = () => {
                             </form>
                         </div>
                     </div>
-                </div>
+                 </div>
             </div>
-        </div>
+         </div>
      );
 }
  

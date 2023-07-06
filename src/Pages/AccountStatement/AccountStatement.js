@@ -4,6 +4,7 @@ import styles from '../Dashboard/Dashboard.module.css'
 import MoonLoader from "react-spinners/MoonLoader";
 import { FormattedNumber, IntlProvider } from "react-intl";
 import './AccountStatement.css';
+import copy from 'copy-to-clipboard'
 import TransactionTable from '../../Components/Table/TransactionTable';
 import { useState } from 'react';
 import { FaFileExcel, FaFilePdf, FaSearch } from 'react-icons/fa';
@@ -54,6 +55,9 @@ const AccountStatement = ({fetchstatement, profile}) => {
       setSelectedOption(option);
       setDropdownOpen(false);
     };
+    const handleCopy = ()=>{
+        copy(profile?.accountNumber);
+    }
     return ( 
         <div className="test">
             <div className="left">
@@ -167,7 +171,7 @@ const AccountStatement = ({fetchstatement, profile}) => {
                             <div className="statement-account">
                                 <div className="statement-account-left">
                                     <h1>{profile?.accountName}</h1>
-                                    <p className='trans-phone'>{profile?.accountNumber} <span><IoCopy/></span></p>
+                                    <p className='trans-phone'>{profile?.accountNumber} <span onClick={handleCopy}><IoCopy/></span></p>
                                 </div>
                                 <div className="statement-account-right">
                                     <p className='available statement-available'>Available Balance</p>

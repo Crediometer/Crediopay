@@ -51,6 +51,11 @@ const Graph = ({fetchanalytics, analytics}) => {
         },
         scales: {
             x: {
+                min: 0,
+                max: 12,
+                ticks: {
+                    stepSize: 1
+                },
                 grid:{
                     display:false
                 }
@@ -59,7 +64,7 @@ const Graph = ({fetchanalytics, analytics}) => {
                 min: 0,
                 max: 10000,
                 ticks: {
-                    stepSize: 200
+                    stepSize: 2000
                 },
                 grid:{
                     borderDash:[200]

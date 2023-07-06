@@ -4,6 +4,7 @@ import { FormattedNumber, IntlProvider } from "react-intl";
 import { fetchtransaction } from '../../Redux/Transaction/TransactionAction';
 import styles from '../Dashboard/Dashboard.module.css'
 import './Transaction.css'
+import copy from 'copy-to-clipboard'
 import { useState } from 'react';
 import { FaChevronDown, FaSearch } from 'react-icons/fa';
 import TransactionTable from '../../Components/Table/TransactionTable';
@@ -45,6 +46,9 @@ const Transaction = ({fetchtransaction, profile}) => {
       // 👇️ toggle isActive state on click
       setIsActive(id);
     };
+    const handleCopy = ()=>{
+        copy(profile?.accountNumber);
+    }
     const myClassName = `${styles.status} ${isActive ? styles.active : ''}`;
     return ( 
         <div className="test">
@@ -63,7 +67,7 @@ const Transaction = ({fetchtransaction, profile}) => {
                                 <div className="current">
                                     <p>Current</p>
                                 </div>
-                                <p className='trans-phone'>{profile?.accountNumber}<span><IoCopy/></span></p>
+                                <p className='trans-phone'>{profile?.accountNumber}<span onClick={handleCopy}><IoCopy/></span></p>
                             </div>
                             <div className={`transaction-top-center ${selectedBox === 1 ? 'selected-box' : ''}`}
                             onClick={() => handleClick2(1)}

@@ -7,6 +7,8 @@ import Overview from './Overview';
 import Document from './Document';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
+import SetPin from './SetPin/SetPin';
+import ChangePin from './SetPin/ChangePin';
 const Settings = () => {
     const [show, setShow] = useState(1);
     const [sidebar, setSidebar] = useState(false);
@@ -25,6 +27,9 @@ const Settings = () => {
     const handleKey = ()=>{
         setShow(5)
     }
+    const handlePin = ()=>{
+        setShow(6)
+    }
     return ( 
         <div className="test">
             <div className="left">
@@ -39,12 +44,14 @@ const Settings = () => {
                             <p onClick={handleDocument} className={show === 4 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Documents</p> */}
                             <p  onClick={handleSetting} className={show === 1 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Settings</p>
                             <p  onClick={handleKey} className={show === 5 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Keys</p>
+                            <p  onClick={handlePin} className={show === 6 ? `${styles.currentDesc} ${styles.desc}`: styles.desc}>Pins</p>
                         </div>
                         <div className="settings-body">
-                            { (show === 3) && <Overview/>}  
-                            { (show === 4) && <Document/>}    
+                            {/* { (show === 3) && <Overview/>}  
+                            { (show === 4) && <Document/>}     */}
                             { (show === 1) && <Set/>}
-                            { (show === 5) && <Key/>}            
+                            { (show === 5) && <Key/>}      
+                            { (show === 6) && <ChangePin/>}         
                         </div>
                         
                     </div>

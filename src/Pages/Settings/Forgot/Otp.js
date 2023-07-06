@@ -1,7 +1,8 @@
 import { useState } from "react";
-import Sidebar from "../../Components/Sidebar/Sidebar";
-import Navbar from "../../Components/Navbar/Navbar";
+
 import { Link } from "react-router-dom";
+import Sidebar from "../../../Components/Sidebar/Sidebar";
+import Navbar from "../../../Components/Navbar/Navbar";
 
 const Forgototp = () => {
     const [sidebar, setSidebar] = useState(false);
@@ -40,9 +41,9 @@ const Forgototp = () => {
                             </form>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                 </div>
+             </div>
+         </div>
     );
 }
  

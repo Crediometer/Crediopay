@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import Navbar from "../../Components/Navbar/Navbar";
-import Sidebar from "../../Components/Sidebar/Sidebar";
+import Sidebar from "../../../Components/Sidebar/Sidebar";
+import Navbar from "../../../Components/Navbar/Navbar";
+
 
 const Password = () => {
     const [sidebar, setSidebar] = useState(false);
@@ -117,9 +118,9 @@ const Password = () => {
                             </form>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                 </div>
+             </div>
+         </div>
     );
 }
  
