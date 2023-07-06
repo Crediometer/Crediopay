@@ -2,7 +2,10 @@ import { connect } from "react-redux";
 import {IoMdEye} from 'react-icons/io'
 import { IoCopy } from "react-icons/io5";
 import {FaTimes} from 'react-icons/fa'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faSpinner, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import './Key.css'
+import copy from 'copy-to-clipboard'
 import { useState } from "react";
 import { fetchgetprofile } from "../../Redux/Getprofile/GetprofileAction";
 import { profileFaliure } from "../../Redux/Profile/ProfileAction";
@@ -11,11 +14,30 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
     const [pending, setPending] = useState(false)
     const [success, setSuccess] = useState(false)
     const [short, setShort] = useState(false);
+    const [short2, setShort2] = useState(false);
+    const [type, setType] = useState('text');
+    const [icon, setIcon] =useState(faEyeSlash);
     const [Url, seturl] = useState("")
     const [hookState, sethookState] = useState(null);
     const [errorHandler, setErrorHandler] = useState([false, ""]);
     const handleShort = ()=>{
         setShort(!short)
+        copy(clientid);
+    }
+
+    const handleshort2 = () => {
+        setShort2(!short2)
+        copy(apiKey);
+    }
+    const vissibleToggle=()=>{
+        if(type==='text'){
+            setIcon(faEye);
+            setType('password');
+        }
+        else{
+            setIcon(faEyeSlash);
+            setType('text');
+        }
     }
     const handlewebhook = (e) =>{
         const value = e.target.value;
@@ -73,12 +95,12 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
                     <div className="secret-key-form">
                         <div className="secret-input">
                             <input
-                                type="text"
-                                placeholder={clientid}
+                                type={type}
+                                value={clientid}
                             >
                             </input>
                             <div className="secret-icon">
-                                <IoMdEye/>
+                                <FontAwesomeIcon icon={icon} onClick={vissibleToggle}/>
                                 <IoCopy/>
                             </div>
                         </div>
@@ -93,7 +115,7 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
                         <div className="secret-input">
                             <input
                                 type="text"
-                                placeholder={apiKey}
+                                value={apiKey}
                             >
                             </input>
                             <div className="secret-icon">
@@ -102,7 +124,7 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
                             </div>
                         </div>
                         <div className="secret-submit">
-                            <button>Copy Key</button>
+                        {(short2) ? <button onClick={handleshort2}>Copied</button> : <button onClick={handleshort2}>Copy Key</button>} 
                         </div>
                     </div>
                 </div>

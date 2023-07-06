@@ -2,6 +2,7 @@ import { IoCopy } from 'react-icons/io5';
 import { connect } from "react-redux";
 import styles from '../Dashboard/Dashboard.module.css'
 import MoonLoader from "react-spinners/MoonLoader";
+import { FormattedNumber, IntlProvider } from "react-intl";
 import './AccountStatement.css';
 import TransactionTable from '../../Components/Table/TransactionTable';
 import { useState } from 'react';
@@ -10,7 +11,8 @@ import { BsCalendar2Week } from 'react-icons/bs';
 import { fetchstatement } from '../../Redux/Statement/StatementAction';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
-const AccountStatement = ({fetchstatement}) => {
+import DashboardTable from '../../Components/Table/DashboardTable';
+const AccountStatement = ({fetchstatement, profile}) => {
     const [loader, setLoader] = useState(false)
     const [filter, setFilter] = useState(false)
     const [dropdown, setDropdown] = useState(false)
@@ -164,16 +166,29 @@ const AccountStatement = ({fetchstatement}) => {
                         <div className="statement-body">
                             <div className="statement-account">
                                 <div className="statement-account-left">
-                                    <h1>Test Ventures</h1>
-                                    <p className='trans-phone'>09083736822 <span><IoCopy/></span></p>
+                                    <h1>{profile?.accountName}</h1>
+                                    <p className='trans-phone'>{profile?.accountNumber} <span><IoCopy/></span></p>
                                 </div>
                                 <div className="statement-account-right">
                                     <p className='available statement-available'>Available Balance</p>
-                                    <p className="main-balance">N 68,485.26</p>
+                                    <IntlProvider>
+                                        {" "}
+                                        <p className="main-balance">
+                                        <FormattedNumber
+                                            value={
+                                                profile?.accountBalance
+                                            }
+                                            style="currency"
+                                            currency="NGN"
+                                        />
+                                        </p>
+                                    </IntlProvider>
+                                   
                                 </div>
                             </div>
                             <div className="statement-table">
-                                <TransactionTable/>
+                                {/* <TransactionTable/> */}
+                                <DashboardTable/>
                             </div>
                         </div>
                     </div>
@@ -186,6 +201,7 @@ const mapStoreToProps = (state) => {
     console.log("states   ", state);
     return {
       statement: state.statement,
+      profile: state?.vault?.data?.data?.mainAccount
     };
 };
   

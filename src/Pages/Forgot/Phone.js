@@ -22,9 +22,9 @@ const Phone = () => {
                             <p className="phone-header-text">Please Enter your phone number</p>
                         </div>
                         <div className="phone-body">
-                            <form>
+                            <form className="phone-form">
                                 <div className="form-change">
-                                    <div className="input">
+                                    <div className="input input-2">
                                         <input type="text" placeholder="Phone Number" 
                                         // onBlur={handleNumber}
                                         // onChange={handleNumber}
@@ -32,11 +32,10 @@ const Phone = () => {
                                         ></input>
                                     </div>
                                 </div>
-                                <div className="setpin-button">
+                                <div className="phone-button">
                                     <Link to="/forgototp">
-                                        <button className='transfer-button'>Submit</button>
+                                        <button className='phone-button-inner'>Submit</button>
                                     </Link>
-                                    
                                 </div>
                             </form>
                         </div>

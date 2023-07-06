@@ -1,5 +1,6 @@
 import { IoCopy } from 'react-icons/io5';
 import { connect } from "react-redux";
+import { FormattedNumber, IntlProvider } from "react-intl";
 import { fetchtransaction } from '../../Redux/Transaction/TransactionAction';
 import styles from '../Dashboard/Dashboard.module.css'
 import './Transaction.css'
@@ -20,7 +21,7 @@ const StyledPagination = styled(Pagination)(({ theme }) => ({
         }   
       }
 }));
-const Transaction = ({fetchtransaction}) => {
+const Transaction = ({fetchtransaction, profile}) => {
     const [isActive, setIsActive] = useState(1);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('All');
@@ -58,11 +59,11 @@ const Transaction = ({fetchtransaction}) => {
                             <div className={`transaction-top-left ${selectedBox === 3 ? 'selected-box' : ''}`}
                             onClick={() => handleClick2(3)}
                             >
-                                <h1>Test Ventures</h1>
+                                <h1>{profile?.accountName}</h1>
                                 <div className="current">
                                     <p>Current</p>
                                 </div>
-                                <p className='trans-phone'>09083736822 <span><IoCopy/></span></p>
+                                <p className='trans-phone'>{profile?.accountNumber}<span><IoCopy/></span></p>
                             </div>
                             <div className={`transaction-top-center ${selectedBox === 1 ? 'selected-box' : ''}`}
                             onClick={() => handleClick2(1)}
@@ -73,7 +74,18 @@ const Transaction = ({fetchtransaction}) => {
                                         <p>Main Acc</p>
                                     </div>
                                 </div>
-                                <p className="main-balance">N 68,485.26</p>
+                                <IntlProvider>
+                                    {" "}
+                                    <p className="main-balance">
+                                    <FormattedNumber
+                                        value={
+                                            profile?.accountBalance
+                                        }
+                                        style="currency"
+                                        currency="NGN"
+                                    />
+                                    </p>
+                                </IntlProvider>
                             </div>
                             <div className={`transaction-top-right ${selectedBox === 2 ? 'selected-box' : ''}`}
                             onClick={() => handleClick2(2)}
@@ -84,7 +96,18 @@ const Transaction = ({fetchtransaction}) => {
                                         <p>Sub Acc</p>
                                     </div>
                                 </div>
-                                <p className="main-balance">N 68,485.26</p>
+                                <IntlProvider>
+                                    {" "}
+                                    <p className="main-balance">
+                                    <FormattedNumber
+                                        value={
+                                            profile?.accountBalance
+                                        }
+                                        style="currency"
+                                        currency="NGN"
+                                    />
+                                    </p>
+                                </IntlProvider>
                             </div>
                         </div>
                         <p className='transaction-head'>Transactions</p>
@@ -194,6 +217,7 @@ const mapStoreToProps = (state) => {
     console.log("states   ", state);
     return {
       recent: state.recenttransaction,
+      profile: state?.vault?.data?.data?.mainAccount
     };
 };
   

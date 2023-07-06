@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import {BsBank2} from 'react-icons/bs'
 import credio from '../../logo.png'
 import './Transfer.css'
+import { FormattedNumber, IntlProvider } from "react-intl";
 import LottieAnimation from '../../Lotties';
 import preloader from '../../Assets/preloader.json'
 import Input from '../../Components/Inputfield/Input';
@@ -15,7 +16,7 @@ import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
 import { fetchBank, postData, reqData } from '../../Redux/Bank/BankAction';
 import Pinconfirm from '../../Components/Modal/Pinconfirm';
-const Transfer = ({fetchBank, bank, postData, postTransfer, name}) => {
+const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
     const dispatch = useDispatch();
     const [showBank, setShowBank] = useState(false);
     const [selectBank, setSelectBank]  = useState("Select a Bank")
@@ -175,8 +176,8 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name}) => {
                                     </div> */}
                                     <div className="transfer-account">
                                         <div className="transfer-account-left">
-                                            <p className='account-left-head'>Test Ventures</p>
-                                            <p className='account-left-text'>09083736822</p>
+                                            <p className='account-left-head'>{profile?.accountName}</p>
+                                            <p className='account-left-text'>{profile?.accountNumber}</p>
                                         </div>
                                         <div className="transfer-account-right">
                                             <div className="transfer-available">
@@ -185,7 +186,18 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name}) => {
                                                     <p>Sub Acc</p>
                                                 </div>
                                             </div>
-                                            <p className='balance-2'>N 68,485.26</p>
+                                            <IntlProvider>
+                                                {" "}
+                                                <p className='balance-2'>
+                                                <FormattedNumber
+                                                    value={
+                                                        profile?.accountBalance
+                                                    }
+                                                    style="currency"
+                                                    currency="NGN"
+                                                />
+                                                </p>
+                                            </IntlProvider>
                                         </div>
                                     </div>
                                 </div>
@@ -307,6 +319,7 @@ const mapStoreToProps = (state) => {
       bank: state.bankname.bank,
       name: state?.bankname?.bankname?.data,
       transfer: state.transfer,
+      profile: state.vault.data.data.mainAccount
     };
 };
   

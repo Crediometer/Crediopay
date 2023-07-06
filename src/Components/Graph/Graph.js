@@ -57,7 +57,7 @@ const Graph = ({fetchanalytics, analytics}) => {
             },
             y: {
                 min: 0,
-                max: 10500,
+                max: 10000,
                 ticks: {
                     stepSize: 200
                 },

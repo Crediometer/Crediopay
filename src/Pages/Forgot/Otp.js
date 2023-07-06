@@ -22,9 +22,9 @@ const Forgototp = () => {
                             <p className="phone-header-text">Please Enter the OTP sent to your phone number</p>
                         </div>
                         <div className="phone-body">
-                            <form>
+                            <form className="phone-form">
                                 <div className="form-change">
-                                    <div className="input">
+                                    <div className="input input-2">
                                         <input type="text" placeholder="OTP" 
                                         // onBlur={handleNumber}
                                         // onChange={handleNumber}
@@ -32,9 +32,9 @@ const Forgototp = () => {
                                         ></input>
                                     </div>
                                 </div>
-                                <div className="setpin-button">
+                                <div className="phone-button">
                                     <Link to='/forgotnew'>
-                                        <button className='transfer-button'>Submit</button>
+                                        <button className='phone-button-inner'>Submit</button>
                                     </Link>
                                 </div>
                             </form>

@@ -55,6 +55,18 @@ const Set = ({putsetting, error, loading, getprofile}) => {
             console.error(error);
         }
     };
+    const getSwitchColorem = () => {
+        return emailmonthly ? '#AC1337' : '#e5e5e5';
+    };
+    const getSwitchColore = () => {
+        return email ? '#AC1337' : '#e5e5e5';
+    };
+    const getSwitchColorsm = () => {
+        return smsMonthly ? '#AC1337' : '#e5e5e5';
+    };
+    const getSwitchColors = () => {
+        return sms ? '#AC1337' : '#e5e5e5';
+    }
     return ( 
         <div className="set">
             <div className="directors">
@@ -86,7 +98,7 @@ const Set = ({putsetting, error, loading, getprofile}) => {
                             <p className="set-text-body">Enable monthly email notifications.</p>
                         </div>
                         <div className="switch">
-                            <Switch
+                            <Switch style={{ backgroundColor: getSwitchColorem() }}
                                 checked={emailmonthly}
                                 onChange={handleemailmonthly}
                             />
@@ -98,7 +110,7 @@ const Set = ({putsetting, error, loading, getprofile}) => {
                             <p className="set-text-body">Enable email notifications for account statement.</p>
                         </div>
                         <div className="switch">
-                            <Switch
+                            <Switch style={{ backgroundColor: getSwitchColore() }}
                                 checked={email}
                                 onChange={handleemail}
                             />
@@ -110,7 +122,7 @@ const Set = ({putsetting, error, loading, getprofile}) => {
                             <p className="set-text-body">Enable SMS notifications.</p>
                         </div>
                         <div className="switch">
-                            <Switch
+                            <Switch style={{ backgroundColor: getSwitchColors() }}
                                 checked={sms}
                                 onChange={handlesms}
                             />
@@ -122,7 +134,7 @@ const Set = ({putsetting, error, loading, getprofile}) => {
                             <p className="set-text-body">Enable monthly SMS notifications.</p>
                         </div>
                         <div className="switch">
-                            <Switch
+                            <Switch style={{ backgroundColor: getSwitchColorsm() }}
                                 checked={smsMonthly}
                                 onChange={handlesmsmonthly}
                             />

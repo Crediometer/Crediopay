@@ -18,7 +18,7 @@ const Main = ({vault, profile}) => {
             <div className="main-body">
                 <div className="main-body-inner">
                     <p className='main-account-name'>{vault?.accountName}</p>
-                    <p className='main-account-phone'>{newphoneNumber}</p>
+                    <p className='main-account-phone'>{vault?.accountNumber}</p>
 
                     <div className="main-balance-2">
                         <div className="main-ava-balance">

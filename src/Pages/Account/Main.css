@@ -34,7 +34,7 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: rgba(0, 0, 0, 0.9);
 }
 .main-account-phone{
@@ -129,7 +129,7 @@
         font-size: 1.375rem;
     }
     .main-account-name{
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: rgba(0, 0, 0, 0.9);
     }
     .main-amount{
