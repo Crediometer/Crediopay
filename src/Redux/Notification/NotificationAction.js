@@ -1,4 +1,4 @@
-import { NOTIFICATION_FALIURE, NOTIFICATION_SUCCESS, NOTIFICATION_REQUEST } from "./NotificationType"
+import { NOTIFICATION_FALIURE, NOTIFICATION_SUCCESS, NOTIFICATION_REQUEST, MARK_NOTIFICATION_REQUEST, MARK_NOTIFICATION_SUCCESS, MARK_NOTIFICATION_FALIURE } from "./NotificationType"
 import axios from "axios"
 
 export const notificationRequest = () =>{
@@ -40,6 +40,49 @@ export const fetchnotification = () => {
             .catch(error =>{
                 const errorMsg = error.message
                 dispatch(notificationFaliure(errorMsg))
+            })
+    }
+}
+
+export const marknotificationRequest = () =>{
+    return{
+        type: MARK_NOTIFICATION_REQUEST
+    }
+}
+
+export const marknotificationSuccess = (response) =>{
+    return{
+        type: MARK_NOTIFICATION_SUCCESS,
+        payload: response
+    }
+}
+
+export const marknotificationFaliure = (error) =>{
+    return{
+        type: MARK_NOTIFICATION_FALIURE,
+        payload: error
+    }
+}
+export const putnotification = (readstate, id) => {
+    return(dispatch) => {
+        dispatch(marknotificationRequest)
+        // console.log(`${localStorage.getItem("auth")}`)
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        // console.log(`data ----- ${datas}`)
+        // console.log(`this is data ${datas.token.token.token}`)
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
+        axios.put(`${baseUrl}/notifications/${id}`,readstate,{ headers: headers })
+            .then( response => {
+                const data = response.data
+                console.log(`this is notiicationput analytics--- ${data}`)
+                dispatch(marknotificationSuccess(data))
+            })
+            .catch(error =>{
+                const errorMsg = error.message
+                dispatch(marknotificationFaliure(errorMsg))
             })
     }
 }

@@ -1,4 +1,4 @@
-import { NOTIFICATION_SUCCESS, NOTIFICATION_REQUEST, NOTIFICATION_FALIURE, MARK_NOTIFICATION_SUCCESS,MARK_NOTIFICATION_REQUEST,MARK_NOTIFICATION_FALIURE } from "./NotificationType"
+import { SETPIN_REQUEST, SETPIN_SUCCESS, SETPIN_FALIURE, CHANGEPIN_REQUEST, CHANGEPIN_SUCCESS, CHANGEPIN_FALIURE } from "./SetpinType"
 
 const initialState ={
     loading: false,
@@ -6,20 +6,20 @@ const initialState ={
     error: ''
 }
 
-export const notificationReducer = (state = initialState, action) => {
+export const setpinReducer = (state = initialState, action) => {
     switch(action.type){
-        case NOTIFICATION_REQUEST:
+        case SETPIN_REQUEST:
             return{
                 ... state,
                 loading: true
             }
-        case NOTIFICATION_SUCCESS:
+        case SETPIN_SUCCESS:
             return{
                 loading: false,
                 data: action.payload,
                 error: ''
             }
-        case NOTIFICATION_FALIURE:
+        case SETPIN_FALIURE:
             return{
                 loading:false,
                 data: [],
@@ -28,20 +28,25 @@ export const notificationReducer = (state = initialState, action) => {
         default: return state
     }
 }
-export const marknotificationReducer = (state = initialState, action) => {
+
+
+//
+
+//
+export const changepinReducer = (state = initialState, action) => {
     switch(action.type){
-        case MARK_NOTIFICATION_REQUEST:
+        case CHANGEPIN_REQUEST:
             return{
                 ... state,
                 loading: true
             }
-        case MARK_NOTIFICATION_SUCCESS:
+        case CHANGEPIN_SUCCESS:
             return{
                 loading: false,
                 data: action.payload,
                 error: ''
             }
-        case MARK_NOTIFICATION_FALIURE:
+        case CHANGEPIN_FALIURE:
             return{
                 loading:false,
                 data: [],

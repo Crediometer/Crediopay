@@ -46,6 +46,14 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+.login-error{
+    margin-top: 20px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: #B11226;
+}
 .login-text{
     text-align: left;
     font-family: 'Poppins';
@@ -115,6 +123,9 @@
     line-height: 29px;
 }
 .submit button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     background-color: transparent;
     border: none;
@@ -201,7 +212,7 @@
     height: 500px;
     z-index: 1;
     border-radius: 50%;
-    background-color: #f1f1f186;
+    background-color: #ac13370a;
 }
 @media (max-width: 1200px) {
     .login-form-section-inner{

@@ -1,9 +1,20 @@
 import { useEffect, useRef, useState } from "react";
+import JSEncrypt from 'jsencrypt';
+import consts from '../../Login/keys/const'
+import {connect} from 'react-redux'
 // import Navbar from "../../../Components/Navbar/Navbar";
 // import Sidebar from "../../../Components/Sidebar/Sidebar";
 import './SetPin.css';
-const SetPin = () => {
+import { postsetpin } from "../../../Redux/Pin/SetpinAction";
+import SuccessModal from "../../../Components/Modal/SuccessModal";
+const SetPin = ({postsetpin, success}) => {
     const [sidebar, setSidebar] = useState(false);
+    const [enterPassword, setEnterPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [passwordsMatch, setPasswordsMatch] = useState(false);
+    const [postState, setPostState] = useState({})
+    const [combinedPin, setcombinedPin] = useState("");
+    const [showsuccess, setshowsuccess] = useState(false)
     const toggleSidebar = () => {
       setSidebar((prevState) => !prevState);
     };
@@ -47,12 +58,83 @@ const SetPin = () => {
         setPin3(value)
         const pins = `${pin}${pin1}${pin2}${value}`
         console.log(pins)
+        setEnterPassword(pins)
+        setPasswordsMatch(pins === confirmPassword);
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(`${consts.pub_key}`);
+        var encrypted = encrypt.encrypt(pins);
+        // console.log(encrypted)
+        setcombinedPin(encrypted);
+        setPostState({...{pin: encrypted} });
+    };
+    const [pin4, setPin4] = useState("");
+    const atmpin4 = useRef(null);
+    useEffect(() => {
+        if (pin4.length === 1) {
+        atmpin5.current.focus();
+        }
+    }, [pin4.length]);
+    const onChangepin5 = (e) => {
+        const value = e.target.value
+        setPin4(value)
+    };
+    const [pin5, setPin5] = useState("");
+    const atmpin5 = useRef(null);
+    useEffect(() => {
+        if (pin5.length === 1) {
+        atmpin6.current.focus();
+        }
+    }, [pin5.length]);
+    const onChangepin6 = (e) => {
+        const value = e.target.value
+        setPin5(value)
+    };
+    const [pin6, setPin6] = useState("");
+    const atmpin6 = useRef(null);
+    useEffect(() => {
+        if (pin6.length === 1) {
+        atmpin7.current.focus();
+        }
+    }, [pin6.length]);
+    const onChangepin7 = (e) => {
+        const value = e.target.value
+        setPin6(value)
+    };
+    const [pin7, setPin7] = useState("");
+    const atmpin7 = useRef(null);
+    const onChangepin8 = (e) => {
+        const value = e.target.value
+        const pins = `${pin}${pin1}${pin2}${value}`
+        console.log(pins)
+        setConfirmPassword(pins)
+        setPasswordsMatch(pins === enterPassword);
         // var encrypt = new JSEncrypt();
         // encrypt.setPublicKey(`${consts.pub_key}`);
         // var encrypted = encrypt.encrypt(pins);
         // console.log(encrypted)
         // setCombinedpin(encrypted);
     };
+    const togglemodal = ()=>{
+        setshowsuccess(!showsuccess)
+    }
+    const handlesubmit = (e)=>{
+        e.preventDefault();
+        console.log(postState)
+        postsetpin(
+             postState,
+            ()=>{ 
+               setshowsuccess(true)
+            // setPending(true);
+            }
+        //,  ()=>{ 
+        //     // console.log(errorHandler)
+        //     // console.log("now go to error..", error);
+        //     // setErrorHandler(error)
+        //     setshowerror(true)
+        //     // setPending(false);
+        // }
+        )
+    }
     return ( 
         // <div className="test">
         //     <div className="left">
@@ -116,8 +198,8 @@ const SetPin = () => {
                                         <input
                                         type="text"
                                         maxlength="1"
-                                        onChange={onChangepin1}
-                                        ref={atmpin}
+                                        onChange={onChangepin5}
+                                        ref={atmpin4}
                                         autoFocus
                                         ></input>
                                     </div>
@@ -127,8 +209,8 @@ const SetPin = () => {
                                         <input
                                         type="text"
                                         maxlength="1"
-                                        onChange={onChangepin2}
-                                        ref={atmpin1}
+                                        onChange={onChangepin6}
+                                        ref={atmpin5}
                                         ></input>
                                     </div>
                                 </div>
@@ -137,8 +219,8 @@ const SetPin = () => {
                                         <input
                                         type="text"
                                         maxlength="1"
-                                        onChange={onChangepin3}
-                                        ref={atmpin2}
+                                        onChange={onChangepin7}
+                                        ref={atmpin6}
                                         ></input>
                                     </div>
                                 </div>
@@ -147,21 +229,41 @@ const SetPin = () => {
                                         <input
                                         type="text"
                                         maxlength="1"
-                                        onBlur={onChangepin4}
-                                        ref={atmpin3}
+                                        onBlur={onChangepin8}
+                                        ref={atmpin7}
                                         ></input>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="setpin-button">
-                            <button className='transfer-button'>Submit</button>
+                            {!passwordsMatch && (
+                                <p style={{ color: "black", fontFamily: "Poppins", textAlign: "center", marginTop: "20px"}}>Passwords do not match!</p>
+                            )}
+                            {passwordsMatch && (
+                                <button className='transfer-button' onClick={handlesubmit}>Submit</button>
+                            )}
+                           
                         </div>
+                        {showsuccess && (<SuccessModal message={success} togglemodal={togglemodal}/>)}
                     </div>
         //         </div>
         //     </div>
         // </div>
     );
 }
- 
-export default SetPin;
+const mapStateToProps = state => {
+    return{
+        success:state?.setpin?.data?.message,
+        profile: state.getprofile.data
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return{
+        postsetpin: (postdata, history) => {
+            dispatch(postsetpin(postdata, history));
+        },
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SetPin);

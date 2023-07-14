@@ -63,7 +63,7 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
         dispatch({ type: AuthActionType.LOGIN_SUCCESS, payload: data });
         if(res.status===200){
             history();
-
+             
         }
       } catch (error) {
         console.log(error)
@@ -72,7 +72,7 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
             type: AuthActionType.LOGIN_FAIL,
             payload: error.response.data.message,
           });
-          // setErrorHandler({ hasError: true, message: error.response.data.message });
+          setErrorHandler({ hasError: true, message: error.response.data.message });
         }
         setErrorHandler({ hasError: true, message: error?.response?.data?.message });
         // console.log( setErrorHandler());

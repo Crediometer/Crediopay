@@ -11,9 +11,9 @@ const SuccessModal = (props) => {
                         <LottieAnimation data={success} />
                     </div>
                     <p className="modal-information">{props.message}</p> 
-                    <Link to={props.link}>
-                        <button className="modal-close">OK</button>   
-                    </Link>        
+                    {/* <Link to={props.link}> */}
+                        <button className="modal-close" onClick={props.togglemodal}>OK</button>   
+                    {/* </Link>         */}
                 </div>
             </div>
         </div>

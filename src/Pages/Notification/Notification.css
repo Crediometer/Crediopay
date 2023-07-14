@@ -196,6 +196,10 @@
 .delete span{
     font-size: 22px;
 }
+.message-tick{
+    font-size: 0.4rem;
+    margin-right: 10px;
+}
 .notification-search{
     display: none;
 }

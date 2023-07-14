@@ -5,17 +5,22 @@ import { Link } from "react-router-dom";
 import { BiArrowBack, BiSearch } from "react-icons/bi";
 // import image from "../../image/profile-image.jpg";
 import {MdOutlineDeleteOutline} from 'react-icons/md'
-import { fetchnotification } from "../../Redux/Notification/NotificationAction";
+import { fetchnotification, putnotification } from "../../Redux/Notification/NotificationAction";
 import { useEffect, useState } from "react";
 import { Switch } from "antd";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Navbar from "../../Components/Navbar/Navbar";
-const Notification = ({fetchnotification, notification}) => {
+import { FaCheck } from "react-icons/fa";
+const Notification = ({fetchnotification, notification, putnotification}) => {
     const [open, setOpen]= useState(false)
     const [sidebar, setSidebar] = useState(false);
     const toggleSidebar = () => {
       setSidebar((prevState) => !prevState);
     };
+    const handleMark = (read, id) =>{
+        putnotification({read: read}, id)
+        console.log(id)
+    }
     useEffect(() => {
         fetchnotification();
     }, []);
@@ -80,6 +85,7 @@ const Notification = ({fetchnotification, notification}) => {
                                                                             <button className="yes">Yes</button>
                                                                             <button className="no" onClick={()=>{setOpen(false)}}>No</button>
                                                                         </div>}
+                                                                        <span className="message-tick" onClick={handleMark(true, message._id)}><FaCheck/></span>
                                                                         <span onClick={()=>{setOpen(true)}}><MdOutlineDeleteOutline/></span>
                                                                     </div>
                                                                 </div>
@@ -109,6 +115,7 @@ const mapStoreToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchnotification: () => dispatch(fetchnotification()),
+        putnotification: (readstate, id) => dispatch(putnotification(readstate, id))
     };
 };
 export default connect(mapStoreToProps, mapDispatchToProps)(Notification);

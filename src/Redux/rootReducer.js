@@ -4,7 +4,7 @@ import { dashboardReducer, recenttranReducer, sumtranReducer } from './Dashboard
 import { profileReducer } from './Profile/ProfileReducer';
 import { transactionReducer } from './Transaction/TransactionReducer';
 import { statementReducer } from './Statement/StatementReducer';
-import { notificationReducer } from './Notification/NotificationReducer';
+import { marknotificationReducer, notificationReducer } from './Notification/NotificationReducer';
 // import { bankReducer, banknameReducer, transferReducer } from './Transfer/BankReducer';
 import { personalReducer } from './Activate/PersonalReducer';
 import { businessReducer } from './Activate/BusinessReducer';
@@ -18,6 +18,9 @@ import { vaultReducer } from './Vault/VaultReducer';
 import { settingReducer } from './Settings/SettingsReducer';
 import banknameReducer from './Bank/BankReducer';
 import depositReducer from './Deposit/DepositReducer';
+import { subaccountReducer } from './Account/SubaccountReducer';
+import { businessregReducer } from './BusinessPartner/BusinessReducer';
+import { changepinReducer, setpinReducer } from './Pin/SetpinReducer';
 
 const rootReducer = combineReducers({
     login: authReducer,
@@ -42,6 +45,11 @@ const rootReducer = combineReducers({
     webhook: webhookReducer,
     vault: vaultReducer,
     setting: settingReducer,
+    mark: marknotificationReducer,
+    subaccount: subaccountReducer,
+    businessreg: businessregReducer,
+    setpin: setpinReducer,
+    changepin: changepinReducer,
 })
 
 export default rootReducer;

@@ -25,7 +25,9 @@ const Dashboard = ({fetchanalytics,
     fetchrecenttran, 
     fetchsumtran, 
     fetchprofile, 
-    analytics, 
+    analytics,
+    recent,
+    sum, 
     fetchgetprofile,
     fetchvault, 
     clientid,
@@ -62,11 +64,11 @@ const Dashboard = ({fetchanalytics,
         fetchsumtran()
         fetchgetprofile()
         fetchprofile()
-    }, [clientid]);
+    }, [cid]);
     const myClassName = `${styles.status} ${isActive ? styles.active : ''}`;
     return ( 
         <div>
-            {analytics.loading ?( 
+            {analytics.loading || recent.loading|| sum.loading  ?( 
                 <div className="preloader">
                     <LottieAnimation data={preloader} />
                 </div> 

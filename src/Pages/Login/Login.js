@@ -5,6 +5,8 @@ import { faEye, faSpinner, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import Fingerprint2 from 'fingerprintjs2';
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useMemo} from 'react';
+import LottieAnimation from "../../Lotties"
+import loader from "../../Assets/loading.json"
 import { useNavigate } from "react-router-dom";
 // import Select from "react-select";
 import countryList from "../../Components/countries.json";
@@ -118,12 +120,12 @@ const Login = (props) => {
                     {(errorHandler?.dataAdded) ?
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             
-                        </div> : <div>{errorHandler}</div>
+                        </div> : <div className="login-error">{errorHandler}</div>
                     }
                     <div className="login-form">
                         <form onSubmit={handleSignUp}>
 
-                            <div className="inputfield-4-4 loginfield">
+                            <div className="inputfield-4 loginfield">
                                 <label>Phone Number</label><br></br>
                                 <div className="inputbox2 inputbox-login">
                                     <input
@@ -136,7 +138,7 @@ const Login = (props) => {
                                         required
                                     >
                                     </input>
-                                    <span className='place-mobile'>0903 4344 5532</span>
+                                    <span className='place-mobile'>Phone Number</span>
                                 </div>
                             </div>
                             <div className="inputfield-4 loginfield">
@@ -151,7 +153,7 @@ const Login = (props) => {
                                         required
                                     >
                                     </input>
-                                    <span className='place-mobile'>***********</span>
+                                    <span className='place-mobile'>Password</span>
                                     <span className="psw-visible"><FontAwesomeIcon icon={icon} onClick={vissibleToggle}/></span>
                                 </div>
                             </div>
@@ -163,7 +165,14 @@ const Login = (props) => {
                                 </div>
                             </div>
                             <div className="submit submit-login">
-                                <button 
+                                {loading ? (
+                                    <button disabled>
+                                        <LottieAnimation data={loader}/>
+                                    </button>
+                                ) : (
+                                    <button><span>Login</span></button>
+                                )}
+                                {/* <button 
                                 type="submit"
                                 name="submit"
                                 value="Login"
@@ -177,7 +186,7 @@ const Login = (props) => {
                                     ): ( 
                                     <span>Login</span>
                                      )} 
-                                </button>
+                                </button> */}
                             </div>
                             <div className="account">
                                 <p className="signin">Don’t have an account yet ? <Link to='/signup'><span>Sign up</span></Link></p>

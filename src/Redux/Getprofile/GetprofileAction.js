@@ -26,7 +26,7 @@ const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 
 export const fetchgetprofile = () => {
     return(dispatch) => {
-        dispatch(getprofileRequest)
+        dispatch(getprofileRequest())
         console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
         console.log(`data ----- ${datas}`)

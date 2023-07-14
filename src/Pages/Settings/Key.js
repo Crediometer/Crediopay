@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faSpinner, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import './Key.css'
 import copy from 'copy-to-clipboard'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchgetprofile } from "../../Redux/Getprofile/GetprofileAction";
 import { profileFaliure } from "../../Redux/Profile/ProfileAction";
 import { putwebhook } from "../../Redux/Webhook/WebhookAction";
@@ -19,6 +19,7 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
     const [icon, setIcon] =useState(faEyeSlash);
     const [Url, seturl] = useState("")
     const [hookState, sethookState] = useState(null);
+    const [num, setNum] = useState("")
     const [errorHandler, setErrorHandler] = useState([false, ""]);
     const handleShort = ()=>{
         setShort(!short)
@@ -39,6 +40,14 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
             setType('text');
         }
     }
+    const randomNumberInRange = (min, max) => {
+        return Math.floor(Math.random() 
+                * (max - min + 1)) + min;
+    };
+    useEffect(() => {
+        setNum(randomNumberInRange(1, 9));
+        console.log(num)
+    }, []);
     const handlewebhook = (e) =>{
         const value = e.target.value;
         console.log(value);
@@ -76,6 +85,14 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
                     <p>Test</p>
                 </div>
             </div> */}
+            {(num % 2 == 0) ? (
+              <div></div>  
+            ) : (
+                <div className="key-error-notiication">
+                    <p>Please Complete Your Profile</p>
+                    <div className="error-cancle"><FaTimes/></div>
+                </div>
+            )}
             {pending && (
                 <div className="key-error-notiication">
                     <p>Error message</p>
@@ -96,16 +113,16 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
                         <div className="secret-input">
                             <input
                                 type={type}
-                                value={clientid}
+                                value={(num % 2 == 0) ? (clientid) : ("xxxxxxxxxxxxxx")}
                             >
                             </input>
                             <div className="secret-icon">
                                 <FontAwesomeIcon icon={icon} onClick={vissibleToggle}/>
-                                <IoCopy/>
+                                <IoCopy onClick={handleShort}/>
                             </div>
                         </div>
                         <div className="secret-submit">
-                            {(short) ? <button onClick={handleShort}>Copied</button> : <button onClick={handleShort}>Copy Key</button>} 
+                            {/* {(short) ? <button onClick={handleShort}>Copied</button> : <button onClick={handleShort}>Copy Key</button>}  */}
                         </div>
                     </div>
                 </div>
@@ -115,16 +132,16 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
                         <div className="secret-input">
                             <input
                                 type="text"
-                                value={apiKey}
+                                value={(num % 2 == 0) ? (apiKey) : ("xxxxxxxxxxxxxx")}
                             >
                             </input>
                             <div className="secret-icon">
-                                <IoMdEye/>
-                                <IoCopy/>
+                                <FontAwesomeIcon icon={icon} onClick={vissibleToggle}/>
+                                <IoCopy onClick={handleshort2}/>
                             </div>
                         </div>
                         <div className="secret-submit">
-                        {(short2) ? <button onClick={handleshort2}>Copied</button> : <button onClick={handleshort2}>Copy Key</button>} 
+                        {/* {(short2) ? <button onClick={handleshort2}>Copied</button> : <button onClick={handleshort2}>Copy Key</button>}  */}
                         </div>
                     </div>
                 </div>

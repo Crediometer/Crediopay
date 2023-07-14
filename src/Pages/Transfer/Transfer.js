@@ -31,6 +31,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
     const saveBeneficiary = false;
     const [saveBeneficiaryForUs, setSaveBeneficiaryForUs] = useState(false);
     const [show, setShow] = useState(false)
+    const [num, setNum] = useState("")
     const [isChecked, setIsChecked] = useState(false);
     const [isChecked2, setIsChecked2] = useState(false);
     const [sidebar, setSidebar] = useState(false);
@@ -79,6 +80,15 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
         const value = e.target.value;
         setnarration(value);
     };
+    const randomNumberInRange = (min, max) => {
+        return Math.floor(Math.random() 
+                * (max - min + 1)) + min;
+    };
+    useEffect(() => {
+        setNum(randomNumberInRange(1, 9));
+        console.log(num)
+    }, []);
+
     useEffect(() => {
         fetchBank();
         console.log(bank)
@@ -135,7 +145,8 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
             <div className="right">
                 <Navbar toggle={toggleSidebar} mode={sidebar}/>
                 <div className="content">
-                    <div className="transfer">
+                    {/* {(num % 2 == 0) ? ( */}
+                        <div className="transfer">
                         <p className="transfer-head">Fund Transfer</p>
                         <div className="transfer-body">
                             <div className="transfer-inner">
@@ -149,7 +160,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
                                                     <img src={credio}></img>
                                                 </div>
                                                 <div className="to-select">
-                                                    <input type="radio" checked={isChecked} onChange={handleClick} name="bank" value="credio"></input>
+                                                    <input type="radio" checked={isChecked} onChange={handleClick} name="bank" value="credio"  disabled = {(num % 2 == 0) ? (true) : (false)}></input>
                                                 </div>
                                             </div>
                                             
@@ -161,7 +172,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
                                                     <BsBank2/>
                                                 </div>
                                                 <div className="to-select">
-                                                    <input type="radio" checked={!isChecked} onChange={handleClick} name="bank" value="credio"></input>
+                                                    <input type="radio" checked={!isChecked} onChange={handleClick} name="bank" value="credio"  disabled = {(num % 2 == 0) ? (true) : (false)}></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -176,8 +187,8 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
                                     </div> */}
                                     <div className="transfer-account">
                                         <div className="transfer-account-left">
-                                            <p className='account-left-head'>{profile?.accountName}</p>
-                                            <p className='account-left-text'>{profile?.accountNumber}</p>
+                                            <p className='account-left-head'>{(num % 2 == 0) ? ('xxxxxxxxxxx') : (profile?.accountName)}</p>
+                                            <p className='account-left-text'>{(num % 2 == 0) ? ('xxxxxxxxxxx') : (profile?.accountNumber)}</p>
                                         </div>
                                         <div className="transfer-account-right">
                                             <div className="transfer-available">
@@ -190,9 +201,9 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
                                                 {" "}
                                                 <p className='balance-2'>
                                                 <FormattedNumber
-                                                    value={
-                                                        profile?.accountBalance
-                                                    }
+                                                    value=
+                                                        {(num % 2 == 0) ? ('xxxxxxxxxxx') : (profile?.accountBalance)}
+                                                    
                                                     style="currency"
                                                     currency="NGN"
                                                 />
@@ -208,7 +219,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
                                             <div className="form-1">
                                                 <div className="input">
                                                     <label className='form-1-label'>Beneficiary’s  Bank </label>
-                                                    <div className="form-1-select" onClick={handleShow}>
+                                                    <div className="form-1-select" onClick={(num % 2 != 0) && (handleShow)}>
                                                         <p>{selectBank}</p>
                                                         <FaChevronDown/>
                                                     </div>
@@ -253,6 +264,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
                                                     onBlur={handleNumber}
                                                     onChange={handleNumber}
                                                     required
+                                                    disabled = {(num % 2 == 0) ? (true) : (false)}
                                                     ></input>
                                                 </div>
                                             </div>
@@ -283,6 +295,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
                                                     onBlur={handleAmount}
                                                     onChange={handleAmount}
                                                     required
+                                                    disabled = {(num % 2 == 0) ? (true) : (false)}
                                                     ></input>
                                                 </div>
                                             </div>
@@ -293,6 +306,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
                                                     placeholder="e.g School Fees"
                                                     onBlur={handleComment}
                                                     onChange={handleComment}
+                                                    disabled = {(num % 2 == 0) ? (true) : (false)}
                                                     ></input>
                                                 </div>
                                             </div>
@@ -306,8 +320,14 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
                                 {show && <Pinconfirm/>}
                             </div>
                         </div>
-                    </div>
-                    </div>
+                        </div>  
+                    {/* ) : (
+                        <div className="key-error-notiication">
+                            <p>Please Complete Your Profile</p>
+                            <div className="error-cancle"><FaTimes/></div>
+                        </div>
+                    )} */}
+                </div>
           </div>
         </div>
     );
