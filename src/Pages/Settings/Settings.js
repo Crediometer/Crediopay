@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Key from './Key';
 import Set from './Set';
 import './Settings.css'
@@ -9,7 +9,10 @@ import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
 import SetPin from './SetPin/SetPin';
 import ChangePin from './SetPin/ChangePin';
-const Settings = () => {
+import { connect } from 'react-redux';
+import { fetchgetprofile } from '../../Redux/Getprofile/GetprofileAction';
+import SuccessModal from '../../Components/Modal/SuccessModal';
+const Settings = ({fetchgetprofile, pinCode}) => {
     const [show, setShow] = useState(1);
     const [sidebar, setSidebar] = useState(false);
     const toggleSidebar = () => {
@@ -30,6 +33,10 @@ const Settings = () => {
     const handlePin = ()=>{
         setShow(6)
     }
+    useEffect(() => {
+        fetchgetprofile()
+
+    }, []);
     return ( 
         <div className="test">
             <div className="left">
@@ -51,14 +58,31 @@ const Settings = () => {
                             { (show === 4) && <Document/>}     */}
                             { (show === 1) && <Set/>}
                             { (show === 5) && <Key/>}      
-                            { (show === 6) && <ChangePin/>}         
+                            { (show === 6) && (
+                                <div>
+                                    {(pinCode === "") ? (<SetPin/>) : (<ChangePin/>)}
+                                </div>
+                            )}         
                         </div>
                         
                     </div>
                     </div>
+                    {/* <SuccessModal/> */}
           </div>
         </div>
     );
 }
- 
-export default Settings;
+const mapStateToProps = state => {
+    return{
+        pinCode: state.getprofile.data.pinCode
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return{
+        fetchgetprofile: () => {
+            dispatch(fetchgetprofile());
+        },
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

@@ -7,8 +7,9 @@ import {connect} from 'react-redux'
 import { Link } from "react-router-dom";
 import { postchangepin } from "../../../Redux/Pin/SetpinAction";
 import SuccessModal from "../../../Components/Modal/SuccessModal";
-
-const ChangePin = ({postchangepin, success}) => {
+import LottieAnimation from "../../../Lotties";
+import loader from "../../../Assets/loading.json";
+const ChangePin = ({postchangepin, success, loading}) => {
     const [sidebar, setSidebar] = useState(false);
     const [enterPassword, setEnterPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -134,7 +135,7 @@ const ChangePin = ({postchangepin, success}) => {
     }, [pin9.length]);
     const onChangepin10 = (e) => {
         const value = e.target.value
-        setPin5(value)
+        setPin9(value)
     };
     const [pin10, setPin10] = useState("");
     const atmpin10 = useRef(null);
@@ -337,7 +338,15 @@ const ChangePin = ({postchangepin, success}) => {
                                 <p style={{ color: "black", fontFamily: "Poppins", textAlign: "center", marginTop: "20px"}}>Passwords do not match!</p>
                             )}
                             {passwordsMatch && (
-                                <button className='transfer-button' onClick={handlesubmit}>Submit</button>
+                                <div>
+                                    {loading ? (
+                                        <button className='transfer-button' disabled>
+                                            <LottieAnimation data={loader}/>
+                                        </button>
+                                    ) : (
+                                        <button className='transfer-button' onClick={handlesubmit}><span>Submit</span></button>
+                                    )}
+                                </div>
                             )}
                         </div>
                         {showsuccess && (<SuccessModal message={success} togglemodal={togglemodal}/>)}
@@ -350,6 +359,7 @@ const ChangePin = ({postchangepin, success}) => {
 
 const mapStateToProps = state => {
     return{
+        loading: state.changepin.loading,
         success:state?.changepin?.data?.message,
         profile: state.getprofile.data
     }

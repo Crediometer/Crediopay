@@ -21,6 +21,8 @@ import depositReducer from './Deposit/DepositReducer';
 import { subaccountReducer } from './Account/SubaccountReducer';
 import { businessregReducer } from './BusinessPartner/BusinessReducer';
 import { changepinReducer, setpinReducer } from './Pin/SetpinReducer';
+import { forgotReducer, newforgotReducer, otpforgotReducer } from './Pin/Forgot/ForgotReducer';
+import { directorReducer } from './Director/DirectorReducer';
 
 const rootReducer = combineReducers({
     login: authReducer,
@@ -50,6 +52,10 @@ const rootReducer = combineReducers({
     businessreg: businessregReducer,
     setpin: setpinReducer,
     changepin: changepinReducer,
+    forgot: forgotReducer,
+    otpforgot: otpforgotReducer,
+    newforgot: newforgotReducer,
+    director: directorReducer,
 })
 
 export default rootReducer;

@@ -34,6 +34,9 @@
     width: 25%;
 }
 .phone-button-inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 0.8rem 0rem;
     width: 100%;
     background: #AC1337;

@@ -7,7 +7,9 @@ import {connect} from 'react-redux'
 import './SetPin.css';
 import { postsetpin } from "../../../Redux/Pin/SetpinAction";
 import SuccessModal from "../../../Components/Modal/SuccessModal";
-const SetPin = ({postsetpin, success}) => {
+import loader from "../../../Assets/loading.json"
+import LottieAnimation from "../../../Lotties";
+const SetPin = ({postsetpin, success, loading}) => {
     const [sidebar, setSidebar] = useState(false);
     const [enterPassword, setEnterPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -241,9 +243,17 @@ const SetPin = ({postsetpin, success}) => {
                                 <p style={{ color: "black", fontFamily: "Poppins", textAlign: "center", marginTop: "20px"}}>Passwords do not match!</p>
                             )}
                             {passwordsMatch && (
-                                <button className='transfer-button' onClick={handlesubmit}>Submit</button>
-                            )}
-                           
+                                <div>
+                                    {loading ? (
+                                        <button className='transfer-button' disabled>
+                                            <LottieAnimation data={loader}/>
+                                        </button>
+                                    ) : (
+                                        <button className='transfer-button' onClick={handlesubmit}><span>Submit</span></button>
+                                    )}
+                                </div>
+                                
+                            )} 
                         </div>
                         {showsuccess && (<SuccessModal message={success} togglemodal={togglemodal}/>)}
                     </div>
@@ -254,6 +264,7 @@ const SetPin = ({postsetpin, success}) => {
 }
 const mapStateToProps = state => {
     return{
+        loading: state.setpin.loading,
         success:state?.setpin?.data?.message,
         profile: state.getprofile.data
     }

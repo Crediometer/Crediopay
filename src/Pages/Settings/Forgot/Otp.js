@@ -1,14 +1,45 @@
 import { useState } from "react";
-
+import {connect} from 'react-redux'
 import { Link } from "react-router-dom";
 import Sidebar from "../../../Components/Sidebar/Sidebar";
 import Navbar from "../../../Components/Navbar/Navbar";
-
-const Forgototp = () => {
+import { postotpforgot } from "../../../Redux/Pin/Forgot/ForgotAction";
+import { useNavigate } from 'react-router-dom';
+import loader from "../../../Assets/loading.json";
+import LottieAnimation from "../../../Lotties";
+const Forgototp = ({postotpforgot, data, loading}) => {
     const [sidebar, setSidebar] = useState(false);
+    const [otp, setotp] = useState("");
+    const history = useNavigate();
+    const [postState, setPostState] = useState({})
     const toggleSidebar = () => {
       setSidebar((prevState) => !prevState);
     };
+    const handleNumber =(e)=>{
+        const value = e.target.value;
+        console.log(value);
+        const pin_id = data
+        setotp(value);
+        setPostState({  ...{pin: otp, pin_id} });
+    }
+    const handlesubmit = (e)=>{
+        e.preventDefault();
+        console.log(postState)
+        postotpforgot(
+            postState, ()=>{ 
+            console.log("now go to dashboard..");
+            history(`/forgotnew`);
+            // setPending(true);
+        }
+        // ,  ()=>{ 
+        //     // console.log(errorHandler)
+        //     // console.log("now go to error..", error);
+        //     // setErrorHandler(error)
+        //     setshowerror(true)
+        //     // setPending(false);
+        // }
+        )
+    }
     return ( 
         <div className="test">
             <div className="left">
@@ -23,20 +54,24 @@ const Forgototp = () => {
                             <p className="phone-header-text">Please Enter the OTP sent to your phone number</p>
                         </div>
                         <div className="phone-body">
-                            <form className="phone-form">
+                            <form className="phone-form" onSubmit={handlesubmit}>
                                 <div className="form-change">
                                     <div className="input input-2">
                                         <input type="text" placeholder="OTP" 
-                                        // onBlur={handleNumber}
-                                        // onChange={handleNumber}
+                                        onBlur={handleNumber}
+                                        onChange={handleNumber}
                                         required
                                         ></input>
                                     </div>
                                 </div>
                                 <div className="phone-button">
-                                    <Link to='/forgotnew'>
-                                        <button className='phone-button-inner'>Submit</button>
-                                    </Link>
+                                    {loading ? (
+                                        <button className='phone-button-inner' disabled>
+                                            <LottieAnimation data={loader}/>
+                                        </button>
+                                    ) : (
+                                        <button className='phone-button-inner'><span>Submit</span></button>
+                                    )}
                                 </div>
                             </form>
                         </div>
@@ -46,5 +81,22 @@ const Forgototp = () => {
          </div>
     );
 }
- 
-export default Forgototp;
+const mapStateToProps = state => {
+    return{
+        data: state.forgot.data.pinId,
+        error: state?.forgot?.error?.data?.message,
+        loading: state.otpforgot.loading,
+        success:state?.changepin?.data?.message,
+        profile: state.getprofile.data
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return{
+        postotpforgot: (postdata, history) => {
+            dispatch(postotpforgot(postdata, history));
+        },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Forgototp);

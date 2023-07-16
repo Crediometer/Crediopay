@@ -1,10 +1,17 @@
 import { useEffect, useRef, useState } from "react";
+import JSEncrypt from 'jsencrypt';
+import consts from '../../Login/keys/const'
 import Sidebar from "../../../Components/Sidebar/Sidebar";
 import Navbar from "../../../Components/Navbar/Navbar";
-
-
-const Password = () => {
+import { postnewforgot } from "../../../Redux/Pin/Forgot/ForgotAction";
+import {connect} from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+import loader from "../../../Assets/loading.json";
+import LottieAnimation from "../../../Lotties";
+const Password = ({postnewforgot, loading}) => {
+    const history = useNavigate();
     const [sidebar, setSidebar] = useState(false);
+    const [postState, setPostState] = useState({})
     const toggleSidebar = () => {
       setSidebar((prevState) => !prevState);
     };
@@ -48,12 +55,31 @@ const Password = () => {
         setPin3(value)
         const pins = `${pin}${pin1}${pin2}${value}`
         console.log(pins)
-        // var encrypt = new JSEncrypt();
-        // encrypt.setPublicKey(`${consts.pub_key}`);
-        // var encrypted = encrypt.encrypt(pins);
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(`${consts.pub_key}`);
+        var encrypted = encrypt.encrypt(pins);
+        setPostState({...{pin: encrypted} });
         // console.log(encrypted)
         // setCombinedpin(encrypted);
     };
+    const handlesubmit = (e)=>{
+        e.preventDefault();
+        console.log(postState)
+        postnewforgot(
+            postState, ()=>{ 
+            console.log("now go to dashboard..");
+            history(`/setting`);
+            // setPending(true);
+        }
+        // ,  ()=>{ 
+        //     // console.log(errorHandler)
+        //     // console.log("now go to error..", error);
+        //     // setErrorHandler(error)
+        //     setshowerror(true)
+        //     // setPending(false);
+        // }
+        )
+    }
     return ( 
         <div className="test">
             <div className="left">
@@ -68,7 +94,7 @@ const Password = () => {
                             <p className="phone-header-text">Please Enter your new Phone Number</p>
                         </div>
                         <div className="phone-body">
-                            <form>
+                            <form onSubmit={handlesubmit}>
                                 <div className="setpin-container">
                                     <div className="field-1">
                                         <div className="pinfield">
@@ -113,7 +139,13 @@ const Password = () => {
                                     </div>
                                 </div>
                                 <div className="setpin-button">
-                                    <button className='transfer-button'>Submit</button>
+                                    {loading ? (
+                                        <button className='transfer-button' disabled>
+                                            <LottieAnimation data={loader}/>
+                                        </button>
+                                    ) : (
+                                        <button className='transfer-button'><span>Submit</span></button>
+                                    )}
                                 </div>
                             </form>
                         </div>
@@ -123,5 +155,21 @@ const Password = () => {
          </div>
     );
 }
- 
-export default Password;
+const mapStateToProps = state => {
+    return{
+        data: state.forgot.data.pinId,
+        error: state?.forgot?.error?.data?.message,
+        loading: state.newforgot.loading,
+        success:state?.changepin?.data?.message,
+        profile: state.getprofile.data
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return{
+        postnewforgot: (postdata, history) => {
+            dispatch(postnewforgot(postdata, history));
+        },
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Password);

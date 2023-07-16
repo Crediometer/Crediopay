@@ -1,6 +1,52 @@
 import { FaTimes } from 'react-icons/fa';
 import './DirectorModal.css'
-const DirectorModal = ({togglemodal}) => {
+import {connect} from 'react-redux'
+import { postdirector } from '../../Redux/Director/DirectorAction';
+import { useState } from 'react';
+import loader from "../../Assets/loading.json";
+import LottieAnimation from '../../Lotties';
+import Errormodal from './Errormodal';
+const DirectorModal = ({togglemodal, postdirector, loading, error}) => {
+
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [role, setRole] = useState("");
+    const [postState, setPostState] = useState({})
+    const [showerror, setshowerror] = useState(false)
+    const handleemail =(e)=>{
+        const value = e.target.value;
+        console.log(value);
+        setEmail(value);
+        setPostState({ ...postState, ...{email: email} });
+    }
+    const handleName =(e)=>{
+        const value = e.target.value;
+        console.log(value);
+        setName(value);
+        setPostState({ ...postState, ...{name: name} });
+    }
+    const handleRole =(e)=>{
+        const value = e.target.value;
+        console.log(value);
+        setRole(value);
+        setPostState({ ...postState, ...{role: role} });
+    }
+    const handlesubmit = (e)=>{
+        e.preventDefault();
+        console.log(postState)
+        postdirector(
+            postState, ()=>{ 
+            console.log("now go to dashboard..");
+            // setPending(true);
+        },  ()=>{ 
+            // console.log(errorHandler)
+            // console.log("now go to error..", error);
+            // setErrorHandler(error)
+            setshowerror(true)
+            // setPending(false);
+        }
+        )
+    }
     return ( 
         <div className="modal-background">
             <div className="modal">
@@ -9,30 +55,84 @@ const DirectorModal = ({togglemodal}) => {
                 </div>
                 <p className='create-payment'>Add Directors/Users</p>
                 <div className="director-modal">
-                    <form>
+                    <form onSubmit={handlesubmit}>
                         <input
                             type="email"
                             placeholder="Enter email"
                             className="modal-field"
+                            onChange={handleemail}
+                            onBlur={handleemail}
+                            required
                         >
                         </input>
                         <input
                             type="text"
-                            placeholder="Business name"
+                            placeholder="Director name"
                             className="modal-field"
+                            onChange={handleName}
+                            onBlur={handleName}
+                            required
                         >
                         </input>
-                        <select>
+                        <select
+                            onChange={handleRole}
+                            onBlur={handleRole}
+                            required
+                        >
                             <optgroup>
                                 <option>-Role-</option>
+                                <option>Founder/Entrepreneur</option>
+                                <option>CEO (Chief Executive Officer)</option>
+                                <option>CTO (Chief Technology Officer)</option>
+                                <option>CFO (Chief Financial Officer)</option>
+                                <option>COO (Chief Operating Officer)</option>
+                                <option>CMO (Chief Marketing Officer)</option>
+                                <option>HR Manager (Human Resources Manager)</option>
+                                <option>Sales Manager</option>
+                                <option>Product Manager</option>
+                                <option>Project Manager</option>
+                                <option>Operations Manager"</option>
+                                <option>UX/UI Designer</option>
+                                <option>Software Engineer/Developer</option>
+                                <option>Data Analyst</option>
+                                <option>Customer Support Specialist</option>
+                                <option>Content Writer/Copywriter</option>
+                                <option>Graphic Designer</option>
+                                <option>Operations Associate</option>
+                                <option>Quality Assurance (QA) Tester</option>
+                                <option>Business Development Manager</option>
                             </optgroup>
                         </select>
-                        <input type="submit" value="Save" className="modal-submit"></input>
+                        {loading ? (
+                            <button className='modal-submit' disabled>
+                                <LottieAnimation data={loader}/>
+                            </button>
+                        ) : (
+                            <button className='modal-submit'><span>Save</span></button>
+                        )}
                     </form>
                 </div>
             </div>
+            {showerror && (<Errormodal error={error} togglemodal={togglemodal}/>)}
         </div>
     );
 }
- 
-export default DirectorModal;
+
+const mapStateToProps = state => {
+    return{
+        error: state?.director.error,
+        loading: state.director.loading,
+        // success:state?.changepin?.data?.message,
+        // profile: state.getprofile.data
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return{
+        postdirector: (postdata, history, errors) => {
+            dispatch(postdirector(postdata, history, errors));
+        },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DirectorModal);

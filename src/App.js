@@ -58,8 +58,8 @@ function App() {
                   <Route path="/transfer" element={<Transfer/>}/>
                   <Route path='/notification' element={<Notification/>}/>
                   <Route path='/statement' element={<AccountStatement/>}/>
-                  <Route path='/setpin' element={<SetPin/>}/>
-                  <Route path='/changepin' element={<ChangePin/>}/>
+                  {/* <Route path='/setpin' element={<SetPin/>}/>
+                  <Route path='/changepin' element={<ChangePin/>}/> */}
                   <Route path='/forgot' element={<Phone/>}/>
                   <Route path='/forgototp' element={<Forgototp/>}/>
                   <Route path='/forgotnew' element={<Password/>}/>

@@ -10,9 +10,9 @@ const SuccessModal = (props) => {
                     <div className="animation">
                         <LottieAnimation data={success} />
                     </div>
-                    <p className="modal-information">{props.message}</p> 
+                    <p className="create-payment">{props.message}</p> 
                     {/* <Link to={props.link}> */}
-                        <button className="modal-close" onClick={props.togglemodal}>OK</button>   
+                        <button className="modal-submit" onClick={props.togglemodal}>OK</button>   
                     {/* </Link>         */}
                 </div>
             </div>
