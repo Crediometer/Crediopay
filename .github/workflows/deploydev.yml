@@ -23,8 +23,8 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: ${{ secrets.FTP_SERVER_PRO }}  
-        username: ${{ secrets.FTP_USERNAME_PRO }}  
-        password: ${{ secrets.FTP_PASSWORD_PRO }}  
+        server: ${{ secrets.FTP_SERVER2 }}  
+        username: ${{ secrets.FTP_USERNAME2 }}  
+        password: ${{ secrets.FTP_PASSWORD2 }}  
         dangerous-clean-slate: true  
         local-dir: ./build/
