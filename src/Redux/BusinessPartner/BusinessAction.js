@@ -1,22 +1,22 @@
-import { BUSINESS_REQUEST, BUSINESS_FALIURE, BUSINESS_SUCCESS } from "./BusinessType"
+import { REG_BUSINESS_REQUEST, REG_BUSINESS_FALIURE, REG_BUSINESS_SUCCESS } from "./BusinessType"
 import axios from "axios"
 
 export const businessRequest = () =>{
     return{
-        type: BUSINESS_REQUEST
+        type: REG_BUSINESS_REQUEST
     }
 }
 
 export const businessSuccess = (response) =>{
     return{
-        type: BUSINESS_SUCCESS,
+        type: REG_BUSINESS_SUCCESS,
         payload: response
     }
 }
 
 export const businessFaliure = (error) =>{
     return{
-        type: BUSINESS_FALIURE,
+        type: REG_BUSINESS_FALIURE,
         payload: error
     }
 }

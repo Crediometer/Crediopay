@@ -1,4 +1,4 @@
-import { fetchgetprofile } from "../Getprofile/GetprofileAction"
+// import { fetchgetprofile } from "../Getprofile/GetprofileAction"
 import { VAULT_REQUEST, VAULT_SUCCESS, VAULT_FALIURE } from "./VaultType"
 import axios from "axios"
 

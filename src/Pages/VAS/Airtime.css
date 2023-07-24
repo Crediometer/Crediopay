@@ -1,0 +1,161 @@
+.airtime{
+    width: 100%;
+    background-color: white;
+    padding: 5rem 3rem;
+    position: relative;
+}
+.airtime-head{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.airtime-back{
+    background-color: transparent;
+    border: none;
+}
+.airtime-title{
+    width: 100%;
+    text-align: center;
+    color: #1B232D;
+    font-family: "Poppins";
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.airtime form{
+    margin-top: 41px;
+    
+}
+.vas-airtime{
+    z-index: 3;
+    position: absolute;
+    top: 50px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 0.8rem;
+}
+.airtime-network{
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+.airtime-network img, .form-group-inner p img{
+    width: 40px;
+    height: 40px;
+}
+.airtime-network p{
+    margin-left: 12px;
+    color: #737373;
+    font-family: "Poppins";
+    font-size:  0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.form-group{
+    margin-top: 15px;
+    position: relative;
+}
+.form-group label{
+    color: rgba(0, 0, 0, 0.90);
+    font-family: "Poppins";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.form-group-inner{
+    width: 100%;
+    margin-top: 8px;
+    padding: 1rem 1.46rem;
+    border-radius: 3px;
+    border: 0.2px solid rgba(0, 0, 0, 0.40);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-group-inner input, .form-group-inner select, .form-group-inner p{
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #737373;
+    font-family: "Poppins";
+    font-size:  0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.form-group-inner p{
+    display: flex;
+    align-items: center;
+}
+.form-group-inner select:focus{
+    outline: none;
+}
+.form-group-inner svg{
+    color: #455A64;
+}
+.vas-form-select{
+    z-index: 4;
+    width: 82%;
+    position: absolute;
+    top: 0px;
+}
+.vas-form-select-header{
+    background-color: #992C31;
+    padding: 2.5rem;
+}
+.vas-select-head{
+    display: flex;
+    align-items: center;
+    color: white;
+}
+.vas-select-title{
+    color: white;
+}
+.vas-select-search{
+    width: 100%;
+    padding: 0.62rem;
+    border-radius: 0.205rem;
+    border: 0.82px solid var(--button-action-active, #2B52DD);
+    background-color: white;
+    display: flex;
+    align-items: center;
+}
+.vas-select-search input{
+    padding-left: 0.3rem;
+    background: transparent;
+    border: none;
+}
+.vas-select-body{
+    background-color: white;
+}
+.vas-select-body-inner{
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.vas-select-body-inner img{
+    width: 40px;
+    height: 40px;
+}
+.vas-select-body-inner p{
+    margin-left: 15px;
+    color: #000;
+    font-family: "Poppins";
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400; /* 435.632% */
+}
+@media (max-width: 1100px) {
+    .airtime{
+        width: 100%;
+        background-color: white;
+        padding: 5rem 1.8rem;
+        position: relative;
+    }
+}

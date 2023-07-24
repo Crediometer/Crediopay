@@ -11,10 +11,11 @@ import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
 import { postbusinesspartner } from '../../Redux/BusinessPartner/BusinessAction';
 import Errormodal from '../../Components/Modal/Errormodal';
-
+import LottieAnimation from '../../Lotties';
+import loader from "../../Assets/loading.json";
 const options = [{name:'name'},{name:'games'}];
 
-const Registration = ({profile, postbusinesspartner, error}) => {
+const Registration = ({profile, postbusinesspartner, error, loading}) => {
     const [selectedOption, setSelectedOption] = useState('');
     const [sidebar, setSidebar] = useState(false);
     const [postState, setPostState] = useState({})
@@ -69,7 +70,7 @@ const Registration = ({profile, postbusinesspartner, error}) => {
         const value = e.target.value;
         console.log(value);
         setWorkerRange(value);
-        setPostState({ ...postState, ...{wrkerRange: WorkerRange} });
+        setPostState({ ...postState, ...{workerRange: WorkerRange} });
     };
     const handleBusinessIndustry = (e) => {
         const value = e.target.value;
@@ -197,7 +198,24 @@ const Registration = ({profile, postbusinesspartner, error}) => {
                                                 >
                                                     <optgroup>
                                                         <option>-options-</option>
-                                                        <option>Technology</option>
+                                                        <option>Agriculture and Farming</option>
+                                                        <option>Automotive</option>
+                                                        <option>Construction</option>
+                                                        <option>Consumer Goods and Services</option>
+                                                        <option>Education and Training</option>
+                                                        <option>Energy and Utilities</option>
+                                                        <option>Finance and Banking</option>
+                                                        <option>Healthcare and Pharmaceutical</option>
+                                                        <option>Hospitality and Tourism</option>
+                                                        <option>Information Technology</option>
+                                                        <option>Insurance</option>
+                                                        <option>Manufacturing</option>
+                                                        <option>Media and Entertainment</option>
+                                                        <option>Real Estate</option>
+                                                        <option>Retail</option>
+                                                        <option>Telecommunications</option>
+                                                        <option>Transportation and Logistics</option>
+                                                        <option>Wholesale Trade</option>
                                                     </optgroup>
                                                 </select>
                                             </div>
@@ -225,7 +243,11 @@ const Registration = ({profile, postbusinesspartner, error}) => {
                                                 >
                                                     <optgroup>
                                                         <option>-options-</option>
-                                                        <option>10-100</option>
+                                                        <option>0-5</option>
+                                                        <option>0-10</option>
+                                                        <option>0-100</option>
+                                                        <option>0-500</option>
+                                                        <option>0-other</option>
                                                     </optgroup>
                                                 </select>
                                             </div>
@@ -246,7 +268,13 @@ const Registration = ({profile, postbusinesspartner, error}) => {
                                     </div>
                                 </div>
                                 <div className={styles.submitbutton}>
-                                    <button>Continue</button>
+                                    {loading ? (
+                                        <button disabled>
+                                            <LottieAnimation data={loader}/>
+                                        </button>
+                                    ) : (
+                                        <button>Continue</button>
+                                    )}
                                 </div>
                             </form>
                         </div>
@@ -259,6 +287,7 @@ const Registration = ({profile, postbusinesspartner, error}) => {
 }
 const mapStateToProps = state => {
     return{
+        loading:state.businessreg.loading,
         error:state?.businessreg?.error,
         profile: state.getprofile.data
     }

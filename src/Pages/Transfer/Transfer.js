@@ -16,7 +16,9 @@ import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
 import { fetchBank, postData, reqData } from '../../Redux/Bank/BankAction';
 import Pinconfirm from '../../Components/Modal/Pinconfirm';
-const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
+import { fetchgetprofile } from '../../Redux/Getprofile/GetprofileAction';
+import { fetchvault } from '../../Redux/Vault/VaultAction';
+const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, fetchvault}) => {
     const dispatch = useDispatch();
     const [showBank, setShowBank] = useState(false);
     const [selectBank, setSelectBank]  = useState("Select a Bank")
@@ -91,6 +93,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
 
     useEffect(() => {
         fetchBank();
+        fetchvault(cid)
         console.log(bank)
         if (nibssCode !== "" && accountNumber.length === 10) {
             console.log(nameState)
@@ -236,11 +239,11 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile}) => {
                                                             <input type='text' placeholder='Search for bank' onChange={(e)=> setQuery(e.target.value)}></input>
                                                         </div>
                                                         <div className="bank-select-body">
-                                                        {bank.loading ? (
+                                                        {bank?.loading ? (
                                                         <LottieAnimation data={preloader}/> 
                                                         ):(
                                                             <div>
-                                                                {bank.filter(banks => banks.name.toLowerCase().includes(query)
+                                                                {bank?.filter(banks => banks.name.toLowerCase().includes(query)
                                                                 ).map((bank)=>{
                                                                     return(
                                                                         <div className="banks" onClick={() => {handleBank(bank.bankCode); handleSelectedBank(bank.name); handleShow()}}>
@@ -339,13 +342,16 @@ const mapStoreToProps = (state) => {
       bank: state.bankname.bank,
       name: state?.bankname?.bankname?.data,
       transfer: state.transfer,
-      profile: state.vault.data.data.mainAccount
+      profile: state?.vault?.data?.data?.mainAccount,
+      cid: state?.getprofile?.data?.client?._id,
     };
 };
   
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchBank: () => dispatch(fetchBank()),
+        fetchgetprofile: () => dispatch(fetchgetprofile()),
+        fetchvault: (id) => dispatch(fetchvault(id)),
         postData: (postState) => {
         dispatch(postData(postState));
         },

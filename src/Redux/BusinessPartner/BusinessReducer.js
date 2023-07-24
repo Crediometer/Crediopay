@@ -1,4 +1,4 @@
-import { BUSINESS_REQUEST,BUSINESS_FALIURE,BUSINESS_SUCCESS } from "./BusinessType"
+import { REG_BUSINESS_REQUEST,REG_BUSINESS_FALIURE,REG_BUSINESS_SUCCESS } from "./BusinessType"
 
 const initialState ={
     loading: false,
@@ -8,18 +8,18 @@ const initialState ={
 
 export const businessregReducer = (state = initialState, action) => {
     switch(action.type){
-        case BUSINESS_REQUEST:
+        case REG_BUSINESS_REQUEST:
             return{
                 ... state,
                 loading: true
             }
-        case BUSINESS_SUCCESS:
+        case REG_BUSINESS_SUCCESS:
             return{
                 loading: false,
                 data: action.payload,
                 error: ''
             }
-        case BUSINESS_FALIURE:
+        case REG_BUSINESS_FALIURE:
             return{
                 loading:false,
                 data: [],

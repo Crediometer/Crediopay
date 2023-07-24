@@ -1,25 +1,21 @@
-import { FaTimes } from 'react-icons/fa';
 import LottieAnimation from '../../Lotties';
-import wrong from '../../Assets/Errorr.json'
-const Errormodal = ({error, togglemodal}) => {
+import preloader from '../../Assets/preloader.json'
+const LoadingModal = () => {
     return ( 
         <div className="modal-background">
             <div className="modal">
-                <div className='modalClose' onClick={togglemodal}>
-                    <FaTimes/>
-                </div>
                 <div className="onetime-modal">
                     <div className="animation">
-                        <LottieAnimation data={wrong}/>
+                        <LottieAnimation data={preloader}/>
                     </div>
-                    <p className="create-payment">{error}</p>
+                    {/* <p className="create-payment">{error}</p>
                     <button className="modal-submit" onClick={togglemodal}>
                         Retry
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </div>
     );
 }
  
-export default Errormodal;
+export default LoadingModal;

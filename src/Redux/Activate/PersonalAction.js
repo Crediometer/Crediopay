@@ -36,10 +36,10 @@ export const postpersonal = (nameState, history, setErrorHandler) => {
         try{
             const response =  await axios.post(`${baseUrl}/profile/personal-info`, nameState,
             { headers: headers })
-            const data = response.data.data
+            const data = response
             console.log(data);
             dispatch(personalSuccess(data))
-            if(response.status===200){
+            if(response.status===201){
                 history();
             }
         }

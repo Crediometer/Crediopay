@@ -6,13 +6,14 @@ import { useState } from 'react';
 import loader from "../../Assets/loading.json";
 import LottieAnimation from '../../Lotties';
 import Errormodal from './Errormodal';
-const DirectorModal = ({togglemodal, postdirector, loading, error}) => {
-
+import SuccessModal from './SuccessModal';
+const DirectorModal = ({togglemodal, postdirector, loading, error, success}) => {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [role, setRole] = useState("");
     const [postState, setPostState] = useState({})
     const [showerror, setshowerror] = useState(false)
+    const [showsuccess, setshowsuccess] = useState(false)
     const handleemail =(e)=>{
         const value = e.target.value;
         console.log(value);
@@ -31,13 +32,22 @@ const DirectorModal = ({togglemodal, postdirector, loading, error}) => {
         setRole(value);
         setPostState({ ...postState, ...{role: role} });
     }
+    const toggleerror =()=>{
+        setshowerror(!showerror)
+    }
+    const togglesuccess =()=>{
+        setshowsuccess(!showsuccess)
+    }
     const handlesubmit = (e)=>{
         e.preventDefault();
         console.log(postState)
         postdirector(
             postState, ()=>{ 
-            console.log("now go to dashboard..");
             // setPending(true);
+            setshowsuccess(true)
+            setRole("")
+            setName("")
+            setEmail("")
         },  ()=>{ 
             // console.log(errorHandler)
             // console.log("now go to error..", error);
@@ -62,6 +72,7 @@ const DirectorModal = ({togglemodal, postdirector, loading, error}) => {
                             className="modal-field"
                             onChange={handleemail}
                             onBlur={handleemail}
+                            value={email}
                             required
                         >
                         </input>
@@ -71,12 +82,14 @@ const DirectorModal = ({togglemodal, postdirector, loading, error}) => {
                             className="modal-field"
                             onChange={handleName}
                             onBlur={handleName}
+                            value={name}
                             required
                         >
                         </input>
                         <select
                             onChange={handleRole}
                             onBlur={handleRole}
+                            value={role}
                             required
                         >
                             <optgroup>
@@ -113,7 +126,8 @@ const DirectorModal = ({togglemodal, postdirector, loading, error}) => {
                     </form>
                 </div>
             </div>
-            {showerror && (<Errormodal error={error} togglemodal={togglemodal}/>)}
+            {showerror && (<Errormodal error={error} togglemodal={toggleerror}/>)}
+            {showsuccess && (<SuccessModal message={success} togglemodal={togglesuccess}/>)}
         </div>
     );
 }
@@ -122,6 +136,7 @@ const mapStateToProps = state => {
     return{
         error: state?.director.error,
         loading: state.director.loading,
+        success: state?.director.data.message,
         // success:state?.changepin?.data?.message,
         // profile: state.getprofile.data
     }

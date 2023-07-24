@@ -40,7 +40,7 @@ const Otp = (props) => {
     return ( 
         <div className="login">
         <div className="login-logo">
-            <p>Credio</p>
+            <p>Credio pay</p>
         </div>
         <div className="login-right">
             <div className="login-form-section-inner">

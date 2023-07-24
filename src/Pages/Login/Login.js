@@ -13,8 +13,9 @@ import countryList from "../../Components/countries.json";
 import consts from "../Login/keys/const";
 import JSEncrypt from 'jsencrypt';
 import './Login.css';
+import { fetchgetprofile } from "../../Redux/Getprofile/GetprofileAction";
 const Login = (props) => {
-    const {login,error,loading} = props
+    const {login,error,loading, getprofile,fetchgetprofile } = props
     const [type, setType] = useState('password');
     const [icon, setIcon] =useState(faEye);
     const options = useMemo(() => countryList, []);
@@ -80,7 +81,13 @@ const Login = (props) => {
         try{
             await login(loginState, ()=>{ 
             console.log("now go to dashboard..");
-            history(`/registration`);
+            fetchgetprofile()
+            if(getprofile === {}){
+                history(`/registration`);
+            }else{
+                history(`/dashboard`)
+            }
+            
             // setPending(true);
             }, ()=>{ 
                 console.log(errorHandler)
@@ -109,7 +116,7 @@ const Login = (props) => {
     return ( 
         <div className="login">
             <div className="login-logo">
-                <p>Credio</p>
+                <p>Credio pay</p>
             </div>
             <div className="login-right">
                 <div className="login-form-section-inner">
@@ -203,7 +210,8 @@ const Login = (props) => {
 const mapStateToProps = state => {
     return{
         error:state?.login?.error,
-        loading: state?.login?.dataAdded
+        loading: state?.login?.dataAdded,
+        getprofile: state?.getprofile?.data
     }
 }
 
@@ -212,6 +220,7 @@ const mapDispatchToProps = dispatch => {
         login: (loginState, history, setErrorHandler) => {
             dispatch(LoginAuthAction(loginState, history, setErrorHandler));
         },
+        fetchgetprofile: () => dispatch(fetchgetprofile()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

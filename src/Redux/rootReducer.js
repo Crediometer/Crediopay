@@ -7,7 +7,7 @@ import { statementReducer } from './Statement/StatementReducer';
 import { marknotificationReducer, notificationReducer } from './Notification/NotificationReducer';
 // import { bankReducer, banknameReducer, transferReducer } from './Transfer/BankReducer';
 import { personalReducer } from './Activate/PersonalReducer';
-import { businessReducer } from './Activate/BusinessReducer';
+import { businessReducer, kycReducer } from './Activate/BusinessReducer';
 import authReducer from './Login/LoginReducer';
 import registerReducer from './Registration/RegisterReducer';
 import otpReducer from './Registration/OtpReducer';
@@ -22,7 +22,8 @@ import { subaccountReducer } from './Account/SubaccountReducer';
 import { businessregReducer } from './BusinessPartner/BusinessReducer';
 import { changepinReducer, setpinReducer } from './Pin/SetpinReducer';
 import { forgotReducer, newforgotReducer, otpforgotReducer } from './Pin/Forgot/ForgotReducer';
-import { directorReducer } from './Director/DirectorReducer';
+import { directorReducer, getdirectorReducer } from './Director/DirectorReducer';
+import { vasReducer, vasairtimeReducer, vascableReducer, vascategoryReducer, vasdataReducer, vasproductReducer, vasutilityReducer, vasverifyReducer } from './Vas/VasReducer';
 
 const rootReducer = combineReducers({
     login: authReducer,
@@ -56,6 +57,16 @@ const rootReducer = combineReducers({
     otpforgot: otpforgotReducer,
     newforgot: newforgotReducer,
     director: directorReducer,
+    kyc: kycReducer,
+    vas: vasReducer,
+    vascategory: vascategoryReducer,
+    airtime: vasairtimeReducer,
+    vasproduct: vasproductReducer,
+    data: vasdataReducer,
+    verifycable: vasverifyReducer,
+    cable: vascableReducer,
+    utility: vasutilityReducer,
+    getdirector: getdirectorReducer,
 })
 
 export default rootReducer;

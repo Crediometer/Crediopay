@@ -61,6 +61,7 @@ const Sidebar = ({Sidebar,toggle, fetchprofile, fetchgetprofile, profile}) => {
                             <a href="http://abbrefy.xyz/15e46d5"
                                 className={classNames(styles.navLink, { [styles.active]: location.pathname === 'http://abbrefy.xyz/15e46d5' })}
                                 onClick={toggle}
+                                target="_blank"
                                 // onClick={(event) => handleLinkClick(event, index)}
                                 // className={activeLink === index ? 'active' : ''}
                             >

@@ -1,42 +1,115 @@
 import Textfield from '../Formfield/Textfield';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faSpinner, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { connect } from 'react-redux';
 import styles from '../../Pages/Registration/Registration.module.css';
 import styles2 from '../Formfield/style.module.css' 
 import styles3 from '../../Pages/Activate/Activate.module.css'
 import './MultiStepProgressBar.css'
 import Inputfield from '../Formfield/Inputfield';
 import Selectfield from '../Formfield/Selectfield';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaTimesCircle } from 'react-icons/fa';
 import {FiAlertTriangle} from 'react-icons/fi'
 import {AiOutlineFile} from 'react-icons/ai'
-const Business = ({next}) => {
+import { postbusiness, postkyc } from '../../Redux/Activate/BusinessAction';
+import LottieAnimation from '../../Lotties';
+import loader from '../../Assets/loading.json'
+import Errormodal from '../Modal/Errormodal';
+import LoadingModal from '../Modal/LoadingModal';
+const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
     const [nameState, setNameState] = useState({});
+    const [formState, setFormState] = useState(null)
+    const [postState, setPostState] = useState({});
     const[filename, setFilename] = useState('')
+    const [file, setFile] = useState(null);
     const[image, setImage] = useState(null)
     const[filename2, setFilename2] = useState('')
     const[image2, setImage2] = useState(null)
     const [mermat, setMermat] = useState("");
     const [bvn, setbvn] = useState("");
     const [dob, setdob] = useState('');
+    const [show, setShow] = useState(false)
+    const [showkyc, setshowkyc]= useState(false)
+    // const [mermat, setmermat] = useState('');
     const [rcNumber, setrcNumber]= useState("");
+    const [errorHandler, setErrorHandler] = useState([false, ""]);
+    const [showerror, setshowerror] = useState(false)
     // const options = [{name:'name'},{name:'games'}]
 
     const handlebvn = (e) => {
         const value = e.target.value;
         setbvn(value);
         setNameState({ ...nameState, ...{ bvn } });
+        setPostState({ ...postState, ...{ bvn } });
     };
     const handledob = (e) => {
         const value = e.target.value;
         setdob(value);
         setNameState({ ...nameState, ...{ dob } });
+        setPostState({ ...postState, ...{ dob } });
     };
+    useEffect(() => {
+        if (dob !== "" && bvn.length === 11) {
+            kyc(postState, 
+                ()=>{ 
+                setShow(true);
+                }, ()=>{ 
+                    setshowkyc(true);
+                    }
+            )
+            console.log(postState)
+            // postData(nameState);
+            // console.log(name)
+            // setaccountName(name.data.accountName)
+        }
+        
+    }, [bvn, dob, postState]);
     const handlercnumber = (e) => {
         const value = e.target.value;
         setrcNumber(value);
         setNameState({ ...nameState, ...{ rcNumber } });
+    };
+    const handlemermat = (e) => {
+        const value = e.target.value;
+        setMermat(value);
+        setNameState({ ...nameState, ...{ mermat } });
+    };
+    const togglemodal = ()=>{
+        setshowerror(!showerror)
+    }
+    const togglemodal2 = ()=>{
+        setshowkyc(!showkyc)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('mermat',file);
+        formData.append('bvn', bvn);
+        formData.append('dob',dob);
+        formData.append('rcNumber', rcNumber);
+        console.log(file)
+        console.log(formData)
+        try{
+            
+            await business(formData, ()=>{ 
+            console.log("now go to complete..");
+            next();
+            // setPending(true);
+            }, ()=>{ 
+                console.log(errorHandler)
+                console.log("now go to error..", error);
+                setErrorHandler(error)
+                setshowerror(true)
+                // setPending(false);
+            });
+            // console.log(formState)
+            // console.log(nameState)
+        }catch(error){
+            // setPending(false);
+            console.log("Something went wrong ??? ",error);
+        }
     };
     return ( 
         <form>
@@ -85,26 +158,22 @@ const Business = ({next}) => {
                <div className="files">
                 <div className="filedisplay">
                     {filename2!=''?(
-                        <p className='select-filename'><span onClick={()=>{setFilename2(""); setImage2(null)}}><FaTimesCircle/> Remove File</span>{filename2}</p>
+                        <p className='select-filename'><span onClick={()=>{setFilename2(""); setImage2(null)}}><FaTimesCircle/> Remove File</span></p>
                         ):
                         <p><AiOutlineFile/> No file chosen</p>
                     }
                 </div>
                 <div className="filechose" onClick={()=>document.querySelector(".upload").click()}>
                     <input type="file" className='upload' hidden
-                        onChange={({target: {files}})=>{
-                            files[0] && setFilename2(files[0].name)
-                            if(files){
-                                setImage2(URL.createObjectURL(files[0]))
-                            }
-                        }}
+                       onChange={(e) => setFile(e.target.files[0])}
+                        // onBlur={handlemermat}
                     ></input>
                     <p>Choose File</p>
                 </div>
                </div>
                <p className='warning'><FiAlertTriangle/>Please choose the file under 5KB to upload!</p>
             </div>
-            <div className={styles.form2}>
+            {/* <div className={styles.form2}>
                <p className='addimage'>Add image</p>
                <div className="files">
                 <div className="filedisplay">
@@ -120,6 +189,7 @@ const Business = ({next}) => {
                             files[0] && setFilename(files[0].name)
                             if(files){
                                 setImage(URL.createObjectURL(files[0]))
+                                // setNameState({ ...nameState, ...{ filename: image } });
                             }
                         }}
                     ></input>
@@ -127,7 +197,18 @@ const Business = ({next}) => {
                 </div>
                </div>
                <p className='warning'><FiAlertTriangle/>Please choose the file under 5KB to upload!</p>
-            </div>
+            </div> */}
+            {show && (
+                <div>
+                    {loading ? (
+                        <button className={styles3.activateButton} disabled>
+                            <LottieAnimation data={loader}/>
+                        </button>
+                    ) : (
+                        <button onClick={handleSubmit} className={styles3.activateButton}><span>Save</span></button>
+                    )}
+                </div>
+            )}
             {/* <button onClick={handleSubmit} className={styles3.activateButton}>
                 {loading ? (
                     <FontAwesomeIcon
@@ -138,8 +219,31 @@ const Business = ({next}) => {
                     <span>Save</span>
                         )} 
             </button> */}
+            {kycload && (<LoadingModal/>)}
+            {showkyc&& (<Errormodal error={kycerror} togglemodal={togglemodal2}/>)}
+            {showerror && (<Errormodal error={error} togglemodal={togglemodal}/>)}
         </form>
     );
 }
- 
-export default Business;
+const mapStoreToProps = (state) => {
+    console.log("states   ", state);
+    return {
+        error: state.business.error,
+        loading: state.business.loading,
+        kycload: state.kyc.loading,
+        kycerror: state.kyc.error
+    };
+};
+  
+const mapDispatchToProps = (dispatch) => {
+    return {
+        business: (nameState, history, setErrorHandler) => {
+            dispatch(postbusiness(nameState, history, setErrorHandler));
+        },
+        kyc: (nameState, history, errors) => {
+            dispatch(postkyc(nameState, history, errors));
+        }
+    };
+};
+
+export default connect(mapStoreToProps, mapDispatchToProps)(Business);

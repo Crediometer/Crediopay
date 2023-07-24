@@ -30,6 +30,7 @@ import ChangePin from './Pages/Settings/SetPin/ChangePin';
 import Phone from './Pages/Settings/Forgot/Phone';
 import Forgototp from './Pages/Settings/Forgot/Otp';
 import Password from './Pages/Settings/Forgot/Password';
+import Vas from './Pages/VAS/Vas';
 function App() {
   // const [sidebar, setSidebar] = useState(false);
   // const toggleSidebar = () => {
@@ -43,7 +44,7 @@ function App() {
               <Route path="/signup" element={<Register/>}/>
               <Route path="/otp" element={<Otp/>}/>
               <Route path="password" element={<Setpassword/>}/>
-              {/* <Route element={<AuthenticatedRoute/>}> */}
+              <Route element={<AuthenticatedRoute/>}>
                   <Route exact path='/registration' element={<Registration/>}></Route>
                   <Route exact path='/dashboard' element={<Dashboard/>}></Route>
                   <Route path="/activate" element={<Activate/>}/>
@@ -63,7 +64,8 @@ function App() {
                   <Route path='/forgot' element={<Phone/>}/>
                   <Route path='/forgototp' element={<Forgototp/>}/>
                   <Route path='/forgotnew' element={<Password/>}/>
-              {/* </Route> */}
+                  <Route path='/vas' element={<Vas/>}/>
+              </Route>
             </Routes>
       </Provider>
     </Router>

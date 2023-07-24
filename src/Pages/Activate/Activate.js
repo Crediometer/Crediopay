@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import MultiStepProgressbar from '../../Components/Multiformbar/MultiStepProgressbar';
 import styles from './Activate.module.css'
 import Personal from '../../Components/Multiformbar/Personal';
@@ -7,8 +8,14 @@ import Verification from '../../Components/Multiformbar/Verification';
 import Payout from '../../Components/Multiformbar/Payout';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
-const Activate = () => {
-    const [index, setIndex] = useState(1)
+const Activate = ({personal}) => {
+    let initialCount;
+    if (personal==={}) {
+      initialCount = 1;
+    } else {
+      initialCount = 2;
+    }
+    const [index, setIndex] = useState(initialCount)
     const [sidebar, setSidebar] = useState(false);
     const toggleSidebar = () => {
       setSidebar((prevState) => !prevState);
@@ -36,7 +43,7 @@ const Activate = () => {
                         <div className={styles.activateFormOuter}>
                             <div className={styles.activateForm}>
                                 {index===1 && (<Personal next={nextButton}/>)}
-                                {index===2 && (<Business/>)}
+                                {index===2 && (<Business next={nextButton}/>)}
                                 {/* {index===3 && (<Verification/>)} */}
                                 {index===4 && (<Payout/>)}
                             </div>
@@ -48,5 +55,11 @@ const Activate = () => {
         </div>
     );
 }
- 
-export default Activate;
+const mapStoreToProps = (state) => {
+    console.log("states   ", state);
+    return {
+        personal: state?.getprofile?.data?.personalInfo,
+    };
+};
+
+export default connect(mapStoreToProps,)(Activate);

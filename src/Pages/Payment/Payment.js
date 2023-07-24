@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import PaymentModal from '../../Components/Modal/PaymentModal';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 import './Payment.css'
 import {IoWarningOutline} from 'react-icons/io5'
 import Sidebar from '../../Components/Sidebar/Sidebar';
@@ -20,21 +23,26 @@ const   Payment = () => {
             </div>
             <div className="right">
                 <Navbar toggle={toggleSidebar} mode={sidebar}/>
-                <div className="content">
-                    <div className="payment">
-                        <div className="payment-top">
-                            <button className="new-payment" onClick={handleModal}>New Payment</button>
+                <SkeletonTheme baseColor="#BFBFBF" highlightColor="#827f7f">
+                    <div className="content">
+                        <div className="payment">
+                            <div className="payment-top">
+                                <p style={{width: "200px"}}>
+                                    <Skeleton/>
+                                </p>
+                                {/* <button className="new-payment" onClick={handleModal}>New Payment</button> */}
+                            </div>
+                            <div className="payment-body">
+                                {/* <IoWarningOutline/> */}
+                                <p className="no-payment-head"><Skeleton/></p>
+                                <p className="no-payment-body"><Skeleton count={3}></Skeleton></p>
+                            </div>
+                            {modal && (
+                                <PaymentModal togglemodal={handleModal}/>
+                            )}
                         </div>
-                        <div className="payment-body">
-                            <IoWarningOutline/>
-                            <p className="no-payment-head">No payment has been made </p>
-                            <p className="no-payment-body">No payment has been made to this account, proceed to create a payment  plan and await payment </p>
-                        </div>
-                        {modal && (
-                            <PaymentModal togglemodal={handleModal}/>
-                        )}
                     </div>
-                </div>
+                </SkeletonTheme>
             </div>
         </div>
     );

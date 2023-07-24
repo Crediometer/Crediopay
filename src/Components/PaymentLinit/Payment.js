@@ -1,5 +1,7 @@
-import styles from './Payment.module.css'
-const Payment = () => {
+import styles from './Payment.module.css';
+import { connect } from "react-redux";
+import { FormattedNumber, IntlProvider } from "react-intl";
+const Payment = ({vault}) => {
     const circleWidth = 180
     const percentage = 35
     const radius = 85
@@ -36,6 +38,8 @@ const Payment = () => {
                         }}
                         transform={`rotate(-90 ${circleWidth / 2} ${circleWidth / 2})`}
                     />
+                    <IntlProvider>
+                        {" "}
                         <text 
                             x='50%' 
                             y="50%" 
@@ -43,8 +47,24 @@ const Payment = () => {
                             textAnchor='middle'
                             className={styles.circleText}
                         >
-                            NGN378,032
+                        <FormattedNumber
+                            value={
+                                vault?.accountBalance
+                            }
+                            style="currency"
+                            currency="NGN"
+                        />
                         </text>
+                    </IntlProvider>
+                        {/* <text 
+                            x='50%' 
+                            y="50%" 
+                            dy='0.3em' 
+                            textAnchor='middle'
+                            className={styles.circleText}
+                        >
+                            NGN378,032
+                        </text> */}
                     </svg>
                 </div>
                 <div className={styles.circleLabel}>
@@ -66,5 +86,10 @@ const Payment = () => {
         </div>
     );
 }
- 
-export default Payment;
+const mapStoreToProps = (state) => {
+    console.log("states   ", state);
+    return {
+        vault:state?.vault?.data?.data?.mainAccount
+    };
+};
+export default connect(mapStoreToProps, )(Payment);

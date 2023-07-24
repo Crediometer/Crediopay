@@ -113,6 +113,9 @@
     margin-top: 32px;
 }
 .submitbutton button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     padding: 1rem 0.625rem;
     background: #AC1337;

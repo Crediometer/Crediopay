@@ -11,6 +11,7 @@ import { Switch } from "antd";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Navbar from "../../Components/Navbar/Navbar";
 import { FaCheck } from "react-icons/fa";
+import { BsCheckLg } from "react-icons/bs";
 const Notification = ({fetchnotification, notification, putnotification}) => {
     const [open, setOpen]= useState(false)
     const [sidebar, setSidebar] = useState(false);
@@ -81,12 +82,12 @@ const Notification = ({fetchnotification, notification, putnotification}) => {
                                                                 <div className="message-date-delete">
                                                                     <p className="date-time">{message.createdAt.slice(11, 16)} <span>May 15</span></p>
                                                                     <div className="delete">
-                                                                        {open && <div className="delete-buttons">
+                                                                        {/* {open && <div className="delete-buttons">
                                                                             <button className="yes">Yes</button>
                                                                             <button className="no" onClick={()=>{setOpen(false)}}>No</button>
-                                                                        </div>}
-                                                                        <span className="message-tick" onClick={handleMark(true, message._id)}><FaCheck/></span>
-                                                                        <span onClick={()=>{setOpen(true)}}><MdOutlineDeleteOutline/></span>
+                                                                        </div>} */}
+                                                                        <span className="message-tick" onClick={()=>{handleMark(true, message._id)}}><BsCheckLg/></span>
+                                                                        {/* <span onClick={()=>{setOpen(true)}}><MdOutlineDeleteOutline/></span> */}
                                                                     </div>
                                                                 </div>
                                                             </div>

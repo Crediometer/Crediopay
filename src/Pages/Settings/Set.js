@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import {Switch} from "antd";
 import './Set.css';
 import DirectorModal from "../../Components/Modal/DirectorModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { putsetting } from "../../Redux/Settings/SettingsAction";
 import { getprofileReducer } from "../../Redux/Getprofile/GetprofileReducer";
 import { Link } from "react-router-dom";
-const Set = ({putsetting, error, loading, getprofile}) => {
+import { getdirector } from "../../Redux/Director/DirectorAction";
+const Set = ({putsetting, error, loading, getprofile, getdirector, director}) => {
     const [modal, setModal] = useState(false);
     const [emailmonthly, setemailmonthly] = useState(getprofile?.emailMonthly)
     const [updateState, setUpdateState] = useState({});
@@ -67,6 +68,11 @@ const Set = ({putsetting, error, loading, getprofile}) => {
     const getSwitchColors = () => {
         return sms ? '#AC1337' : '#e5e5e5';
     }
+
+    useEffect(()=>{
+        getdirector();
+    }, [])
+
     return ( 
         <div className="set">
             <div className="directors">
@@ -75,7 +81,17 @@ const Set = ({putsetting, error, loading, getprofile}) => {
                     <button onClick={handleModal}><FaPlus/>Add</button>
                 </div>
                 <div className="director-body">
-                    <div className="director">
+                    {director?.map((director)=>{
+                        return(
+                            <div className="director">
+                                <p className="director-name">{director.directorName}</p>
+                                <div className="delete">
+                                    <FaTrash/>
+                                </div>
+                            </div>
+                        )
+                    })}
+                    {/* <div className="director">
                         <p className="director-name">Test Venture/Rasheed Raji</p>
                         <div className="delete">
                             <FaTrash/>
@@ -86,7 +102,7 @@ const Set = ({putsetting, error, loading, getprofile}) => {
                         <div className="delete">
                             <FaTrash/>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="set-settings">
@@ -140,17 +156,6 @@ const Set = ({putsetting, error, loading, getprofile}) => {
                             />
                         </div>
                     </div>
-                    <Link to="/changepin">
-                        <div className="set-setting">
-                            <div className="set-setting-text">
-                                <p className="set-text-head">Pin</p>
-                                <p className="set-text-body">Set your Pin or Change your Pin.</p>
-                            </div>
-                            <div className="switch">
-                                <FaChevronRight/>
-                            </div>
-                        </div>
-                    </Link>
                 </div>
             </div>
             {modal && (
@@ -164,13 +169,16 @@ const mapStoreToProps = (state) => {
         error: state.setting.error,
         loading: state.setting.loading,
         data: state.setting.data,
-        getprofile: state?.getprofile?.data
+        getprofile: state?.getprofile?.data,
+        director: state?.getdirector?.data?.data?.otherBusinessParnters
+
     };
 };
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        putsetting: (setting) => dispatch(putsetting(setting))
+        putsetting: (setting) => dispatch(putsetting(setting)),
+        getdirector: () => dispatch(getdirector())
     };
 };
 export default connect(mapStoreToProps, mapDispatchToProps)(Set);

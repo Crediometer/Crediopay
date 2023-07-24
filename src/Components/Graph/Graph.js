@@ -22,7 +22,7 @@ ChartJS.register(
 const Graph = ({fetchanalytics, analytics}) => {
     const data = {
         labels:[`${analytics?.data?.data?.analyticsData?.map((month)=>{
-            return(month.month)   
+            return(`${month.month}`)   
         })}`],
         datasets: [{
             data:[`${analytics?.data?.data?.analyticsData?.map((month)=>{

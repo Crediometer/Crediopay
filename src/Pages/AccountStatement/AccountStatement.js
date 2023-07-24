@@ -171,13 +171,13 @@ const AccountStatement = ({fetchstatement, profile}) => {
                             <div className="statement-account">
                                 <div className="statement-account-left">
                                     <h1>{profile?.accountName}</h1>
-                                    <p className='trans-phone'>{profile?.accountNumber} <span onClick={handleCopy}><IoCopy/></span></p>
+                                    <p className='trans-phone statement-trans-phone'>{profile?.accountNumber} <span onClick={handleCopy}><IoCopy/></span></p>
                                 </div>
                                 <div className="statement-account-right">
                                     <p className='available statement-available'>Available Balance</p>
                                     <IntlProvider>
                                         {" "}
-                                        <p className="main-balance">
+                                        <p className="main-balance statement-main-balance">
                                         <FormattedNumber
                                             value={
                                                 profile?.accountBalance
