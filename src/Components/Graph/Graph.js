@@ -41,13 +41,13 @@ const Graph = ({fetchanalytics, analytics}) => {
     })
 
     const data = {
-        labels:[`${analytics?.data?.data?.analyticsData?.map((month)=>{
+        labels: analytics?.data?.data?.analyticsData?.map((month)=>{
             return(`${month.month}`)   
-        })}`],
+        }),
         datasets: [{
-            data:[`${analytics?.data?.data?.analyticsData?.map((month)=>{
+            data:analytics?.data?.data?.analyticsData?.map((month)=>{
                 return(month.value)   
-            })}`],
+            }),
             backgroundColor: (context) => {
                 const ctx = context.chart.ctx;
                 const gradient = ctx.createLinearGradient(0, 0, 0, 179.63);
