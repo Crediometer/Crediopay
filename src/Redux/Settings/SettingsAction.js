@@ -32,10 +32,7 @@ export const putsetting = (setting) => {
             Authorization: `Bearer ${datas?.token?.data?.token?.token}`,
         }})
             .then( response => {
-                console.log(setting)
                 const data = response.data
-                console.log(`this is setting--- ${data.data}`)
-                console.log(response.data)
                 dispatch(settingSuccess(data))
             })
             .catch(error =>{

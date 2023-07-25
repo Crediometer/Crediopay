@@ -54,26 +54,19 @@ const Password = ({postnewforgot, loading}) => {
         const value = e.target.value
         setPin3(value)
         const pins = `${pin}${pin1}${pin2}${value}`
-        console.log(pins)
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(`${consts.pub_key}`);
         var encrypted = encrypt.encrypt(pins);
         setPostState({...{pin: encrypted} });
-        // console.log(encrypted)
-        // setCombinedpin(encrypted);
     };
     const handlesubmit = (e)=>{
         e.preventDefault();
-        console.log(postState)
         postnewforgot(
             postState, ()=>{ 
-            console.log("now go to dashboard..");
             history(`/setting`);
             // setPending(true);
         }
         // ,  ()=>{ 
-        //     // console.log(errorHandler)
-        //     // console.log("now go to error..", error);
         //     // setErrorHandler(error)
         //     setshowerror(true)
         //     // setPending(false);

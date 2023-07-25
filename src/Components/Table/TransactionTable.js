@@ -88,7 +88,6 @@ const TransactionTable = ({fetchtransaction, }) => {
 }
 
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
       recent: state.recenttransaction,
     };

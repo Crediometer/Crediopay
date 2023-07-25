@@ -52,7 +52,6 @@ const Sub = ({cid, fetchsubaccount, subaccount, loading}) => {
     );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
         cid: state?.getprofile?.data?.id,
         subaccount: state?.subaccount?.data,

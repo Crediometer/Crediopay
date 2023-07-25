@@ -48,13 +48,11 @@ const Login = (props) => {
     }
     // FOR PHONE NUMBER
     const handleCountry = (value) => {
-        console.log(value);
         setCountry(value);
       };
     // const phone = `${country["value"]}${number}`
     const handleNumber = (e) => {
         const value = e.target.value;
-        console.log(value);
         setNumber(value);
         const phoneNumber = `${country["value"]}${number}`
         setLoginState({ ...loginState, ...{phoneNumber} });
@@ -68,7 +66,6 @@ const Login = (props) => {
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(`${consts.pub_key}`);
         var encrypted = encrypt.encrypt(value);
-        console.log(`encrypted   - ${encrypted}`);
         setPassword(encrypted);
         setLoginState({ ...loginState, ...{password} });
     };
@@ -80,7 +77,6 @@ const Login = (props) => {
         
         try{
             await login(loginState, ()=>{ 
-            console.log("now go to dashboard..");
             fetchgetprofile()
             if(getprofile === {}){
                 history(`/registration`);
@@ -90,15 +86,10 @@ const Login = (props) => {
             
             // setPending(true);
             }, ()=>{ 
-                console.log(errorHandler)
-                console.log("now go to error..", error);
                 setErrorHandler(error)
                 // setPending(false);
             });
-            console.log(loginState)
         }catch(error){
-            // setPending(false);
-            console.log("Something went wrong ??? ",error);
         }
     };
     //FOR DEVICE ID
@@ -108,7 +99,6 @@ const Login = (props) => {
             const deviceID = Fingerprint2.x64hash128(values.join(''), 31);
             const deviceId = deviceID
             // const deviceId = deviceID
-            console.log(deviceID);
             setFingerprint(deviceID);
             setLoginState({ ...loginState, ...{deviceId} });
           });
@@ -164,13 +154,13 @@ const Login = (props) => {
                                     <span className="psw-visible"><FontAwesomeIcon icon={icon} onClick={vissibleToggle}/></span>
                                 </div>
                             </div>
-                            <div className="forget">
+                            {/* <div className="forget">
                                 <div className="forget-password">
                                     <Link to='/forget'>
                                         <p>Forget password ?</p>
                                     </Link>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="submit submit-login">
                                 {loading ? (
                                     <button disabled>

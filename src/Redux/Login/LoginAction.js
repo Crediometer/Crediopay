@@ -59,14 +59,12 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
       try {
         const res = await axios.post(`${baseUrl}/auth/login`, loginState);
         const { data } = res;
-        // console.log(res)
         dispatch({ type: AuthActionType.LOGIN_SUCCESS, payload: data });
         if(res.status===200){
             history();
              
         }
       } catch (error) {
-        console.log(error)
         if (error.response) {
           dispatch({
             type: AuthActionType.LOGIN_FAIL,
@@ -75,7 +73,6 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
           setErrorHandler({ hasError: true, message: error.response.data.message });
         }
         setErrorHandler({ hasError: true, message: error?.response?.data?.message });
-        // console.log( setErrorHandler());
       }
     };
 };

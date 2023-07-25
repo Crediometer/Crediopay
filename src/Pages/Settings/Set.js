@@ -20,40 +20,33 @@ const Set = ({putsetting, error, loading, getprofile, getdirector, director}) =>
     }
     const handleemailmonthly = async (checked) => {
         setemailmonthly(checked) // update state with new value
-        console.log(emailmonthly)
         // setUpdateState({ ...{emailMonthly: emailmonthly}})
         try {
             putsetting({emailMonthly: emailmonthly})    
         } catch (error) {
-            console.error(error);
         }
     };
     const handleemail = async (checked) => {
         setemail(checked) // update state with new value
         // setUpdateState({ ...{email: email}})
-        console.log(email)
         try {
             putsetting({email:email})    
         } catch (error) {
-            console.error(error);
         }
     };
     const handlesmsmonthly = async (checked) => {
         setsmsmonthly(checked) // update state with new value
-        console.log(smsMonthly)
         try {
             putsetting({smsMonthly: smsMonthly})    
         } catch (error) {
-            console.error(error);
         }
     };
     const handlesms = async (checked) => {
         setsms(checked) // update state with new value
-        console.log(sms)
+
         try {
             putsetting({sms:sms})    
         } catch (error) {
-            console.error(error);
         }
     };
     const getSwitchColorem = () => {

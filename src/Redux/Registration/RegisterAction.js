@@ -20,7 +20,6 @@ export const registerFaliure = (error) => {
   };
 };
 export const transferData = (data) => {
-  console.log("herre ----");
   return {
     type: TRANSFER_DATA,
     payload: data,
@@ -39,22 +38,19 @@ export const registerData = (registerState, history, setErrorHandler) => {
     return async (dispatch) => {
       dispatch(registerRequest())
       try {
-        console.log(registerState);
         const res = await axios.post(
           `${baseUrl}/auth/sendAuthOtp`,
           registerState,
         );
         const { data } = res;
-        console.log(res);
-        console.log(data);
         if (res.status === 200) {
           history()
           dispatch(registerSuccess(data));
           dispatch(transferData(registerState))
         }
       } catch (error) {
-        if (error.response) {
-          dispatch(registerFaliure(error));
+        if (error.response){
+          dispatch(registerFaliure(error.response));
         }
         setErrorHandler({ hasError: true, message: error?.response?.data?.message });
       }

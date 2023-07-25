@@ -11,6 +11,8 @@ import {
     Filler
 } from 'chart.js';
 import { FilledInput } from '@mui/material';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 ChartJS.register(
     LineElement,
@@ -20,6 +22,24 @@ ChartJS.register(
     Filler
 )
 const Graph = ({fetchanalytics, analytics}) => {
+    const [chart, setchart] = useState([])
+
+
+    useEffect(()=>{
+        const fetchgraph = ()=>{
+            axios.get(`https://fe-sandbox-quick-pay.onrender.com/api/v1/dashboard/analytics`)
+            .then( response => {
+                const data = response.data
+                console.log(data)
+            })
+            .catch(error =>{
+                const errorMsg = error.message
+                
+            })
+        }
+        fetchgraph()
+    })
+
     const data = {
         labels:[`${analytics?.data?.data?.analyticsData?.map((month)=>{
             return(`${month.month}`)   

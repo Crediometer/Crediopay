@@ -27,10 +27,7 @@ const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 export const postsetpin = (postdata, history) => {
     return(dispatch) => {
         dispatch(setpinRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
         const headers = {
             "Content-Type": "application/json",
             authorization: `Bearer ${datas?.token?.data?.token?.token}`,
@@ -38,7 +35,6 @@ export const postsetpin = (postdata, history) => {
         axios.post(`${baseUrl}/profile/setting/pin/create`, postdata, { headers: headers })
             .then( response => {
                 const data = response.data
-                console.log(`this is profile analytics--- ${data}`)
                 dispatch(setpinSuccess(data))
                 history()
             })
@@ -76,10 +72,7 @@ export const changepinFaliure = (error) =>{
 export const postchangepin = (postdata, history) => {
     return(dispatch) => {
         dispatch(changepinRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
         const headers = {
             "Content-Type": "application/json",
             authorization: `Bearer ${datas?.token?.data?.token?.token}`,
@@ -87,7 +80,6 @@ export const postchangepin = (postdata, history) => {
         axios.put(`${baseUrl}/profile/setting/pin/update`, postdata, { headers: headers })
             .then( response => {
                 const data = response.data
-                console.log(`this is profile analytics--- ${data}`)
                 dispatch(changepinSuccess(data))
                 history()
             })

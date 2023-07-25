@@ -56,10 +56,10 @@ const Data = ({loading,loading2, data, fetchvasproduct, product, submitting, pos
     const handleAmounttt = (id) =>{
         let num = parseInt(id)
         setAmount(num)
-        console.log(num)
+       
     }
     const handlebundle = (id, am)=>{
-        console.log(id)
+
         let num = parseInt(am)
         setPostState({ ...postState, ...{ bundleCode: id, amount: num} });
     }
@@ -105,16 +105,16 @@ const Data = ({loading,loading2, data, fetchvasproduct, product, submitting, pos
         const value = e.target.value
         setPin3(value)
         const pins = `${pin}${pin1}${pin2}${value}`
-        console.log(pins)
+       
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(`${consts.pub_key}`);
         var encrypted = encrypt.encrypt(pins);
-        console.log(encrypted)
+        
         setPostState({ ...postState, ...{ pin: encrypted } });
     };
     const handlesubmit = (e)=>{
         e.preventDefault();
-        console.log(postState)
+        
         postvasdata(
              postState,()=>{ 
                setshowsuccess(true)
@@ -341,7 +341,7 @@ const Data = ({loading,loading2, data, fetchvasproduct, product, submitting, pos
      );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
+    
     return {
         loading: state.vascategory.loading,
         data: state?.vascategory?.data?.data,

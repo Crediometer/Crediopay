@@ -11,7 +11,6 @@ import preloader from '../../Assets/preloader.json'
 const Main = ({vault, profile, fetchvault, fetchgetprofile, cid, loading}) => {
     const phoneNumber = profile?.phoneNumber
     const newphoneNumber = phoneNumber?.startsWith('+234') ? '0' + phoneNumber.slice(4) : phoneNumber;
-    console.log(newphoneNumber)
     useEffect(() => {
         fetchvault(cid)
         fetchgetprofile()
@@ -62,7 +61,6 @@ const Main = ({vault, profile, fetchvault, fetchgetprofile, cid, loading}) => {
     );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
         loading: state.getprofile.loading,
         vault:state?.vault?.data?.data?.mainAccount,

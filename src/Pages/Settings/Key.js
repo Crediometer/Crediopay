@@ -10,14 +10,18 @@ import { useEffect, useState } from "react";
 import { fetchgetprofile } from "../../Redux/Getprofile/GetprofileAction";
 import { profileFaliure } from "../../Redux/Profile/ProfileAction";
 import { putwebhook } from "../../Redux/Webhook/WebhookAction";
-const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
+import LottieAnimation from "../../Lotties";
+import loader from "../../Assets/loading.json"
+const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error, loading}) => {
     const [pending, setPending] = useState(false)
     const [success, setSuccess] = useState(false)
     const [short, setShort] = useState(false);
     const [short2, setShort2] = useState(false);
     const [type, setType] = useState('text');
     const [icon, setIcon] =useState(faEyeSlash);
-    const [Url, seturl] = useState("")
+    const [type2, setType2] = useState('text');
+    const [icon2, setIcon2] =useState(faEyeSlash);
+    const [url, seturl] = useState("")
     const [hookState, sethookState] = useState(null);
     const [num, setNum] = useState("")
     const [errorHandler, setErrorHandler] = useState([false, ""]);
@@ -40,19 +44,27 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
             setType('text');
         }
     }
+    const vissibleToggle2=()=>{
+        if(type==='text'){
+            setIcon2(faEye);
+            setType2('password');
+        }
+        else{
+            setIcon2(faEyeSlash);
+            setType2('text');
+        }
+    }
     const randomNumberInRange = (min, max) => {
         return Math.floor(Math.random() 
                 * (max - min + 1)) + min;
     };
     useEffect(() => {
         setNum(randomNumberInRange(1, 9));
-        console.log(num)
     }, []);
     const handlewebhook = (e) =>{
         const value = e.target.value;
-        console.log(value);
         seturl(value);
-        sethookState({ ...hookState, ...{Url} });
+        sethookState({ ...hookState, ...{url} });
     }
 
     const handleSubmit = async (e) => {
@@ -60,18 +72,13 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
         
         try{
             await putwebhook(clientid, hookState,()=>{ 
-                console.log("now go to hook..");
                 setSuccess(true);
-                },()=>{ 
-                    console.log(errorHandler)
-                    console.log("now go to error..", error);
+            },()=>{ 
                     setErrorHandler(error)
                     setPending(true);
                 });
-            console.log(hookState)
         }catch(error){
             // setPending(false);
-            console.log("Something went wrong ??? ",error);
         }
     };
     return ( 
@@ -90,7 +97,7 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
             ) : (
                 <div className="key-error-notiication">
                     <p>Please Complete Your Profile</p>
-                    <div className="error-cancle"><FaTimes/></div>
+                    {/* <div className="error-cancle"><FaTimes/></div> */}
                 </div>
             )}
             {pending && (
@@ -131,12 +138,12 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
                     <div className="secret-key-form">
                         <div className="secret-input">
                             <input
-                                type="text"
+                                type={type2}
                                 value={(num % 2 == 0) ? (apiKey) : ("xxxxxxxxxxxxxx")}
                             >
                             </input>
                             <div className="secret-icon">
-                                <FontAwesomeIcon icon={icon} onClick={vissibleToggle}/>
+                                <FontAwesomeIcon icon={icon2} onClick={vissibleToggle2}/>
                                 <IoCopy onClick={handleshort2}/>
                             </div>
                         </div>
@@ -163,7 +170,13 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
                             </div>
                         </div>
                         <div className="secret-submit-2">
-                            <button onClick={handleSubmit}>Set</button>
+                            {loading ? (
+                                <button disabled>
+                                    <LottieAnimation data={loader}/>
+                                </button>
+                            ) : (
+                                <button onClick={handleSubmit}><span>set</span></button>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -173,10 +186,11 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error}) => {
 }
 
 const mapStoreToProps = (state) => {
-    // console.log("states   ", state);
+    // 
     return {
         webhook: state.webhook,
         error: state.webhook.error,
+        loading: state.webhook.loading,
         clientid: state?.getprofile?.data?.client?.clientId,
         apiKey: state?.getprofile?.data?.client?.apiKey
     };

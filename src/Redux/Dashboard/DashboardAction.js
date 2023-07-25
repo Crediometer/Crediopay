@@ -78,14 +78,11 @@ const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 export const fetchanalytics = () => {
     return(dispatch) => {
         dispatch(dashboardRequest)
-        // console.log(`${localStorage.getItem("auth")}`)
+        
         // let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
         axios.get(`${baseUrl}/dashboard/analytics`)
             .then( response => {
                 const data = response.data
-                console.log(`this is dashboard analytics--- ${data}`)
                 dispatch(dashboardSuccess(data))
             })
             .catch(error =>{
@@ -99,14 +96,11 @@ export const fetchanalytics = () => {
 export const fetchrecenttran = () => {
     return(dispatch) => {
         dispatch(recenttranRequest)
-        // console.log(`${localStorage.getItem("auth")}`)
+        
         // let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
         axios.get(`${baseUrl}/dashboard/selectRecentTransactions`)
             .then( response => {
                 const data = response.data
-                console.log(`this is dashboard analytics--- ${data}`)
                 dispatch(recenttranSuccess(data))
             })
             .catch(error =>{
@@ -120,14 +114,11 @@ export const fetchrecenttran = () => {
 export const fetchsumtran = () => {
     return(dispatch) => {
         dispatch(sumtranRequest)
-        // console.log(`${localStorage.getItem("auth")}`)
+        
         // let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
         axios.get(`${baseUrl}/dashboard/calculateTransactionSum`)
             .then( response => {
                 const data = response.data
-                console.log(`this is dashboard analytics--- ${data}`)
                 dispatch(sumtranSuccess(data))
             })
             .catch(error =>{

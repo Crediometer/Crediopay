@@ -58,7 +58,6 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
                     setshowkyc(true);
                     }
             )
-            console.log(postState)
             // postData(nameState);
             // console.log(name)
             // setaccountName(name.data.accountName)
@@ -89,26 +88,18 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
         formData.append('bvn', bvn);
         formData.append('dob',dob);
         formData.append('rcNumber', rcNumber);
-        console.log(file)
-        console.log(formData)
         try{
             
             await business(formData, ()=>{ 
-            console.log("now go to complete..");
             next();
             // setPending(true);
             }, ()=>{ 
-                console.log(errorHandler)
-                console.log("now go to error..", error);
                 setErrorHandler(error)
                 setshowerror(true)
                 // setPending(false);
             });
-            // console.log(formState)
-            // console.log(nameState)
         }catch(error){
-            // setPending(false);
-            console.log("Something went wrong ??? ",error);
+            // setPending(false)
         }
     };
     return ( 
@@ -226,7 +217,6 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
     );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
         error: state.business.error,
         loading: state.business.loading,

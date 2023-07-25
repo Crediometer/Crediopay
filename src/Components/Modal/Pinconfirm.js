@@ -9,7 +9,9 @@ import { fetchBank, postData, reqData } from '../../Redux/Bank/BankAction';
 import { depositData } from '../../Redux/Deposit/DepositAction';
 import SuccessModal from './SuccessModal';
 import Errormodal from './Errormodal';
-const Pinconfirm = ({nameData, deposit, depositData}) => {
+import LottieAnimation from '../../Lotties';
+import loader from "../../Assets/loading.json"
+const Pinconfirm = ({nameData, deposit, depositData,loading}) => {
     const dispatch = useDispatch();
     const [combinedpin, setCombinedpin] = useState('');
     const [successmodal, setSuccessModal] = useState(false);
@@ -56,11 +58,11 @@ const Pinconfirm = ({nameData, deposit, depositData}) => {
         const value = e.target.value
         setPin3(value)
         const pins = `${pin}${pin1}${pin2}${value}`
-        console.log(pins)
+       
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(`${consts.pub_key}`);
         var encrypted = encrypt.encrypt(pins);
-        console.log(encrypted)
+        
         setCombinedpin(encrypted);
     };
 
@@ -214,12 +216,24 @@ const Pinconfirm = ({nameData, deposit, depositData}) => {
                     </div>
                 </div>
                 <div className="form-button">
-                    <button
+                    {loading ? (
+                        <button
+                        className="transfer-button"
+                        disabled>
+                            <LottieAnimation data={loader}/>
+                        </button>
+                    ) : (
+                        <button
+                        className="transfer-button"
+                        onClick={handleSubmit}
+                        ><span>Finish</span></button>
+                    )}
+                    {/* <button
                         type="submit"
                         value="Continue"
                         className="transfer-button"
                         onClick={handleSubmit}
-                    ><span>Finish</span></button>
+                    ><span>Finish</span></button> */}
                     {/* {!loading && <button
                         type="submit"
                         value="Continue"
@@ -242,7 +256,7 @@ const Pinconfirm = ({nameData, deposit, depositData}) => {
 }
 
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
+    
     return {
     bankData: state.bankname,
     nameData: state,

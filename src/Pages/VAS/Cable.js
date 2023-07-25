@@ -69,7 +69,7 @@ const Cable = ({
     const handleAmount = (id) =>{
         let num = parseInt(id)
         setamount(id)
-        console.log(num)
+       
         // setPostState({ ...postState, ...{ amount: id } });
     }
     const handleBundle = (id, am) =>{
@@ -80,7 +80,7 @@ const Cable = ({
     }
     useEffect(() => {
         if(number.length === 10 && serviceid !== ""){
-            console.log(nameState)
+            
             postvasverify(nameState)
         }
     }, [number, serviceid,nameState]);
@@ -123,16 +123,16 @@ const Cable = ({
         const value = e.target.value
         setPin3(value)
         const pins = `${pin}${pin1}${pin2}${value}`
-        console.log(pins)
+       
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(`${consts.pub_key}`);
         var encrypted = encrypt.encrypt(pins);
-        console.log(encrypted)
+        
         setPostState({ ...postState, ...{ pin: encrypted } });
     };
     const handlesubmit = (e)=>{
         e.preventDefault();
-        console.log(postState)
+        
         postvascable(
              postState,()=>{ 
                setshowsuccess(true)
@@ -369,7 +369,7 @@ const Cable = ({
     );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
+    
     return {
         loading: state.vascategory.loading,
         data: state?.vascategory?.data?.data,

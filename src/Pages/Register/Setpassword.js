@@ -9,11 +9,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 // import { traData } from "../../Redux/Registration/RegisterAction";
 import { useSelector } from 'react-redux';
+import LottieAnimation from "../../Lotties";
+import loader from "../../Assets/loading.json"
 const Setpassword = (props) => {
     const {passwordData, loading, phoneNumber,traData, nameData, error}= props
     const history = useNavigate();
     const businessName = useSelector((state) => state.register.registerData.businessName);
-    console.log(businessName)
     const [referredBy, setReferredby] = useState(null);
     const [password, setPassword] = useState(null);
     const [enterPassword, setEnterPassword] = useState("");
@@ -28,7 +29,6 @@ const Setpassword = (props) => {
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(`${consts.pub_key}`);
         var encrypted = encrypt.encrypt(value);
-        console.log(`encrypted   - ${encrypted}`);
         setPassword(encrypted);
         setEnterPassword(value)
         setPasswordsMatch(value === confirmPassword);
@@ -40,7 +40,6 @@ const Setpassword = (props) => {
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(`${consts.pub_key}`);
         var encrypted = encrypt.encrypt(value);
-        console.log(`encrypted   - ${encrypted}`);
         setPassword(encrypted);
         setConfirmPassword(value)
         setPasswordsMatch(value === enterPassword);
@@ -51,7 +50,6 @@ const Setpassword = (props) => {
             const deviceID = Fingerprint2.x64hash128(values.join(''), 31);
             const deviceId = deviceID
             // const deviceId = deviceID
-            console.log(deviceID);
             setFingerprint(deviceID);
             setPasswordState({ ...passwordState, ...{ deviceId} })
           });
@@ -65,18 +63,13 @@ const Setpassword = (props) => {
         e.preventDefault();
         try{
             await passwordData(passwordState, ()=>{ 
-            console.log("now go to login..");
             history(`/`);
             // setPending(true);
             }, ()=>{ 
-                console.log("now go to error..", error);
                 setErrorHandler(error)
                 // setPending(false);
             });
-            console.log(passwordState)
         }catch(e){
-            // setPending(false);
-            console.log("Something went wrong ??? ",e);
         }
     };
     return ( 
@@ -90,11 +83,11 @@ const Setpassword = (props) => {
                     <p className='login-header'>Set Password</p>
                     <p className='login-text'>Enter the password you want?</p>
                 </div>
-                {/* {(errorHandler.dataAdded) ?
+                {(errorHandler?.loading) ?
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         
-                    </div> : <div>{errorHandler}</div>
-                } */}
+                    </div> : <div className="login-error">{errorHandler}</div>
+                }
                 <div className="login-form">
                     <form onSubmit={handleSignUp}>
                         <div className="inputfield-4 loginfield">
@@ -151,12 +144,13 @@ const Setpassword = (props) => {
                             )}
                             {passwordsMatch && (
                                 <div className="submit submit-login">
-                                    <button> <span>Submit</span></button>
-                                    {/* {!loading && <button> <span>Submit</span></button>}
-                                    {loading && <button disabled>  <FontAwesomeIcon
-                                            className="spinner"
-                                            icon={faSpinner}
-                                    ></FontAwesomeIcon></button>} */}
+                                    {loading ? (
+                                        <button disabled>
+                                            <LottieAnimation data={loader}/>
+                                        </button>
+                                    ) : (
+                                        <button><span>Login</span></button>
+                                    )}
                                 </div>
                             )}
                         

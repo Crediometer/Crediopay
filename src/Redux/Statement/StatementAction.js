@@ -26,14 +26,11 @@ const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 export const fetchstatement = (type, loader) => {
     return(dispatch) => {
         dispatch(statementRequest)
-        // console.log(`${localStorage.getItem("auth")}`)
+        
         // let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
         axios.get(`${baseUrl}/transactions/download?format=${type}`)
         .then( response => {
             const data = response.data
-            console.log(`this is statement analytics--- ${data}`)
             if(response.status === 200){
                 loader()
             }

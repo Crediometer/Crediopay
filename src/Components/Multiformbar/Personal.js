@@ -76,20 +76,15 @@ const Personal = ({next, personal, error, loading}) => {
         
         try{
             await personal(nameState, ()=>{ 
-            console.log("now go to business..");
             next();
             // setPending(true);
             }, ()=>{ 
-                console.log(errorHandler)
-                console.log("now go to error..", error);
                 setErrorHandler(error)
                 setshowerror(true)
                 // setPending(false);
             });
-            console.log(nameState)
         }catch(error){
             // setPending(false);
-            console.log("Something went wrong ??? ",error);
         }
     };
 
@@ -220,7 +215,6 @@ const Personal = ({next, personal, error, loading}) => {
 }
 
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
         error: state.personal.error,
         loading: state.personal.loading

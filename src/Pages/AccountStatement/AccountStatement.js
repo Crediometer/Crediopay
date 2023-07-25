@@ -202,7 +202,6 @@ const AccountStatement = ({fetchstatement, profile}) => {
     );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
       statement: state.statement,
       profile: state?.vault?.data?.data?.mainAccount

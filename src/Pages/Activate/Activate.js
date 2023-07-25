@@ -56,7 +56,6 @@ const Activate = ({personal}) => {
     );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
         personal: state?.getprofile?.data?.personalInfo,
     };

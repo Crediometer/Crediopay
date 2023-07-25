@@ -88,7 +88,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
     };
     useEffect(() => {
         setNum(randomNumberInRange(1, 9));
-        console.log(num)
+       
     }, []);
 
     useEffect(() => {
@@ -96,7 +96,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
         fetchvault(cid)
         console.log(bank)
         if (nibssCode !== "" && accountNumber.length === 10) {
-            console.log(nameState)
+            
             postData(nameState);
             console.log(name)
             // setaccountName(name.data.accountName)
@@ -337,7 +337,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
 }
 
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
+    
     return {
       bank: state.bankname.bank,
       name: state?.bankname?.bankname?.data,

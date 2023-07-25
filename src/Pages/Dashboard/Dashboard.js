@@ -55,8 +55,6 @@ const Dashboard = ({fetchanalytics,
     const handleCopy = ()=>{
         copy(vault?.accountBalance);
     }
-    // console.log(cid)
-    // console.log(vault.accountBalance)
     useEffect(() => {
         fetchvault(cid)
         fetchanalytics()
@@ -189,7 +187,6 @@ const Dashboard = ({fetchanalytics,
     );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
         clientid: state?.getprofile?.data?.client?.clientId,
         cid: state?.getprofile?.data?.client?._id,

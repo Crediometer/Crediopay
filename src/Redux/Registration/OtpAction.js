@@ -27,14 +27,11 @@ export const otpData = (otpState, history, setErrorHandler) => {
     return async (dispatch) => {
         dispatch(otpRequest())
       try {
-        console.log(otpState);
         const res = await axios.post(
           `${baseUrl}/auth/VerifyAuthOtp`,
           otpState,
         );
         const { data } = res;
-        console.log(res);
-        console.log(data);
         if (res.status === 200) {
           history()
           dispatch(otpSuccess(data));

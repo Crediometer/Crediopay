@@ -38,43 +38,43 @@ const Registration = ({profile, postbusinesspartner, error, loading}) => {
     };
     const handleFirstname = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setFirstName(value);
         setPostState({ ...postState, ...{firstName: firstname} });
     };
     const handleLastname = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setLastName(value);
         setPostState({ ...postState, ...{lastName: lastname, businessDescription: businessDescription} });
     };
     const handleRole = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setRole(value);
         setPostState({ ...postState, ...{role: role} });
     };
     const handleBusinessDes = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setBusinessDescription(value);
         setPostState({ ...postState, ...{businessDescription: businessDescription} });
     };
     const handleBusinessType = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setBusinessType(value);
         setPostState({ ...postState, ...{businessType: businessType} });
     };
     const handleWorkerRange = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setWorkerRange(value);
         setPostState({ ...postState, ...{workerRange: WorkerRange} });
     };
     const handleBusinessIndustry = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setBusinessIndustry(value);
         setPostState({ ...postState, ...{businessIndustry: businessIndustry} });
     };
@@ -83,16 +83,11 @@ const Registration = ({profile, postbusinesspartner, error, loading}) => {
     }
     const handlesubmit = (e)=>{
         e.preventDefault();
-        console.log(postState)
         postbusinesspartner(
             postState, ()=>{ 
-            console.log("now go to dashboard..");
             history(`/dashboard`);
             // setPending(true);
         },  ()=>{ 
-            // console.log(errorHandler)
-            // console.log("now go to error..", error);
-            // setErrorHandler(error)
             setshowerror(true)
             // setPending(false);
         })

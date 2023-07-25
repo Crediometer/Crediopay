@@ -27,10 +27,7 @@ const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 export const postforgot = (postdata, history, errors) => {
     return(dispatch) => {
         dispatch(forgotRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
         const headers = {
             "Content-Type": "application/json",
             authorization: `Bearer ${datas?.token?.data?.token?.token}`,
@@ -39,7 +36,6 @@ export const postforgot = (postdata, history, errors) => {
         `, postdata, { headers: headers })
             .then( response => {
                 const data = response.data
-                console.log(`this is profile analytics--- ${data}`)
                 dispatch(forgotSuccess(data))
                 history()
             })
@@ -75,10 +71,8 @@ export const otpforgotFaliure = (error) =>{
 export const postotpforgot = (postdata, history) => {
     return(dispatch) => {
         dispatch(otpforgotRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
+
         const headers = {
             "Content-Type": "application/json",
             authorization: `Bearer ${datas?.token?.data?.token?.token}`,
@@ -86,7 +80,6 @@ export const postotpforgot = (postdata, history) => {
         axios.post(`${baseUrl}/profile/setting/pin/otp`, postdata, { headers: headers })
             .then( response => {
                 const data = response.data
-                console.log(`this is profile analytics--- ${data}`)
                 dispatch(otpforgotSuccess(data))
                 history()
             })
@@ -120,10 +113,7 @@ export const newforgotFaliure = (error) =>{
 export const postnewforgot = (postdata, history) => {
     return(dispatch) => {
         dispatch(newforgotRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
         const headers = {
             "Content-Type": "application/json",
             authorization: `Bearer ${datas?.token?.data?.token?.token}`,
@@ -131,7 +121,6 @@ export const postnewforgot = (postdata, history) => {
         axios.put(`${baseUrl}/profile/setting/pin/forgot`, postdata, { headers: headers })
             .then( response => {
                 const data = response.data
-                console.log(`this is profile analytics--- ${data}`)
                 dispatch(newforgotSuccess(data))
                 history()
             })
