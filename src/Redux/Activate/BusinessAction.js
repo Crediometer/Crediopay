@@ -39,7 +39,7 @@ export const postbusiness = (nameState, history, setErrorHandler) => {
             const response =  await axios.post(`${baseUrl}/profile/business-information`, nameState ,{ headers: headers })
             const data = response
             dispatch(businessSuccess(data))
-            if(response.status===200){
+            if(response.status===201){
                 history();
             }
         }

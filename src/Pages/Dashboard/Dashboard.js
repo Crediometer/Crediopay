@@ -21,6 +21,7 @@ import { fetchgetprofile } from "../../Redux/Getprofile/GetprofileAction";
 import { fetchvault } from "../../Redux/Vault/VaultAction";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Navbar from "../../Components/Navbar/Navbar";
+import TransactionTable from "../../Components/Table/TransactionTable";
 const Dashboard = ({fetchanalytics, 
     fetchrecenttran, 
     fetchsumtran, 
@@ -80,7 +81,7 @@ const Dashboard = ({fetchanalytics,
                         <div className="content">
                             <div className={styles.dashboard}>
                                 <div className={styles.dashboardLeft}>
-                                    <div className={styles.dashboardCategory}>
+                                    {/* <div className={styles.dashboardCategory}>
                                         <div className={styles.categoryLeftMobile}>
                                             <div className={styles.categoryLeft}>
                                                 <div className={styles.dropdownButton} onClick={toggleDropdown}>
@@ -139,7 +140,7 @@ const Dashboard = ({fetchanalytics,
                                                 required
                                             ></input>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className={styles.dashboardBalance}>
                                         <div>
                                             <p className={styles.balance}>Balance</p>
@@ -172,7 +173,7 @@ const Dashboard = ({fetchanalytics,
                                         </div>
                                     </div>
                                     <div className={styles.tableContainer}>
-                                        <DashboardTable/>
+                                        <TransactionTable/>
                                     </div>
                                 </div>
                                 <div className={styles.dashboardRight}>
@@ -187,6 +188,7 @@ const Dashboard = ({fetchanalytics,
     );
 }
 const mapStoreToProps = (state) => {
+    console.log(state)
     return {
         clientid: state?.getprofile?.data?.client?.clientId,
         cid: state?.getprofile?.data?.client?._id,

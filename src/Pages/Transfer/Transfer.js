@@ -18,7 +18,7 @@ import { fetchBank, postData, reqData } from '../../Redux/Bank/BankAction';
 import Pinconfirm from '../../Components/Modal/Pinconfirm';
 import { fetchgetprofile } from '../../Redux/Getprofile/GetprofileAction';
 import { fetchvault } from '../../Redux/Vault/VaultAction';
-const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, fetchvault}) => {
+const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, fetchvault, personal, business, fetchgetprofile}) => {
     const dispatch = useDispatch();
     const [showBank, setShowBank] = useState(false);
     const [selectBank, setSelectBank]  = useState("Select a Bank")
@@ -88,12 +88,14 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
     };
     useEffect(() => {
         setNum(randomNumberInRange(1, 9));
-       
+        // fetchBank();
     }, []);
 
     useEffect(() => {
         fetchBank();
+        // fetchBank();
         fetchvault(cid)
+        fetchgetprofile()
         console.log(bank)
         if (nibssCode !== "" && accountNumber.length === 10) {
             
@@ -103,6 +105,10 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
         }
         
     }, [nibssCode, accountNumber, nameState]);
+
+    const handleModal2 = ()=>{
+        setShow(!show)
+    }
       //HANDLE TO SUBMIT TRANSACTION
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -163,7 +169,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                     <img src={credio}></img>
                                                 </div>
                                                 <div className="to-select">
-                                                    <input type="radio" checked={isChecked} onChange={handleClick} name="bank" value="credio"  disabled = {(num % 2 == 0) ? (true) : (false)}></input>
+                                                    <input type="radio" checked={isChecked} onChange={handleClick} name="bank" value="credio"  disabled = {(business.length === 0) ? (true) : (false)}></input>
                                                 </div>
                                             </div>
                                             
@@ -175,7 +181,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                     <BsBank2/>
                                                 </div>
                                                 <div className="to-select">
-                                                    <input type="radio" checked={!isChecked} onChange={handleClick} name="bank" value="credio"  disabled = {(num % 2 == 0) ? (true) : (false)}></input>
+                                                    <input type="radio" checked={!isChecked} onChange={handleClick} name="bank" value="credio"  disabled = {(business.length === 0) ? (true) : (false)}></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -190,8 +196,8 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                     </div> */}
                                     <div className="transfer-account">
                                         <div className="transfer-account-left">
-                                            <p className='account-left-head'>{(num % 2 == 0) ? ('xxxxxxxxxxx') : (profile?.accountName)}</p>
-                                            <p className='account-left-text'>{(num % 2 == 0) ? ('xxxxxxxxxxx') : (profile?.accountNumber)}</p>
+                                            <p className='account-left-head'>{(business.length === 0) ? ('xxxxxxxxxxx') : (profile?.accountName)}</p>
+                                            <p className='account-left-text'>{(business.length === 0) ? ('xxxxxxxxxxx') : (profile?.accountNumber)}</p>
                                         </div>
                                         <div className="transfer-account-right">
                                             <div className="transfer-available">
@@ -205,7 +211,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                 <p className='balance-2'>
                                                 <FormattedNumber
                                                     value=
-                                                        {(num % 2 == 0) ? ('xxxxxxxxxxx') : (profile?.accountBalance)}
+                                                        {(business.length === 0) ? ('xxxxxxxxxxx') : (profile?.accountBalance)}
                                                     
                                                     style="currency"
                                                     currency="NGN"
@@ -222,7 +228,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                             <div className="form-1">
                                                 <div className="input">
                                                     <label className='form-1-label'>Beneficiary’s  Bank </label>
-                                                    <div className="form-1-select" onClick={(num % 2 != 0) && (handleShow)}>
+                                                    <div className="form-1-select" onClick={handleShow}>
                                                         <p>{selectBank}</p>
                                                         <FaChevronDown/>
                                                     </div>
@@ -243,8 +249,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                         <LottieAnimation data={preloader}/> 
                                                         ):(
                                                             <div>
-                                                                {bank?.filter(banks => banks.name.toLowerCase().includes(query)
-                                                                ).map((bank)=>{
+                                                                {bank?.filter(banks => banks.name.toLowerCase().includes(query)).map((bank)=>{
                                                                     return(
                                                                         <div className="banks" onClick={() => {handleBank(bank.bankCode); handleSelectedBank(bank.name); handleShow()}}>
                                                                             <div className="bank-icon">
@@ -267,7 +272,8 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                     onBlur={handleNumber}
                                                     onChange={handleNumber}
                                                     required
-                                                    disabled = {(num % 2 == 0) ? (true) : (false)}
+                                                    maxLength={10}
+                                                    disabled = {(business.length === 0) ? (true) : (false)}
                                                     ></input>
                                                 </div>
                                             </div>
@@ -298,7 +304,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                     onBlur={handleAmount}
                                                     onChange={handleAmount}
                                                     required
-                                                    disabled = {(num % 2 == 0) ? (true) : (false)}
+                                                    disabled = {(business.length === 0) ? (true) : (false)}
                                                     ></input>
                                                 </div>
                                             </div>
@@ -309,7 +315,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                     placeholder="e.g School Fees"
                                                     onBlur={handleComment}
                                                     onChange={handleComment}
-                                                    disabled = {(num % 2 == 0) ? (true) : (false)}
+                                                    disabled = {(business.length === 0) ? (true) : (false)}
                                                     ></input>
                                                 </div>
                                             </div>
@@ -320,7 +326,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                         </div>
                                     </form>
                                 </div>
-                                {show && <Pinconfirm/>}
+                                {show && <Pinconfirm togglemodal={handleModal2}/>}
                             </div>
                         </div>
                         </div>  
@@ -344,6 +350,8 @@ const mapStoreToProps = (state) => {
       transfer: state.transfer,
       profile: state?.vault?.data?.data?.mainAccount,
       cid: state?.getprofile?.data?.client?._id,
+      personal: state?.getprofile?.data?.personalInfo,
+      business: state?.getprofile?.data?.businessInformation
     };
 };
   

@@ -33,6 +33,7 @@ export const fetchvault = (id) => {
           }})
             .then( response => {
                 const data = response.data
+                console.log(data)
                 dispatch(vaultSuccess(data))
             })
             .catch(error =>{

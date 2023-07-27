@@ -11,12 +11,14 @@ import SuccessModal from './SuccessModal';
 import Errormodal from './Errormodal';
 import LottieAnimation from '../../Lotties';
 import loader from "../../Assets/loading.json"
-const Pinconfirm = ({nameData, deposit, depositData,loading}) => {
+import SuccessModal2 from './SuccessModal2';
+import { FaTimes } from 'react-icons/fa';
+const Pinconfirm = ({nameData, deposit, depositData,loading, message, togglemodal}) => {
     const dispatch = useDispatch();
     const [combinedpin, setCombinedpin] = useState('');
     const [successmodal, setSuccessModal] = useState(false);
     const [modal, setModal] = useState(false);
-    const [randomString, setRandomString] = useState('were45ere');
+    const [randomString, setRandomString] = useState('were45er');
     const depositState = useSelector((state) => state.bankname.transferData);
     console.log(depositState)
     const [pin, setPin] = useState("");
@@ -69,6 +71,10 @@ const Pinconfirm = ({nameData, deposit, depositData,loading}) => {
     const handleModal = ()=>{
         setModal(!modal)
     }
+
+    const handleModal2 = ()=>{
+        setSuccessModal(!SuccessModal)
+    }
     // useEffect(() => {
     //     // HANDLE FOR PAYMENTREFERENCE
     //     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -119,7 +125,7 @@ const Pinconfirm = ({nameData, deposit, depositData,loading}) => {
     //   console.log(deposit)
         // console.log(deposit)
         try{
-            await depositData(depositState, () => {
+            await depositData(transfer, () => {
                 setSuccessModal(true);
             }, () => {
                 setModal(true);
@@ -133,7 +139,11 @@ const Pinconfirm = ({nameData, deposit, depositData,loading}) => {
     }
     return ( 
         <div className="modal-background">
+            
             <div className="modal pin-modal">
+                <div className='modalClose' onClick={togglemodal}>
+                    <FaTimes/>
+                </div>
                 <div className="receiver-details">
                     <div className="preview-1 preview-upper">
                     <div className="preview-left">
@@ -247,7 +257,7 @@ const Pinconfirm = ({nameData, deposit, depositData,loading}) => {
                 </div>
             </div>
             {successmodal && (
-                <SuccessModal  link="/nairaaccount"/>
+                <SuccessModal2 message={message}  link="/dashboard" />
             )}{modal && (
                 <Errormodal  togglemodal={handleModal}/>
             )}
@@ -264,7 +274,7 @@ const mapStoreToProps = (state) => {
     loading: state.deposit.loading,
     status: state?.deposit?.deposit?.status,
     error: state?.deposit?.error,
-    message: state?.deposit?.deposit?.message,
+    message: state?.deposit?.data?.message,
     errormessage: state?.deposit?.error?.data?.message
     };
 };

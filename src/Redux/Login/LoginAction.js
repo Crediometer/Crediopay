@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import store from "../Store";
+import { fetchgetprofile } from '../Getprofile/GetprofileAction';
 
 const AuthActionType = {
     // REGISTER_SUCCESS: "REGISTER_SUCCESS",
@@ -38,7 +39,9 @@ const getChat = (jwt) => {
     payload: jwt
   }
 }
-
+const getprofile = () =>{
+  fetchgetprofile()
+}
 // const logout = () => {
 //   var profileData = store.getState().profile.profile;
 //   if (!socket) {
@@ -59,10 +62,12 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
       try {
         const res = await axios.post(`${baseUrl}/auth/login`, loginState);
         const { data } = res;
+       
         dispatch({ type: AuthActionType.LOGIN_SUCCESS, payload: data });
         if(res.status===200){
-            history();
-             
+            console.log(data)
+            // getprofile()
+            history();        
         }
       } catch (error) {
         if (error.response) {

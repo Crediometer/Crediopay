@@ -6,40 +6,77 @@ import { FormattedNumber, IntlProvider } from "react-intl";
 import './AccountStatement.css';
 import copy from 'copy-to-clipboard'
 import TransactionTable from '../../Components/Table/TransactionTable';
-import { useState } from 'react';
-import { FaFileExcel, FaFilePdf, FaSearch } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { FaChevronDown, FaFileExcel, FaFilePdf, FaSearch } from 'react-icons/fa';
 import { BsCalendar2Week } from 'react-icons/bs';
 import { fetchstatement } from '../../Redux/Statement/StatementAction';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
 import DashboardTable from '../../Components/Table/DashboardTable';
-const AccountStatement = ({fetchstatement, profile}) => {
+import { fetchvault } from '../../Redux/Vault/VaultAction';
+import { fetchgetprofile } from '../../Redux/Getprofile/GetprofileAction';
+
+function getDate() {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    return `${year}-${month}-${date}`;
+}
+const AccountStatement = ({fetchstatement, profile, cid, fetchgetprofile, fetchvault}) => {
     const [loader, setLoader] = useState(false)
     const [filter, setFilter] = useState(false)
     const [dropdown, setDropdown] = useState(false)
     const [isActive, setIsActive] = useState(1);
+    const [startDate, setstartdate] = useState(getDate())
+    const [endDate, setenddate] =useState('')
     const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [isDropdownOpen2, setDropdownOpen2] = useState(false);
     const [selectedOption, setSelectedOption] = useState('All');
     const [selectedBox, setSelectedBox] = useState(1);
     const [sidebar, setSidebar] = useState(false);
+    const [query, setQuery] = useState("")
+    const [money, setmoney] = useState("All")
+    const [success, setsuccess] = useState("All")
     const toggleSidebar = () => {
       setSidebar((prevState) => !prevState);
     };
-
+    const toggleDropdown = () => {
+        setDropdownOpen(!isDropdownOpen);
+    };
     const handlefilter = ()=>{
         setFilter(!filter)
     }
     const handleDropdown = () =>{
         setDropdown(!dropdown)
     }
+    const handlestartdate = (e)=>{
+        const value = e.target.value
+        console.log(value)
+        setstartdate(value)
+    }
+    const handlestatus = (id)=>{
+        setsuccess(id)
+    }
+    const handlemode = (e)=>{
+        const value = e.target.value
+        console.log(value)
+        let num = parseInt(value)
+        setmoney(value)
+    }
+    const handleenddate = (e)=>{
+        const value = e.target.value
+        console.log(value)
+        setenddate(value)
+    }
     const handlepdf = () =>{
-        fetchstatement('pdf',()=>{
+        fetchstatement('pdf',startDate, endDate,()=>{
             setLoader(false)
         })
         setLoader(true)
     }
     const handleexcel = () =>{
-        fetchstatement('excel', ()=>{
+        fetchstatement('excel',startDate, endDate, ()=>{
             setLoader(false)
         })
         setLoader(true)
@@ -58,6 +95,11 @@ const AccountStatement = ({fetchstatement, profile}) => {
     const handleCopy = ()=>{
         copy(profile?.accountNumber);
     }
+    const myClassName = `${styles.status} ${isActive ? styles.active : ''}`;
+    useEffect(() => {
+        fetchvault(cid)
+        fetchgetprofile()
+    }, [cid]);
     return ( 
         <div className="test">
             <div className="left">
@@ -114,56 +156,74 @@ const AccountStatement = ({fetchstatement, profile}) => {
                         </div>
                         {filter && (
                             <div className="statement-sub-head">
-                                <div className="statement-sub-head-left">
+                                <div className={styles.categoryLeftMobile}>
                                     <div className={styles.categoryLeft}>
-                                        <div className={`${styles.status} ${isActive === 1 ? styles.active : ''}`} onClick={()=>{handleClick(1); handleOptionClick('All');}}>
-                                            <p>All</p>
+                                        <div className={styles.dropdownButton} onClick={toggleDropdown}>
+                                            <p>{selectedOption}</p>
+                                            <FaChevronDown/>
                                         </div>
-                                        <div className={`${styles.status} ${isActive === 2 ? styles.active : ''}`} onClick={()=>{handleClick(2); handleOptionClick('Successful');}}>
-                                            <p>Successful</p>
-                                        </div>
-                                        <div className={`${styles.status} ${isActive === 3 ? styles.active : ''}`} onClick={()=>{handleClick(3); handleOptionClick('Pending');}}>
-                                            <p>Pending</p>
-                                        </div>
-                                        <div className={`${styles.status} ${isActive === 4 ? styles.active : ''}`} onClick={()=>{handleClick(4); handleOptionClick('Failed');}}>
-                                            <p>Failed</p>
-                                        </div>
+                                        {isDropdownOpen && (
+                                            <div className={styles.categoryLeftInner}>
+                                                <div className={` ${selectedBox === 2 ? 'selected-box' : ''}`} onClick={()=>{handleClick(); handleOptionClick('All'); handlestatus("All")}}>
+                                                    <p>All</p>
+                                                </div>
+                                                <div className={myClassName} onClick={()=>{handleClick(); handleOptionClick('Successful'); handlestatus(0)}}>
+                                                    <p>Successful</p>
+                                                </div>
+                                                <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Failed'); handlestatus("1")}}>
+                                                    <p>Failed</p>
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
-                                <div className="statement-sub-head-center">
-                                    <div className='statement-filter'>
-                                        <select>
-                                            <optgroup>
-                                                <option>Money In</option>
-                                                <option>Money Out</option>
-                                            </optgroup>
-                                        </select>
-                                        <input
-                                            type='text'
-                                            placeholder='Start Date'
-                                            className='transferfield'
-                                            onFocus={(e) => (e.target.type = "date")}
-                                            onBlur={(e) => {(e.target.type = "text");}}
-                                            required
-                                        ></input>
-                                        <input
-                                            type='text'
-                                            placeholder='End Date'
-                                            className='transferfield'
-                                            onFocus={(e) => (e.target.type = "date")}
-                                            onBlur={(e) => {(e.target.type = "text");}}
-                                            required
-                                        ></input>
+                                <div className={styles.categoryLeftDesktop}>
+                                    <div className={styles.categoryLeft}>
+                                            <div className={`${styles.status} ${isActive === 1 ? styles.active : ''}`} onClick={()=>{handleClick(1); handleOptionClick('All'); handlestatus("All")}}>
+                                                <p>All</p>
+                                            </div>
+                                            <div className={`${styles.status} ${isActive === 2 ? styles.active : ''}`} onClick={()=>{handleClick(2); handleOptionClick('Successful');  handlestatus("0")}}>
+                                                <p>Successful</p>
+                                            </div>
+                                            <div className={`${styles.status} ${isActive === 4 ? styles.active : ''}`} onClick={()=>{handleClick(4); handleOptionClick('Failed');  handlestatus("1")}}>
+                                                <p>Failed</p>
+                                            </div>
                                     </div>
                                 </div>
-                                <div className="statement-sub-head-right">
-                                    <div className='categorySearch'>
-                                        <FaSearch/>
-                                        <input
+                                <div className='categoryRight'>
+                                    <select onChange={handlemode}>
+                                        <optgroup>
+                                            <option value='All'>All</option>
+                                            <option value='1'>Money In</option>
+                                            <option value="0">Money Out</option>
+                                        </optgroup>
+                                    </select>
+                                    <input
                                         type='text'
-                                        placeholder='find using ID'
-                                        ></input>
-                                    </div>
+                                        placeholder='Start Date'
+                                        className='transferfield'
+                                        onFocus={(e) => (e.target.type = "date")}
+                                        onBlur={(e) => {(e.target.type = "text");}}
+                                        onChange={handlestartdate}
+                                        required
+                                    ></input>
+                                    <input
+                                        type='text'
+                                        placeholder='End Date'
+                                        className='transferfield'
+                                        onFocus={(e) => (e.target.type = "date")}
+                                        onBlur={(e) => {(e.target.type = "text");}}
+                                        onChange={handleenddate}
+                                        required
+                                    ></input>
+                                </div>
+                                <div className='categorySearch'>
+                                    <FaSearch/>
+                                    <input
+                                    type='text'
+                                    placeholder='find using ID'
+                                    onChange={(e)=> setQuery(e.target.value)}
+                                    ></input>
                                 </div>
                             </div>
                         )}
@@ -192,7 +252,7 @@ const AccountStatement = ({fetchstatement, profile}) => {
                             </div>
                             <div className="statement-table">
                                 {/* <TransactionTable/> */}
-                                <DashboardTable/>
+                                <DashboardTable search={query} money={money} status={success}/>
                             </div>
                         </div>
                     </div>
@@ -203,14 +263,17 @@ const AccountStatement = ({fetchstatement, profile}) => {
 }
 const mapStoreToProps = (state) => {
     return {
-      statement: state.statement,
-      profile: state?.vault?.data?.data?.mainAccount
+        cid: state?.getprofile?.data?.client?._id,
+        statement: state.statement,
+        profile: state?.vault?.data?.data?.mainAccount
     };
 };
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchstatement: (type, loader) => dispatch(fetchstatement(type, loader)),
+        fetchgetprofile: () => dispatch(fetchgetprofile()),
+        fetchvault: (id) => dispatch(fetchvault(id)),
+        fetchstatement: (type,endDate, startDate, loader) => dispatch(fetchstatement(type,endDate, startDate, loader)),
     };
 };
 export default connect(mapStoreToProps, mapDispatchToProps)(AccountStatement);

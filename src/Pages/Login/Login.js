@@ -74,12 +74,14 @@ const Login = (props) => {
     //FOR LOGIN PROCESS
     const handleSignUp = async (e) => {
         e.preventDefault();
-        
+        fetchgetprofile()
         try{
             await login(loginState, ()=>{ 
             fetchgetprofile()
-            if(getprofile === {}){
+            console.log(getprofile)
+            if(getprofile === null){
                 history(`/registration`);
+                console.log("yess")
             }else{
                 history(`/dashboard`)
             }

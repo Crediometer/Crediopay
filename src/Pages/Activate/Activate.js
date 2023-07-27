@@ -10,7 +10,8 @@ import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
 const Activate = ({personal}) => {
     let initialCount;
-    if (personal==={}) {
+    console.log()
+    if (!personal.personalInfo || !Array.isArray(personal.personalInfo)) {
       initialCount = 1;
     } else {
       initialCount = 2;
@@ -24,7 +25,7 @@ const Activate = ({personal}) => {
         window.scrollTo(0, 0);
         if (index < 4){
             setIndex(prevIndex => prevIndex + 1)
-        }
+        } 
     }
     return (
         <div className="test">
@@ -45,7 +46,7 @@ const Activate = ({personal}) => {
                                 {index===1 && (<Personal next={nextButton}/>)}
                                 {index===2 && (<Business next={nextButton}/>)}
                                 {/* {index===3 && (<Verification/>)} */}
-                                {index===4 && (<Payout/>)}
+                                {index===3 && (<Payout/>)}
                             </div>
                             {/* <button onClick={nextButton} className={styles.activateButton}>Save</button> */}
                         </div>
@@ -57,7 +58,7 @@ const Activate = ({personal}) => {
 }
 const mapStoreToProps = (state) => {
     return {
-        personal: state?.getprofile?.data?.personalInfo,
+        personal: state?.getprofile?.data,
     };
 };
 

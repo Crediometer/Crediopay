@@ -84,7 +84,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('mermat',file);
+        formData.append('mermat',filename2);
         formData.append('bvn', bvn);
         formData.append('dob',dob);
         formData.append('rcNumber', rcNumber);
@@ -92,6 +92,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
             
             await business(formData, ()=>{ 
             next();
+            console.log("done")
             // setPending(true);
             }, ()=>{ 
                 setErrorHandler(error)
@@ -126,7 +127,6 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
                         type="date"
                         // placeholder="Enter Rc Number"
                         onBlur={handledob}
-                        onChange={handledob}
                     >
                     </input>
                 </div>
@@ -149,14 +149,20 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
                <div className="files">
                 <div className="filedisplay">
                     {filename2!=''?(
-                        <p className='select-filename'><span onClick={()=>{setFilename2(""); setImage2(null)}}><FaTimesCircle/> Remove File</span></p>
+                        <p className='select-filename'><span onClick={()=>{setFilename2(""); setImage2(null)}}><FaTimesCircle/>Remove File</span>{filename2.name}</p>
                         ):
                         <p><AiOutlineFile/> No file chosen</p>
                     }
                 </div>
                 <div className="filechose" onClick={()=>document.querySelector(".upload").click()}>
                     <input type="file" className='upload' hidden
-                       onChange={(e) => setFile(e.target.files[0])}
+                        onChange={({target: {files}})=>{
+                            files[0] && setFilename2(files[0])
+                            if(files){
+                                setImage2(URL.createObjectURL(files[0]))
+                                // setNameState({ ...nameState, ...{ filename: image } });
+                            }
+                        }}
                         // onBlur={handlemermat}
                     ></input>
                     <p>Choose File</p>

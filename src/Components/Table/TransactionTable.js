@@ -10,7 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import './DashboardTable.css';
-const TransactionTable = ({fetchtransaction, }) => {
+const TransactionTable = ({fetchtransaction,recent,transaction}) => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -37,7 +37,6 @@ const TransactionTable = ({fetchtransaction, }) => {
                             <TableCell className='tablecell-head'><p>Transaction Id</p></TableCell>
                             <TableCell className='tablecell-head'><p>Amount</p></TableCell>
                             <TableCell className='tablecell-head'><p>Status</p></TableCell>
-                            <TableCell className='tablecell-head'></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -45,38 +44,58 @@ const TransactionTable = ({fetchtransaction, }) => {
                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map((row) => {
                             return ( */}
-                            <TableRow hover role="checkbox" tabIndex={-1}>
-                                <TableCell className='tablecell-body'>
-                                    <div className="recipient" >
-                                        <div className="recipient-text" >
-                                            <p className="recipient-name" >Olalekan Mercy</p>
-                                            <p className="recipient-title">Recipient</p>
-                                        </div>
-                                    </div>
-                                </TableCell>
-                                <TableCell className='tablecell-body'>
-                                    <div className="transaction-data" >
-                                        <p className="date">May 15, 2022</p>
-                                        <p className="time">02:15 PM</p>
-                                    </div>
-                                </TableCell>
-                                <TableCell className='tablecell-body' >
-                                    <p className='transaction-text'>EFTOOM1271</p>
-                                </TableCell>
-                                <TableCell className='tablecell-body' >
-                                    <p className='transaction-text'>N20,000.00</p>
-                                </TableCell>
-                                <TableCell className='tablecell-body'>
-                                    <div className="status-button">
-                                        <button>Successful</button>
-                                    </div>
-                                </TableCell>
-                                <TableCell className='tablecell-body'>
-                                    <div className="status-button">
-                                        <button>view</button>
-                                    </div>
-                                </TableCell>
-                            </TableRow>
+                            {recent?.data?.data?.map((transaction)=>{
+                                return(
+                                    <TableRow hover role="checkbox" tabIndex={-1}>
+                                        <TableCell className='tablecell-body'>
+                                            <div className="recipient" >
+                                                {/* <img></img> */}
+                                                <div className="recipient-text" >
+                                                {(transaction.status === 0)?(
+                                                    <div>
+                                                        <p className="recipient-name" >{transaction.referenceData.creditAccountName}</p>
+                                                    </div>
+                                                ):(
+                                                    <div>
+                                                        <p className="recipient-name" >{transaction.narration}</p>
+                                                    </div>
+                                                )}
+                                                {(transaction.mode === 0)?(
+                                                    <p className="recipient-title">Outgoing</p>
+                                                ):(
+                                                    <p className="recipient-title">Incoming</p>
+                                                )}
+                                                    {/* <p className="recipient-name" >{transaction.to}</p> */}
+                                                </div>
+                                            </div>
+                                        </TableCell>
+                                        <TableCell className='tablecell-body'>
+                                            <div className="transaction-data" >
+                                                <p className="date">{transaction.createdAt.slice(0, 10)}</p>
+                                                <p className="time">{transaction.createdAt.slice(11, 16)}</p>
+                                            </div>
+                                        </TableCell>
+                                        <TableCell className='tablecell-body' >
+                                            <p className='transaction-text'>{transaction._id}</p>
+                                        </TableCell>
+                                        <TableCell className='tablecell-body' >
+                                            <p className='transaction-text'>N{transaction.amount}</p>
+                                        </TableCell>
+                                        <TableCell className='tablecell-body'>
+                                            {(transaction.status === 0)?(
+                                                <div className="status-button">
+                                                    <button>Successful</button>
+                                                </div>
+                                            ):(
+                                                <div className="status-button-red">
+                                                    <button>Failed</button>
+                                                </div>
+                                            )}
+                                            
+                                        </TableCell>
+                                    </TableRow>
+                                )
+                            })}
                             {/* );
                         })} */}
                     </TableBody>
@@ -90,6 +109,7 @@ const TransactionTable = ({fetchtransaction, }) => {
 const mapStoreToProps = (state) => {
     return {
       recent: state.recenttransaction,
+      transaction: state.transaction
     };
 };
   

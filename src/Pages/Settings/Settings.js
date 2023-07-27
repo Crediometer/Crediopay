@@ -12,7 +12,7 @@ import ChangePin from './SetPin/ChangePin';
 import { connect } from 'react-redux';
 import { fetchgetprofile } from '../../Redux/Getprofile/GetprofileAction';
 import SuccessModal from '../../Components/Modal/SuccessModal';
-const Settings = ({fetchgetprofile, pinCode}) => {
+const Settings = ({fetchgetprofile, data}) => {
     const [show, setShow] = useState(1);
     const [sidebar, setSidebar] = useState(false);
     const toggleSidebar = () => {
@@ -60,7 +60,7 @@ const Settings = ({fetchgetprofile, pinCode}) => {
                             { (show === 5) && <Key/>}      
                             { (show === 6) && (
                                 <div>
-                                    {(pinCode === "") ? (<SetPin/>) : (<ChangePin/>)}
+                                    {(data.data.some((item) => item === 'pinCode')) ? (<ChangePin/>) : (<SetPin/>)}
                                 </div>
                             )}         
                         </div>
@@ -74,7 +74,7 @@ const Settings = ({fetchgetprofile, pinCode}) => {
 }
 const mapStateToProps = state => {
     return{
-        pinCode: state.getprofile.data.pinCode
+        data: state.getprofile
     }
 }
 

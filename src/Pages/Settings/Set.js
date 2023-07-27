@@ -78,9 +78,10 @@ const Set = ({putsetting, error, loading, getprofile, getdirector, director}) =>
                         return(
                             <div className="director">
                                 <p className="director-name">{director.directorName}</p>
-                                <div className="delete">
+                                <p className="director-role">{director.role}</p>
+                                {/* <div className="delete">
                                     <FaTrash/>
-                                </div>
+                                </div> */}
                             </div>
                         )
                     })}

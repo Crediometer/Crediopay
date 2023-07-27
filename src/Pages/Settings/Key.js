@@ -11,8 +11,9 @@ import { fetchgetprofile } from "../../Redux/Getprofile/GetprofileAction";
 import { profileFaliure } from "../../Redux/Profile/ProfileAction";
 import { putwebhook } from "../../Redux/Webhook/WebhookAction";
 import LottieAnimation from "../../Lotties";
-import loader from "../../Assets/loading.json"
-const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error, loading}) => {
+import loader from "../../Assets/loading.json";
+import validator from 'validator'
+const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error, loading, personal, business}) => {
     const [pending, setPending] = useState(false)
     const [success, setSuccess] = useState(false)
     const [short, setShort] = useState(false);
@@ -62,9 +63,9 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error, loading}) => 
         setNum(randomNumberInRange(1, 9));
     }, []);
     const handlewebhook = (e) =>{
-        const value = e.target.value;
+        const value = validator.trim(e.target.value);
         seturl(value);
-        sethookState({ ...hookState, ...{url} });
+        sethookState({ ...hookState, ...{webhook: url} });
     }
 
     const handleSubmit = async (e) => {
@@ -92,7 +93,7 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error, loading}) => 
                     <p>Test</p>
                 </div>
             </div> */}
-            {(num % 2 == 0) ? (
+            {(business.length !== 0) ? (
               <div></div>  
             ) : (
                 <div className="key-error-notiication">
@@ -120,7 +121,7 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error, loading}) => 
                         <div className="secret-input">
                             <input
                                 type={type}
-                                value={(num % 2 == 0) ? (clientid) : ("xxxxxxxxxxxxxx")}
+                                value={(business.length !== 0) ? (clientid) : ("xxxxxxxxxxxxxx")}
                             >
                             </input>
                             <div className="secret-icon">
@@ -139,7 +140,7 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error, loading}) => 
                         <div className="secret-input">
                             <input
                                 type={type2}
-                                value={(num % 2 == 0) ? (apiKey) : ("xxxxxxxxxxxxxx")}
+                                value={(business.length !== 0) ? (apiKey) : ("xxxxxxxxxxxxxx")}
                             >
                             </input>
                             <div className="secret-icon">
@@ -175,7 +176,7 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error, loading}) => 
                                     <LottieAnimation data={loader}/>
                                 </button>
                             ) : (
-                                <button onClick={handleSubmit}><span>set</span></button>
+                                <button onClick={handleSubmit} disabled = {(business.length !== 0) ? (false) : (true)}><span>set</span></button>
                             )}
                         </div>
                     </div>
@@ -191,8 +192,10 @@ const mapStoreToProps = (state) => {
         webhook: state.webhook,
         error: state.webhook.error,
         loading: state.webhook.loading,
-        clientid: state?.getprofile?.data?.client?.clientId,
-        apiKey: state?.getprofile?.data?.client?.apiKey
+        clientid: state?.getprofile?.data?.client?._id,
+        apiKey: state?.getprofile?.data?.client?.apiKey,
+        personal: state?.getprofile?.data?.personalInfo,
+        business: state?.getprofile?.data?.businessInformation
     };
 };
   

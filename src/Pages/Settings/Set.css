@@ -54,15 +54,23 @@
     background: #EDEDED;
     border-radius: 4px;
     padding: 1.1875rem 1.5625rem;
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; */
 }
 .director-name{
     font-family: 'Poppins';
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 1.25rem;
+    color: rgba(0, 0, 0, 0.8);
+}
+.director-role{
+    margin-top: 8px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.6rem;
     color: rgba(0, 0, 0, 0.8);
 }
 .set-settings{
