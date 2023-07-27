@@ -55,7 +55,7 @@ const getprofile = () =>{
 // }
 
 const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
-
+let autoLogoutTimer;
 const LoginAuthAction = (loginState, history, setErrorHandler) => {
     return async (dispatch) => {
       dispatch({type: AuthActionType.LOGIN_START})
@@ -66,6 +66,9 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
         dispatch({ type: AuthActionType.LOGIN_SUCCESS, payload: data });
         if(res.status===200){
             console.log(data)
+            autoLogoutTimer = setTimeout(() => {
+              dispatch(LogOutAuthAction(history));
+            }, 420000);
             // getprofile()
             history();        
         }
@@ -83,6 +86,7 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
 };
 const LogOutAuthAction = (history) => {
   // logout();
+  clearTimeout(autoLogoutTimer)
   return async (dispatch) => {
     try {
       // const res = await axios.get("https://credio-api.herokuapp.com/api/v1/auth/login");

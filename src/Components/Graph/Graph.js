@@ -23,26 +23,32 @@ ChartJS.register(
 )
 const Graph = ({fetchanalytics, analytics}) => {
     const [chart, setchart] = useState([])
-
-
+    const [numbers, setNumbers] = useState([]);
+    const [months, setMonths] = useState([]);
+    const monthMapping = {
+        1: 'Jan',
+        2: 'Feb',
+        3: 'Mar',
+        4: 'Apr',
+        5: 'May',
+        6: 'Jun',
+        7: 'Jul',
+        8: 'Aug',
+        9: 'Sep',
+        10: 'Oct',
+        11: 'Nov',
+        12: 'Dec',
+      };
     useEffect(()=>{
-        const fetchgraph = ()=>{
-            axios.get(`https://fe-sandbox-quick-pay.onrender.com/api/v1/dashboard/analytics`)
-            .then( response => {
-                const data = response.data
-                console.log(data)
-            })
-            .catch(error =>{
-                const errorMsg = error.message
-                
-            })
-        }
-        fetchgraph()
-    })
+        const sortedNumbers = analytics?.data?.data?.analyticsData?.sort((a, b) => a.month - b.month);
+        setNumbers(sortedNumbers);
+        const assignedMonths = sortedNumbers.map((number) => monthMapping[number.month]);
+        setMonths(assignedMonths);
+    }, [analytics])
 
     const data = {
-        labels: analytics?.data?.data?.analyticsData?.map((month)=>{
-            return(`${month.month}`)   
+        labels:numbers.map((number, index) => {
+            return(`${months[index]}`)
         }),
         datasets: [{
             data:analytics?.data?.data?.analyticsData?.map((month)=>{
