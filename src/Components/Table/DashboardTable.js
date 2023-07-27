@@ -24,7 +24,7 @@ const StyledPagination = styled(Pagination)(({ theme }) => ({
         }   
       }
 }));
-const DashboardTable = ({fetchrecenttran, recent, search, money, status, transaction, fetchtransaction}) => {
+const DashboardTable = ({fetchrecenttran, recent, search, money, status, transaction, fetchtransaction,start, end}) => {
     const [page, setPage] = React.useState(0);
     const [page2, setPage2] = React.useState(1);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -114,7 +114,7 @@ const DashboardTable = ({fetchrecenttran, recent, search, money, status, transac
                                         transactions?.narration?.toLowerCase().includes(search) || 
                                         transactions?.referenceData?.creditAccountName?.toLowerCase().includes(search)
                                     );
-                                } } )
+                                }}).sort((a, b) => new Date(a.start) - new Date(b.end))
                             .map((transaction)=>{
                                 return(
                                     <TableRow hover role="checkbox" tabIndex={-1}>

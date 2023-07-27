@@ -44,7 +44,7 @@ function App() {
               <Route path="/signup" element={<Register/>}/>
               <Route path="/otp" element={<Otp/>}/>
               <Route path="password" element={<Setpassword/>}/>
-              <Route element={<AuthenticatedRoute/>}>
+              {/* <Route element={<AuthenticatedRoute/>}> */}
                   <Route exact path='/registration' element={<Registration/>}></Route>
                   <Route exact path='/dashboard' element={<Dashboard/>}></Route>
                   <Route path="/activate" element={<Activate/>}/>
@@ -65,7 +65,7 @@ function App() {
                   <Route path='/forgototp' element={<Forgototp/>}/>
                   <Route path='/forgotnew' element={<Password/>}/>
                   <Route path='/vas' element={<Vas/>}/>
-              </Route>
+              {/* </Route> */}
             </Routes>
       </Provider>
     </Router>

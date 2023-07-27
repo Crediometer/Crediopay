@@ -33,6 +33,8 @@ const Transaction = ({fetchtransaction, profile,fetchgetprofile, fetchvault, cid
     const [query, setQuery] = useState("")
     const [money, setmoney] = useState("All")
     const [success, setsuccess] = useState("All")
+    const [startdate, setstartdate] = useState(null)
+    const [enddate, setenddate] = useState(null)
     const toggleSidebar = () => {
       setSidebar((prevState) => !prevState);
     };
@@ -47,6 +49,14 @@ const Transaction = ({fetchtransaction, profile,fetchgetprofile, fetchvault, cid
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
     };
+    const handlestartdate = (e)=>{
+       const value = e.target.value;
+       setstartdate(value)
+    }
+    const handlenddate = (e)=>{
+        const value = e.target.value;
+        setenddate(value)
+     }
     const handleClick = id => {
       // 👇️ toggle isActive state on click
       setIsActive(id);
@@ -135,8 +145,8 @@ const Transaction = ({fetchtransaction, profile,fetchgetprofile, fetchvault, cid
                         <p className='transaction-head'>Transactions</p>
                         <div className="transaction-body">
                             <div className='dashboardCategory'>
-                                <div className={styles.categoryLeftMobile}>
-                                    <div className={styles.categoryLeft}>
+                                <div className="categoryLeftMobile">
+                                    <div className="categoryLeft">
                                         <div className={styles.dropdownButton} onClick={toggleDropdown}>
                                             <p>{selectedOption}</p>
                                             <FaChevronDown/>
@@ -183,12 +193,13 @@ const Transaction = ({fetchtransaction, profile,fetchgetprofile, fetchvault, cid
                                             <option value="0">Money Out</option>
                                         </optgroup>
                                     </select>
-                                    <input
+                                    {/* <input
                                         type='text'
                                         placeholder='Start Date'
                                         className='transferfield'
                                         onFocus={(e) => (e.target.type = "date")}
                                         onBlur={(e) => {(e.target.type = "text");}}
+                                        onChange={handlestartdate}
                                         required
                                     ></input>
                                     <input
@@ -197,8 +208,9 @@ const Transaction = ({fetchtransaction, profile,fetchgetprofile, fetchvault, cid
                                         className='transferfield'
                                         onFocus={(e) => (e.target.type = "date")}
                                         onBlur={(e) => {(e.target.type = "text");}}
+                                        onChange={handlenddate}
                                         required
-                                    ></input>
+                                    ></input> */}
                                 </div>
                                 <div className='categorySearch'>
                                     <FaSearch/>
@@ -211,7 +223,7 @@ const Transaction = ({fetchtransaction, profile,fetchgetprofile, fetchvault, cid
                             </div>
                             <div className="transaction-table">
                                 {/* <TransactionTable/> */}
-                                <DashboardTable search={query} money={money} status={success}/>
+                                <DashboardTable search={query} money={money} status={success} start={startdate} end={enddate}/>
                             </div>
                             
                         </div>
