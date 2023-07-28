@@ -20,6 +20,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { fetchgetprofile } from "../../Redux/Getprofile/GetprofileAction";
 import { fetchvault } from "../../Redux/Vault/VaultAction";
 import Sidebar from "../../Components/Sidebar/Sidebar";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import TransactionTable from "../../Components/Table/TransactionTable";
 const Dashboard = ({fetchanalytics, 
@@ -33,12 +34,14 @@ const Dashboard = ({fetchanalytics,
     fetchvault, 
     clientid,
     cid,
-    vault
+    vault,getprofile
 }) => {
     const [isActive, setIsActive] = useState(1);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('All');
     const [sidebar, setSidebar] = useState(false);
+    const [getProfileFetched, setGetProfileFetched] = useState(false);
+    const history = useNavigate();
     const toggleSidebar = () => {
       setSidebar((prevState) => !prevState);
     };
@@ -56,7 +59,20 @@ const Dashboard = ({fetchanalytics,
     const handleCopy = ()=>{
         copy(vault?.accountBalance);
     }
+    const fetchData = async () => {
+        try {
+          // Fetch getprofile data
+          await fetchgetprofile();
+          // Mark fetchgetprofile as successful
+          setGetProfileFetched(true);
+        } catch (error) {
+          console.log("Error fetching getprofile:", error);
+          setGetProfileFetched(true); // Still set to true, even on failure to avoid infinite loop
+        }
+    };
+    
     useEffect(() => {
+        fetchData();
         fetchvault(cid)
         fetchanalytics()
         fetchrecenttran()
@@ -64,6 +80,12 @@ const Dashboard = ({fetchanalytics,
         fetchgetprofile()
         fetchprofile()
     }, [cid]);
+
+    useEffect(() => {
+        if (getProfileFetched && !getprofile) {
+            history("/registration");
+        }
+    }, [getprofile, history, getProfileFetched]);
     const myClassName = `${styles.status} ${isActive ? styles.active : ''}`;
     return ( 
         <div>
@@ -196,7 +218,8 @@ const mapStoreToProps = (state) => {
         recent: state.recenttransaction,
         sum: state.sumtransaction,
         profile: state.profile, 
-        vault:state?.vault?.data?.data?.mainAccount
+        vault:state?.vault?.data?.data?.mainAccount,
+        getprofile: state?.getprofile?.data?.businessPartnerInfo
     };
 };
   

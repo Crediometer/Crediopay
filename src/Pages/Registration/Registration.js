@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux'
 import styles from './Registration.module.css';
 import { useNavigate } from 'react-router-dom';
@@ -13,9 +13,10 @@ import { postbusinesspartner } from '../../Redux/BusinessPartner/BusinessAction'
 import Errormodal from '../../Components/Modal/Errormodal';
 import LottieAnimation from '../../Lotties';
 import loader from "../../Assets/loading.json";
+import { fetchgetprofile } from '../../Redux/Getprofile/GetprofileAction';
 const options = [{name:'name'},{name:'games'}];
 
-const Registration = ({profile, postbusinesspartner, error, loading}) => {
+const Registration = ({profile, postbusinesspartner, error, loading, getprofile}) => {
     const [selectedOption, setSelectedOption] = useState('');
     const [sidebar, setSidebar] = useState(false);
     const [postState, setPostState] = useState({})
@@ -92,6 +93,12 @@ const Registration = ({profile, postbusinesspartner, error, loading}) => {
             // setPending(false);
         })
     }
+    // useEffect(() => {
+    //     fetchgetprofile()
+    //     if (getprofile) {
+    //         history("/dashboard");
+    //     }
+    // }, [getprofile, history]);
     return (
         <div className="test">
             <div className="left">
@@ -284,7 +291,8 @@ const mapStateToProps = state => {
     return{
         loading:state.businessreg.loading,
         error:state?.businessreg?.error,
-        profile: state.getprofile.data
+        profile: state.getprofile.data,
+        getprofile: state?.getprofile?.data?.businessPartnerInfo
     }
 }
 
@@ -293,6 +301,7 @@ const mapDispatchToProps = dispatch => {
         postbusinesspartner: (postdata, history, error) => {
             dispatch(postbusinesspartner(postdata, history, error));
         },
+        fetchgetprofile: () => dispatch(fetchgetprofile()),
     }
 }
 
