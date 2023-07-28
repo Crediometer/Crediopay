@@ -14,6 +14,7 @@ const Sidebar = ({Sidebar,toggle, fetchprofile, fetchgetprofile, profile, logout
     const location = useLocation();
     const history = useNavigate();
     const [activeLink, setActiveLink] = useState(null);
+    const [timeoutId, setTimeoutId] = useState(null);
     function handleLinkClick(event, index) {
         event.preventDefault();
         setActiveLink(index);
@@ -31,8 +32,19 @@ const Sidebar = ({Sidebar,toggle, fetchprofile, fetchgetprofile, profile, logout
             ()=>{ history(`/`)}
         )
     }
+
     useEffect(() => {
         fetchgetprofile()
+
+        const id = setTimeout(() => {
+            handlelogout();
+        }, 420000);
+
+        setTimeoutId(id);
+
+        return () => {
+            clearTimeout(timeoutId);
+          };
     }, []);
     return ( 
         <div className={Sidebar?`${styles.sidebar} ${styles.sidebaropen}`: `${styles.sidebar}`}>

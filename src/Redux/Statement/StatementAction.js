@@ -26,9 +26,13 @@ const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 export const fetchstatement = (type, endDate, startDate, loader) => {
     return(dispatch) => {
         dispatch(statementRequest)
-        
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
         // let datas = JSON.parse(localStorage.getItem("auth"))
-        axios.get(`${baseUrl}/transactions/download?format=${type}&&startDate=${startDate}&&endDate=${endDate}`)
+        axios.get(`${baseUrl}/transactions/download?format=${type}&&startDate=${startDate}&&endDate=${endDate}`, { headers: headers })
         .then( response => {
             const data = response.data
             if(response.status === 200){

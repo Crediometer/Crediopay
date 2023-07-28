@@ -64,11 +64,11 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
         const { data } = res;
        
         dispatch({ type: AuthActionType.LOGIN_SUCCESS, payload: data });
+        fetchgetprofile()
         if(res.status===200){
-            console.log(data)
-            autoLogoutTimer = setTimeout(() => {
-              dispatch(LogOutAuthAction(history));
-            }, 420000);
+            // autoLogoutTimer = setTimeout(() => {
+            //   dispatch(LogOutAuthAction(history));
+            // }, 10000);
             // getprofile()
             history();        
         }
@@ -86,7 +86,7 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
 };
 const LogOutAuthAction = (history) => {
   // logout();
-  clearTimeout(autoLogoutTimer)
+  // clearTimeout(autoLogoutTimer)
   return async (dispatch) => {
     try {
       // const res = await axios.get("https://credio-api.herokuapp.com/api/v1/auth/login");

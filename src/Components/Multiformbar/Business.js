@@ -127,6 +127,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
                         type="date"
                         // placeholder="Enter Rc Number"
                         onBlur={handledob}
+                        onChange={handledob}
                     >
                     </input>
                 </div>

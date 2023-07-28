@@ -27,9 +27,13 @@ const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 export const fetchnotification = () => {
     return(dispatch) => {
         dispatch(notificationRequest)
-        
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
         // let datas = JSON.parse(localStorage.getItem("auth"))
-        axios.get(`${baseUrl}/notifications/y39uHf1W0Z9X/notifications`)
+        axios.get(`${baseUrl}/notifications/y39uHf1W0Z9X/notifications`, { headers: headers })
             .then( response => {
                 const data = response.data
                 dispatch(notificationSuccess(data))

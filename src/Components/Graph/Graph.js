@@ -42,12 +42,12 @@ const Graph = ({fetchanalytics, analytics}) => {
     useEffect(()=>{
         const sortedNumbers = analytics?.data?.data?.analyticsData?.sort((a, b) => a.month - b.month);
         setNumbers(sortedNumbers);
-        const assignedMonths = sortedNumbers.map((number) => monthMapping[number.month]);
+        const assignedMonths = sortedNumbers?.map((number) => monthMapping[number.month]);
         setMonths(assignedMonths);
     }, [analytics])
 
     const data = {
-        labels:numbers.map((number, index) => {
+        labels:numbers?.map((number, index) => {
             return(`${months[index]}`)
         }),
         datasets: [{
@@ -88,7 +88,7 @@ const Graph = ({fetchanalytics, analytics}) => {
             },
             y: {
                 min: 0,
-                max: 10000,
+                max: 12000,
                 ticks: {
                     stepSize: 2000
                 },

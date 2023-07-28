@@ -27,9 +27,13 @@ const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 export const fetchtransaction = (pageNumber, select) => {
     return(dispatch) => {
         dispatch(transactionRequest)
-        
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
         // let datas = JSON.parse(localStorage.getItem("auth"))
-        axios.get(`${baseUrl}/transactions/getTransactions?pageNumber=${pageNumber}&&pageSize=${select}`)
+        axios.get(`${baseUrl}/transactions/getTransactions?pageNumber=${pageNumber}&&pageSize=${select}`, { headers: headers })
             .then( response => {
                 const data = response.data
                 dispatch(transactionSuccess(data))

@@ -10,7 +10,7 @@ const Rightbar = ({personal, business}) => {
             <div className={styles.paymentContainer}>
                 <Payment/>
             </div>
-            {(business?.length === 0)?(
+            {(business?.length === 0 || !personal)?(
                 <div className={styles.completeProfile}>
                     <p>Complete your Profile</p>
                     <Link to='/activate'><button>Complete</button></Link>

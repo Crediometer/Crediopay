@@ -60,7 +60,7 @@ const Settings = ({fetchgetprofile, data}) => {
                             { (show === 5) && <Key/>}      
                             { (show === 6) && (
                                 <div>
-                                    {(data.data.some((item) => item === 'pinCode')) ? (<ChangePin/>) : (<SetPin/>)}
+                                    {(data) ? (<ChangePin/>) : (<SetPin/>)}
                                 </div>
                             )}         
                         </div>
@@ -74,7 +74,7 @@ const Settings = ({fetchgetprofile, data}) => {
 }
 const mapStateToProps = state => {
     return{
-        data: state.getprofile
+        data: state.getprofile.data.pinCode
     }
 }
 

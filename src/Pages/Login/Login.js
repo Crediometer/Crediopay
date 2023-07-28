@@ -79,11 +79,12 @@ const Login = (props) => {
             await login(loginState, ()=>{ 
             fetchgetprofile()
             console.log(getprofile)
-            if(getprofile === null){
+            if(getprofile?.businessPartnerInfo){
+                history(`/dashboard`)
+            }else{
                 history(`/registration`);
                 console.log("yess")
-            }else{
-                history(`/dashboard`)
+                
             }
             
             // setPending(true);

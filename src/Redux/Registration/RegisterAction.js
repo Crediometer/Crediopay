@@ -40,7 +40,7 @@ export const registerData = (registerState, history, setErrorHandler) => {
       try {
         const res = await axios.post(
           `${baseUrl}/auth/sendAuthOtp`,
-          registerState,
+          registerState
         );
         const { data } = res;
         if (res.status === 200) {

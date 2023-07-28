@@ -78,7 +78,7 @@ const DashboardTable = ({fetchrecenttran, recent, search, money, status, transac
         fetchrecenttran()
         fetchtransaction(page2)
         calculateIntervals()
-    }, [transaction?.data?.data?.totalTransactions]);
+    }, [transaction?.data?.data?.totalTransactions,page2]);
     return ( 
         <div className="dashboard-table">
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>

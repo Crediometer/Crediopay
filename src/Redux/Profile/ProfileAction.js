@@ -31,11 +31,15 @@ const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 export const fetchprofile = () => {
     return(dispatch) => {
         dispatch(profileRequest())
-        
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
         // let datas = JSON.parse(localStorage.getItem("auth"))
         // console.log(`data ----- ${datas}`)
         // console.log(`this is data ${datas.token.token.token}`)
-        axios.get(`${baseUrl}/dashboard/businessProfile`)
+        axios.get(`${baseUrl}/dashboard/businessProfile`, { headers: headers })
             .then( response => {
                 const data = response
                 dispatch(profileSuccess(data))

@@ -24,7 +24,7 @@ export const subaccountFaliure = (error) =>{
 const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 
 
-export const fetchsubaccount = (id, size) => {
+export const fetchsubaccount = (id, size,page) => {
     return(dispatch) => {
         dispatch(subaccountRequest())
         
@@ -33,7 +33,7 @@ export const fetchsubaccount = (id, size) => {
             "Content-Type": "application/json",
             authorization: `Bearer ${datas?.token?.data?.token?.token}`,
         };
-        axios.get(`${baseUrl}/vault/accounts/${id}/subaccounts?pageSize=${size}`, { headers: headers })
+        axios.get(`${baseUrl}/vault/accounts/${id}/subaccounts?pageSize=${size}&&pageNumber=${page}`, { headers: headers })
             .then( response => {
                 const data = response.data
                 dispatch(subaccountSuccess(data))

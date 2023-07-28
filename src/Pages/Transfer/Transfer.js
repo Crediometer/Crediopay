@@ -169,7 +169,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                     <img src={credio}></img>
                                                 </div>
                                                 <div className="to-select">
-                                                    <input type="radio" checked={isChecked} onChange={handleClick} name="bank" value="credio"  disabled = {(business.length === 0) ? (true) : (false)}></input>
+                                                    <input type="radio" checked={isChecked} onChange={handleClick} name="bank" value="credio"  disabled = {(business.length === 0 || !personal) ? (true) : (false)}></input>
                                                 </div>
                                             </div>
                                             
@@ -181,7 +181,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                     <BsBank2/>
                                                 </div>
                                                 <div className="to-select">
-                                                    <input type="radio" checked={!isChecked} onChange={handleClick} name="bank" value="credio"  disabled = {(business.length === 0) ? (true) : (false)}></input>
+                                                    <input type="radio" checked={!isChecked} onChange={handleClick} name="bank" value="credio"  disabled = {(business.length === 0 || !personal) ? (true) : (false)}></input>
                                                 </div>
                                             </div>
                                         </div>
@@ -196,8 +196,8 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                     </div> */}
                                     <div className="transfer-account">
                                         <div className="transfer-account-left">
-                                            <p className='account-left-head'>{(business.length === 0) ? ('xxxxxxxxxxx') : (profile?.accountName)}</p>
-                                            <p className='account-left-text'>{(business.length === 0) ? ('xxxxxxxxxxx') : (profile?.accountNumber)}</p>
+                                            <p className='account-left-head'>{(business.length === 0 || !personal) ? ('xxxxxxxxxxx') : (profile?.accountName)}</p>
+                                            <p className='account-left-text'>{(business.length === 0 || !personal) ? ('xxxxxxxxxxx') : (profile?.accountNumber)}</p>
                                         </div>
                                         <div className="transfer-account-right">
                                             <div className="transfer-available">
@@ -211,7 +211,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                 <p className='balance-2'>
                                                 <FormattedNumber
                                                     value=
-                                                        {(business.length === 0) ? ('xxxxxxxxxxx') : (profile?.accountBalance)}
+                                                        {(business.length === 0 || !personal) ? ('xxxxxxxxxxx') : (profile?.accountBalance)}
                                                     
                                                     style="currency"
                                                     currency="NGN"
@@ -273,7 +273,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                     onChange={handleNumber}
                                                     required
                                                     maxLength={10}
-                                                    disabled = {(business.length === 0) ? (true) : (false)}
+                                                    disabled = {(business.length === 0 || !personal ) ? (true) : (false)}
                                                     ></input>
                                                 </div>
                                             </div>
@@ -304,7 +304,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                     onBlur={handleAmount}
                                                     onChange={handleAmount}
                                                     required
-                                                    disabled = {(business.length === 0) ? (true) : (false)}
+                                                    disabled = {(business.length === 0 || !personal) ? (true) : (false)}
                                                     ></input>
                                                 </div>
                                             </div>
@@ -315,7 +315,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                     placeholder="e.g School Fees"
                                                     onBlur={handleComment}
                                                     onChange={handleComment}
-                                                    disabled = {(business.length === 0) ? (true) : (false)}
+                                                    disabled = {(business.length === 0 || !personal) ? (true) : (false)}
                                                     ></input>
                                                 </div>
                                             </div>

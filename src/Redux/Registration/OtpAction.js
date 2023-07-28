@@ -29,7 +29,7 @@ export const otpData = (otpState, history, setErrorHandler) => {
       try {
         const res = await axios.post(
           `${baseUrl}/auth/VerifyAuthOtp`,
-          otpState,
+          otpState
         );
         const { data } = res;
         if (res.status === 200) {

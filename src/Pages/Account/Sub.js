@@ -10,6 +10,7 @@ import {styled} from '@mui/material/styles'
 import { makeStyles } from "@mui/styled-engine-sc";
 import Pagination from '@mui/material/Pagination';
 import ReactPaginate from "react-paginate";
+import { Stack } from '@mui/material';
 const StyledPagination = styled(Pagination)(({ theme }) => ({
     ul: {
         "& .Mui-selected": {
@@ -20,21 +21,42 @@ const StyledPagination = styled(Pagination)(({ theme }) => ({
   }));
 const Sub = ({cid, fetchsubaccount, subaccount, loading}) => {
     const [size, setsize] = useState(5);
+    const [page2, setPage2] = useState(1);
     const [pageNumber, setPageNumber] = useState(0)
     const usersPerPage = size
     const pagesVisited = pageNumber * usersPerPage
+    const inputNumber = subaccount?.data?.totalSubaccount;
+    const [intervals, setIntervals] = useState([]);
     // 40
-    const displayUsers = subaccount?.data?.slice(pagesVisited, pagesVisited + usersPerPage)
+
+    const calculateIntervals = () => {
+        if (!isNaN(inputNumber) && inputNumber !== '') {
+          const parsedNumber = parseInt(inputNumber, 10);
+          const intervalsArray = [];
+    
+          for (let i = 0; i <= parsedNumber; i += 5) {
+            intervalsArray.push(i);
+            console.log(intervalsArray)
+            setIntervals(intervalsArray);
+          }
+    
+          console.log(intervals)
+        } else {
+          setIntervals([]);
+        }
+    };
+    const displayUsers = subaccount?.data?.results?.slice(pagesVisited, pagesVisited + usersPerPage)
     .map((account)=>{
         return(
             <tr>
                 <td>{account.accountName}</td>
                 <td>{account.accountNumber}</td>
-                <td>{account.currencyCode}</td>
+                <td>{account.externalReference}</td>
                 <td>{account.accountBalance}</td>
             </tr>
         )
     })
+
     const pageCount = Math.ceil(subaccount?.data?.length / usersPerPage);
 
     const changePage = ({ selected }) => {
@@ -46,9 +68,14 @@ const Sub = ({cid, fetchsubaccount, subaccount, loading}) => {
         setsize(num)
         console.log(size)
     }
+    const handleChange = (event, value) => {
+        setPage2(value);
+        console.log(value)
+    };
     useEffect(() => {
-        fetchsubaccount(cid, size)
-    }, [cid, size]);
+        fetchsubaccount(cid, size, page2)
+        calculateIntervals()
+    }, [cid, size, page2, subaccount?.data?.totalSubaccount]);
     return ( 
         <div className="sub-con">
             {/* <div className="sub-top">
@@ -83,15 +110,17 @@ const Sub = ({cid, fetchsubaccount, subaccount, loading}) => {
                     <div className="main-select">
                         <select onChange={handleSize}>
                             <optgroup>
-                                <option value='5'>5</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
+                            {intervals.map((interval)=>{
+                                return(
+                                    <option value={interval}>{interval}</option>
+                                )
+                            })}
                             </optgroup>
                         </select>
                     </div>
                 </div>
                 <div className="main-footer-right">
-                    <ReactPaginate
+                    {/* <ReactPaginate
                         previousLabel={"<"}
                         nextLabel={">"}
                         pageCount={pageCount}
@@ -101,7 +130,11 @@ const Sub = ({cid, fetchsubaccount, subaccount, loading}) => {
                         nextLinkClassName={"nextBttn"}
                         disabledClassName={"paginationDisabled"}
                         activeClassName={"paginationActive"}
-                    />
+                    /> */}
+                     <Stack spacing={2}>
+                        {/* <Typography>Page: {page2}</Typography>  */}
+                        <StyledPagination count={subaccount?.data?.totalPages} page={page2} onChange={handleChange}/>  
+                    </Stack>
                     {/* <StyledPagination count={1}/>   */}
                 </div>
             </div>
@@ -118,7 +151,7 @@ const mapStoreToProps = (state) => {
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchsubaccount: (id, size) => dispatch(fetchsubaccount(id, size))
+        fetchsubaccount: (id, size, page) => dispatch(fetchsubaccount(id, size, page))
     };
 };
  

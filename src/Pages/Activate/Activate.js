@@ -11,10 +11,10 @@ import Navbar from '../../Components/Navbar/Navbar';
 const Activate = ({personal}) => {
     let initialCount;
     console.log()
-    if (!personal.personalInfo || !Array.isArray(personal.personalInfo)) {
-      initialCount = 1;
-    } else {
+    if (personal.personalInfo) {
       initialCount = 2;
+    } else {
+      initialCount = 1;
     }
     const [index, setIndex] = useState(initialCount)
     const [sidebar, setSidebar] = useState(false);

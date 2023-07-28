@@ -78,9 +78,13 @@ const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 export const fetchanalytics = () => {
     return(dispatch) => {
         dispatch(dashboardRequest)
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
         
-        // let datas = JSON.parse(localStorage.getItem("auth"))
-        axios.get(`${baseUrl}/dashboard/analytics`)
+        axios.get(`${baseUrl}/dashboard/analytics`, { headers: headers })
             .then( response => {
                 const data = response.data
                 dispatch(dashboardSuccess(data))
@@ -96,9 +100,13 @@ export const fetchanalytics = () => {
 export const fetchrecenttran = () => {
     return(dispatch) => {
         dispatch(recenttranRequest)
-        
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
         // let datas = JSON.parse(localStorage.getItem("auth"))
-        axios.get(`${baseUrl}/dashboard/selectRecentTransactions`)
+        axios.get(`${baseUrl}/dashboard/selectRecentTransactions`, { headers: headers })
             .then( response => {
                 const data = response.data
                 dispatch(recenttranSuccess(data))
@@ -114,9 +122,13 @@ export const fetchrecenttran = () => {
 export const fetchsumtran = () => {
     return(dispatch) => {
         dispatch(sumtranRequest)
-        
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
         // let datas = JSON.parse(localStorage.getItem("auth"))
-        axios.get(`${baseUrl}/dashboard/calculateTransactionSum`)
+        axios.get(`${baseUrl}/dashboard/calculateTransactionSum`, { headers: headers })
             .then( response => {
                 const data = response.data
                 dispatch(sumtranSuccess(data))
