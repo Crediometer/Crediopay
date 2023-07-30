@@ -33,7 +33,7 @@ export const transferData = (data) => {
 //     dispatch(transferData(data));
 //   };
 // };
-const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
 export const registerData = (registerState, history, setErrorHandler) => {
     return async (dispatch) => {
       dispatch(registerRequest())

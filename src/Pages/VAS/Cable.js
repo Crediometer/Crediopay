@@ -13,6 +13,7 @@ import Errormodal from '../../Components/Modal/Errormodal';
 import SuccessModal2 from '../../Components/Modal/SuccessModal2';
 import { fetchgetprofile } from '../../Redux/Getprofile/GetprofileAction';
 import { fetchvault } from '../../Redux/Vault/VaultAction';
+import LoadingModal from '../../Components/Modal/LoadingModal';
 const Cable = ({
     loading, 
     loading2, 
@@ -21,10 +22,11 @@ const Cable = ({
     product, 
     postvasverify, 
     verify, 
+    verifycable,
     postvascable, 
     submitting,
     error, 
-    success, cid,vault, fetchgetprofile,fetchvault, name
+    success, cid,vault, fetchgetprofile,fetchvault, name, loading3
 }) => {
     const [count, setcount] = useState(1)
     const [selectImage, setSelectImage] = useState(null)
@@ -37,8 +39,11 @@ const Cable = ({
     const [serviceid, setServiceid]= useState("")
     const [nameState, setNameState]= useState({})
     const [postState, setPostState] = useState({})
+    const [bundle, setBundle] = useState("")
+    const [showamount, setShowamount] = useState(false)
     const [showsuccess, setshowsuccess] = useState(false)
     const [showerror, setshowerror] = useState(false)
+    const [verifycable2, setverifycable] = useState('')
     const handleShow =()=>{
         setShowBank(!showBank)
     }
@@ -64,16 +69,25 @@ const Cable = ({
         const value = e.target.value;
         setNumber(value);
         setNameState({...nameState, ...{entityNumber: number}})
-        setPostState({ ...postState, ...{entityNumber: number, cardNumber: number } });
+        setPostState({ ...postState, ...{entityNumber: number, cardNumber: number} });
     }
-    const handleAmount = (id) =>{
-        let num = parseInt(id)
-        setamount(id)
-       
-        // setPostState({ ...postState, ...{ amount: id } });
+    const handleAmount = (e) =>{
+        const vaule = e.target.value;
+        let num = parseInt(vaule)
+        setamount(num)
+        console.log(amounts)
+        setPostState({ ...postState, ...{ bundleCode: bundle, amount: amounts} });
     }
     const handleBundle = (id, am) =>{
-        setPostState({ ...postState, ...{ bundleCode: id , amount: am} });
+        setBundle(id)
+        console.log(bundle)
+        console.log(id)
+        if(id == 'TOP_UP'){
+            setShowamount(true)
+        }else{
+            setPostState({ ...postState, ...{ bundleCode: id , amount: am} });
+        }
+        
     }
     const togglemodal = ()=>{
         setshowerror(!showerror)
@@ -83,7 +97,8 @@ const Cable = ({
             
             postvasverify(nameState)
         }
-    }, [number, serviceid,nameState]);
+        setverifycable(verifycable)
+    }, [number, serviceid,nameState, verifycable]);
     const [pin, setPin] = useState("");
     const atmpin = useRef(null);
     useEffect(() => {
@@ -223,7 +238,7 @@ const Cable = ({
                                     <div className="vas-form-select-header">
                                         <div className="vas-select-head">
                                             <p className="airtime-back"  onClick={handleShow}><FaTimes/></p>
-                                            <p className="airtime-title vas-select-title">Data Plan</p>
+                                            <p className="airtime-title vas-select-title">CABLE PLAN</p>
                                         </div>
                                         <div className="vas-select-search">
                                             <FaSearch/>
@@ -242,7 +257,7 @@ const Cable = ({
                                     <div className="vas-select-body">
                                         {product.map((product)=>{
                                             return(
-                                                <div className="vas-select-body-inner" onClick={() => {handleAmount(product.amount); handleBundle(product.bundleCode, product.amount);  handleSelectedBank2(`${product.name} - ${product.amount}`); handleShow()}}>
+                                                <div className="vas-select-body-inner" onClick={() => {handleBundle(product.bundleCode, product.amount);  handleSelectedBank2(`${product.name} - ${product.amount}`); handleShow()}}>
                                                     <p>{product.name} - {product.amount}</p>
                                                 </div>
                                             )
@@ -250,12 +265,25 @@ const Cable = ({
                                     </div>)}
                                 </div>
                             )}
+                            {showamount ? ( 
+                                <div className="form-group">
+                                    <label>Amount</label>
+                                    <div className="form-group-inner">
+                                        <input
+                                            type="text"
+                                            placeholder='₦ 2000'
+                                            onChange={handleAmount}
+                                            onBlur={handleAmount}           
+                                        ></input>
+                                    </div>
+                                </div>
+                            ): (null)}
                             {verify === 200 ? 
                                 ( <button className='transfer-button' onClick={()=> setcount(count + 1)}><span>Continue</span></button>)
                             :
                                 (<p className='airtime-title'>your Decoder Number is not correct</p>)
                             }
-                           
+                           {loading3 && <LoadingModal/>}
                         </form>
                     ): null}
                     {count === 2 ? (
@@ -376,12 +404,15 @@ const mapStoreToProps = (state) => {
         loading2: state.vasproduct.loading,
         product: state?.vasproduct?.data?.data,
         verify: state?.verifycable?.data?.statusCode,
+        loading3: state?.verifycable?.loading,
         submitting: state.cable.loading,
         error: state.cable.error,
         success: state.cable.data.message,
         name: state?.getprofile?.data?.businessName,
         cid: state?.getprofile?.data?.client?._id,
-        vault:state?.vault?.data?.data?.mainAccount
+        vault:state?.vault?.data?.data?.mainAccount,
+        verifycable: state?.verifycable?.data?.data?.customernumber
+
         // data: state?.vas?.data?.data,
         // cid: state?.getprofile?.data?.client?._id,
         // vault:state?.vault?.data?.data?.mainAccount

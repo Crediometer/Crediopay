@@ -11,6 +11,8 @@ import Errormodal from '../../Components/Modal/Errormodal';
 import SuccessModal2 from '../../Components/Modal/SuccessModal2';
 import { fetchgetprofile } from '../../Redux/Getprofile/GetprofileAction';
 import { fetchvault } from '../../Redux/Vault/VaultAction';
+import JSEncrypt from 'jsencrypt';
+import consts from '../../Pages/keys/const'
 const Electricity = ({
     loading, 
     data, 
@@ -50,7 +52,7 @@ const Electricity = ({
         const value = e.target.value;
         setNumber(value);
         setNameState({...nameState, ...{entityNumber: number}})
-        setPostState({ ...postState, ...{meterNumber: number } });
+        setPostState({ ...postState, ...{entityNumber: number, meterNumber: number } });
     }
     const handleAmount = (e) => {
         const value = e.target.value;
@@ -58,12 +60,27 @@ const Electricity = ({
         setAmount(num);
         setPostState({ ...postState, ...{ amount: num } });
     };
+
+    // Step 2: Add a state variable to track the form validity and error message
+    const [isFormValid, setIsFormValid] = useState(true);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    // Step 3: Implement a validation function
+    const validateForm = () => {
+        if (amount < 500) {
+            setIsFormValid(false);
+            setErrorMessage('Amount must be greater than 500');
+        } else {
+            setIsFormValid(true);
+            setErrorMessage('');
+        }
+    };
     const togglemodal = ()=>{
         setshowerror(!showerror)
     }
     useEffect(() => {
-        if(number.length === 10 && serviceid !== ""){
-            
+        if(number.length === 11 && serviceid !== ""){
+            console.log(nameState)
             postvasverify(nameState)
         }
     }, [number, serviceid,nameState]);
@@ -107,11 +124,11 @@ const Electricity = ({
         setPin3(value)
         const pins = `${pin}${pin1}${pin2}${value}`
        
-        // var encrypt = new JSEncrypt();
-        // encrypt.setPublicKey(`${consts.pub_key}`);
-        // var encrypted = encrypt.encrypt(pins);
-        // 
-        // setCombinedpin(encrypted);
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(`${consts.pub_key}`);
+        var encrypted = encrypt.encrypt(pins);
+        
+        setPostState({ ...postState, ...{ pin: encrypted } });
     };
 
     const handlesubmit = (e)=>{
@@ -148,6 +165,7 @@ const Electricity = ({
                 <div>
                     {count === 1 ? (
                         <form>
+                            {!isFormValid && <p style={{ color: 'red', fontSize: '12px', marginTop: '5px', fontFamily: 'Roboto' }}>{errorMessage}</p>}
                             <div className="form-group"  onClick={handleShow}>
                                 <label>Service Provider</label>
                                 <div className="form-group-inner">
@@ -214,12 +232,12 @@ const Electricity = ({
                                         type="text"
                                         placeholder='₦ 2000'
                                         onChange={handleAmount}
-                                        onBlur={handleAmount}
+                                        onBlur={validateForm}
                                     ></input>
                                 </div>
                             </div>
                             {verify === 200 ? 
-                                ( <button className='transfer-button' onClick={()=> setcount(count + 1)}><span>Continue</span></button>)
+                                ( <button className='transfer-button' onClick={()=> setcount(count + 1)} disabled={!isFormValid}><span>Continue</span></button>)
                             :
                                 (<p className='airtime-title'>your Decoder Number is not correct</p>)
                             }

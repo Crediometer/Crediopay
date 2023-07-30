@@ -59,18 +59,26 @@ const Dashboard = ({fetchanalytics,
     const handleCopy = ()=>{
         copy(vault?.accountBalance);
     }
+    const redirect = () =>{
+        if (getProfileFetched && !getprofile) {
+            console.log(!getprofile)
+            history("/registration");
+        }
+    }
     const fetchData = async () => {
         try {
           // Fetch getprofile data
           await fetchgetprofile();
           // Mark fetchgetprofile as successful
           setGetProfileFetched(true);
+          redirect()
         } catch (error) {
           console.log("Error fetching getprofile:", error);
           setGetProfileFetched(true); // Still set to true, even on failure to avoid infinite loop
         }
     };
     
+   
     useEffect(() => {
         fetchData();
         fetchvault(cid)
@@ -81,11 +89,12 @@ const Dashboard = ({fetchanalytics,
         fetchprofile()
     }, [cid]);
 
-    useEffect(() => {
-        if (getProfileFetched && !getprofile) {
-            history("/registration");
-        }
-    }, [getprofile, history, getProfileFetched]);
+    // useEffect(() => {
+    //     if (getProfileFetched && !getprofile) {
+    //         console.log(!getprofile)
+    //         history("/registration");
+    //     }
+    // }, [getprofile, history, getProfileFetched,fetchData]);
     const myClassName = `${styles.status} ${isActive ? styles.active : ''}`;
     return ( 
         <div>

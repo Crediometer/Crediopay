@@ -9,6 +9,7 @@ import { postsetpin } from "../../../Redux/Pin/SetpinAction";
 import SuccessModal from "../../../Components/Modal/SuccessModal";
 import loader from "../../../Assets/loading.json"
 import LottieAnimation from "../../../Lotties";
+import SuccessModal2 from "../../../Components/Modal/SuccessModal2";
 const SetPin = ({postsetpin, success, loading}) => {
     const [sidebar, setSidebar] = useState(false);
     const [enterPassword, setEnterPassword] = useState("");
@@ -248,7 +249,7 @@ const SetPin = ({postsetpin, success, loading}) => {
                                 
                             )} 
                         </div>
-                        {showsuccess && (<SuccessModal message={success} togglemodal={togglemodal}/>)}
+                        {showsuccess && (<SuccessModal2 message={success} link="/dashboard"/>)}
                     </div>
         //         </div>
         //     </div>

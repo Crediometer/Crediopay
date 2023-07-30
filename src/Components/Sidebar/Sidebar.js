@@ -44,7 +44,7 @@ const Sidebar = ({Sidebar,toggle, fetchprofile, fetchgetprofile, profile, logout
 
         return () => {
             clearTimeout(timeoutId);
-          };
+        };
     }, []);
     return ( 
         <div className={Sidebar?`${styles.sidebar} ${styles.sidebaropen}`: `${styles.sidebar}`}>

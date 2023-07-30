@@ -47,7 +47,7 @@ export const vasFaliure = (error) =>{
     }
 }
 
-const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
 
 export const fetchvasservices = () => {
     return(dispatch) => {
@@ -342,7 +342,7 @@ export const postvasutility = (poststate, history, errors) => {
     return(dispatch) => {
         dispatch(vasutilityRequest())
         let datas = JSON.parse(localStorage.getItem("auth"))
-        axios.post(`${baseUrl}/vas/cable/buy`, poststate, {headers: {
+        axios.post(`${baseUrl}/vas/power/buy`, poststate, {headers: {
             Authorization: `Bearer ${datas?.token?.data?.token?.token}`,
           }})
             .then( response => {

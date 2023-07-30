@@ -8,7 +8,8 @@ import Verification from '../../Components/Multiformbar/Verification';
 import Payout from '../../Components/Multiformbar/Payout';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
-const Activate = ({personal}) => {
+import { fetchgetprofile } from '../../Redux/Getprofile/GetprofileAction';
+const Activate = ({personal, fetchgetprofile}) => {
     let initialCount;
     console.log()
     if (personal.personalInfo) {
@@ -27,6 +28,9 @@ const Activate = ({personal}) => {
             setIndex(prevIndex => prevIndex + 1)
         } 
     }
+    useEffect(()=>{
+        fetchgetprofile()
+    })
     return (
         <div className="test">
             <div className="left">
@@ -61,5 +65,9 @@ const mapStoreToProps = (state) => {
         personal: state?.getprofile?.data,
     };
 };
-
-export default connect(mapStoreToProps,)(Activate);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchgetprofile: () => dispatch(fetchgetprofile()),
+    };
+};
+export default connect(mapStoreToProps, mapDispatchToProps)(Activate);

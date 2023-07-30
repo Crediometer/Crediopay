@@ -23,7 +23,7 @@ export const depositFaliure = (error) => {
     payload: error,
   };
 };
-const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
 
 export const depositData = (depositState, history, historyError) => {
   return async (dispatch) => {
