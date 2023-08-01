@@ -21,16 +21,13 @@ export const directorFaliure = (error) =>{
     }
 }
 
-const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
 
 
 export const postdirector = (postdata, history, errors) => {
     return(dispatch) => {
         dispatch(directorRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
         const headers = {
             "Content-Type": "application/json",
             authorization: `Bearer ${datas?.token?.data?.token?.token}`,
@@ -39,7 +36,7 @@ export const postdirector = (postdata, history, errors) => {
         `, postdata, { headers: headers })
             .then( response => {
                 const data = response.data
-                console.log(`this is profile analytics--- ${data}`)
+  
                 dispatch(directorSuccess(data))
                 history()
             })
@@ -75,10 +72,7 @@ export const getdirectorFaliure = (error) =>{
 export const getdirector = () => {
     return(dispatch) => {
         dispatch(getdirectorRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
         const headers = {
             "Content-Type": "application/json",
             authorization: `Bearer ${datas?.token?.data?.token?.token}`,
@@ -86,7 +80,6 @@ export const getdirector = () => {
         axios.get(`${baseUrl}/profile/getPartners`, { headers: headers })
             .then( response => {
                 const data = response.data
-                console.log(`this is profile analytics--- ${data}`)
                 dispatch(getdirectorSuccess(data))
             })
             .catch(error =>{

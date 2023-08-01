@@ -8,15 +8,16 @@
     align-items: center;
     width: 100%;
     padding: 1rem 1.5rem;
-    background-color: rgb(255, 194, 194);
+    border-radius: 10px;
+    background-color: white;
 }
 .key-success-notiication{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 1rem 2rem;
-    background-color: rgb(88, 183, 88);
+    padding: 1rem 1.2rem;
+    background-color: white;
 }
 .key-success-notiication p{
     font-family: 'Poppins';
@@ -28,9 +29,9 @@
 .key-error-notiication p{
     font-family: 'Poppins';
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 1.2rem;
-    color: rgba(0, 0, 0, 0.84);
+    color: #AC1337;
 }
 .key-switch{
     display: flex;
@@ -75,6 +76,11 @@
 .secret-input input{
     width: 90%;
     border: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.4);
 }
 .secret-input input::placeholder{
     font-family: 'Poppins';
@@ -151,7 +157,7 @@
         font-size: 0.625rem;
     }
     .secret-icon svg{
-        font-size: 2rem;
+        font-size: 0.8rem;
         margin-left: 10px;
         color: #555555b8;
     }

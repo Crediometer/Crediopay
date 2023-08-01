@@ -21,19 +21,20 @@ export const statementFaliure = (error) =>{
     }
 }
 
-const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
 
-export const fetchstatement = (type, loader) => {
+export const fetchstatement = (type, endDate, startDate, loader) => {
     return(dispatch) => {
         dispatch(statementRequest)
-        // console.log(`${localStorage.getItem("auth")}`)
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
         // let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
-        axios.get(`${baseUrl}/transactions/download?format=${type}`)
+        axios.get(`${baseUrl}/transactions/download?format=${type}&&startDate=${startDate}&&endDate=${endDate}`, { headers: headers })
         .then( response => {
             const data = response.data
-            console.log(`this is statement analytics--- ${data}`)
             if(response.status === 200){
                 loader()
             }

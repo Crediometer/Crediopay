@@ -20,7 +20,6 @@ export const registerFaliure = (error) => {
   };
 };
 export const transferData = (data) => {
-  console.log("herre ----");
   return {
     type: TRANSFER_DATA,
     payload: data,
@@ -34,27 +33,24 @@ export const transferData = (data) => {
 //     dispatch(transferData(data));
 //   };
 // };
-const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
 export const registerData = (registerState, history, setErrorHandler) => {
     return async (dispatch) => {
       dispatch(registerRequest())
       try {
-        console.log(registerState);
         const res = await axios.post(
           `${baseUrl}/auth/sendAuthOtp`,
-          registerState,
+          registerState
         );
         const { data } = res;
-        console.log(res);
-        console.log(data);
         if (res.status === 200) {
           history()
           dispatch(registerSuccess(data));
           dispatch(transferData(registerState))
         }
       } catch (error) {
-        if (error.response) {
-          dispatch(registerFaliure(error));
+        if (error.response){
+          dispatch(registerFaliure(error.response));
         }
         setErrorHandler({ hasError: true, message: error?.response?.data?.message });
       }

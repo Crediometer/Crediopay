@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import store from "../Store";
+import { fetchgetprofile } from '../Getprofile/GetprofileAction';
 
 const AuthActionType = {
     // REGISTER_SUCCESS: "REGISTER_SUCCESS",
@@ -38,7 +39,9 @@ const getChat = (jwt) => {
     payload: jwt
   }
 }
-
+const getprofile = () =>{
+  fetchgetprofile()
+}
 // const logout = () => {
 //   var profileData = store.getState().profile.profile;
 //   if (!socket) {
@@ -51,22 +54,25 @@ const getChat = (jwt) => {
 
 // }
 
-const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
-
+const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
+let autoLogoutTimer;
 const LoginAuthAction = (loginState, history, setErrorHandler) => {
     return async (dispatch) => {
       dispatch({type: AuthActionType.LOGIN_START})
       try {
         const res = await axios.post(`${baseUrl}/auth/login`, loginState);
         const { data } = res;
-        // console.log(res)
+       
         dispatch({ type: AuthActionType.LOGIN_SUCCESS, payload: data });
+        fetchgetprofile()
         if(res.status===200){
-            history();
-             
+            // autoLogoutTimer = setTimeout(() => {
+            //   dispatch(LogOutAuthAction(history));
+            // }, 10000);
+            // getprofile()
+            history();        
         }
       } catch (error) {
-        console.log(error)
         if (error.response) {
           dispatch({
             type: AuthActionType.LOGIN_FAIL,
@@ -75,12 +81,12 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
           setErrorHandler({ hasError: true, message: error.response.data.message });
         }
         setErrorHandler({ hasError: true, message: error?.response?.data?.message });
-        // console.log( setErrorHandler());
       }
     };
 };
 const LogOutAuthAction = (history) => {
   // logout();
+  // clearTimeout(autoLogoutTimer)
   return async (dispatch) => {
     try {
       // const res = await axios.get("https://credio-api.herokuapp.com/api/v1/auth/login");

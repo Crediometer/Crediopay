@@ -9,6 +9,7 @@ import { postsetpin } from "../../../Redux/Pin/SetpinAction";
 import SuccessModal from "../../../Components/Modal/SuccessModal";
 import loader from "../../../Assets/loading.json"
 import LottieAnimation from "../../../Lotties";
+import SuccessModal2 from "../../../Components/Modal/SuccessModal2";
 const SetPin = ({postsetpin, success, loading}) => {
     const [sidebar, setSidebar] = useState(false);
     const [enterPassword, setEnterPassword] = useState("");
@@ -59,13 +60,11 @@ const SetPin = ({postsetpin, success, loading}) => {
         const value = e.target.value
         setPin3(value)
         const pins = `${pin}${pin1}${pin2}${value}`
-        console.log(pins)
         setEnterPassword(pins)
         setPasswordsMatch(pins === confirmPassword);
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(`${consts.pub_key}`);
         var encrypted = encrypt.encrypt(pins);
-        // console.log(encrypted)
         setcombinedPin(encrypted);
         setPostState({...{pin: encrypted} });
     };
@@ -107,13 +106,11 @@ const SetPin = ({postsetpin, success, loading}) => {
     const onChangepin8 = (e) => {
         const value = e.target.value
         const pins = `${pin}${pin1}${pin2}${value}`
-        console.log(pins)
         setConfirmPassword(pins)
         setPasswordsMatch(pins === enterPassword);
         // var encrypt = new JSEncrypt();
         // encrypt.setPublicKey(`${consts.pub_key}`);
         // var encrypted = encrypt.encrypt(pins);
-        // console.log(encrypted)
         // setCombinedpin(encrypted);
     };
     const togglemodal = ()=>{
@@ -121,7 +118,6 @@ const SetPin = ({postsetpin, success, loading}) => {
     }
     const handlesubmit = (e)=>{
         e.preventDefault();
-        console.log(postState)
         postsetpin(
              postState,
             ()=>{ 
@@ -129,8 +125,6 @@ const SetPin = ({postsetpin, success, loading}) => {
             // setPending(true);
             }
         //,  ()=>{ 
-        //     // console.log(errorHandler)
-        //     // console.log("now go to error..", error);
         //     // setErrorHandler(error)
         //     setshowerror(true)
         //     // setPending(false);
@@ -255,7 +249,7 @@ const SetPin = ({postsetpin, success, loading}) => {
                                 
                             )} 
                         </div>
-                        {showsuccess && (<SuccessModal message={success} togglemodal={togglemodal}/>)}
+                        {showsuccess && (<SuccessModal2 message={success} link="/dashboard"/>)}
                     </div>
         //         </div>
         //     </div>

@@ -59,11 +59,9 @@ const ChangePin = ({postchangepin, success, loading}) => {
         const value = e.target.value
         setPin3(value)
         const pins = `${pin}${pin1}${pin2}${value}`
-        console.log(pins)
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(`${consts.pub_key}`);
         var encrypted = encrypt.encrypt(pins);
-        // console.log(encrypted)
         // setCombinedpin(encrypted);
         setPostState({...postState, ...{oldPin: encrypted} });
     };
@@ -105,13 +103,12 @@ const ChangePin = ({postchangepin, success, loading}) => {
     const onChangepin8 = (e) => {
         const value = e.target.value
         const pins = `${pin}${pin1}${pin2}${value}`
-        console.log(pins)
         setEnterPassword(pins)
         setPasswordsMatch(pins === confirmPassword);
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(`${consts.pub_key}`);
         var encrypted = encrypt.encrypt(pins);
-        // console.log(encrypted)
+
         setcombinedPin(encrypted);
         setPostState({...postState, ...{newPin: encrypted} });
     };
@@ -153,13 +150,11 @@ const ChangePin = ({postchangepin, success, loading}) => {
     const onChangepin12 = (e) => {
         const value = e.target.value
         const pins = `${pin}${pin1}${pin2}${value}`
-        console.log(pins)
         setConfirmPassword(pins)
         setPasswordsMatch(pins === enterPassword);
         // var encrypt = new JSEncrypt();
         // encrypt.setPublicKey(`${consts.pub_key}`);
         // var encrypted = encrypt.encrypt(pins);
-        // console.log(encrypted)
         // setCombinedpin(encrypted);
     };
     const togglemodal = ()=>{
@@ -167,7 +162,6 @@ const ChangePin = ({postchangepin, success, loading}) => {
     }
     const handlesubmit = (e)=>{
         e.preventDefault();
-        console.log(postState)
         postchangepin(
              postState,
             ()=>{ 
@@ -175,8 +169,6 @@ const ChangePin = ({postchangepin, success, loading}) => {
             // setPending(true);
             }
         //,  ()=>{ 
-        //     // console.log(errorHandler)
-        //     // console.log("now go to error..", error);
         //     // setErrorHandler(error)
         //     setshowerror(true)
         //     // setPending(false);

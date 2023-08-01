@@ -20,7 +20,6 @@ const Phone = ({postforgot, loading,error}) => {
     };
     const handleNumber =(e)=>{
         const value = e.target.value;
-        console.log(value);
         setphoneNumber(value);
         setPostState({  ...{userNumber: phone} });
     }
@@ -29,15 +28,11 @@ const Phone = ({postforgot, loading,error}) => {
     }
     const handlesubmit = (e)=>{
         e.preventDefault();
-        console.log(postState)
         postforgot(
             postState, ()=>{ 
-            console.log("now go to dashboard..");
             history(`/forgototp`);
             // setPending(true);
         },  ()=>{ 
-            // console.log(errorHandler)
-            // console.log("now go to error..", error);
             // setErrorHandler(error)
             setshowerror(true)
             // setPending(false);

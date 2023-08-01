@@ -21,20 +21,21 @@ export const notificationFaliure = (error) =>{
     }
 }
 
-const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
 
 
 export const fetchnotification = () => {
     return(dispatch) => {
         dispatch(notificationRequest)
-        // console.log(`${localStorage.getItem("auth")}`)
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
         // let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
-        axios.get(`${baseUrl}/notifications/y39uHf1W0Z9X/notifications`)
+        axios.get(`${baseUrl}/notifications/y39uHf1W0Z9X/notifications`, { headers: headers })
             .then( response => {
                 const data = response.data
-                console.log(`this is notiication analytics--- ${data}`)
                 dispatch(notificationSuccess(data))
             })
             .catch(error =>{
@@ -66,10 +67,8 @@ export const marknotificationFaliure = (error) =>{
 export const putnotification = (readstate, id) => {
     return(dispatch) => {
         dispatch(marknotificationRequest)
-        // console.log(`${localStorage.getItem("auth")}`)
+        
         let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
         const headers = {
             "Content-Type": "application/json",
             authorization: `Bearer ${datas?.token?.data?.token?.token}`,
@@ -77,7 +76,6 @@ export const putnotification = (readstate, id) => {
         axios.put(`${baseUrl}/notifications/${id}`,readstate,{ headers: headers })
             .then( response => {
                 const data = response.data
-                console.log(`this is notiicationput analytics--- ${data}`)
                 dispatch(marknotificationSuccess(data))
             })
             .catch(error =>{

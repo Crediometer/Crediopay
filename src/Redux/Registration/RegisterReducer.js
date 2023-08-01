@@ -24,7 +24,6 @@ const initialState = {
           error: "",
         };
       case TRANSFER_DATA:
-        console.log("reach here????");
         return {
           ...state,
           registerData: action.payload,

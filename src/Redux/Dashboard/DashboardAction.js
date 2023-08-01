@@ -72,20 +72,21 @@ export const sumtranFaliure = (error) =>{
         payload: error
     }
 }
-const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
 
 //FOR ANALYTICS
 export const fetchanalytics = () => {
     return(dispatch) => {
         dispatch(dashboardRequest)
-        // console.log(`${localStorage.getItem("auth")}`)
-        // let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
-        axios.get(`${baseUrl}/dashboard/analytics`)
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
+        
+        axios.get(`${baseUrl}/dashboard/analytics`, { headers: headers })
             .then( response => {
                 const data = response.data
-                console.log(`this is dashboard analytics--- ${data}`)
                 dispatch(dashboardSuccess(data))
             })
             .catch(error =>{
@@ -99,14 +100,15 @@ export const fetchanalytics = () => {
 export const fetchrecenttran = () => {
     return(dispatch) => {
         dispatch(recenttranRequest)
-        // console.log(`${localStorage.getItem("auth")}`)
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
         // let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
-        axios.get(`${baseUrl}/dashboard/selectRecentTransactions`)
+        axios.get(`${baseUrl}/dashboard/selectRecentTransactions`, { headers: headers })
             .then( response => {
                 const data = response.data
-                console.log(`this is dashboard analytics--- ${data}`)
                 dispatch(recenttranSuccess(data))
             })
             .catch(error =>{
@@ -120,14 +122,16 @@ export const fetchrecenttran = () => {
 export const fetchsumtran = () => {
     return(dispatch) => {
         dispatch(sumtranRequest)
-        // console.log(`${localStorage.getItem("auth")}`)
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
+        console.log(datas?.token?.data?.token?.token)
         // let datas = JSON.parse(localStorage.getItem("auth"))
-        // console.log(`data ----- ${datas}`)
-        // console.log(`this is data ${datas.token.token.token}`)
-        axios.get(`${baseUrl}/dashboard/calculateTransactionSum`)
+        axios.get(`${baseUrl}/dashboard/calculateTransactionSum`, { headers: headers })
             .then( response => {
                 const data = response.data
-                console.log(`this is dashboard analytics--- ${data}`)
                 dispatch(sumtranSuccess(data))
             })
             .catch(error =>{

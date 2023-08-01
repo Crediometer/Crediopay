@@ -21,20 +21,17 @@ export const otpFaliure = (error) => {
   };
 };
 
-const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
 
 export const otpData = (otpState, history, setErrorHandler) => {
     return async (dispatch) => {
         dispatch(otpRequest())
       try {
-        console.log(otpState);
         const res = await axios.post(
           `${baseUrl}/auth/VerifyAuthOtp`,
-          otpState,
+          otpState
         );
         const { data } = res;
-        console.log(res);
-        console.log(data);
         if (res.status === 200) {
           history()
           dispatch(otpSuccess(data));

@@ -20,7 +20,6 @@ const Notification = ({fetchnotification, notification, putnotification}) => {
     };
     const handleMark = (read, id) =>{
         putnotification({read: read}, id)
-        console.log(id)
     }
     useEffect(() => {
         fetchnotification();
@@ -107,7 +106,6 @@ const Notification = ({fetchnotification, notification, putnotification}) => {
      );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
       notification: state.notification,
     };

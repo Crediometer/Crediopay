@@ -178,7 +178,7 @@ const Vas = ({
     );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
+    
     return {
         loading: state.vas.loading,
         data: state?.vas?.data?.data,

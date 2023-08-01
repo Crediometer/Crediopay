@@ -9,7 +9,7 @@ const Payment = ({vault}) => {
     const dashOffset = dashArray - (dashArray * percentage) / 100; 
     return ( 
         <div className={styles.Payment}>
-            <p className={styles.paymentHead}>Payment Limit </p>
+            <p className={styles.paymentHead}>Transfer Limit </p>
             <div className={styles.paymentCircle}>
                 <p className={styles.paymentAmount}>NGN 1,000,000</p>
                 <p className={styles.paymentLimit}>Limit (you can’t get payed over one million with this account)</p>
@@ -87,7 +87,6 @@ const Payment = ({vault}) => {
     );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
         vault:state?.vault?.data?.data?.mainAccount
     };

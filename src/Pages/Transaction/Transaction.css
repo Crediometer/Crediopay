@@ -165,6 +165,7 @@
     border-radius: 8px;
 }
 .categorySearch input{
+    width: 90%;
     padding-left: 10px;
     background-color: transparent;
     border: none;
@@ -177,6 +178,18 @@
     line-height: 20px;
     text-transform: capitalize;
     color: rgba(0, 0, 0, 0.6);
+}
+.categoryLeftMobile{
+    display: none;
+}
+.categoryLeftDesktop{
+    display: block;
+}
+.categoryLeft{
+    width: 65%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 @media (max-width: 1350px) {
     .current, .main, .sub{
@@ -214,7 +227,7 @@
         padding: 2rem 1rem;
     }
     .transaction-top{
-        margin-top: 50px;
+        margin-top: 0px;
     }
     .transaction-top-left, .transaction-top-center, .transaction-top-right{
         padding: 1.125rem 2rem;
@@ -225,12 +238,13 @@
         display: none;
     }
     .dashboardCategory{
-        width: 90%;
+        width: 100%;
         display: flex;
         justify-content: space-between;
-        align-items: first baseline;
-        position: absolute;
-        top: 20px;
+        gap: 15px;
+        align-items: center;
+        /* position: absolute;
+        top: 20px; */
     }
     .transaction-head{
         display: none;
@@ -243,14 +257,39 @@
         font-size: 2.5rem;
         color: rgba(0, 0, 0, 0.9);
     }
-    .categorySearch{
+    .categoryLeftMobile{
+        display: block;
+        width: 80%;
+    }
+    .categoryLeftDesktop{
         display: none;
-        z-index: 3;
-        position: absolute;
-        top: -50px;
+    }
+    .categoryLeft{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        gap: 0px;
+    }
+    .categorySearch{
+        width: 70%;
+        display: flex;
+        align-items: center;
+        padding: 0.6rem;
+        border: 1px solid rgba(0, 0, 0, 0.6);
+        border-radius: 8px;
+    }
+    .categorySearch input::placeholder{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.4rem;
+        line-height: 0px;
+        text-transform: capitalize;
+        color: rgba(0, 0, 0, 0.6);
     }
     .categoryRight{
-        width: 60%;
+        width: 40%;
         display: flex;
         align-items: center;
         gap: 3px;
@@ -258,7 +297,7 @@
 }
 @media (max-width: 600px) {
     .categoryLeft{
-        width: 25%;
+        width: 100%;
         display: flex;
         align-items: center;
         gap: 3px;

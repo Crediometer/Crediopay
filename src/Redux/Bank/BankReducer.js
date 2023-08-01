@@ -16,7 +16,6 @@ const initialState = {
 };
 
 export const banknameReducer = (state = initialState, action) => {
-  console.log("herrrrrrrrreee????? ", action);
   switch (action.type) {
     case POST_SUCCESS:
       return {
@@ -33,7 +32,6 @@ export const banknameReducer = (state = initialState, action) => {
       };
 
     case TRANSFER_DATA_REQUEST:
-      console.log("reach here????");
       return {
         ...state,
         loading: false,

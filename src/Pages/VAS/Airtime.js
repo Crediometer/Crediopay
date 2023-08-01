@@ -50,7 +50,6 @@ const Airtime = ({loading, data, submitting, postvasairtime, error, success, cid
         setPostState({ ...postState, ...{ amount: num } });
     };
     const handleCategory = (id) => {
-        console.log(id)
         setPostState({ ...postState, ...{ serviceCategoryId:id } });
     };
 
@@ -96,23 +95,18 @@ const Airtime = ({loading, data, submitting, postvasairtime, error, success, cid
         const value = e.target.value
         setPin3(value)
         const pins = `${pin}${pin1}${pin2}${value}`
-        console.log(pins)
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(`${consts.pub_key}`);
         var encrypted = encrypt.encrypt(pins);
-        console.log(encrypted)
         setPostState({ ...postState, ...{ pin: encrypted } });
     };
     const handlesubmit = (e)=>{
         e.preventDefault();
-        console.log(postState)
         postvasairtime(
             postState,()=>{ 
                setshowsuccess(true)
             // setPending(true);
             },()=>{ 
-            // console.log(errorHandler)
-            // console.log("now go to error..", error);
             // setErrorHandler(error)
                 setshowerror(true)
             // setPending(false);
@@ -296,7 +290,7 @@ const Airtime = ({loading, data, submitting, postvasairtime, error, success, cid
     );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
+  
     return {
         loading: state.vascategory.loading,
         data: state?.vascategory?.data?.data,

@@ -20,12 +20,11 @@ export const passwordFaliure = (error) => {
     payload: error,
   };
 };
-const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
 export const passwordData = (passwordState, history, setErrorHandler) => {
     return async (dispatch) => {
         dispatch(passwordRequest())
       try {
-        console.log(passwordState);
         const headers = {
           "Content-Type": "application/json",
         };
@@ -34,14 +33,11 @@ export const passwordData = (passwordState, history, setErrorHandler) => {
           passwordState
         );
         const { data } = res;
-        console.log(res);
-        console.log(data);
         if (res.status === 200) {
           history()
           dispatch(passwordSuccess(data));
         }
       } catch (error) {
-        console.log(error)
         if (error.response) {
           dispatch(passwordFaliure(error));
         }

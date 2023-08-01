@@ -8,12 +8,14 @@ import Verification from '../../Components/Multiformbar/Verification';
 import Payout from '../../Components/Multiformbar/Payout';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
-const Activate = ({personal}) => {
+import { fetchgetprofile } from '../../Redux/Getprofile/GetprofileAction';
+const Activate = ({personal, fetchgetprofile}) => {
     let initialCount;
-    if (personal==={}) {
-      initialCount = 1;
-    } else {
+    console.log()
+    if (personal.personalInfo) {
       initialCount = 2;
+    } else {
+      initialCount = 1;
     }
     const [index, setIndex] = useState(initialCount)
     const [sidebar, setSidebar] = useState(false);
@@ -24,8 +26,11 @@ const Activate = ({personal}) => {
         window.scrollTo(0, 0);
         if (index < 4){
             setIndex(prevIndex => prevIndex + 1)
-        }
+        } 
     }
+    useEffect(()=>{
+        fetchgetprofile()
+    })
     return (
         <div className="test">
             <div className="left">
@@ -45,7 +50,7 @@ const Activate = ({personal}) => {
                                 {index===1 && (<Personal next={nextButton}/>)}
                                 {index===2 && (<Business next={nextButton}/>)}
                                 {/* {index===3 && (<Verification/>)} */}
-                                {index===4 && (<Payout/>)}
+                                {index===3 && (<Payout/>)}
                             </div>
                             {/* <button onClick={nextButton} className={styles.activateButton}>Save</button> */}
                         </div>
@@ -56,10 +61,13 @@ const Activate = ({personal}) => {
     );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
-        personal: state?.getprofile?.data?.personalInfo,
+        personal: state?.getprofile?.data,
     };
 };
-
-export default connect(mapStoreToProps,)(Activate);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchgetprofile: () => dispatch(fetchgetprofile()),
+    };
+};
+export default connect(mapStoreToProps, mapDispatchToProps)(Activate);

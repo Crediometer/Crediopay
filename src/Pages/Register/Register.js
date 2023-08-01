@@ -6,7 +6,8 @@ import { registerData, transferData} from "../../Redux/Registration/RegisterActi
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
-
+import LottieAnimation from "../../Lotties";
+import loader from "../../Assets/loading.json"
 const Register = (props) => {
     const {registerData, loading, error}= props
     const dispatch = useDispatch();
@@ -14,13 +15,12 @@ const Register = (props) => {
     const [name, setName] = useState(null);
     const [email, setemail] = useState("")
     const history = useNavigate();
-    // console.log(loading)
+
     const [registerState, setRegisterState] = useState({});
     const [errorHandler, setErrorHandler] = useState([false, ""]);
     
     const handleNumber = (e) => {
         const value = e.target.value;
-        console.log(value);
         setNumber(value);
         const phoneNumber = value;
         setRegisterState({ ...registerState, ...{phoneNumber} });
@@ -28,7 +28,6 @@ const Register = (props) => {
     const handleName = (e) => {
         const value = e.target.value;
         dispatch(transferData(value));
-        console.log(value);
         setName(value);
         const businessName = value;
         setRegisterState({ ...registerState, ...{businessName} });
@@ -36,30 +35,21 @@ const Register = (props) => {
     // const handleEmail = (e) => {
        
     //     const value = e.target.value;  
-    //     console.log(value);
     //     setemail(value);
     //     setRegisterState({ ...registerState, ...{email} });
     // };
     const handleSignUp = async (e) => {
         e.preventDefault();
-        // traData({
-        //    phoneNumber: number,
-        //    businessName: name
-        // });
         try{
             await registerData(registerState, ()=>{ 
-            console.log("now go to otp..");
             history(`/otp`);
             // setPending(true);
             }, ()=>{ 
-                console.log("now go to error..", error);
                 setErrorHandler(error)
                 // setPending(false);
             });
-            console.log(registerState)
         }catch(e){
             // setPending(false);
-            console.log("Something went wrong ??? ",e);
         }
     };
     return ( 
@@ -73,11 +63,11 @@ const Register = (props) => {
                         <p className='login-header'>Sign up</p>
                         <p className='login-text'>Please enter your phone number</p>
                     </div>
-                    {/* {(errorHandler.loading) ?
+                    {(errorHandler?.loading) ?
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             
-                        </div> : <div>{errorHandler}</div>
-                    } */}
+                        </div> : <div className="login-error">{errorHandler}</div>
+                    }
                     <div className="login-form">
                         <form onSubmit={handleSignUp}>
                             <div className="inputfield-4 loginfield">
@@ -123,11 +113,13 @@ const Register = (props) => {
                                 </div>
                             </div> */}
                             <div className="submit submit-login">
-                                {!loading && <button> <span>Submit</span></button>}
-                                {loading && <button disabled>  <FontAwesomeIcon
-                                        className="spinner"
-                                        icon={faSpinner}
-                                ></FontAwesomeIcon></button>}
+                                {loading ? (
+                                    <button disabled>
+                                        <LottieAnimation data={loader}/>
+                                    </button>
+                                ) : (
+                                    <button><span>Submit</span></button>
+                                )}
                             </div>
                         </form>
                     </div>
@@ -142,7 +134,7 @@ const mapStoreToProps = (state) => {
 
     return {
         loading: state.register.loading,
-        error: state.register.error
+        error: state?.register?.error?.data?.message
     };
 };
   

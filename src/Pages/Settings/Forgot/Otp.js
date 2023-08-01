@@ -17,23 +17,18 @@ const Forgototp = ({postotpforgot, data, loading}) => {
     };
     const handleNumber =(e)=>{
         const value = e.target.value;
-        console.log(value);
         const pin_id = data
         setotp(value);
         setPostState({  ...{pin: otp, pin_id} });
     }
     const handlesubmit = (e)=>{
         e.preventDefault();
-        console.log(postState)
         postotpforgot(
             postState, ()=>{ 
-            console.log("now go to dashboard..");
             history(`/forgotnew`);
             // setPending(true);
         }
         // ,  ()=>{ 
-        //     // console.log(errorHandler)
-        //     // console.log("now go to error..", error);
         //     // setErrorHandler(error)
         //     setshowerror(true)
         //     // setPending(false);

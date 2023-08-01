@@ -58,7 +58,6 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
                     setshowkyc(true);
                     }
             )
-            console.log(postState)
             // postData(nameState);
             // console.log(name)
             // setaccountName(name.data.accountName)
@@ -85,30 +84,23 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('mermat',file);
+        formData.append('mermat',filename2);
         formData.append('bvn', bvn);
         formData.append('dob',dob);
         formData.append('rcNumber', rcNumber);
-        console.log(file)
-        console.log(formData)
         try{
             
             await business(formData, ()=>{ 
-            console.log("now go to complete..");
             next();
+            console.log("done")
             // setPending(true);
             }, ()=>{ 
-                console.log(errorHandler)
-                console.log("now go to error..", error);
                 setErrorHandler(error)
                 setshowerror(true)
                 // setPending(false);
             });
-            // console.log(formState)
-            // console.log(nameState)
         }catch(error){
-            // setPending(false);
-            console.log("Something went wrong ??? ",error);
+            // setPending(false)
         }
     };
     return ( 
@@ -158,14 +150,20 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
                <div className="files">
                 <div className="filedisplay">
                     {filename2!=''?(
-                        <p className='select-filename'><span onClick={()=>{setFilename2(""); setImage2(null)}}><FaTimesCircle/> Remove File</span></p>
+                        <p className='select-filename'><span onClick={()=>{setFilename2(""); setImage2(null)}}><FaTimesCircle/>Remove File</span>{filename2.name}</p>
                         ):
                         <p><AiOutlineFile/> No file chosen</p>
                     }
                 </div>
                 <div className="filechose" onClick={()=>document.querySelector(".upload").click()}>
                     <input type="file" className='upload' hidden
-                       onChange={(e) => setFile(e.target.files[0])}
+                        onChange={({target: {files}})=>{
+                            files[0] && setFilename2(files[0])
+                            if(files){
+                                setImage2(URL.createObjectURL(files[0]))
+                                // setNameState({ ...nameState, ...{ filename: image } });
+                            }
+                        }}
                         // onBlur={handlemermat}
                     ></input>
                     <p>Choose File</p>
@@ -226,7 +224,6 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
     );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
         error: state.business.error,
         loading: state.business.loading,

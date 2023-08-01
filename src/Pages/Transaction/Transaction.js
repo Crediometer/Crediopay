@@ -5,7 +5,7 @@ import { fetchtransaction } from '../../Redux/Transaction/TransactionAction';
 import styles from '../Dashboard/Dashboard.module.css'
 import './Transaction.css'
 import copy from 'copy-to-clipboard'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaChevronDown, FaSearch } from 'react-icons/fa';
 import TransactionTable from '../../Components/Table/TransactionTable';
 import {styled} from '@mui/material/styles'
@@ -14,6 +14,8 @@ import Pagination from '@mui/material/Pagination';
 import DashboardTable from '../../Components/Table/DashboardTable';
 import Sidebar from '../../Components/Sidebar/Sidebar';
 import Navbar from '../../Components/Navbar/Navbar';
+import { fetchgetprofile } from '../../Redux/Getprofile/GetprofileAction';
+import { fetchvault } from '../../Redux/Vault/VaultAction';
 const StyledPagination = styled(Pagination)(({ theme }) => ({
     ul: {
         "& .Mui-selected": {
@@ -22,12 +24,17 @@ const StyledPagination = styled(Pagination)(({ theme }) => ({
         }   
       }
 }));
-const Transaction = ({fetchtransaction, profile}) => {
+const Transaction = ({fetchtransaction, profile,fetchgetprofile, fetchvault, cid}) => {
     const [isActive, setIsActive] = useState(1);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('All');
     const [selectedBox, setSelectedBox] = useState(1);
     const [sidebar, setSidebar] = useState(false);
+    const [query, setQuery] = useState("")
+    const [money, setmoney] = useState("All")
+    const [success, setsuccess] = useState("All")
+    const [startdate, setstartdate] = useState(null)
+    const [enddate, setenddate] = useState(null)
     const toggleSidebar = () => {
       setSidebar((prevState) => !prevState);
     };
@@ -42,6 +49,14 @@ const Transaction = ({fetchtransaction, profile}) => {
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
     };
+    const handlestartdate = (e)=>{
+       const value = e.target.value;
+       setstartdate(value)
+    }
+    const handlenddate = (e)=>{
+        const value = e.target.value;
+        setenddate(value)
+     }
     const handleClick = id => {
       // 👇️ toggle isActive state on click
       setIsActive(id);
@@ -49,6 +64,19 @@ const Transaction = ({fetchtransaction, profile}) => {
     const handleCopy = ()=>{
         copy(profile?.accountNumber);
     }
+    const handlemode = (e)=>{
+        const value = e.target.value
+        let num = parseInt(value)
+        setmoney(value)
+    }
+    const handlestatus = (id)=>{
+        setsuccess(id)
+    }
+    useEffect(() => {
+        fetchvault(cid)
+        fetchgetprofile()
+    }, [cid]);
+
     const myClassName = `${styles.status} ${isActive ? styles.active : ''}`;
     return ( 
         <div className="test">
@@ -117,24 +145,24 @@ const Transaction = ({fetchtransaction, profile}) => {
                         <p className='transaction-head'>Transactions</p>
                         <div className="transaction-body">
                             <div className='dashboardCategory'>
-                                <div className={styles.categoryLeftMobile}>
-                                    <div className={styles.categoryLeft}>
+                                <div className="categoryLeftMobile">
+                                    <div className="categoryLeft">
                                         <div className={styles.dropdownButton} onClick={toggleDropdown}>
                                             <p>{selectedOption}</p>
                                             <FaChevronDown/>
                                         </div>
                                         {isDropdownOpen && (
                                             <div className={styles.categoryLeftInner}>
-                                                <div className={` ${selectedBox === 2 ? 'selected-box' : ''}`} onClick={()=>{handleClick(); handleOptionClick('All');}}>
+                                                <div className={` ${selectedBox === 2 ? 'selected-box' : ''}`} onClick={()=>{handleClick(); handleOptionClick('All'); handlestatus("All");}}>
                                                     <p>All</p>
                                                 </div>
-                                                <div className={myClassName} onClick={()=>{handleClick(); handleOptionClick('Successful');}}>
+                                                <div className={myClassName} onClick={()=>{handleClick(); handleOptionClick('Successful'); handlestatus("0");}}>
                                                     <p>Successful</p>
                                                 </div>
-                                                <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Pending');}}>
+                                                {/* <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Pending');}}>
                                                     <p>Pending</p>
-                                                </div>
-                                                <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Failed');}}>
+                                                </div> */}
+                                                <div className={styles.status} onClick={()=>{handleClick(); handleOptionClick('Failed'); handlestatus("1")}}>
                                                     <p>Failed</p>
                                                 </div>
                                             </div>
@@ -143,33 +171,35 @@ const Transaction = ({fetchtransaction, profile}) => {
                                 </div>
                                 <div className={styles.categoryLeftDesktop}>
                                     <div className={styles.categoryLeft}>
-                                            <div className={`${styles.status} ${isActive === 1 ? styles.active : ''}`} onClick={()=>{handleClick(1); handleOptionClick('All');}}>
+                                            <div className={`${styles.status} ${isActive === 1 ? styles.active : ''}`} onClick={()=>{handleClick(1); handleOptionClick('All'); handlestatus('All')}}>
                                                 <p>All</p>
                                             </div>
-                                            <div className={`${styles.status} ${isActive === 2 ? styles.active : ''}`} onClick={()=>{handleClick(2); handleOptionClick('Successful');}}>
+                                            <div className={`${styles.status} ${isActive === 2 ? styles.active : ''}`} onClick={()=>{handleClick(2); handleOptionClick('Successful'); handlestatus("0")}}>
                                                 <p>Successful</p>
                                             </div>
-                                            <div className={`${styles.status} ${isActive === 3 ? styles.active : ''}`} onClick={()=>{handleClick(3); handleOptionClick('Pending');}}>
+                                            {/* <div className={`${styles.status} ${isActive === 3 ? styles.active : ''}`} onClick={()=>{handleClick(3); handleOptionClick('Pending');}}>
                                                 <p>Pending</p>
-                                            </div>
-                                            <div className={`${styles.status} ${isActive === 4 ? styles.active : ''}`} onClick={()=>{handleClick(4); handleOptionClick('Failed');}}>
+                                            </div> */}
+                                            <div className={`${styles.status} ${isActive === 4 ? styles.active : ''}`} onClick={()=>{handleClick(4); handleOptionClick('Failed'); handlestatus("1")}}>
                                                 <p>Failed</p>
                                             </div>
                                     </div>
                                 </div>
                                 <div className='categoryRight'>
-                                    <select>
+                                    <select onChange={handlemode}>
                                         <optgroup>
-                                            <option>Money In</option>
-                                            <option>Money Out</option>
+                                            <option value='All'>All</option>
+                                            <option value='1'>Money In</option>
+                                            <option value="0">Money Out</option>
                                         </optgroup>
                                     </select>
-                                    <input
+                                    {/* <input
                                         type='text'
                                         placeholder='Start Date'
                                         className='transferfield'
                                         onFocus={(e) => (e.target.type = "date")}
                                         onBlur={(e) => {(e.target.type = "text");}}
+                                        onChange={handlestartdate}
                                         required
                                     ></input>
                                     <input
@@ -178,38 +208,24 @@ const Transaction = ({fetchtransaction, profile}) => {
                                         className='transferfield'
                                         onFocus={(e) => (e.target.type = "date")}
                                         onBlur={(e) => {(e.target.type = "text");}}
+                                        onChange={handlenddate}
                                         required
-                                    ></input>
+                                    ></input> */}
                                 </div>
                                 <div className='categorySearch'>
                                     <FaSearch/>
                                     <input
                                     type='text'
                                     placeholder='find using ID'
+                                    onChange={(e)=> setQuery(e.target.value)}
                                     ></input>
                                 </div>
                             </div>
                             <div className="transaction-table">
                                 {/* <TransactionTable/> */}
-                                <DashboardTable/>
+                                <DashboardTable search={query} money={money} status={success} start={startdate} end={enddate}/>
                             </div>
-                            <div className="main-footer">
-                                <div className="main-footer-left">
-                                    <p>Show results</p>
-                                    <div className="main-select">
-                                        <select>
-                                            <optgroup>
-                                                <option>10</option>
-                                                <option>20</option>
-                                                <option>30</option>
-                                            </optgroup>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="main-footer-right">
-                                    <StyledPagination count={1}/>  
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -218,9 +234,10 @@ const Transaction = ({fetchtransaction, profile}) => {
     );
 }
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
+        
       recent: state.recenttransaction,
+      cid: state?.getprofile?.data?.client?._id,
       profile: state?.vault?.data?.data?.mainAccount
     };
 };
@@ -228,6 +245,8 @@ const mapStoreToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchtransaction: () => dispatch(fetchtransaction()),
+        fetchgetprofile: () => dispatch(fetchgetprofile()),
+        fetchvault: (id) => dispatch(fetchvault(id))
     };
 };
 export default connect(mapStoreToProps, mapDispatchToProps)(Transaction);

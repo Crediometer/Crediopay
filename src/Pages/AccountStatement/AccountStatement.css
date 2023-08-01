@@ -170,6 +170,12 @@
         font-size: 1rem;
         color: #FFFFFF;
     }
+    .statement-sub-head-left, .statement-sub-head-center{
+        width: 48%;
+    }
+    .statement-sub-head-right{
+        display: none;
+    }
     .statement-main-balance{
         font-size: 1.375rem!important;
     }

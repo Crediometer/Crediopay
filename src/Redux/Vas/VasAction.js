@@ -47,22 +47,17 @@ export const vasFaliure = (error) =>{
     }
 }
 
-const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
 
 export const fetchvasservices = () => {
     return(dispatch) => {
         dispatch(vasRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        console.log(`data ----- ${datas}`)
-        console.log(`this is data ${datas?.token?.data?.token?.token}`)
         axios.get(`${baseUrl}/vas/getServices`, {headers: {
             Authorization: `Bearer ${datas?.token?.data?.token?.token}`,
           }})
             .then( response => {
                 const data = response.data
-                console.log(`this is vas --- ${data}`)
-                console.log(data)
                 dispatch(vasSuccess(data))
             })
             .catch(error =>{
@@ -98,17 +93,12 @@ export const vascategoryFaliure = (error) =>{
 export const fetchvascategory = (id) => {
     return(dispatch) => {
         dispatch(vascategoryRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        console.log(`data ----- ${datas}`)
-        console.log(`this is data ${datas?.token?.data?.token?.token}`)
         axios.get(`${baseUrl}/vas/getServiceCategories?id=${id}`, {headers: {
             Authorization: `Bearer ${datas?.token?.data?.token?.token}`,
           }})
             .then( response => {
                 const data = response.data
-                console.log(`this is vas category --- ${data}`)
-                console.log(data)
                 dispatch(vascategorySuccess(data))
             })
             .catch(error =>{
@@ -143,17 +133,12 @@ export const vasairtimeFaliure = (error) =>{
 export const postvasairtime = (poststate, history, errors) => {
     return(dispatch) => {
         dispatch(vasairtimeRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        console.log(`data ----- ${datas}`)
-        console.log(`this is data ${datas?.token?.data?.token?.token}`)
         axios.post(`${baseUrl}/vas/airtime/buy`, poststate, {headers: {
             Authorization: `Bearer ${datas?.token?.data?.token?.token}`,
           }})
             .then( response => {
                 const data = response.data
-                console.log(`this is vas category --- ${data}`)
-                console.log(data)
                 dispatch(vasairtimeSuccess(data))
                 history()
             })
@@ -190,17 +175,12 @@ export const vasproductFaliure = (error) =>{
 export const fetchvasproduct = (id) => {
     return(dispatch) => {
         dispatch(vasproductRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        console.log(`data ----- ${datas}`)
-        console.log(`this is data ${datas?.token?.data?.token?.token}`)
         axios.get(`${baseUrl}/vas/getServiceProducts?id=${id}`, {headers: {
             Authorization: `Bearer ${datas?.token?.data?.token?.token}`,
           }})
             .then( response => {
                 const data = response.data
-                console.log(`this is vas category --- ${data}`)
-                console.log(data)
                 dispatch(vasproductSuccess(data))
             })
             .catch(error =>{
@@ -235,17 +215,12 @@ export const vasdataFaliure = (error) =>{
 export const postvasdata = (poststate, history, errors) => {
     return(dispatch) => {
         dispatch(vasdataRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        console.log(`data ----- ${datas}`)
-        console.log(`this is data ${datas?.token?.data?.token?.token}`)
         axios.post(`${baseUrl}/vas/data/buy`, poststate, {headers: {
             Authorization: `Bearer ${datas?.token?.data?.token?.token}`,
           }})
             .then( response => {
                 const data = response.data
-                console.log(`this is vas category --- ${data}`)
-                console.log(data)
                 dispatch(vasdataSuccess(data))
                 history()
             })
@@ -282,17 +257,12 @@ export const vasverifyFaliure = (error) =>{
 export const postvasverify = (poststate) => {
     return(dispatch) => {
         dispatch(vasverifyRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        console.log(`data ----- ${datas}`)
-        console.log(`this is data ${datas?.token?.data?.token?.token}`)
         axios.post(`${baseUrl}/vas/vas/verify-UC`, poststate, {headers: {
             Authorization: `Bearer ${datas?.token?.data?.token?.token}`,
           }})
             .then( response => {
                 const data = response.data
-                console.log(`this is vas category --- ${data}`)
-                console.log(data)
                 dispatch(vasverifySuccess(data))
                 // history()
             })
@@ -329,17 +299,12 @@ export const vascableFaliure = (error) =>{
 export const postvascable = (poststate, history, errors) => {
     return(dispatch) => {
         dispatch(vascableRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        console.log(`data ----- ${datas}`)
-        console.log(`this is data ${datas?.token?.data?.token?.token}`)
         axios.post(`${baseUrl}/vas/cable/buy`, poststate, {headers: {
             Authorization: `Bearer ${datas?.token?.data?.token?.token}`,
           }})
             .then( response => {
                 const data = response.data
-                console.log(`this is vas category --- ${data}`)
-                console.log(data)
                 dispatch(vascableSuccess(data))
                 history()
             })
@@ -376,17 +341,12 @@ export const vasutilityFaliure = (error) =>{
 export const postvasutility = (poststate, history, errors) => {
     return(dispatch) => {
         dispatch(vasutilityRequest())
-        console.log(`${localStorage.getItem("auth")}`)
         let datas = JSON.parse(localStorage.getItem("auth"))
-        console.log(`data ----- ${datas}`)
-        console.log(`this is data ${datas?.token?.data?.token?.token}`)
-        axios.post(`${baseUrl}/vas/cable/buy`, poststate, {headers: {
+        axios.post(`${baseUrl}/vas/power/buy`, poststate, {headers: {
             Authorization: `Bearer ${datas?.token?.data?.token?.token}`,
           }})
             .then( response => {
                 const data = response.data
-                console.log(`this is vas category --- ${data}`)
-                console.log(data)
                 dispatch(vasutilitySuccess(data))
                 history()
             })

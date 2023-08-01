@@ -131,6 +131,8 @@
 }
 .vas-select-body{
     background-color: white;
+    height: 500px;
+    overflow-y: scroll;
 }
 .vas-select-body-inner{
     display: flex;

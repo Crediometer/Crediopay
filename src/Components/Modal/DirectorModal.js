@@ -16,19 +16,16 @@ const DirectorModal = ({togglemodal, postdirector, loading, error, success}) => 
     const [showsuccess, setshowsuccess] = useState(false)
     const handleemail =(e)=>{
         const value = e.target.value;
-        console.log(value);
         setEmail(value);
         setPostState({ ...postState, ...{email: email} });
     }
     const handleName =(e)=>{
         const value = e.target.value;
-        console.log(value);
         setName(value);
         setPostState({ ...postState, ...{name: name} });
     }
     const handleRole =(e)=>{
         const value = e.target.value;
-        console.log(value);
         setRole(value);
         setPostState({ ...postState, ...{role: role} });
     }
@@ -40,20 +37,14 @@ const DirectorModal = ({togglemodal, postdirector, loading, error, success}) => 
     }
     const handlesubmit = (e)=>{
         e.preventDefault();
-        console.log(postState)
         postdirector(
             postState, ()=>{ 
-            // setPending(true);
             setshowsuccess(true)
             setRole("")
             setName("")
             setEmail("")
         },  ()=>{ 
-            // console.log(errorHandler)
-            // console.log("now go to error..", error);
-            // setErrorHandler(error)
             setshowerror(true)
-            // setPending(false);
         }
         )
     }

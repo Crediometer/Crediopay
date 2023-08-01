@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux'
 import styles from './Registration.module.css';
 import { useNavigate } from 'react-router-dom';
@@ -13,9 +13,10 @@ import { postbusinesspartner } from '../../Redux/BusinessPartner/BusinessAction'
 import Errormodal from '../../Components/Modal/Errormodal';
 import LottieAnimation from '../../Lotties';
 import loader from "../../Assets/loading.json";
+import { fetchgetprofile } from '../../Redux/Getprofile/GetprofileAction';
 const options = [{name:'name'},{name:'games'}];
 
-const Registration = ({profile, postbusinesspartner, error, loading}) => {
+const Registration = ({profile, postbusinesspartner, error, loading, getprofile}) => {
     const [selectedOption, setSelectedOption] = useState('');
     const [sidebar, setSidebar] = useState(false);
     const [postState, setPostState] = useState({})
@@ -38,43 +39,43 @@ const Registration = ({profile, postbusinesspartner, error, loading}) => {
     };
     const handleFirstname = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setFirstName(value);
         setPostState({ ...postState, ...{firstName: firstname} });
     };
     const handleLastname = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setLastName(value);
         setPostState({ ...postState, ...{lastName: lastname, businessDescription: businessDescription} });
     };
     const handleRole = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setRole(value);
         setPostState({ ...postState, ...{role: role} });
     };
     const handleBusinessDes = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setBusinessDescription(value);
         setPostState({ ...postState, ...{businessDescription: businessDescription} });
     };
     const handleBusinessType = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setBusinessType(value);
         setPostState({ ...postState, ...{businessType: businessType} });
     };
     const handleWorkerRange = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setWorkerRange(value);
         setPostState({ ...postState, ...{workerRange: WorkerRange} });
     };
     const handleBusinessIndustry = (e) => {
         const value = e.target.value;
-        console.log(value);
+        ;
         setBusinessIndustry(value);
         setPostState({ ...postState, ...{businessIndustry: businessIndustry} });
     };
@@ -83,20 +84,21 @@ const Registration = ({profile, postbusinesspartner, error, loading}) => {
     }
     const handlesubmit = (e)=>{
         e.preventDefault();
-        console.log(postState)
         postbusinesspartner(
             postState, ()=>{ 
-            console.log("now go to dashboard..");
             history(`/dashboard`);
             // setPending(true);
         },  ()=>{ 
-            // console.log(errorHandler)
-            // console.log("now go to error..", error);
-            // setErrorHandler(error)
             setshowerror(true)
             // setPending(false);
         })
     }
+    // useEffect(() => {
+    //     fetchgetprofile()
+    //     if (getprofile) {
+    //         history("/dashboard");
+    //     }
+    // }, [getprofile, history]);
     return (
         <div className="test">
             <div className="left">
@@ -289,7 +291,8 @@ const mapStateToProps = state => {
     return{
         loading:state.businessreg.loading,
         error:state?.businessreg?.error,
-        profile: state.getprofile.data
+        profile: state.getprofile.data,
+        getprofile: state?.getprofile?.data?.businessPartnerInfo
     }
 }
 
@@ -298,6 +301,7 @@ const mapDispatchToProps = dispatch => {
         postbusinesspartner: (postdata, history, error) => {
             dispatch(postbusinesspartner(postdata, history, error));
         },
+        fetchgetprofile: () => dispatch(fetchgetprofile()),
     }
 }
 

@@ -25,21 +25,23 @@ export const profileFaliure = (error) =>{
     }
 }
 
-const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
+const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
 
 
 export const fetchprofile = () => {
     return(dispatch) => {
         dispatch(profileRequest())
-        console.log("help")
-        // console.log(`${localStorage.getItem("auth")}`)
+        let datas = JSON.parse(localStorage.getItem("auth"))
+        const headers = {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${datas?.token?.data?.token?.token}`,
+        };
         // let datas = JSON.parse(localStorage.getItem("auth"))
         // console.log(`data ----- ${datas}`)
         // console.log(`this is data ${datas.token.token.token}`)
-        axios.get(`${baseUrl}/dashboard/businessProfile`)
+        axios.get(`${baseUrl}/dashboard/businessProfile`, { headers: headers })
             .then( response => {
                 const data = response
-                console.log(`this is profile analytics--- ${data}`)
                 dispatch(profileSuccess(data))
             })
             .catch(error =>{

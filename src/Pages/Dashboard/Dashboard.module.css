@@ -144,7 +144,7 @@
     color: rgba(0, 0, 0, 0.6);
 }
 .dashboardBalance{
-    margin-top: 54px;
+    margin-top: 0px;
     display: flex;
     flex-direction: row;
     align-items: center;

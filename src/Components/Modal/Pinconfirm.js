@@ -9,12 +9,16 @@ import { fetchBank, postData, reqData } from '../../Redux/Bank/BankAction';
 import { depositData } from '../../Redux/Deposit/DepositAction';
 import SuccessModal from './SuccessModal';
 import Errormodal from './Errormodal';
-const Pinconfirm = ({nameData, deposit, depositData}) => {
+import LottieAnimation from '../../Lotties';
+import loader from "../../Assets/loading.json"
+import SuccessModal2 from './SuccessModal2';
+import { FaTimes } from 'react-icons/fa';
+const Pinconfirm = ({nameData, deposit, depositData,loading, message, togglemodal}) => {
     const dispatch = useDispatch();
     const [combinedpin, setCombinedpin] = useState('');
     const [successmodal, setSuccessModal] = useState(false);
     const [modal, setModal] = useState(false);
-    const [randomString, setRandomString] = useState('were45ere');
+    const [randomString, setRandomString] = useState('were45er');
     const depositState = useSelector((state) => state.bankname.transferData);
     console.log(depositState)
     const [pin, setPin] = useState("");
@@ -56,16 +60,20 @@ const Pinconfirm = ({nameData, deposit, depositData}) => {
         const value = e.target.value
         setPin3(value)
         const pins = `${pin}${pin1}${pin2}${value}`
-        console.log(pins)
+       
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(`${consts.pub_key}`);
         var encrypted = encrypt.encrypt(pins);
-        console.log(encrypted)
+        
         setCombinedpin(encrypted);
     };
 
     const handleModal = ()=>{
         setModal(!modal)
+    }
+
+    const handleModal2 = ()=>{
+        setSuccessModal(!SuccessModal)
     }
     // useEffect(() => {
     //     // HANDLE FOR PAYMENTREFERENCE
@@ -117,7 +125,7 @@ const Pinconfirm = ({nameData, deposit, depositData}) => {
     //   console.log(deposit)
         // console.log(deposit)
         try{
-            await depositData(depositState, () => {
+            await depositData(transfer, () => {
                 setSuccessModal(true);
             }, () => {
                 setModal(true);
@@ -131,7 +139,11 @@ const Pinconfirm = ({nameData, deposit, depositData}) => {
     }
     return ( 
         <div className="modal-background">
+            
             <div className="modal pin-modal">
+                <div className='modalClose' onClick={togglemodal}>
+                    <FaTimes/>
+                </div>
                 <div className="receiver-details">
                     <div className="preview-1 preview-upper">
                     <div className="preview-left">
@@ -214,12 +226,24 @@ const Pinconfirm = ({nameData, deposit, depositData}) => {
                     </div>
                 </div>
                 <div className="form-button">
-                    <button
+                    {loading ? (
+                        <button
+                        className="transfer-button"
+                        disabled>
+                            <LottieAnimation data={loader}/>
+                        </button>
+                    ) : (
+                        <button
+                        className="transfer-button"
+                        onClick={handleSubmit}
+                        ><span>Finish</span></button>
+                    )}
+                    {/* <button
                         type="submit"
                         value="Continue"
                         className="transfer-button"
                         onClick={handleSubmit}
-                    ><span>Finish</span></button>
+                    ><span>Finish</span></button> */}
                     {/* {!loading && <button
                         type="submit"
                         value="Continue"
@@ -233,7 +257,7 @@ const Pinconfirm = ({nameData, deposit, depositData}) => {
                 </div>
             </div>
             {successmodal && (
-                <SuccessModal  link="/nairaaccount"/>
+                <SuccessModal2 message={message}  link="/dashboard" />
             )}{modal && (
                 <Errormodal  togglemodal={handleModal}/>
             )}
@@ -242,7 +266,7 @@ const Pinconfirm = ({nameData, deposit, depositData}) => {
 }
 
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
+    
     return {
     bankData: state.bankname,
     nameData: state,
@@ -250,7 +274,7 @@ const mapStoreToProps = (state) => {
     loading: state.deposit.loading,
     status: state?.deposit?.deposit?.status,
     error: state?.deposit?.error,
-    message: state?.deposit?.deposit?.message,
+    message: state?.deposit?.data?.message,
     errormessage: state?.deposit?.error?.data?.message
     };
 };

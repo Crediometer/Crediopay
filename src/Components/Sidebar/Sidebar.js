@@ -8,23 +8,43 @@ import { Link,NavLink, useLocation } from "react-router-dom";
 import { BsPerson } from "react-icons/bs";
 import { fetchgetprofile } from "../../Redux/Getprofile/GetprofileAction";
 import { fetchprofile } from "../../Redux/Profile/ProfileAction";
-const Sidebar = ({Sidebar,toggle, fetchprofile, fetchgetprofile, profile}) => {
+import { LogOutAuthAction } from "../../Redux/Login/LoginAction";
+import { useNavigate } from "react-router-dom";
+const Sidebar = ({Sidebar,toggle, fetchprofile, fetchgetprofile, profile, logout}) => {
     const location = useLocation();
+    const history = useNavigate();
     const [activeLink, setActiveLink] = useState(null);
+    const [timeoutId, setTimeoutId] = useState(null);
     function handleLinkClick(event, index) {
         event.preventDefault();
         setActiveLink(index);
     }
     let businessname = profile?.businessName
-    console.log(businessname)
+    
     const phoneNumber = profile?.phoneNumber
     const newphoneNumber = phoneNumber?.startsWith('+234') ? '0' + phoneNumber.slice(4) : phoneNumber;
-    console.log(newphoneNumber)
+
     // const navLinkStyles = ({isActive}) => {
 
     // }
+    const handlelogout =()=>{
+        logout(
+            ()=>{ history(`/`)}
+        )
+    }
+
     useEffect(() => {
         fetchgetprofile()
+
+        const id = setTimeout(() => {
+            handlelogout();
+        }, 420000);
+
+        setTimeoutId(id);
+
+        return () => {
+            clearTimeout(timeoutId);
+        };
     }, []);
     return ( 
         <div className={Sidebar?`${styles.sidebar} ${styles.sidebaropen}`: `${styles.sidebar}`}>
@@ -72,14 +92,13 @@ const Sidebar = ({Sidebar,toggle, fetchprofile, fetchgetprofile, profile}) => {
                 </nav>
             </section>
             <div className={styles.sidebarfooter}>
-                <h3><span><BiLogOut/></span>Logout</h3>
+                <h3 onClick={handlelogout}><span><BiLogOut/></span>Logout</h3>
             </div>
         </div>
     );
 }
 
 const mapStoreToProps = (state) => {
-    console.log("states   ", state);
     return {
       profile: state.getprofile.data
     };
@@ -89,6 +108,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchprofile: () => dispatch(fetchprofile()),
         fetchgetprofile: () => dispatch(fetchgetprofile()),
+        logout: (history) => dispatch(LogOutAuthAction(history)),
     };
 };
  

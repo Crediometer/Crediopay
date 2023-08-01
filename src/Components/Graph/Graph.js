@@ -11,6 +11,8 @@ import {
     Filler
 } from 'chart.js';
 import { FilledInput } from '@mui/material';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 ChartJS.register(
     LineElement,
@@ -20,14 +22,38 @@ ChartJS.register(
     Filler
 )
 const Graph = ({fetchanalytics, analytics}) => {
+    const [chart, setchart] = useState([])
+    const [numbers, setNumbers] = useState([]);
+    const [months, setMonths] = useState([]);
+    const monthMapping = {
+        1: 'Jan',
+        2: 'Feb',
+        3: 'Mar',
+        4: 'Apr',
+        5: 'May',
+        6: 'Jun',
+        7: 'Jul',
+        8: 'Aug',
+        9: 'Sep',
+        10: 'Oct',
+        11: 'Nov',
+        12: 'Dec',
+      };
+    useEffect(()=>{
+        const sortedNumbers = analytics?.data?.data?.analyticsData?.sort((a, b) => a.month - b.month);
+        setNumbers(sortedNumbers);
+        const assignedMonths = sortedNumbers?.map((number) => monthMapping[number.month]);
+        setMonths(assignedMonths);
+    }, [analytics])
+
     const data = {
-        labels:[`${analytics?.data?.data?.analyticsData?.map((month)=>{
-            return(`${month.month}`)   
-        })}`],
+        labels:numbers?.map((number, index) => {
+            return(`${months[index]}`)
+        }),
         datasets: [{
-            data:[`${analytics?.data?.data?.analyticsData?.map((month)=>{
+            data:analytics?.data?.data?.analyticsData?.map((month)=>{
                 return(month.value)   
-            })}`],
+            }),
             backgroundColor: (context) => {
                 const ctx = context.chart.ctx;
                 const gradient = ctx.createLinearGradient(0, 0, 0, 179.63);
@@ -62,7 +88,7 @@ const Graph = ({fetchanalytics, analytics}) => {
             },
             y: {
                 min: 0,
-                max: 10000,
+                max: 12000,
                 ticks: {
                     stepSize: 2000
                 },
