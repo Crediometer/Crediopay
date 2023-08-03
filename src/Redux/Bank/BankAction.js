@@ -64,7 +64,7 @@ export const reqData = (data) => {
 
 
 
-const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
+const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 
 export const postData = (postState) => {
   return async (dispatch) => {

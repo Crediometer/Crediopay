@@ -20,7 +20,7 @@ export const personalFaliure = (error) =>{
     }
 }
 
-const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
+const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 
 export const postpersonal = (nameState, history, setErrorHandler) => {
     return async (dispatch) => {

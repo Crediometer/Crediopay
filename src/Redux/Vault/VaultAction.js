@@ -22,7 +22,7 @@ export const vaultFaliure = (error) =>{
     }
 }
 
-const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
+const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 
 export const fetchvault = (id) => {
     return(dispatch) => {

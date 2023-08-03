@@ -72,7 +72,7 @@ export const sumtranFaliure = (error) =>{
         payload: error
     }
 }
-const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
+const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 
 //FOR ANALYTICS
 export const fetchanalytics = () => {

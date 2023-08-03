@@ -21,7 +21,7 @@ export const businessFaliure = (error) =>{
     }
 }
 
-const baseUrl = "http://www.api-admin.crediopay.com/api/v1"
+const baseUrl = "https://fe-sandbox-quick-pay.onrender.com/api/v1"
 
 export const postbusiness = (nameState, history, setErrorHandler) => {
     return async (dispatch) => {
