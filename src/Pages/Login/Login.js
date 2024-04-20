@@ -61,7 +61,6 @@ const Login = (props) => {
 
     // FOR PASSWORD ENCRYTPTING
     const handlePassword = (e) => {
-        // console.log(process.env.REACT_APP_PUB_KEY);
         const value = e.target.value;
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(`${consts.pub_key}`);
@@ -78,7 +77,6 @@ const Login = (props) => {
         try{
             await login(loginState, ()=>{ 
             fetchgetprofile()
-            console.log(getprofile)
                 history(`/dashboard`)
             // setPending(true);
             }, ()=>{ 
@@ -116,7 +114,7 @@ const Login = (props) => {
                         </div> : <div className="login-error">{errorHandler}</div>
                     }
                     <div className="login-form">
-                        <form onSubmit={handleSignUp}>
+                        <form onSubmit={handleSignUp} method="POST">
 
                             <div className="inputfield-4 loginfield">
                                 <label>Phone Number</label><br></br>

@@ -11,7 +11,6 @@ import Navbar from '../../Components/Navbar/Navbar';
 import { fetchgetprofile } from '../../Redux/Getprofile/GetprofileAction';
 const Activate = ({personal, fetchgetprofile}) => {
     let initialCount;
-    console.log()
     if (personal.personalInfo) {
       initialCount = 2;
     } else {

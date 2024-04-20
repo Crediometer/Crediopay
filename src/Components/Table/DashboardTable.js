@@ -32,7 +32,6 @@ const DashboardTable = ({fetchrecenttran, recent, search, money, status, transac
     const inputNumber = transaction?.data?.data?.totalTransactions;
     const [intervals, setIntervals] = React.useState([]);
     const [select, setselect] = React.useState("");
-    console.log(inputNumber)
     // const handleInputChange = (event) => {
     //   const { value } = event.target;
     //   setInputNumber(value);
@@ -46,11 +45,9 @@ const DashboardTable = ({fetchrecenttran, recent, search, money, status, transac
   
         for (let i = 0; i <= parsedNumber; i += 5) {
           intervalsArray.push(i);
-          console.log(intervalsArray)
           setIntervals(intervalsArray);
         }
   
-        console.log(intervals)
       } else {
         setIntervals([]);
       }
@@ -65,13 +62,11 @@ const DashboardTable = ({fetchrecenttran, recent, search, money, status, transac
     };
     const handleChange = (event, value) => {
         setPage2(value);
-        console.log(value)
         fetchtransaction(page2,select)
     };
     const handleselect = (e) => {
         const value = e.target.value;
         setselect(value);
-        console.log(value)
         fetchtransaction(page2, select)
     };
     React.useEffect(() => {

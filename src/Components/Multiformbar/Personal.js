@@ -91,7 +91,7 @@ const Personal = ({next, personal, error, loading}) => {
 
 
     return ( 
-        <form>
+        <form onSubmit={handleSubmit} method="POST">
             <div className={styles.form2}>
                 <div className={styles2.field}>
                     <label className={styles2.fieldlabel}>What does Text Venture do ? *</label>
@@ -199,7 +199,7 @@ const Personal = ({next, personal, error, loading}) => {
                     </input>
                 </div>
             </div>
-            <button onClick={handleSubmit} className={styles3.activateButton}>
+            <button className={styles3.activateButton}>
                 {loading ? (
                     <FontAwesomeIcon
                         className="spinner"

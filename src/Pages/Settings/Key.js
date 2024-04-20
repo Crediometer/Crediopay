@@ -155,31 +155,33 @@ const Key = ({fetchgetprofile, putwebhook, clientid,apiKey, error, loading, pers
                 </div>
                 <div className="secret-key">
                     <p className="secret-key-head">Set Webhook URL</p>
-                    <div className="secret-key-form">
-                        <div className="secret-input">
-                            <input
-                                type="text"
-                                placeholder="Enter webhook url"
-                                onChange={handlewebhook}
-                                onBlur={handlewebhook}
-                                required
-                            >
-                            </input>
-                            <div className="secret-icon">
-                                <IoMdEye/>
-                                <IoCopy/>
+                    <form onSubmit={handleSubmit} method="POST">
+                        <div className="secret-key-form">
+                            <div className="secret-input">
+                                <input
+                                    type="text"
+                                    placeholder="Enter webhook url"
+                                    onChange={handlewebhook}
+                                    onBlur={handlewebhook}
+                                    required
+                                >
+                                </input>
+                                <div className="secret-icon">
+                                    <IoMdEye/>
+                                    <IoCopy/>
+                                </div>
+                            </div>
+                            <div className="secret-submit-2">
+                                {loading ? (
+                                    <button disabled>
+                                        <LottieAnimation data={loader}/>
+                                    </button>
+                                ) : (
+                                    <button disabled = {(business.length !== 0) ? (false) : (true)}><span>set</span></button>
+                                )}
                             </div>
                         </div>
-                        <div className="secret-submit-2">
-                            {loading ? (
-                                <button disabled>
-                                    <LottieAnimation data={loader}/>
-                                </button>
-                            ) : (
-                                <button onClick={handleSubmit} disabled = {(business.length !== 0) ? (false) : (true)}><span>set</span></button>
-                            )}
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

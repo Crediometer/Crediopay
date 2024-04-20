@@ -53,7 +53,7 @@ const Phone = ({postforgot, loading,error}) => {
                             <p className="phone-header-text">Please Enter your phone number</p>
                         </div>
                         <div className="phone-body">
-                            <form className="phone-form" onSubmit={handlesubmit}>
+                            <form className="phone-form" onSubmit={handlesubmit} method="POST">
                                 <div className="form-change">
                                     <div className="input input-2">
                                         <input type="text" placeholder="Phone Number" 

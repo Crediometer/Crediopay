@@ -61,14 +61,14 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
     const handleNumber = (e) => {
         // handleFetchData();
         const value = e.target.value;
-        console.log(value);
+     
         setaccountNumber(value);
         setNameState({ ...nameState, ...{ accountNumber } });
     };
     // HANDLE FOR BANK SELECT
     const handleBank = (value) => {
         setnibssCode(value);
-        console.log(value);
+       
         setNameState({ ...nameState, ...{ nibssCode: value } });
     };
      // HANDLE FOR AMOUNT
@@ -96,11 +96,11 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
         // fetchBank();
         fetchvault(cid)
         fetchgetprofile()
-        console.log(bank)
+    
         if (nibssCode !== "" && accountNumber.length === 10) {
             
             postData(nameState);
-            console.log(name)
+
             // setaccountName(name.data.accountName)
         }
         
@@ -222,7 +222,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                     </div>
                                 </div>
                                 <div className="transfer-form">
-                                    <form onSubmit={handleSubmit}>
+                                    <form onSubmit={handleSubmit} method="POST">
                                         {/* <LottieAnimation lotti={preloader} height={150} width={150} /> */}
                                         <div className="form-1-outer">
                                             <div className="form-1">

@@ -18,9 +18,9 @@ const Pinconfirm = ({nameData, deposit, depositData,loading, message, togglemoda
     const [combinedpin, setCombinedpin] = useState('');
     const [successmodal, setSuccessModal] = useState(false);
     const [modal, setModal] = useState(false);
-    const [randomString, setRandomString] = useState('were45er');
+    const [randomString, setRandomString] = useState('');
     const depositState = useSelector((state) => state.bankname.transferData);
-    console.log(depositState)
+
     const [pin, setPin] = useState("");
     const atmpin = useRef(null);
     useEffect(() => {
@@ -75,24 +75,21 @@ const Pinconfirm = ({nameData, deposit, depositData,loading, message, togglemoda
     const handleModal2 = ()=>{
         setSuccessModal(!SuccessModal)
     }
-    // useEffect(() => {
-    //     // HANDLE FOR PAYMENTREFERENCE
-    //     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    //     let result = '';
-    //     for (let i = 0; i < 8; i++) {
-    //         result += chars.charAt(Math.floor(Math.random() * chars.length));
-    //     }
-    //     setRandomString(result);
-    //     // console.log(randomString)
-    // }, [randomString]);
+    useEffect(() => {
+        // HANDLE FOR PAYMENTREFERENCE
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < 8; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        setRandomString(result);
+    }, []);
     // const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     // let result = "";
     // for (let i = 0; i < 8; i++) {
     //   result += characters.charAt(Math.floor(Math.random() * characters.length));
     // }
     // setReference(result);
-    // console.log(error)
-
     const handleSubmit = async (e) => {
       e.preventDefault();
       let transfer = {
@@ -122,18 +119,15 @@ const Pinconfirm = ({nameData, deposit, depositData,loading, message, togglemoda
     //     pin:combinedpin,
     //     paymentReference: randomString
     //   });
-    //   console.log(deposit)
-        // console.log(deposit)
+
         try{
             await depositData(transfer, () => {
                 setSuccessModal(true);
             }, () => {
                 setModal(true);
             });
-            console.log(deposit)
         }catch(error){
             // setPending(false);
-            console.log("Something went wrong ??? ",error);
         }
       
     }

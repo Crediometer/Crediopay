@@ -120,8 +120,6 @@ const Data = ({loading,loading2, data, fetchvasproduct, product, submitting, pos
                setshowsuccess(true)
             // setPending(true);
             },()=>{ 
-            // console.log(errorHandler)
-            // console.log("now go to error..", error);
             // setErrorHandler(error)
             setshowerror(true)
             // setPending(false);
@@ -145,7 +143,7 @@ const Data = ({loading,loading2, data, fetchvasproduct, product, submitting, pos
             ):(
                 <div>
                     {count === 1 ? (
-                        <form>
+                        <form method="POST">
                             <div className="form-group">
                                 <label>Mobile Number</label>
                                 <div className="form-group-inner">

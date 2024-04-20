@@ -61,7 +61,6 @@ const Dashboard = ({fetchanalytics,
     }
     const redirect = () =>{
         if (getProfileFetched && !getprofile) {
-            console.log(!getprofile)
             history("/registration");
         }
     }
@@ -73,7 +72,6 @@ const Dashboard = ({fetchanalytics,
           setGetProfileFetched(true);
           redirect()
         } catch (error) {
-          console.log("Error fetching getprofile:", error);
           setGetProfileFetched(true); // Still set to true, even on failure to avoid infinite loop
         }
     };
@@ -91,7 +89,7 @@ const Dashboard = ({fetchanalytics,
 
     // useEffect(() => {
     //     if (getProfileFetched && !getprofile) {
-    //         console.log(!getprofile)
+    //      
     //         history("/registration");
     //     }
     // }, [getprofile, history, getProfileFetched,fetchData]);
@@ -219,7 +217,6 @@ const Dashboard = ({fetchanalytics,
     );
 }
 const mapStoreToProps = (state) => {
-    console.log(state)
     return {
         clientid: state?.getprofile?.data?.client?.clientId,
         cid: state?.getprofile?.data?.client?._id,

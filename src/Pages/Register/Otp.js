@@ -47,7 +47,7 @@ const Otp = (props) => {
                     </div> : <div className="login-error">{errorHandler}</div>
                 }
                 <div className="login-form">
-                    <form onSubmit={handleSignUp}>
+                    <form onSubmit={handleSignUp} method="POST">
                         <div className="inputfield-4 loginfield">
                             <label>OTP</label><br></br>
                             <div className="inputbox2 inputbox-login">

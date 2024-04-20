@@ -59,7 +59,6 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
                     }
             )
             // postData(nameState);
-            // console.log(name)
             // setaccountName(name.data.accountName)
         }
         
@@ -92,7 +91,6 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
             
             await business(formData, ()=>{ 
             next();
-            console.log("done")
             // setPending(true);
             }, ()=>{ 
                 setErrorHandler(error)
@@ -104,7 +102,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
         }
     };
     return ( 
-        <form>
+        <form onSubmit={handleSubmit} method='post'>
             <p className="businessHead">Enter verification details for at least one of the directors</p>
             <div className={styles.form2}>
                 <div className={styles2.field}>
@@ -203,7 +201,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
                             <LottieAnimation data={loader}/>
                         </button>
                     ) : (
-                        <button onClick={handleSubmit} className={styles3.activateButton}><span>Save</span></button>
+                        <button className={styles3.activateButton}><span>Save</span></button>
                     )}
                 </div>
             )}

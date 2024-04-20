@@ -36,11 +36,9 @@ const Sub = ({cid, fetchsubaccount, subaccount, loading}) => {
     
           for (let i = 0; i <= parsedNumber; i += 5) {
             intervalsArray.push(i);
-            console.log(intervalsArray)
             setIntervals(intervalsArray);
           }
     
-          console.log(intervals)
         } else {
           setIntervals([]);
         }
@@ -66,11 +64,9 @@ const Sub = ({cid, fetchsubaccount, subaccount, loading}) => {
         const value = e.target.value
         let num = parseInt(value)
         setsize(num)
-        console.log(size)
     }
     const handleChange = (event, value) => {
         setPage2(value);
-        console.log(value)
     };
     useEffect(() => {
         fetchsubaccount(cid, size, page2)

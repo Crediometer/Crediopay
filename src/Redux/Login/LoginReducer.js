@@ -34,16 +34,6 @@ const getAuthState = () => {
 const newAuth = getAuthState();
 const authReducer = (state = authState, action) => {
     switch (action.type) {
-        // case AuthActionType.REGISTER_SUCCESS:
-        //   const newAuthState = {
-        //     isLoggedIn: true,
-        //     user: action.payload,
-        //   };
-        //   axios.defaults.headers.common[
-        //     "Authorization"
-        //   ] = `Bearer ${action.payload.jwttoken}`;
-        //   localStorage.setItem("auth", JSON.stringify(newAuthState));
-        //   return newAuthState;
         case AuthActionType.LOGIN_START:
           const loginAuthStart = {
             auth: false,

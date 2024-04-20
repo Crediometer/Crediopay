@@ -33,8 +33,6 @@ export const putwebhook = (id, hookState, history, setErrorHandler) => {
                 Authorization: `Bearer ${datas?.token?.data?.token?.token}`,
             }})
             const data = response.data
-            console.log(`this is web hook--- ${data}`)
-            console.log(data)
             dispatch(webhookSuccess(data))
             if(data.status === 200){
                 history()

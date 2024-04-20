@@ -127,7 +127,6 @@ export const fetchsumtran = () => {
             "Content-Type": "application/json",
             authorization: `Bearer ${datas?.token?.data?.token?.token}`,
         };
-        console.log(datas?.token?.data?.token?.token)
         // let datas = JSON.parse(localStorage.getItem("auth"))
         axios.get(`${baseUrl}/dashboard/calculateTransactionSum`, { headers: headers })
             .then( response => {

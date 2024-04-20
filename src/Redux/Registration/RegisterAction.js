@@ -27,9 +27,9 @@ export const transferData = (data) => {
 };
 
 // export const traData = (data) => {
-//   console.log(" 1  dispatched -- ", data);
+
 //   return async (dispatch) => {
-//     console.log("dispatched -- ", data);
+
 //     dispatch(transferData(data));
 //   };
 // };

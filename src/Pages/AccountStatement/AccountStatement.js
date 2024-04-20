@@ -52,7 +52,7 @@ const AccountStatement = ({fetchstatement, profile, cid, fetchgetprofile, fetchv
     }
     const handlestartdate = (e)=>{
         const value = e.target.value
-        console.log(value)
+       
         setstartdate(value)
     }
     const handlestatus = (id)=>{
@@ -60,13 +60,12 @@ const AccountStatement = ({fetchstatement, profile, cid, fetchgetprofile, fetchv
     }
     const handlemode = (e)=>{
         const value = e.target.value
-        console.log(value)
+    
         let num = parseInt(value)
         setmoney(value)
     }
     const handleenddate = (e)=>{
         const value = e.target.value
-        console.log(value)
         setenddate(value)
     }
     const handlepdf = () =>{

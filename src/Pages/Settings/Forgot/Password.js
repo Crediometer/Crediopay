@@ -87,7 +87,7 @@ const Password = ({postnewforgot, loading}) => {
                             <p className="phone-header-text">Please Enter your new Phone Number</p>
                         </div>
                         <div className="phone-body">
-                            <form onSubmit={handlesubmit}>
+                            <form onSubmit={handlesubmit} method="POST">
                                 <div className="setpin-container">
                                     <div className="field-1">
                                         <div className="pinfield">

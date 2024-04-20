@@ -80,7 +80,7 @@ const Electricity = ({
     }
     useEffect(() => {
         if(number.length === 11 && serviceid !== ""){
-            console.log(nameState)
+
             postvasverify(nameState)
         }
     }, [number, serviceid,nameState]);
@@ -139,8 +139,6 @@ const Electricity = ({
                setshowsuccess(true)
             // setPending(true);
             },()=>{ 
-            // console.log(errorHandler)
-            // console.log("now go to error..", error);
             // setErrorHandler(error)
                 setshowerror(true)
             // setPending(false);
@@ -164,7 +162,7 @@ const Electricity = ({
             ):(
                 <div>
                     {count === 1 ? (
-                        <form>
+                        <form method="POST">
                             {!isFormValid && <p style={{ color: 'red', fontSize: '12px', marginTop: '5px', fontFamily: 'Roboto' }}>{errorMessage}</p>}
                             <div className="form-group"  onClick={handleShow}>
                                 <label>Service Provider</label>

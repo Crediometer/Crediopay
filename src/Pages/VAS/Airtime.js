@@ -131,7 +131,7 @@ const Airtime = ({loading, data, submitting, postvasairtime, error, success, cid
             ):(
                 <div>
                     {count === 1 ? (
-                        <form>
+                        <form method="POST">
                             <div className="form-group">
                                 <label>Mobile Number</label>
                                 <div className="form-group-inner">

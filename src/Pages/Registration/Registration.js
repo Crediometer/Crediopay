@@ -113,7 +113,7 @@ const Registration = ({profile, postbusinesspartner, error, loading, getprofile}
                             <p>Please take a moment to introduce your self and your business</p>
                         </div>
                         <div className={styles.registrationform}>
-                            <form onSubmit={handlesubmit}>
+                            <form onSubmit={handlesubmit} method="POST">
                                 <div className={styles.formforyou}>
                                     <h2 className={styles.formhead}>About You</h2>
                                     <div className={styles.forminner}>

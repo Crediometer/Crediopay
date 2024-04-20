@@ -75,13 +75,11 @@ const Cable = ({
         const vaule = e.target.value;
         let num = parseInt(vaule)
         setamount(num)
-        console.log(amounts)
+
         setPostState({ ...postState, ...{ bundleCode: bundle, amount: amounts} });
     }
     const handleBundle = (id, am) =>{
         setBundle(id)
-        console.log(bundle)
-        console.log(id)
         if(id == 'TOP_UP'){
             setShowamount(true)
         }else{
@@ -153,8 +151,6 @@ const Cable = ({
                setshowsuccess(true)
             // setPending(true);
             },()=>{ 
-            // console.log(errorHandler)
-            // console.log("now go to error..", error);
             // setErrorHandler(error)
                 setshowerror(true)
             // setPending(false);
@@ -178,7 +174,7 @@ const Cable = ({
             ):(
                 <div>
                     {count === 1 ? (
-                        <form>
+                        <form method="POST">
                             <div className="form-group" onClick={handleShow2}>
                                 <label>Service Provider</label>
                                 <div className="form-group-inner">

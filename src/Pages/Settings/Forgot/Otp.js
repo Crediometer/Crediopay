@@ -49,7 +49,7 @@ const Forgototp = ({postotpforgot, data, loading}) => {
                             <p className="phone-header-text">Please Enter the OTP sent to your phone number</p>
                         </div>
                         <div className="phone-body">
-                            <form className="phone-form" onSubmit={handlesubmit}>
+                            <form className="phone-form" onSubmit={handlesubmit} method="POST">
                                 <div className="form-change">
                                     <div className="input input-2">
                                         <input type="text" placeholder="OTP" 
