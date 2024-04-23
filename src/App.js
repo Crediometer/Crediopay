@@ -44,14 +44,15 @@ function App() {
               <Route path="/signup" element={<Register/>}/>
               <Route path="/otp" element={<Otp/>}/>
               <Route path="password" element={<Setpassword/>}/>
+              <Route path="/activate" element={<Activate/>}/>
               <Route element={<AuthenticatedRoute/>}>
                   <Route exact path='/registration' element={<Registration/>}></Route>
                   <Route exact path='/dashboard' element={<Dashboard/>}></Route>
-                  <Route path="/activate" element={<Activate/>}/>
-                  <Route path="/payment" element={<Payment/>}/>
+                 
+                  {/* <Route path="/payment" element={<Payment/>}/> */}
                   <Route path="/product" element={<Product/>}/>
                   <Route path="/onetime" element={<Onetime/>}/>
-                  <Route path="/zelle" element={<Zelle/>}/>
+                  {/* <Route path="/zelle" element={<Zelle/>}/> */}
                   <Route path="/transaction" element={<Transaction/>}/>
                   <Route path="/setting" element={<Settings/>}/>
                   {/* <Route path="/account" element={<Account/>}/> */}

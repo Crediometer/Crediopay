@@ -31,7 +31,7 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     color: rgba(0, 0, 0, 0.9);
 }
 .current{
@@ -59,7 +59,7 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: rgba(0, 0, 0, 0.4);
 }
 .trans-phone span svg{
@@ -85,7 +85,7 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 2.2rem;
+    font-size: 1.2rem;
     color: rgba(0, 0, 0, 0.9);
 }
 

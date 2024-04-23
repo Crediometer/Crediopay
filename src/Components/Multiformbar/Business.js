@@ -17,6 +17,7 @@ import LottieAnimation from '../../Lotties';
 import loader from '../../Assets/loading.json'
 import Errormodal from '../Modal/Errormodal';
 import LoadingModal from '../Modal/LoadingModal';
+// import DragandDropMermat from '../Drag-and-Drop/DragandDropMermat';
 const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
     const [nameState, setNameState] = useState({});
     const [formState, setFormState] = useState(null)
@@ -29,8 +30,12 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
     const [mermat, setMermat] = useState("");
     const [bvn, setbvn] = useState("");
     const [dob, setdob] = useState('');
+    const [address1, setaddress1] = useState("")
+    const [address2, setaddress2] = useState("")
+    const [state, setstate] = useState("")
     const [show, setShow] = useState(false)
     const [showkyc, setshowkyc]= useState(false)
+    const [websiteLink, setwebsiteLink] = useState("")
     // const [mermat, setmermat] = useState('');
     const [rcNumber, setrcNumber]= useState("");
     const [errorHandler, setErrorHandler] = useState([false, ""]);
@@ -53,10 +58,10 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
         if (dob !== "" && bvn.length === 11) {
             kyc(postState, 
                 ()=>{ 
-                setShow(true);
+                    setShow(true);
                 }, ()=>{ 
                     setshowkyc(true);
-                    }
+                }
             )
             // postData(nameState);
             // setaccountName(name.data.accountName)
@@ -73,6 +78,29 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
         setMermat(value);
         setNameState({ ...nameState, ...{ mermat } });
     };
+    const handleState = (e) => {
+        const value = e.target.value;
+        setstate(value);
+        setNameState({ ...nameState, ...{ state } });
+    };
+    const handleAddress1 = (e) => {
+        const value = e.target.value;
+        setaddress1(value);
+        setNameState({ ...nameState, ...{ address1 } });
+    };
+    const handleAddress2 = (e) => {
+        const value = e.target.value;
+        setaddress2(value);
+        setNameState({ ...nameState, ...{ email:address2 } });
+    };
+    const handleWebsite = (e) => {
+        const value = e.target.value;
+        setwebsiteLink(value);
+        setNameState({ ...nameState, ...{ websiteLink } });
+    };
+    const updateMermat = (filedata) => {
+        setFilename2(filedata);
+    };
     const togglemodal = ()=>{
         setshowerror(!showerror)
     }
@@ -87,6 +115,9 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
         formData.append('bvn', bvn);
         formData.append('dob',dob);
         formData.append('rcNumber', rcNumber);
+        formData.append('state', state);
+        formData.append('address1', address1);
+        formData.append('email', address2);
         try{
             
             await business(formData, ()=>{ 
@@ -104,6 +135,61 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
     return ( 
         <form onSubmit={handleSubmit} method='post'>
             <p className="businessHead">Enter verification details for at least one of the directors</p>
+            <div className={styles.form2}>
+                <div className={styles2.field}>
+                    <label className={styles2.fieldlabel}>Where is your business located *</label>
+                    <select 
+                        className={styles2.fieldinput}
+                        onBlur={handleState}
+                        onChange={handleState}
+                    >
+                        <optgroup>
+                            <option>-options-</option>
+                            <option value="ondo">Ondo</option>
+                            <option value="oyo">Oyo</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            <div className={styles.form2}>
+                <div className={styles2.field}>
+                    <label className={styles2.fieldlabel}></label>
+                    <input 
+                        className={styles2.fieldinput}
+                        type="text"
+                        placeholder="Address Line 1"
+                        onBlur={handleAddress1}
+                        onChange={handleAddress1}
+                    >
+                    </input>
+                </div>
+            </div>
+            <div className={styles.form2}>
+                <div className={styles2.field}>
+                    <label className={styles2.fieldlabel}>Link to website</label>
+                    <input 
+                        className={styles2.fieldinput}
+                        type="text"
+                        placeholder="Enter Link"
+                        onBlur={handleWebsite}
+                        onChange={handleWebsite}
+                    >
+                    </input>
+                </div>
+            </div>
+            <div className={styles.form2}>
+                <div className={styles2.field}>
+                    <label className={styles2.fieldlabel}>Email</label>
+                    <input 
+                        className={styles2.fieldinput}
+                        type="text"
+                        placeholder="Enter your Email"
+                        onBlur={handleAddress2}
+                        onChange={handleAddress2}
+                    >
+                    </input>
+                </div>
+            </div>
             <div className={styles.form2}>
                 <div className={styles2.field}>
                     <label className={styles2.fieldlabel}>BVN</label>
@@ -144,7 +230,8 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
                 </div>
             </div>
             <div className={styles.form2}>
-               <p className='addimage'>Mermat</p>
+               <p className='addimage'>Mermat/Status Report</p>
+               {/* <DragandDropMermat mermat={updateMermat}/> */}
                <div className="files">
                 <div className="filedisplay">
                     {filename2!=''?(
@@ -205,7 +292,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
                     )}
                 </div>
             )}
-            {/* <button onClick={handleSubmit} className={styles3.activateButton}>
+            <button onClick={handleSubmit} className={styles3.activateButton}>
                 {loading ? (
                     <FontAwesomeIcon
                         className="spinner"
@@ -214,7 +301,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
                     ): ( 
                     <span>Save</span>
                         )} 
-            </button> */}
+            </button>
             {kycload && (<LoadingModal/>)}
             {showkyc&& (<Errormodal error={kycerror} togglemodal={togglemodal2}/>)}
             {showerror && (<Errormodal error={error} togglemodal={togglemodal}/>)}
@@ -222,6 +309,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
     );
 }
 const mapStoreToProps = (state) => {
+    console.log(state)
     return {
         error: state.business.error,
         loading: state.business.loading,

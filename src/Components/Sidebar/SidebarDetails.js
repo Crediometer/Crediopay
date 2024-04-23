@@ -18,11 +18,11 @@ export const SidebarDetails = [
         icon:<BsPerson/>,
         link:"/account"
     },
-    {
-        title:"Payment",
-        icon:<SiContactlesspayment/>,
-        link:"/payment"
-    },
+    // {
+    //     title:"Payment",
+    //     icon:<SiContactlesspayment/>,
+    //     link:"/payment"
+    // },
     {
         title:"Trans History",
         icon:<HiArrowsRightLeft/>,
@@ -38,11 +38,11 @@ export const SidebarDetails = [
         icon:<SiContactlesspayment/>,
         link:"/transfer"
     },
-    {
-        title:"Zelle",
-        icon:<BsPeople/>,
-        link:"/zelle"
-    },
+    // {
+    //     title:"Zelle",
+    //     icon:<BsPeople/>,
+    //     link:"/zelle"
+    // },
     {
         title:"vas",
         icon:<BsCreditCard2Back/>,

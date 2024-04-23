@@ -176,6 +176,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
 }
 .form-1, .form-2{
     position: relative;

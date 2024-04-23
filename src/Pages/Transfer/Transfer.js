@@ -225,47 +225,49 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                     <form onSubmit={handleSubmit} method="POST">
                                         {/* <LottieAnimation lotti={preloader} height={150} width={150} /> */}
                                         <div className="form-1-outer">
-                                            <div className="form-1">
-                                                <div className="input">
-                                                    <label className='form-1-label'>Beneficiary’s  Bank </label>
-                                                    <div className="form-1-select" onClick={handleShow}>
-                                                        <p>{selectBank}</p>
-                                                        <FaChevronDown/>
+                                            {(!isChecked) && (
+                                                <div className="form-1">
+                                                    <div className="input">
+                                                        <label className='form-1-label'>Beneficiary’s  Bank </label>
+                                                        <div className="form-1-select" onClick={handleShow}>
+                                                            <p>{selectBank}</p>
+                                                            <FaChevronDown/>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                {showBank && (
-                                                    <div className="bank-select">
-                                                        <div className="bank-select-top">
-                                                            <p>Select a Bank</p>
-                                                            <div className="select-cancel" onClick={handleShow}>
-                                                                <FaTimes/>
+                                                    {showBank && (
+                                                        <div className="bank-select">
+                                                            <div className="bank-select-top">
+                                                                <p>Select a Bank</p>
+                                                                <div className="select-cancel" onClick={handleShow}>
+                                                                    <FaTimes/>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className="bank-select-search">
-                                                            <input type='text' placeholder='Search for bank' onChange={(e)=> setQuery(e.target.value)}></input>
-                                                        </div>
-                                                        <div className="bank-select-body">
-                                                        {bank?.loading ? (
-                                                        <LottieAnimation data={preloader}/> 
-                                                        ):(
-                                                            <div>
-                                                                {bank?.filter(banks => banks.name.toLowerCase().includes(query)).map((bank)=>{
-                                                                    return(
-                                                                        <div className="banks" onClick={() => {handleBank(bank.bankCode); handleSelectedBank(bank.name); handleShow()}}>
-                                                                            <div className="bank-icon">
-                                                                                <BsBank2/>
+                                                            <div className="bank-select-search">
+                                                                <input type='text' placeholder='Search for bank' onChange={(e)=> setQuery(e.target.value)}></input>
+                                                            </div>
+                                                            <div className="bank-select-body">
+                                                            {bank?.loading ? (
+                                                            <LottieAnimation data={preloader}/> 
+                                                            ):(
+                                                                <div>
+                                                                    {bank?.filter(banks => banks.name.toLowerCase().includes(query)).map((bank)=>{
+                                                                        return(
+                                                                            <div className="banks" onClick={() => {handleBank(bank.bankCode); handleSelectedBank(bank.name); handleShow()}}>
+                                                                                <div className="bank-icon">
+                                                                                    <BsBank2/>
+                                                                                </div>
+                                                                                <p className="bank-name">{bank.name}</p>
                                                                             </div>
-                                                                            <p className="bank-name">{bank.name}</p>
-                                                                        </div>
-                                                                    )
-                                                                })}
+                                                                        )
+                                                                    })}
+                                                                </div>
+                                                            )}
                                                             </div>
-                                                        )}
                                                         </div>
-                                                    </div>
-                                                )}
-                                            </div>
-                                            <div className="form-1">
+                                                    )}
+                                                </div>
+                                            ) }
+                                            <div className="form-1" style={{ width: !isChecked ? '49%' : '32%' }}>
                                                 <div className="input">
                                                     <label className='form-1-label'>Beneficiary’s  Account Number </label>
                                                     <input type="text" placeholder="0198604538" 
@@ -277,7 +279,7 @@ const Transfer = ({fetchBank, bank, postData, postTransfer, name,profile, cid, f
                                                     ></input>
                                                 </div>
                                             </div>
-                                            <div className="form-1">
+                                            <div className="form-1" style={{ width: !isChecked ? '49%' : '32%' }}>
                                                 <div className="input">
                                                     <label className='form-1-label'>Beneficiary’s Name </label>
                                                     <input type="text" 

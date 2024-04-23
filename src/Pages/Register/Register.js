@@ -21,9 +21,16 @@ const Register = (props) => {
     
     const handleNumber = (e) => {
         const value = e.target.value;
-        setNumber(value);
-        const phoneNumber = value;
-        setRegisterState({ ...registerState, ...{phoneNumber} });
+        let formattedNumber = value.trim().replace(/\D/g, ''); // Remove non-numeric characters
+
+        // Check if the first digit is '0' and remove it, then prepend '+234'
+        if (formattedNumber.charAt(0) === '0') {
+            formattedNumber = '+234' + formattedNumber.slice(1);
+        }
+        setNumber(formattedNumber);
+        // setNumber(value);
+        // const phoneNumber = value;
+        setRegisterState({ ...registerState, ...{phoneNumber: number} });
     };
     const handleName = (e) => {
         const value = e.target.value;
@@ -32,12 +39,11 @@ const Register = (props) => {
         const businessName = value;
         setRegisterState({ ...registerState, ...{businessName} });
     };
-    // const handleEmail = (e) => {
-       
-    //     const value = e.target.value;  
-    //     setemail(value);
-    //     setRegisterState({ ...registerState, ...{email} });
-    // };
+    const handleEmail = (e) => {
+        const value = e.target.value;  
+        setemail(value);
+        setRegisterState({ ...registerState, ...{email} });
+    };
     const handleSignUp = async (e) => {
         e.preventDefault();
         try{
@@ -98,8 +104,8 @@ const Register = (props) => {
                                     <span className='place-mobile'>+234 903 4344 5532</span>
                                 </div>
                             </div>
-                            {/* <div className="inputfield-4 loginfield">
-                                <label>Email(optional)</label><br></br>
+                            <div className="inputfield-4 loginfield">
+                                <label>Email</label><br></br>
                                 <div className="inputbox2 inputbox-login">
                                     <input
                                         type="email"
@@ -111,7 +117,7 @@ const Register = (props) => {
                                     </input>
                                     <span className='place-mobile'>xyz@gmail.com</span>
                                 </div>
-                            </div> */}
+                            </div>
                             <div className="submit submit-login">
                                 {loading ? (
                                     <button disabled>

@@ -18,6 +18,7 @@
 .statement-head-left{
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 .statement-date{
     display: flex;
@@ -47,14 +48,14 @@
     color: #2B2B2B; 
 }
 .statement-head-right button{
-    padding: 0.8125rem 5rem;
+    padding: 0.8125rem 4rem;
     background: #AC1337;
     border: none;
     border-radius: 6.61144px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.3125rem;
+    font-size: 1rem;
     color: #FFFFFF;
 }
 .download-dropdown{
@@ -98,7 +99,7 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: rgba(0, 0, 0, 0.9);
 }
 .statement-available{

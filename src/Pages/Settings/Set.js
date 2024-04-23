@@ -74,17 +74,23 @@ const Set = ({putsetting, error, loading, getprofile, getdirector, director}) =>
                     <button onClick={handleModal}><FaPlus/>Add</button>
                 </div>
                 <div className="director-body">
-                    {director?.map((director)=>{
-                        return(
-                            <div className="director">
-                                <p className="director-name">{director.directorName}</p>
-                                <p className="director-role">{director.role}</p>
-                                {/* <div className="delete">
-                                    <FaTrash/>
-                                </div> */}
-                            </div>
-                        )
-                    })}
+                    {director?.length==0 ? (
+                        <p className="director-name">No Director Yet</p>
+                    ):(
+                        <>
+                            {director?.map((director)=>{
+                                return(
+                                    <div className="director">
+                                        <p className="director-name">{director.directorName}</p>
+                                        <p className="director-role">{director.role}</p>
+                                        {/* <div className="delete">
+                                            <FaTrash/>
+                                        </div> */}
+                                    </div>
+                                )
+                            })}
+                        </>
+                    )}
                     {/* <div className="director">
                         <p className="director-name">Test Venture/Rasheed Raji</p>
                         <div className="delete">

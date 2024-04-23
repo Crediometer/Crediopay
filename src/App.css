@@ -17,6 +17,10 @@ input:focus{
   width: 100%;
   display: flex;
 }
+/* iframe
+{
+    display: none;
+} */
 a{
   text-decoration: none;
 }

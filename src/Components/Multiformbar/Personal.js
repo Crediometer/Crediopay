@@ -9,9 +9,11 @@ import { connect } from "react-redux";
 import Inputfield from '../Formfield/Inputfield';
 import Selectfield from '../Formfield/Selectfield';
 import { useState } from 'react';
+import Dojah from 'react-dojah'
 import { FaTimesCircle } from 'react-icons/fa';
 import { postpersonal } from '../../Redux/Activate/PersonalAction';
 import Errormodal from "../Modal/Errormodal";
+import ErrorBoundary from "../../ErrorBoundary";
 const Personal = ({next, personal, error, loading}) => {
     const [nameState, setNameState] = useState({});
     const [businessDescriptions, setbusinessDescriptions] = useState("");
@@ -26,6 +28,70 @@ const Personal = ({next, personal, error, loading}) => {
     const[image, setImage] = useState(null)
     const [errorHandler, setErrorHandler] = useState([false, ""]);
     const [showerror, setshowerror] = useState(false)
+    const appID = "65c1594edbc15d0040b5c60a";
+
+    /**
+     *  This is your account public key
+     *  (go to your dashboard at
+     *  https://dojah.io/dashboard to
+     *  retrieve it. You can also regenerate one)
+     */
+    const publicKey = "test_pk_hwps2TD34uPQZEM7nD6gVCFWI";
+  
+    /**
+     *  This is the widget type you'd like to load
+     *  (go to your dashboard at
+     *  https://dojah.io/dashboard to enable different
+     *  widget types)
+     */
+    const type = "custom";
+  
+    const config = {
+        widget_id: "65e23a56dd3ad4003f2e5217" //this is generated from easyonboard 
+    };
+  
+    /**
+     *  These are the user's data to verify, options
+     *  available to you possible options are:
+     *  {first_name: STRING, last_name: STRING, dob: DATE STRING}
+     *
+     *  NOTE: Passing all the values will automatically skip
+     *  the user-data page (thus the commented out `last_name`)
+     */
+    const userData = {
+      first_name: "Aleriwa Precious", //Optional
+    //   last_name: {$last_name}, //Optional
+      dob: "2003-10-08", //YYYY-MM-DD Optional
+      residence_country: 'NG', //Optional
+      email: "aleriwaprecious70@gmail"//optional
+    };
+  
+    /**
+     *  These are the metadata options
+     *  You can pass any values within the object
+     */
+    const metadata = {
+      user_id: '121',
+    };
+   
+  
+    /**
+     * @param {String} type
+     * This method receives the type
+     * The type can only be one of:
+     * loading, begin, success, error, close
+     * @param {String} data
+     * This is the data from doja
+     */
+    const response = (type, data) => {
+      console.log(type, data);
+      if(type === 'success'){
+      }else if(type === 'error'){
+      }else if(type === 'close'){
+      }else if(type === 'begin'){
+      }else if(type === 'loading'){
+      }
+    }
     const handleDescription = (e) => {
         const value = e.target.value;
         setbusinessDescriptions(value);
@@ -91,126 +157,30 @@ const Personal = ({next, personal, error, loading}) => {
 
 
     return ( 
-        <form onSubmit={handleSubmit} method="POST">
-            <div className={styles.form2}>
-                <div className={styles2.field}>
-                    <label className={styles2.fieldlabel}>What does Text Venture do ? *</label>
-                    <textarea 
-                        className={styles2.fieldtext}
-                        placeholder="Enter text"
-                        onBlur={handleDescription}
-                        onChange={handleDescription}
-                    >
-                    </textarea>
-                </div>
-                <p className='formtext'>You are advise to write a detailed text about your business for example Fresh Foods is a local grocery store committed to providing high-quality, locally-sourced produce, meats, and specialty products. Conveniently located downtown with competitive pricing.</p>
+        <ErrorBoundary>
+            <div>
+            <Dojah
+                response={response}
+                appID={appID}
+                publicKey={publicKey}
+                type={type}
+                config={config}
+                userData={userData}
+                metadata={metadata}
+                />
+                <button className={styles3.activateButton}>
+                    {loading ? (
+                        <FontAwesomeIcon
+                            className="spinner"
+                            icon={faSpinner}
+                        ></FontAwesomeIcon>
+                        ): ( 
+                        <span>Save</span>
+                            )} 
+                </button>
+                {showerror && (<Errormodal error={error} togglemodal={togglemodal}/>)}
             </div>
-            <div className={styles.form2}>
-                <div className={styles2.field}>
-                    <label className={styles2.fieldlabel}>Phone</label>
-                    <input 
-                        className={styles2.fieldinput}
-                        type="text"
-                        placeholder="Enter phone number"
-                        onBlur={handleNumber}
-                        onChange={handleNumber}
-                    >
-                    </input>
-                </div>
-            </div>
-            <div className={styles.form2}>
-                <div className={styles2.field}>
-                    <label className={styles2.fieldlabel}>Business Email</label>
-                    <input 
-                        className={styles2.fieldinput}
-                        type="email"
-                        placeholder="Enter Email" 
-                        onBlur={handleEmail}
-                        onChange={handleEmail}
-                    >
-                    </input>
-                </div>
-            </div>
-            <div className={styles.form2}>
-                <div className={styles2.field}>
-                    <label className={styles2.fieldlabel}>Support Email</label>
-                    <input 
-                        className={styles2.fieldinput}
-                        type="email"
-                        placeholder="Enter Email" 
-                        onBlur={handleSupportEmail}
-                        onChange={handleSupportEmail}
-                    >
-                    </input>
-                </div>
-            </div>
-            <div className={styles.form2}>
-                <div className={styles2.field}>
-                    <label className={styles2.fieldlabel}>Where is your business located *</label>
-                    <select 
-                        className={styles2.fieldinput}
-                        onBlur={handleState}
-                        onChange={handleState}
-                    >
-                        <optgroup>
-                            <option>-options-</option>
-                            <option value="ondo">Ondo</option>
-                            <option value="oyo">Oyo</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-            <div className={styles.form2}>
-                <div className={styles2.field}>
-                    <label className={styles2.fieldlabel}></label>
-                    <input 
-                        className={styles2.fieldinput}
-                        type="text"
-                        placeholder="Address Line 1"
-                        onBlur={handleAddress1}
-                        onChange={handleAddress1}
-                    >
-                    </input>
-                </div>
-            </div>
-            <div className={styles.form2}>
-                <div className={styles2.field}>
-                    <label className={styles2.fieldlabel}></label>
-                    <input 
-                        className={styles2.fieldinput}
-                        type="text"
-                        placeholder="Address Line 2(optional)"
-                        onBlur={handleAddress2}
-                        onChange={handleAddress2}
-                    >
-                    </input>
-                </div>
-            </div>
-            <div className={styles.form2}>
-                <div className={styles2.field}>
-                    <label className={styles2.fieldlabel}>Link to website</label>
-                    <input 
-                        className={styles2.fieldinput}
-                        type="text"
-                        placeholder="Enter Link"
-                        onBlur={handleWebsite}
-                        onChange={handleWebsite}
-                    >
-                    </input>
-                </div>
-            </div>
-            <button className={styles3.activateButton}>
-                {loading ? (
-                    <FontAwesomeIcon
-                        className="spinner"
-                        icon={faSpinner}
-                    ></FontAwesomeIcon>
-                    ): ( 
-                    <span>Save</span>
-                        )} 
-            </button>
-            {showerror && (<Errormodal error={error} togglemodal={togglemodal}/>)}
-        </form>
+        </ErrorBoundary>
     );
 }
 

@@ -53,12 +53,15 @@ const Login = (props) => {
     // const phone = `${country["value"]}${number}`
     const handleNumber = (e) => {
         const value = e.target.value;
-        setNumber(value);
-        const phoneNumber = `${country["value"]}${number}`
-        setLoginState({ ...loginState, ...{phoneNumber} });
+        let formattedNumber = value.trim().replace(/\D/g, ''); // Remove non-numeric characters
+
+        // Check if the first digit is '0' and remove it, then prepend '+234'
+        if (formattedNumber.charAt(0) === '0') {
+            formattedNumber = '+234' + formattedNumber.slice(1);
+        }
+        setNumber(formattedNumber);
+        setLoginState({ ...loginState, ...{phoneNumber:number} });
     };
-
-
     // FOR PASSWORD ENCRYTPTING
     const handlePassword = (e) => {
         const value = e.target.value;
@@ -68,8 +71,6 @@ const Login = (props) => {
         setPassword(encrypted);
         setLoginState({ ...loginState, ...{password} });
     };
-
-    
     //FOR LOGIN PROCESS
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -97,6 +98,9 @@ const Login = (props) => {
             setLoginState({ ...loginState, ...{deviceId} });
           });
       }, []);
+    useEffect(() => {
+        setLoginState({ ...loginState, phoneNumber:number, password });
+    }, [number, password]);
     return ( 
         <div className="login">
             <div className="login-logo">
@@ -123,7 +127,7 @@ const Login = (props) => {
                                         type="tel"
                                         placeholder='0903 4344 5532'
                                         name="email"
-                                        maxLength="10"
+                                        maxLength="11"
                                         onChange={handleNumber}
                                         onBlur={handleNumber}
                                         required

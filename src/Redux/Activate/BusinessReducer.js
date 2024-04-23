@@ -33,7 +33,7 @@ export const kycReducer = (state = initialState, action) => {
     switch(action.type){
         case KYC_REQUEST:
             return{
-                ... state,
+                // ... state,
                 loading: true
             }
         case KYC_SUCCESS:

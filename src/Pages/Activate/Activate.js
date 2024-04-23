@@ -29,7 +29,7 @@ const Activate = ({personal, fetchgetprofile}) => {
     }
     useEffect(()=>{
         fetchgetprofile()
-    })
+    },[])
     return (
         <div className="test">
             <div className="left">

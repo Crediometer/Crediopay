@@ -112,17 +112,28 @@ const AccountStatement = ({fetchstatement, profile, cid, fetchgetprofile, fetchv
                         <div className="statement-head">
                             <div className="statement-head-left">
                                 <div className="statement-date">
-                                    <BsCalendar2Week/>
                                     <input
                                         type='text'
-                                        placeholder='January 2023'
+                                        placeholder='Start Date'
                                         className='transferfield'
-                                        onFocus={(e) => (e.target.type = "month")}
+                                        onFocus={(e) => (e.target.type = "date")}
                                         onBlur={(e) => {(e.target.type = "text");}}
+                                        onChange={handlestartdate}
                                         required
                                     ></input>
                                 </div>
-                                <p className='filtershow' onClick={handlefilter}>+ Add Filter</p>
+                                <div className="statement-date">
+                                    <input
+                                        type='text'
+                                        placeholder='End Date'
+                                        className='transferfield'
+                                        onFocus={(e) => (e.target.type = "date")}
+                                        onBlur={(e) => {(e.target.type = "text");}}
+                                        onChange={handleenddate}
+                                        required
+                                    ></input>
+                                </div>
+                                <p className='filtershow' onClick={handlefilter}>{filter ? "- Add Filter": "+ Add Filter"}</p>
                             </div>
                             <div className="statement-head-right">
                                 <button onClick={handleDropdown}>Download statement</button>
@@ -197,24 +208,6 @@ const AccountStatement = ({fetchstatement, profile, cid, fetchgetprofile, fetchv
                                             <option value="0">Money Out</option>
                                         </optgroup>
                                     </select>
-                                    <input
-                                        type='text'
-                                        placeholder='Start Date'
-                                        className='transferfield'
-                                        onFocus={(e) => (e.target.type = "date")}
-                                        onBlur={(e) => {(e.target.type = "text");}}
-                                        onChange={handlestartdate}
-                                        required
-                                    ></input>
-                                    <input
-                                        type='text'
-                                        placeholder='End Date'
-                                        className='transferfield'
-                                        onFocus={(e) => (e.target.type = "date")}
-                                        onBlur={(e) => {(e.target.type = "text");}}
-                                        onChange={handleenddate}
-                                        required
-                                    ></input>
                                 </div>
                                 <div className='categorySearch'>
                                     <FaSearch/>

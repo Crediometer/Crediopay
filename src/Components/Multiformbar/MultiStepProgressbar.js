@@ -16,7 +16,7 @@ const MultiStepProgressbar = (props) => {
                     <div className={`step-number ${accomplished ? "completed" : ""}`}>
                         {accomplished ? (<FaCheck/>) : (<p>1</p>)}
                     </div>
-                    <p className={`step-name ${accomplished ? "completed" : ""}`}>personal<br></br>information </p>
+                    <p className={`step-name ${accomplished ? "completed" : ""}`}>Business<br></br>Information </p>
                 </div>
             )}
             </Step>
@@ -26,7 +26,7 @@ const MultiStepProgressbar = (props) => {
                 <div className={`step-number ${accomplished ? "completed" : ""}`}>
                     {accomplished ? (<FaCheck/>) : (<p>2</p>)}  
                 </div>
-                <p className={`step-name ${accomplished ? "completed" : ""}`}>Business<br></br>information </p>
+                <p className={`step-name ${accomplished ? "completed" : ""}`}>Data<br></br>Verification</p>
             </div>
             )}
             </Step>

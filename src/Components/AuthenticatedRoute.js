@@ -5,7 +5,7 @@ import { Outlet, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const AuthenticatedRoute = ({ element, isAuthenticated,path}) => {
-      const isTokenValid = isAuthenticated && checkTokenValidity();
+      const isTokenValid = isAuthenticated;
 
       return isTokenValid ? <Outlet /> : <Navigate to="/" />;
 };
@@ -18,7 +18,7 @@ const checkTokenValidity = () => {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state?.login?.token?.data?.token?.token,
+  isAuthenticated: state.login.token.data.token.token,
 });
 
 export default connect(mapStateToProps)(AuthenticatedRoute);
