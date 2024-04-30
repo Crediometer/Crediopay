@@ -1,3 +1,0 @@
-export const VAULT_REQUEST = 'VAULT_REQUEST'
-export const VAULT_SUCCESS = 'VAULT_SUCCESS'
-export const VAULT_FALIURE = 'VAULT_FALIURE'
