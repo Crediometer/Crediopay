@@ -1,0 +1,222 @@
+.overview-head{
+    padding: 40px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFFFF;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+}
+.overview-left-head{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    color: rgba(0, 0, 0, 0.9);
+}
+.overview-center{
+    padding-left: 35px;
+    padding-right: 35px;
+    border-left: 0.7px solid #000000;
+    border-right: 0.7px solid #000000;
+}
+.overview-available{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    color: rgba(43, 43, 43, 0.4);
+}
+.overview-main-balance{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 50px;
+    color: rgba(0, 0, 0, 0.9);
+}
+.overview-body{
+    margin-top: 50px;
+    background: #FFFFFF;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+.overview-body-top{
+    padding-top: 50px;
+    padding-left: 32px;
+    padding-right: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.overview-showing{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    color: rgba(43, 43, 43, 0.7);
+}
+.overview-account{
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    color: #0F2F3E;
+}
+.overview-account span{
+    margin-top: 8px;
+    margin-left: 8px;
+}
+.overview-body-middle{
+    padding-top: 50px;
+    padding-left: 32px;
+    padding-right: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.overview-date{
+    padding: 20px;
+    background: rgba(217, 217, 217, 0.4);
+    border-radius: 8px;
+}
+.overview-date p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: rgba(43, 43, 43, 0.9);
+}
+.overview-select{
+    display: flex;
+    align-items: center;
+}
+.overview-select p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: rgba(43, 43, 43, 0.7);
+}
+.overview-select select{
+    padding: 20px;
+    width: 200px;
+    margin-left: 10px;
+    background: rgba(217, 217, 217, 0.4);
+    border: none;
+    border-radius: 8px;
+}
+.overview-table{
+    margin-top: 40px;
+}
+.overview-table table{
+    width: 100%;
+    border-radius: 4px;
+}
+.overview-table table thead tr{
+    width: 100%;
+    background: #F0F0F0;
+    border-bottom: 1.21232px solid #D5D5D5;
+    border-radius: 9.69859px 9.69859px 0px 0px;
+  
+}
+.overview-table table thead tr th{
+    padding: 29px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #555555;
+}
+@media (max-width:1330px) {
+    .overview-main-balance{
+        font-size: 40px;
+    }
+}
+@media (max-width:1230px) {
+    .overview-left-head{
+        font-size: 30px;
+    }
+    .overview-available{
+        font-size: 15px;
+    }
+    .overview-main-balance{
+        font-size: 30px;
+    }
+}
+@media (max-width:1000px) {
+    .overview-head{
+        padding: 0px 20px;
+        display: block;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 8px;
+    }
+    .overview-left{
+        padding-bottom: 40px;
+        border-bottom: 0.661111px solid rgba(0, 0, 0, 0.4);
+    }
+    .overview-center{
+        padding: 20px;
+        padding-left: 0px;
+        padding-right: 0px;
+        border-bottom: 0.661111px solid rgba(0, 0, 0, 0.4);
+        border-left: none;
+        border-right: none;
+    }
+    .overview-right{
+        padding: 20px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .overview-left-head{
+        font-size: 35px;
+    }
+    .overview-available{
+        font-size: 20px;
+    }
+    .overview-main-balance{
+        font-size: 35px;
+    }
+    .overview-body-top, .overview-body-middle{
+        padding-top: 33px;
+        padding-left: 21px;
+        padding-right: 21px;
+    }
+    .overview-showing{
+        font-size: 15px;
+    }
+    .overview-account{
+        font-size: 15px;
+    }
+    .overview-date{
+        padding: 14px;
+    }
+    .overview-select p{
+        font-size: 12px;
+    }
+    .overview-select select{
+        padding: 10px;
+        width: 150px;
+    }
+    .overview-date p{
+        font-size: 13px;
+    }
+    .overview-table table thead tr{
+        width: 100%;
+        background: #F0F0F0;
+        border-bottom: 1.21232px solid #D5D5D5;
+        border-radius: 9.69859px 9.69859px 0px 0px;
+    }
+    .overview-table table thead tr th{
+        padding: 19px;
+        font-size: 13px;
+    }
+}
+@media (max-width: 600px){
+    .overview-body{
+        width: 250%;
+    }
+}

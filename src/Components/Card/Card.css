@@ -1,0 +1,68 @@
+.card{
+    width: 100%;
+    padding: 0rem 1.8rem;
+    border-radius: 1.35369rem;
+    background-image: url(../../Assets/card-background.png);
+    /* background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.75) 100%), url(../../Assets/card-background.png), lightgray 50% / cover no-repeat; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1000px;
+    box-shadow: 0px 6.768292427062988px 16.92072868347168px 0px rgba(83, 83, 83, 0.16);
+}
+.card-details{
+    padding-top: 5.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-header{
+    color: rgba(239, 239, 241, 0.54);
+    font-family: "Inter";
+    font-size: 0.61994rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.card-balance{
+    color: #EFEFF1;
+    font-family: "Inter";
+    font-size: 1.85988rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.card-fund{
+    padding: 0.77rem;
+    color: #EFEFF1;
+    font-family: "Inter";
+    font-size: 0.92994rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 4.96px;
+    background: #B11226;
+}
+.card-name{
+    margin-top: 45px;
+}
+.card-name p{
+    color: #EFEFF1;
+    padding-bottom: 1.23rem;
+    font-family: "Inter";
+    font-size: 1.26906rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+@media (max-width: 1380px) {
+    .card-balance{
+        font-size: 1.4rem;
+    }
+    .card-fund{
+        padding: 0.57rem;
+        font-size: 0.62994rem;
+    }
+    .card{
+        padding: 0rem 1.4rem;
+    }
+}

@@ -1,0 +1,78 @@
+.phone{
+    padding: 2rem 7rem;
+}
+.phone-header-head{
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Poppins';
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.749);
+}
+.phone-header-text{
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: 'Poppins';
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.749);
+}
+.phone-form{
+    margin-top: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.form-change{
+    width: 70%;
+    /* margin-top: 80px; */
+}
+.input-2 input{
+    margin-top: 0px;
+}
+.phone-button{
+    width: 25%;
+}
+.phone-button-inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem 0rem;
+    width: 100%;
+    background: #AC1337;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 39px;
+    color: #FFFFFF;
+}
+@media (max-width: 1280px) {
+    .phone{
+        padding: 2rem 1rem;
+    }
+    
+}
+@media (max-width: 1000px) {
+    .phone{
+        padding: 2rem 1rem;
+    }
+    .phone-form{
+        margin-top: 80px;
+        width: 100%;
+        display: block;
+    }
+    .form-change{
+        width: 100%;
+        /* margin-top: 80px; */
+    }
+    .input-2 input{
+        margin-top: 0px;
+    }
+    .phone-button{
+        width: 100%;
+        margin-top: 200px;
+    }
+}

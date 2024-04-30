@@ -1,0 +1,12 @@
+.preloader{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.vas-preloader{
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

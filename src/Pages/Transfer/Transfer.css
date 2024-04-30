@@ -1,0 +1,429 @@
+.transfer{
+    padding: 2rem 2.0625rem;
+}
+.transfer-head{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.75rem;
+    color: #000000;
+}
+.transfer-body{
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.transfer-inner{
+    width: 100%;
+    border-radius: 15px;
+    padding: 1rem;
+    /* background: rgba(230, 230, 230, 0.88); */
+    border-radius: 2px;
+}
+.transfer-to-title{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: #000000;
+}
+.transfer-to-inner{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 44px;
+    padding-bottom: 52px;
+    border-bottom: 0.2px solid #000000;
+}
+.to{
+    
+    width: 48%;
+    padding: 1rem;
+    margin-left: 10px;
+    margin-right: 10px;
+    background: #FFFFFF;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.066);
+    border-radius: 8px;
+}
+.to p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: left;
+    color: #000000;
+}
+.to-inner{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.to-image{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E0E0E0;
+    border-radius: 10px;
+
+}
+.to-image img{
+    width: 30px;
+}
+.to-image svg{
+    font-size: 1rem;
+}
+.to-select input{
+    width: 30px;
+}
+.to-select input[type=radio]{
+    accent-color: #AC1337;
+}
+.transfer-cred{
+    padding: 1.4375rem 0rem;
+    border-bottom: 0.2px solid #000000;
+}
+.transfer-send{
+    display: flex;
+    align-items: center;
+}
+.transfer-send p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: rgba(0, 0, 0, 0.8);
+}
+.transfer-send select{
+    margin-left: 10px;
+    background-color: white;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    color: #2b2b2b6b;
+}
+.transfer-account{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.transfer-account-left{
+    width: 60%;
+    padding:1.3rem 1.5rem;
+    background: #FFFFFF;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.02);
+    border-radius: 8px;
+}
+.account-left-head{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: rgba(0, 0, 0, 0.9);
+}
+.account-left-text{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.4);
+}
+.transfer-account-right{
+    width: 35%;
+}
+.transfer-available{
+    display: flex;
+    align-items: center;
+}
+.available-2{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.7375rem;
+    color: rgba(43, 43, 43, 0.4);
+}
+.sub-2{
+    margin-left: 10px;
+    background: rgba(179, 28, 47, 0.15);
+    border-radius: 4.40917px;
+}
+.sub-2 p{
+    padding: 0.3125rem 0.4375rem;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.475rem;
+    color: rgba(43, 43, 43, 0.9);
+}
+.balance-2{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.9);
+}
+.form-1-outer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+.form-1, .form-2{
+    position: relative;
+    margin-top: 24px;
+    width: 32%;
+}
+.form-1-select{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    border: none;
+    width: 100%;
+    padding: 1.0625rem 1.875rem;
+}
+.form-1-select p, .form-1-select svg{
+    color: #2b2b2b85;
+    font-size: 1.2rem;
+    font-family: Darker Grotesque;
+    font-weight: 500;
+}
+.bank-select{
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+    border-radius: 2.031px;
+    background: #DCDCDC;
+    padding: 1.17rem 1.33rem;
+}
+.bank-select-top{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.bank-select-top p{
+    color: rgba(0, 0, 0, 0.80);
+    font-size: 0.76144rem;
+    font-family: Poppins;
+    font-weight: 500;
+}
+.select-cancel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    background-color: #000000;
+    border-radius: 50%;
+}
+.select-cancel svg{
+    font-size: 0.6rem;
+    color: white;
+}
+.bank-select-search{
+    margin-top: 40px;
+}
+.bank-select-search input{
+    width: 100%;
+    border: none;
+    padding: 0.54rem 0.89rem;
+    border-radius: 2.031px;
+    background: #FFF;
+    color: #2B2B2B;
+    font-size: 0.76144rem;
+    font-family: Darker Grotesque;
+    font-weight: 500;
+}
+.bank-select-body{
+    margin-top: 15px;
+    height: 300px;
+    overflow-y: scroll;
+}
+.banks{
+    margin-bottom: 15px;
+    padding: 0.95rem 0.86rem;
+    display: flex;
+    align-items: center;
+    border-radius: 2.031px;
+    background: #FFF;
+}
+.bank-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 27px;
+    height: 27px;
+    background-color: #A6A6A636;
+    border-radius: 50%;
+}
+.bank-name{
+    margin-left: 30px;
+    color: rgba(0, 0, 0, 0.80);
+    font-size: 0.76144rem;
+    font-family: Poppins;
+    font-weight: 500;
+}
+.form-2{
+    margin-top: 24px;
+    width: 48%;
+}
+.form-1-label{
+    font-size: 0.8rem;
+}
+.save-ben{
+    padding: 24px 0px;
+    border-bottom: 0.2px solid #000000;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.save-ben p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+.save-ben-switch{
+    margin-left: 25px;
+}
+.form-button{
+    margin-top: 32px;
+}
+.reset{
+    padding:1rem 0rem;
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 39px;
+    color: #707070;
+}
+.transfer-button{
+    margin-top: 31px;
+    padding:1rem 0rem;
+    width: 100%;
+    background: #AC1337;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 39px;
+    color: #FFFFFF;
+}
+@media (max-width: 1280px) {
+    .account-left-head{
+        font-size: 1.4rem;
+    }
+    .balance-2{
+        font-size: 1.4rem;
+    }
+}
+@media (max-width: 1210px) {
+    .account-left-head{
+        font-size: 1.8rem;
+    }
+    .available-2{
+        font-size: 0.7rem;
+    }
+    .balance-2{
+        font-size: 1.4rem;
+    }
+}
+@media (max-width: 1000px) {
+    .transfer{
+        padding: 2rem 1rem;
+    }
+    .transfer-head{
+        font-size: 0.75rem;
+    }
+    .transfer-body{
+        margin-top: 0px;
+    }
+    .transfer-inner{
+        padding: 0rem;
+        background: transparent;
+    }
+    .transfer-to-title{
+        display: none;
+    }
+    .transfer-to-inner{
+        margin-top: 20px;
+        padding-bottom: 24px;
+    }
+    .to p{
+        font-size: 0.625rem;
+    }
+    .to-image{
+        width: 29px;
+        height: 29px;
+    }
+    .to-image img{
+        width: 19px;
+    }
+    .to-image svg{
+        font-size: 0.8rem;
+    }
+    .transfer-cred{
+        position: relative;
+        padding: 1rem 0rem;
+        border-bottom: 0px;
+    }
+    .transfer-send p{
+        font-size: 0.875rem;
+    }
+    .transfer-send select, .transfer-available{
+        display: none;
+    }
+    .transfer-account-left{
+        width: 100%;
+    }
+    .transfer-account-right{
+        width: 0%;
+    }
+    .balance-2{
+        position: absolute;
+        top: 20px;
+        right: 1rem;
+        font-size: 0.625rem;
+    }
+    .account-left-head{
+        font-size: 0.8125rem;
+    }
+    .account-left-text{
+        font-size: 0.5rem;
+    }
+    .form-1-outer{
+        display: block;
+    }
+    .form-1, .form-2{
+        margin-top: 24px;
+        width: 100% !important;
+    }
+    .form-2{
+        margin-top: 24px;
+        width: 100%;
+    }
+    .form-1-label{
+        font-size: 0.7rem;
+    }
+}

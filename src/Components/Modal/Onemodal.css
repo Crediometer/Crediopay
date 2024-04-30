@@ -1,0 +1,83 @@
+.onemodal-button{
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.onemodal-button button{
+    width: 46%;
+}
+.active-box{
+    padding: 1.0625rem 5.875rem;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5625rem;
+    color: #FFFFFF;
+    background-color: #B11226;
+    border: none;
+    border-radius: 6.43478px;
+}
+.dynamic, .static{
+    padding: 1.0625rem 5.875rem;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5625rem;
+    color: #000000;
+    background-color: white;
+    border: 1.6087px solid rgba(0, 0, 0, 0.4);
+    border-radius: 6.43478px;
+}
+.onetime-modal{
+    margin-top: 40px;
+}
+.animation{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.onemodal-field{
+    width: 100%;
+    padding: 15px;
+    padding-left: 30px;
+    background-color: transparent;
+    border: none;
+    border-bottom:  1.5462px solid rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: rgba(0, 0, 0, 0.8);
+}
+.onemodal-field-2{
+    margin-top:30px;
+    width: 100%;
+    padding: 15px;
+    padding-left: 30px;
+    background: #F6F6F6;
+    border: 0.4px solid rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: rgba(0, 0, 0, 0.8);
+}
+@media (max-width: 1000px) {
+    .onetime-modal, .onemodal-button{
+        margin-top: 24px;
+    }
+    .static, .dynamic{
+        font-size: 0.8125rem;
+    }
+    .onemodal-field, .onemodal-field-2{
+        padding-left: 20px;
+        font-size: 0.625rem;
+    }
+    .onemodal-field-2{
+        margin-top:23px;
+    }
+}

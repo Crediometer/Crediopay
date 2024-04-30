@@ -1,0 +1,18 @@
+.sub-top p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: rgba(43, 43, 43, 0.7);
+}
+.virtual-top{
+    width: 40%;
+}
+@media (max-width:1000px) {
+    .sub-top p{
+        font-size: 1rem;;
+    }
+    .virtual-top{
+        width: 51%;
+    }
+}
