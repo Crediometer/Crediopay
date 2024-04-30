@@ -61,7 +61,7 @@ const Dashboard = ({fetchanalytics,
     }
     const redirect = () =>{
         if(!getprofileloading){
-            if (getprofile==="") {
+            if (!getprofile) {
                 history("/registration");
             }
         }
@@ -72,12 +72,15 @@ const Dashboard = ({fetchanalytics,
           await fetchgetprofile();
           // Mark fetchgetprofile as successful
           setGetProfileFetched(true);
-          redirect()
         } catch (error) {
           setGetProfileFetched(true); // Still set to true, even on failure to avoid infinite loop
         }
     };
-    
+    useEffect(() => {
+        if (getProfileFetched) {
+            redirect();
+        }
+    }, [getProfileFetched, getprofileloading]);
    
     useEffect(() => {
         fetchData();
@@ -96,7 +99,7 @@ const Dashboard = ({fetchanalytics,
     const myClassName = `${styles.status} ${isActive ? styles.active : ''}`;
     return ( 
         <div>
-            {analytics.loading || recent.loading|| sum.loading  ?( 
+            {analytics.loading || recent.loading|| sum.loading||getprofileloading  ?( 
                 <div className="preloader">
                     <LottieAnimation data={preloader} />
                 </div> 
