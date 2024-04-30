@@ -1,0 +1,64 @@
+.activate{
+    padding: 2.5rem 5.875rem;
+}
+.activateHead{
+    text-align: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: #2B2B2B;
+}
+.activateBody{
+    margin-top: 16px;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    text-align: center;
+    color: rgba(43, 43, 43, 0.8);
+}
+.activateProgress{
+    padding: 50px;
+}
+.activateFormOuter{
+    padding: 0rem 15.5rem;
+}
+.activateForm{
+    width: 100%;
+    padding: 1rem;
+    background-color: #ffff;
+}
+.activateButton{
+    margin-top: 25px;
+    width: 100%;
+    padding: 0.8rem; 
+    background: #AC1337;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #FFFFFF;
+}
+@media (max-width: 1000px){
+    .activate{
+        padding: 1rem 1rem;
+    }
+    .activateHead{
+        font-size: 1rem;
+    }
+    .activateBody{
+        margin-left: 50px;
+        margin-right: 50px;
+        font-size: 0.875rem;
+    }
+    .activateProgress{
+        padding: 36px;
+    }
+    .activateFormOuter{
+        padding: 0rem 0rem;
+    }
+}

@@ -1,0 +1,139 @@
+.sidebar{
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    background-color: #FFFF;
+}
+.sidebarheader{
+    padding: 2.125rem;
+}
+.businessname{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #2B2B2B;
+}
+.businessphone{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.4);
+}
+.links{
+    width: 100%;
+    margin-top: 20px;
+    padding-left: 40px;
+    /* background-color: #B11226; */
+}
+.links nav{
+    width: 100%;
+    list-style: none;
+}
+.links nav li a{
+    margin-top: 10px;
+    padding: 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: #2b2b2bd7;
+    transition: all 0.3s;
+}
+.links nav li a:hover{
+    background: #FAF1F3;
+    border-radius: 10px 0px 0px 10px;
+    border-right: 3px solid #B11226;
+    color: #B11226;
+    transition: all 0.3s;
+}
+.links nav li a.active{
+    background: #FAF1F3;
+    border-radius: 10px 0px 0px 10px;
+    border-right: 3px solid #B11226;
+    color: #B11226;
+}
+.active{
+    background: #FAF1F3;
+    border-radius: 10px 0px 0px 10px;
+    border-right: 3px solid #B11226;
+    color: #B11226;
+}
+.active p, .active .sideicon .sideiconInner svg{
+    color: #B11226;
+}
+.links nav li a svg{
+    font-size:1rem;
+}
+.addressName{
+    margin-left: 14px;
+}
+.sidebarfooter {
+    padding: 2.125rem;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.sidebarfooter h3{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #D50000;
+}
+.sidebarfooter h3 span{
+    color:#2B2B2B;
+    margin-right: 13px;
+}
+@media (max-width: 1210px) {
+    .links{
+        margin-top: 10px;
+    }
+    .links nav li a{
+        margin-top: 5px;
+        padding: 5px;
+        font-size: 0.575rem;
+    }
+    .sidebarfooter {
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+    }
+    .sidebarfooter h3{
+        font-size: 1rem;
+    }
+}
+@media (max-width: 1000px) {
+    .sidebarheader{
+        padding: 1.125rem;
+    }
+    .sidebar{
+        margin-top: 50px;
+        margin-left: 20px;
+        transform: translateX(-110%);
+        transition: all 0.4s;
+        z-index: 100;
+    }
+    .sidebaropen{
+        transform: translateX(0%);
+    }
+    .businessname{
+        font-size: 0.9375rem;
+    }
+    .businessphone{
+        font-size: 0.75rem;
+    }
+    .links{
+        padding-left: 60px;
+        /* background-color: #B11226; */
+    }
+    .links nav li a{
+        padding: 10px;
+        margin-top: 3px;
+        font-size: 0.75rem;
+    }
+}

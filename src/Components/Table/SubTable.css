@@ -1,0 +1,44 @@
+.subtable table{
+    width: 100%;
+    border-radius: 4px;
+}
+.subtable table thead tr th{
+    padding: 1.4rem;
+    background-color: #FFF9F9;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    color: #555555;
+}
+.subtable table tbody{
+    background-color: white;
+}
+.subtable table tbody tr td{
+    padding: 2.5rem 1.625rem;
+    background-color: white;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    text-align: center;
+    border-bottom: 0.2px solid #000000;
+    text-transform: uppercase;
+    color: rgba(43, 43, 43, 0.7);
+}
+@media (max-width:1000px) {
+    .subtable{
+        width: 100%;
+        overflow-x: scroll;
+    }
+    .subtable table thead tr th{
+        padding: 1rem;
+        font-size: 0.6875rem;
+    }
+    .subtable table tbody tr td{
+        padding: 1rem 1rem;
+        font-size: 0.6875rem;
+        text-align: center;
+    }
+}
