@@ -34,7 +34,7 @@ const Dashboard = ({fetchanalytics,
     clientid,
     cid,
     business,
-    vault,getprofile
+    vault,getprofile, getprofileloading
 }) => {
     const [isActive, setIsActive] = useState(1);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -60,8 +60,10 @@ const Dashboard = ({fetchanalytics,
         copy(vault?.accountBalance);
     }
     const redirect = () =>{
-        if (getProfileFetched && !getprofile) {
-            history("/registration");
+        if(!getprofileloading){
+            if (getprofile==="") {
+                history("/registration");
+            }
         }
     }
     const fetchData = async () => {
@@ -230,6 +232,7 @@ const mapStoreToProps = (state) => {
         sum: state.sumtransaction,
         profile: state.profile, 
         vault:state?.vault?.data?.data?.mainAccount,
+        getprofileloading: state?.getprofile?.loading,
         getprofile: state?.getprofile?.data?.businessPartnerInfo
     };
 };

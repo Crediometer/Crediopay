@@ -95,13 +95,14 @@ const Register = (props) => {
                                 <div className="inputbox2 inputbox-login">
                                     <input
                                         type="tel"
-                                        placeholder='+234 903 4344 5532'
+                                        placeholder='0903 4344 5532'
+                                        maxLength={11}
                                         onChange={handleNumber}
                                         onBlur={handleNumber}
                                         required
                                     >
                                     </input>
-                                    <span className='place-mobile'>+234 903 4344 5532</span>
+                                    <span className='place-mobile'>0903 4344 5532</span>
                                 </div>
                             </div>
                             {/* <div className="inputfield-4 loginfield">
