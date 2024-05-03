@@ -150,7 +150,7 @@ const Sub = ({cid, fetchsubaccount, subaccount, loading}) => {
 }
 const mapStoreToProps = (state) => {
     return {
-        cid: state?.getprofile?.data?.id,
+        cid: state?.getprofile?.data?.client?.clientId,
         subaccount: state?.subaccount?.data,
         loading: state?.subaccount?.loading
     };

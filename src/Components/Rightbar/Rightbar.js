@@ -13,8 +13,8 @@ const Rightbar = ({personal, business, tierlevel}) => {
             {(!business) ? (
                 <div className={styles.completeProfile}>
                     <p>Complete your Profile</p>
-                    {/* <Link to={(tierlevel > 2) ? "/activate" : '/verification'}><button>Complete</button></Link> */}
-                    <Link to="/activate"><button>Complete</button></Link>
+                    <Link to={(tierlevel > 2) ? "/activate" : '/verification'}><button>Complete</button></Link>
+                    {/* <Link to="/activate"><button>Complete</button></Link> */}
                 </div>
             ):(
                 <div></div>
