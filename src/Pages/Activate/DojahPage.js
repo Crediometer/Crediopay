@@ -1,8 +1,10 @@
 import Dojah from 'react-dojah'
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 const DojahPage = ({profile}) => {
+    const history = useNavigate()
     const appID = "65c1594edbc15d0040b5c60a";
-    const phoneNumber = profile?.phoneNumber
+    const phoneNumber = profile?.phoneNumber;
     const newphoneNumber = phoneNumber?.startsWith('+') ? '' + phoneNumber.slice(1) : phoneNumber; 
     /**
      *  This is your account public key
@@ -59,7 +61,8 @@ const DojahPage = ({profile}) => {
      */
     const response = (type, data) => {
       // console.log(type, data);
-      if(type === 'success'){
+      if(type === 'success'){ 
+        history('/activate')
       }else if(type === 'error'){
       }else if(type === 'close'){
       }else if(type === 'begin'){
