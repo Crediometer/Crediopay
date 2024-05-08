@@ -15,6 +15,7 @@
 }
 .money-in-text span{
     color: #068B6C;
+    margin-top: 5px;
 }
 .money-in-amount, .money-out-amount{
     font-family: 'Darker Grotesque';
@@ -26,6 +27,9 @@
 }
 .money-out-text span, .money-out-amount{
     color: #D50000;
+}
+.money-out-text span{
+    margin-top: 5px;
 }
 @media (max-width: 1210px) {
     .money-in-out{

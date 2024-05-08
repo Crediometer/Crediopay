@@ -29,7 +29,6 @@ const Personal = ({next, personal, error, loading}) => {
     const[image, setImage] = useState(null)
     const [errorHandler, setErrorHandler] = useState([false, ""]);
     const [showerror, setshowerror] = useState(false)
-   
     const handleDescription = (e) => {
         const value = e.target.value;
         setbusinessDescriptions(value);
@@ -100,8 +99,6 @@ const Personal = ({next, personal, error, loading}) => {
         <ErrorBoundary>
             <div>
                 {/* <p className={styles4.activateBody}>Your Documents are Still in the Verification Process, You will be notiication through an SMS Message if it has been Verified</p> */}
-
-
                 <p className={styles4.activateBody}>This is a sandbox server so ID verification process will not be carried out please press the contine button to proceed to the next step</p>
                 <button className={styles3.activateButton} onClick={handelClick}>
                     {/* {loading ? (

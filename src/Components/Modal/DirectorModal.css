@@ -5,14 +5,24 @@
     margin-top: 30px;
     width: 100%;
     height: 60px;
-    padding-left: 52px;
+    padding-left: 32px;
     background: #F6F6F6;
     border: 0.4px solid rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
     font-size: 1.25rem;
     color: rgba(0, 0, 0, 0.8);
+}
+.director-modal form select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('../../Assets/arrow.png');
+    background-size: 10px;
+    background-position: 97% center;
+    background-repeat: no-repeat;
 }
 .modal-field::placeholder{
     font-family: 'Poppins';
@@ -23,14 +33,13 @@
 }
 .modal-submit{
     margin-top: 24px;
-    padding-top:1.03125rem;
-    padding-bottom:1.03125rem;
+    padding-top:0.5rem;
+    padding-bottom:0.5rem;
     width: 100%;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.625rem;
-    line-height: 39px;
+    font-size: 1.2rem;
     color: #FFFFFF;
     background: #AC1337;
     border-radius: 8px;

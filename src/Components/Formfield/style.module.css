@@ -6,13 +6,16 @@
     letter-spacing: 0.1px;
     color: #202020;
 }
+.fieldlabel span{
+    color: rgb(252, 78, 78);
+}
 
 .fieldinput{
     margin-top: 8px;
     width: 100%;
     height: 48px;
     padding-left: 1rem;
-    background: #F9FAFB;
+    background-color: #F9FAFB;
     border: 1px solid #EEF6FF;
     border-radius: 4px;
     font-family: 'Inter';
@@ -23,6 +26,11 @@
     letter-spacing: 0.25px;
     color: rgba(32, 32, 32, 0.8);
 }
+
+/* .fieldinput:focus{
+    background-color: #F5F7FB;
+    border: 1px solid #C4C4C4;
+} */
 .fieldinput optgroup, .fieldinput optgroup option{
     font-family: 'Inter';
     font-style: normal;

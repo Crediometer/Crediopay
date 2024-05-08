@@ -28,6 +28,7 @@
     
 }
 .vas-airtime{
+    width: 100%;
     z-index: 3;
     position: absolute;
     top: 50px;
