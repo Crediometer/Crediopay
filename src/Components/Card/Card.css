@@ -23,6 +23,9 @@
     font-weight: 400;
     line-height: normal;
 }
+.card-header span{
+    margin-top: 5px;
+}
 .card-balance{
     color: #EFEFF1;
     font-family: "Inter";
@@ -32,10 +35,10 @@
     line-height: normal;
 }
 .card-fund{
-    padding: 0.77rem;
+    padding: 0.34rem;
     color: #EFEFF1;
     font-family: "Inter";
-    font-size: 0.92994rem;
+    font-size: 0.62994rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

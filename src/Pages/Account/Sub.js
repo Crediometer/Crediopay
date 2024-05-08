@@ -96,10 +96,15 @@ const Sub = ({cid, fetchsubaccount, subaccount, loading}) => {
                         </thead>
                         <tbody>
                             {(subaccount?.data?.results?.length === 0 ) ? (
-                                 <div className="empty-animate">
-                                    <LottieAnimation data={empty}/>
-                                    <p>No Data Found</p>
-                                </div>
+                                <tr>
+                                    <td colSpan={5}>
+                                        <div className="empty-animate">
+                                            <LottieAnimation data={empty}/>
+                                            <p>No Data Found</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                               
                             ) : (
                                 <>
                                     {displayUsers}

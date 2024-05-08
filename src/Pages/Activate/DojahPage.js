@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 const DojahPage = ({profile}) => {
     const history = useNavigate()
-    const appID = "65c1594edbc15d0040b5c60a";
+    const appID = process.env.app_id;
     const phoneNumber = profile?.phoneNumber;
     const newphoneNumber = phoneNumber?.startsWith('+') ? '' + phoneNumber.slice(1) : phoneNumber; 
     /**
@@ -12,7 +12,7 @@ const DojahPage = ({profile}) => {
      *  https://dojah.io/dashboard to
      *  retrieve it. You can also regenerate one)
      */
-    const publicKey = "test_pk_hwps2TD34uPQZEM7nD6gVCFWI";
+    const publicKey = process.env.public_key;
   
     /**
      *  This is the widget type you'd like to load
@@ -23,7 +23,7 @@ const DojahPage = ({profile}) => {
     const type = "custom";
   
     const config = {
-        widget_id: "65e23a56dd3ad4003f2e5217" //this is generated from easyonboard 
+        widget_id: process.env.widget_id //this is generated from easyonboard 
     };
   
     /**
@@ -64,7 +64,9 @@ const DojahPage = ({profile}) => {
       if(type === 'success'){ 
         history('/activate')
       }else if(type === 'error'){
+        history('/dashboard')
       }else if(type === 'close'){
+        history('/dashboard')
       }else if(type === 'begin'){
       }else if(type === 'loading'){
       }

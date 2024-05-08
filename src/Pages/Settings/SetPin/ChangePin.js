@@ -9,7 +9,8 @@ import { postchangepin } from "../../../Redux/Pin/SetpinAction";
 import SuccessModal from "../../../Components/Modal/SuccessModal";
 import LottieAnimation from "../../../Lotties";
 import loader from "../../../Assets/loading.json";
-const ChangePin = ({postchangepin, success, loading}) => {
+import Errormodal from "../../../Components/Modal/Errormodal";
+const ChangePin = ({postchangepin, success, loading,error}) => {
     const [sidebar, setSidebar] = useState(false);
     const [enterPassword, setEnterPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -17,6 +18,7 @@ const ChangePin = ({postchangepin, success, loading}) => {
     const [postState, setPostState] = useState({})
     const [combinedPin, setcombinedPin] = useState("");
     const [showsuccess, setshowsuccess] = useState(false)
+    const [showerror,  setSowerror] = useState(false);
     const toggleSidebar = () => {
       setSidebar((prevState) => !prevState);
     };
@@ -160,6 +162,9 @@ const ChangePin = ({postchangepin, success, loading}) => {
     const togglemodal = ()=>{
         setshowsuccess(!showsuccess)
     }
+    const toggleerrormodal = ()=>{
+        setSowerror(!showerror)
+    }
     const handlesubmit = (e)=>{
         e.preventDefault();
         postchangepin(
@@ -168,11 +173,11 @@ const ChangePin = ({postchangepin, success, loading}) => {
                setshowsuccess(true)
             // setPending(true);
             }
-        //,  ()=>{ 
-        //     // setErrorHandler(error)
-        //     setshowerror(true)
-        //     // setPending(false);
-        // }
+        ,  ()=>{ 
+            // setErrorHandler(error)
+            setSowerror(true)
+            // setPending(false);
+        }
         )
     }
     return ( 
@@ -269,6 +274,7 @@ const ChangePin = ({postchangepin, success, loading}) => {
                                         <input
                                         type="text"
                                         maxlength="1"
+                                        onChange={onChangepin8}
                                         onBlur={onChangepin8}
                                         ref={atmpin7}
                                         ></input>
@@ -315,6 +321,7 @@ const ChangePin = ({postchangepin, success, loading}) => {
                                         <input
                                         type="text"
                                         maxlength="1"
+                                        onChange={onChangepin12}
                                         onBlur={onChangepin12}
                                         ref={atmpin11}
                                         ></input>
@@ -342,6 +349,7 @@ const ChangePin = ({postchangepin, success, loading}) => {
                             )}
                         </div>
                         {showsuccess && (<SuccessModal message={success} togglemodal={togglemodal}/>)}
+                        {showerror && (<Errormodal error={error} togglemodal={toggleerrormodal}/>)}
                     </div>
         //         </div>
         //     </div>
@@ -353,14 +361,15 @@ const mapStateToProps = state => {
     return{
         loading: state.changepin.loading,
         success:state?.changepin?.data?.message,
+        error:state?.changepin?.error,
         profile: state.getprofile.data
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return{
-        postchangepin: (postdata, history) => {
-            dispatch(postchangepin(postdata, history));
+        postchangepin: (postdata, history, errors) => {
+            dispatch(postchangepin(postdata, history, errors));
         },
     }
 }

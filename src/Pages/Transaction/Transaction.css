@@ -62,9 +62,24 @@
     font-size: 1rem;
     color: rgba(0, 0, 0, 0.4);
 }
+.trans-phone span{
+    margin-top: 10px;
+
+}
+.copied{
+    margin-left: 15px;
+    padding: 0.4rem;
+    background-color: #555555;
+    border-radius: 4px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.3rem;
+    color: white;
+}
 .trans-phone span svg{
-    margin-right: 8px;
-    font-size: 1.2rem;
+    margin-left: 8px;
+    font-size: 1rem;
     color: #555555;
 }
 
@@ -160,6 +175,15 @@
     font-weight: 500;
     font-size: 14px;
     color: #2b2b2baf;
+}
+.categoryRight select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('../../Assets/arrow.png');
+    background-size: 10px;
+    background-position: 98% center;
+    background-repeat: no-repeat;
 }
 .categoryRight select optgroup{
     font-family: 'Darker Grotesque';

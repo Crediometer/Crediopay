@@ -138,7 +138,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
             <p className="businessHead">Enter verification details for at least one of the directors</p>
             <div className={styles.form2}>
                 <div className={styles2.field}>
-                    <label className={styles2.fieldlabel}>Where is your business located *</label>
+                    <label className={styles2.fieldlabel}>Where is your business located <span>*</span></label>
                     <select 
                         className={styles2.fieldinput}
                         onBlur={handleState}
@@ -218,7 +218,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
             </div>
             <div className={styles.form2}>
                 <div className={styles2.field}>
-                    <label className={styles2.fieldlabel}>Email</label>
+                    <label className={styles2.fieldlabel}>Email<span>*</span></label>
                     <input 
                         className={styles2.fieldinput}
                         type="text"
@@ -232,7 +232,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
             </div>
             <div className={styles.form2}>
                 <div className={styles2.field}>
-                    <label className={styles2.fieldlabel}>BVN</label>
+                    <label className={styles2.fieldlabel}>BVN<span>*</span></label>
                     <input 
                         className={styles2.fieldinput}
                         type="text"
@@ -247,7 +247,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
             </div>
             <div className={styles.form2}>
                 <div className={styles2.field}>
-                    <label className={styles2.fieldlabel}>DOB</label>
+                    <label className={styles2.fieldlabel}>DOB<span>*</span></label>
                     <input 
                         className={styles2.fieldinput}
                         type="date"
@@ -261,7 +261,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
             </div>
             <div className={styles.form2}>
                 <div className={styles2.field}>
-                    <label className={styles2.fieldlabel}>Rc Number</label>
+                    <label className={styles2.fieldlabel}>Rc Number<span>*</span></label>
                     <input 
                         className={styles2.fieldinput}
                         type="text"
@@ -274,7 +274,7 @@ const Business = ({next, business, error, loading,kyc,kycload, kycerror}) => {
                 </div>
             </div>
             <div className={styles.form2}>
-               <p className='addimage'>Mermat/Status Report</p>
+               <p className='addimage'>Mermat/Status Report<span>*</span></p>
                {/* <DragandDropMermat mermat={updateMermat}/> */}
                <div className="files">
                 <div className="filedisplay">

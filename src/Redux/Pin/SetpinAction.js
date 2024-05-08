@@ -69,7 +69,7 @@ export const changepinFaliure = (error) =>{
         payload: error
     }
 }
-export const postchangepin = (postdata, history) => {
+export const postchangepin = (postdata, history, errors) => {
     return(dispatch) => {
         dispatch(changepinRequest())
         let datas = JSON.parse(localStorage.getItem("auth"))
@@ -84,9 +84,10 @@ export const postchangepin = (postdata, history) => {
                 history()
             })
             .catch(error =>{
-                const errorMsg = error
+                const errorMsg = error.response.data.message
                 dispatch(changepinFaliure(errorMsg))
-                // errors()
+                console.log(error)
+                errors()
             })
     }
 }

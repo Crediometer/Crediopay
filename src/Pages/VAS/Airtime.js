@@ -22,6 +22,7 @@ import { fetchvault } from '../../Redux/Vault/VaultAction';
 const Airtime = ({loading, data, submitting, postvasairtime, error, success, cid,vault, fetchgetprofile,fetchvault, name}) => {
     const [count, setcount] = useState(1);
     const [showBank, setShowBank] = useState(false);
+    const [showfield, setShowField] = useState(false);
     const [selectImage, setSelectImage] = useState(null)
     const [selectBank, setSelectBank]  = useState("Select Network");
     const [phoneNumber, setPhoneNumber]= useState("");
@@ -102,16 +103,21 @@ const Airtime = ({loading, data, submitting, postvasairtime, error, success, cid
     };
     const handlesubmit = (e)=>{
         e.preventDefault();
-        postvasairtime(
-            postState,()=>{ 
-               setshowsuccess(true)
-            // setPending(true);
-            },()=>{ 
-            // setErrorHandler(error)
-                setshowerror(true)
-            // setPending(false);
-            }   
-        )
+        if(!postState.serviceCategoryId){
+            setShowField(true)
+        }else{
+            postvasairtime(
+                postState,()=>{ 
+                   setshowsuccess(true)
+                // setPending(true);
+                },()=>{ 
+                // setErrorHandler(error)
+                    setshowerror(true)
+                // setPending(false);
+                }   
+            )
+        }
+        
     }
 
     useEffect(() => {
@@ -131,7 +137,8 @@ const Airtime = ({loading, data, submitting, postvasairtime, error, success, cid
             ):(
                 <div>
                     {count === 1 ? (
-                        <form method="POST">
+                        <form onSubmit={()=> setcount(count + 1)} method="POST">
+                            {showfield && <div className="login-error">Please select a Network Provider</div>}
                             <div className="form-group">
                                 <label>Mobile Number</label>
                                 <div className="form-group-inner">
@@ -140,6 +147,7 @@ const Airtime = ({loading, data, submitting, postvasairtime, error, success, cid
                                         placeholder='Enter phone number'
                                         onChange={handleNumber}
                                         onBlur={handleNumber}
+                                        maxLength={11}
                                         required
                                     ></input>
                                     <RiContactsBookFill/>
@@ -148,7 +156,7 @@ const Airtime = ({loading, data, submitting, postvasairtime, error, success, cid
                             <div className="form-group" onClick={handleShow}>
                                 <label>Service Provider</label>
                                 <div className="form-group-inner">
-                                    <p><img src={selectImage}></img>{selectBank}</p>
+                                    <p>{(selectImage == null)? "" : (<img src={selectImage}></img>)}{selectBank}</p>
                                     <FaChevronDown/>
                                 </div>
                                 {showBank && (
@@ -176,7 +184,7 @@ const Airtime = ({loading, data, submitting, postvasairtime, error, success, cid
                                     ></input>
                                 </div>
                             </div>
-                            <button className='transfer-button' onClick={()=> setcount(count + 1)}><span>Continue</span></button>
+                            <button className='transfer-button'><span>Continue</span></button>
                         </form>
                     ): null}
                     {count === 2 ? (

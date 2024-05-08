@@ -318,7 +318,10 @@
 }
 .transfer-button{
     margin-top: 31px;
-    padding:1rem 0rem;
+    padding:0.7rem 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     background: #AC1337;
     border-radius: 8px;
@@ -326,7 +329,7 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 39px;
     color: #FFFFFF;
 }

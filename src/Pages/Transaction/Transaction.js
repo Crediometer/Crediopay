@@ -35,6 +35,7 @@ const Transaction = ({fetchtransaction, profile,fetchgetprofile, fetchvault, cid
     const [success, setsuccess] = useState("All")
     const [startdate, setstartdate] = useState(null)
     const [enddate, setenddate] = useState(null)
+    const [copied, setCopied] = useState(false)
     const toggleSidebar = () => {
       setSidebar((prevState) => !prevState);
     };
@@ -63,6 +64,7 @@ const Transaction = ({fetchtransaction, profile,fetchgetprofile, fetchvault, cid
     };
     const handleCopy = ()=>{
         copy(profile?.accountNumber);
+        setCopied(true)
     }
     const handlemode = (e)=>{
         const value = e.target.value
@@ -77,7 +79,19 @@ const Transaction = ({fetchtransaction, profile,fetchgetprofile, fetchvault, cid
         fetchvault(cid)
         fetchgetprofile()
     }, [cid]);
-
+    useEffect(() => {
+        let timeoutId;
+    
+        if (copied) {
+          timeoutId = setTimeout(() => {
+            setCopied(false);
+          }, 500); // 1 seconds
+        }
+    
+        return () => {
+          clearTimeout(timeoutId);
+        };
+    }, [copied]);
     const myClassName = `${styles.status} ${isActive ? styles.active : ''}`;
     return ( 
         <div className="test">
@@ -90,13 +104,13 @@ const Transaction = ({fetchtransaction, profile,fetchgetprofile, fetchvault, cid
                     <div className="transaction">
                         <div className="transaction-top">
                             <div className={`transaction-top-left ${selectedBox === 3 ? 'selected-box' : ''}`}
-                            onClick={() => handleClick2(3)}
+                            // onClick={() => handleClick2(3)}
                             >
                                 <h1>{profile?.accountName}</h1>
                                 <div className="current">
                                     <p>Current</p>
                                 </div>
-                                <p className='trans-phone'>{profile?.accountNumber}<span onClick={handleCopy}><IoCopy/></span></p>
+                                <p className='trans-phone'>{profile?.accountNumber}{copied ? (<span className='copied'>Copied</span>): (<span onClick={handleCopy}><IoCopy/></span>)}</p>
                             </div>
                             <div className={`transaction-top-center ${selectedBox === 1 ? 'selected-box' : ''}`}
                             onClick={() => handleClick2(1)}
@@ -121,7 +135,7 @@ const Transaction = ({fetchtransaction, profile,fetchgetprofile, fetchvault, cid
                                 </IntlProvider>
                             </div>
                             <div className={`transaction-top-right ${selectedBox === 2 ? 'selected-box' : ''}`}
-                            onClick={() => handleClick2(2)}
+                            // onClick={() => handleClick2(2)}
                             >
                                 <div className="trans-center-top">
                                     <p className='available'>Available Balance</p>

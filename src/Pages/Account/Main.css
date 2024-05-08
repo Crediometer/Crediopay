@@ -94,15 +94,15 @@
     margin-left: 20px;
 }
 .main-select select{
-    width: 75%;
-    padding: 0.4rem;
+    width: 100%;
+    padding: 0.5rem;
     background-color: #B11226;
     border-radius: 16px;
     border: none;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: rgba(255, 255, 255, 0.9);
 }
 .main-footer-left p{

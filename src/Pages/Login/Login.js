@@ -129,7 +129,7 @@ const Login = (props) => {
                                 <div className="inputbox2 inputbox-login">
                                     <input
                                         type="tel"
-                                        placeholder='0903 4344 5532'
+                                        placeholder='e.g 08089986787'
                                         name="email"
                                         maxLength="11"
                                         onChange={handleNumber}
